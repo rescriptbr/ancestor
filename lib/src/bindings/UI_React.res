@@ -9,4 +9,4 @@ type tags = [
 ]
 
 @module("react")
-external createElement: (tags, {..}) => React.element = "createElement"
+external createElement: (tags, ReactDOM.domProps, React.element) => React.element = "createElement"
