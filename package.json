@@ -1,0 +1,23 @@
+{
+  "name": "root-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": [
+    "lib",
+    "demo"
+  ],
+  "scripts": {
+    "lib": "yarn workspace rescript-ui",
+    "demo": "yarn workspace demo-workspace",
+    "lib:compile": "yarn lib build",
+    "demo:compile": "yarn demo build",
+    "demo:dev": "yarn demo vite:dev",
+    "demo:build": "yarn demo vite:build",
+    "demo:compile": "yarn demo rescript:watch"
+  },
+  "devDependencies": {},
+  "peerDependencies": {},
+  "dependencies": {}
+}

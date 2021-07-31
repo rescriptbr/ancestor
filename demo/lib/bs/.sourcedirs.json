@@ -1,0 +1,1 @@
+{ "dirs" : [ "src" ] , "pkgs" : [ [ "rescript-ui" , "/home/bvihjcep/Projects/ui-primitives/demo/node_modules/rescript-ui" ] , [ "@rescript/react" , "/home/bvihjcep/Projects/ui-primitives/node_modules/@rescript/react" ] ] , "generated" : [] }
