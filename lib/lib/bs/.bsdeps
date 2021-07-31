@@ -1,10 +1,10 @@
 9.1.4
-/home/bvihjcep/Projects/ui-primitives/lib
-0
+/home/bvihjcep/Projects/ancestor/node_modules/rescript-ui
+1 -bs-package-output es6:.:.bs.js
 bsconfig.json	0x1.83a5ee7a6d85ap+30
 src	0x1.8415b6e92824cp+30
 src/components	0x1.8415b6dc3626ap+30
-src/core	0x1.8415b6d6ea3d6p+30
+src/core	0x1.8415b9506d5cp+30
 src/bindings	0x1.8415b6d6984fdp+30
 ===
-/home/bvihjcep/Projects/ui-primitives/node_modules/rescript/linux/rescript.exe	0x1.836c77a65d2f2p+30
+/home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/rescript.exe	0x1.836c77a65d2f2p+30

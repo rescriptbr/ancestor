@@ -1,14 +1,14 @@
 rescript = 1
-g_finger := /home/bvihjcep/Projects/ui-primitives/node_modules/@rescript/react/lib/ocaml/install.stamp
+g_finger := /home/bvihjcep/Projects/ancestor/node_modules/@rescript/react/lib/ocaml/install.stamp
 rule astj
-  command = /home/bvihjcep/Projects/ui-primitives/node_modules/rescript/linux/bsc.exe  -bs-v 9.1.4 -bs-jsx 3  -absname -bs-ast -o $out $i
+  command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsc.exe  -w a -bs-v 9.1.4 -bs-jsx 3  -absname -bs-ast -o $out $i
 o src/Ancestor.ast : astj ../../src/Ancestor.res
 rule deps
-  command = /home/bvihjcep/Projects/ui-primitives/node_modules/rescript/linux/bsb_helper.exe -hash 3e2aa99789ea8d7ab6512c040e761035 $in
+  command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsb_helper.exe -hash 3e2aa99789ea8d7ab6512c040e761035 $in
   restat = 1
 o src/Ancestor.d : deps src/Ancestor.ast
 rule mij
-  command = /home/bvihjcep/Projects/ui-primitives/node_modules/rescript/linux/bsc.exe -I src/bindings -I src/core -I src/components -I src -I /home/bvihjcep/Projects/ui-primitives/node_modules/@rescript/react/lib/ocaml   -bs-package-name rescript-ui -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsc.exe -I src/bindings -I src/core -I src/components -I src -I /home/bvihjcep/Projects/ancestor/node_modules/@rescript/react/lib/ocaml   -w a -bs-package-name rescript-ui -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
   dyndep = 1
   restat = 1
 o src/Ancestor.cmj src/Ancestor.cmi ../../src/Ancestor.bs.js : mij src/Ancestor.ast

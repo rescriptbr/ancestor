@@ -1,6 +1,6 @@
-open UI
+open Ancestor
 
 @react.component
 let make = () => {
-  <Box p=[xxs(2)]> <div /> </Box>
+  <Base tag=#footer onClick={_ => Js.log("test")} p=[xxs(2)]> <img /> </Base>
 }
