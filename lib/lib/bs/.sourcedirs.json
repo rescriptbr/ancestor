@@ -1,1 +1,1 @@
-{ "dirs" : [ "src" , "src/components" , "src/core" , "src/bindings" ] , "pkgs" : [ [ "@rescript/react" , "/home/bvihjcep/Projects/ui-primitives/node_modules/@rescript/react" ] ] , "generated" : [] }
+{ "dirs" : [ "src" , "src/components" , "src/core" , "src/bindings" ] , "pkgs" : [ [ "@rescript/react" , "/home/bvihjcep/Projects/ancestor/node_modules/@rescript/react" ] ] , "generated" : [] }

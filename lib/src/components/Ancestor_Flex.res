@@ -1,6 +1,6 @@
 open Ancestor_Core
 
-let flex = Goober.css(`
+let flex = Emotion.css(`
   width: 100%;
   flex-wrap: wrap;
 `)

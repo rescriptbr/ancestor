@@ -9,7 +9,7 @@
     "demo"
   ],
   "scripts": {
-    "lib": "yarn workspace rescript-ui",
+    "lib": "yarn workspace @rescriptbr/ancestor",
     "demo": "yarn workspace demo-workspace",
     "lib:compile": "yarn lib build",
     "demo:compile": "yarn demo build",
