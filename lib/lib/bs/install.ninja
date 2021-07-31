@@ -3,32 +3,32 @@ rule cp
   command = cp $i $out
 rule touch
  command = touch $out
-o UI.cmi : cp ../bs/src/UI.cmi
-o UI.cmj : cp ../bs/src/UI.cmj
-o UI.cmt : cp ../bs/src/UI.cmt
-o UI.res : cp ../../src/UI.res
-o UI_Base.cmi : cp ../bs/src/components/UI_Base.cmi
-o UI_Base.cmj : cp ../bs/src/components/UI_Base.cmj
-o UI_Base.cmt : cp ../bs/src/components/UI_Base.cmt
-o UI_Base.res : cp ../../src/components/UI_Base.res
-o UI_Flex.cmi : cp ../bs/src/components/UI_Flex.cmi
-o UI_Flex.cmj : cp ../bs/src/components/UI_Flex.cmj
-o UI_Flex.cmt : cp ../bs/src/components/UI_Flex.cmt
-o UI_Flex.res : cp ../../src/components/UI_Flex.res
-o UI_Core.cmi : cp ../bs/src/core/UI_Core.cmi
-o UI_Core.cmj : cp ../bs/src/core/UI_Core.cmj
-o UI_Core.cmt : cp ../bs/src/core/UI_Core.cmt
-o UI_Core.res : cp ../../src/core/UI_Core.res
-o UI_CoreTypes.cmi : cp ../bs/src/core/UI_CoreTypes.cmi
-o UI_CoreTypes.cmj : cp ../bs/src/core/UI_CoreTypes.cmj
-o UI_CoreTypes.cmt : cp ../bs/src/core/UI_CoreTypes.cmt
-o UI_CoreTypes.res : cp ../../src/core/UI_CoreTypes.res
+o Ancestor.cmi : cp ../bs/src/Ancestor.cmi
+o Ancestor.cmj : cp ../bs/src/Ancestor.cmj
+o Ancestor.cmt : cp ../bs/src/Ancestor.cmt
+o Ancestor.res : cp ../../src/Ancestor.res
+o Ancestor_Base.cmi : cp ../bs/src/components/Ancestor_Base.cmi
+o Ancestor_Base.cmj : cp ../bs/src/components/Ancestor_Base.cmj
+o Ancestor_Base.cmt : cp ../bs/src/components/Ancestor_Base.cmt
+o Ancestor_Base.res : cp ../../src/components/Ancestor_Base.res
+o Ancestor_Flex.cmi : cp ../bs/src/components/Ancestor_Flex.cmi
+o Ancestor_Flex.cmj : cp ../bs/src/components/Ancestor_Flex.cmj
+o Ancestor_Flex.cmt : cp ../bs/src/components/Ancestor_Flex.cmt
+o Ancestor_Flex.res : cp ../../src/components/Ancestor_Flex.res
+o Ancestor_Core.cmi : cp ../bs/src/core/Ancestor_Core.cmi
+o Ancestor_Core.cmj : cp ../bs/src/core/Ancestor_Core.cmj
+o Ancestor_Core.cmt : cp ../bs/src/core/Ancestor_Core.cmt
+o Ancestor_Core.res : cp ../../src/core/Ancestor_Core.res
+o Ancestor_CoreTypes.cmi : cp ../bs/src/core/Ancestor_CoreTypes.cmi
+o Ancestor_CoreTypes.cmj : cp ../bs/src/core/Ancestor_CoreTypes.cmj
+o Ancestor_CoreTypes.cmt : cp ../bs/src/core/Ancestor_CoreTypes.cmt
+o Ancestor_CoreTypes.res : cp ../../src/core/Ancestor_CoreTypes.res
 o Goober.cmi : cp ../bs/src/bindings/Goober.cmi
 o Goober.cmj : cp ../bs/src/bindings/Goober.cmj
 o Goober.cmt : cp ../bs/src/bindings/Goober.cmt
 o Goober.res : cp ../../src/bindings/Goober.res
-o UI_React.cmi : cp ../bs/src/bindings/UI_React.cmi
-o UI_React.cmj : cp ../bs/src/bindings/UI_React.cmj
-o UI_React.cmt : cp ../bs/src/bindings/UI_React.cmt
-o UI_React.res : cp ../../src/bindings/UI_React.res
-build install.stamp : touch UI.cmi UI.cmj UI_Base.cmi UI_Base.cmj UI_Flex.cmi UI_Flex.cmj UI_Core.cmi UI_Core.cmj UI_CoreTypes.cmi UI_CoreTypes.cmj Goober.cmi Goober.cmj UI_React.cmi UI_React.cmj 
+o Ancestor_React.cmi : cp ../bs/src/bindings/Ancestor_React.cmi
+o Ancestor_React.cmj : cp ../bs/src/bindings/Ancestor_React.cmj
+o Ancestor_React.cmt : cp ../bs/src/bindings/Ancestor_React.cmt
+o Ancestor_React.res : cp ../../src/bindings/Ancestor_React.res
+build install.stamp : touch Ancestor.cmi Ancestor.cmj Ancestor_Base.cmi Ancestor_Base.cmj Ancestor_Flex.cmi Ancestor_Flex.cmj Ancestor_Core.cmi Ancestor_Core.cmj Ancestor_CoreTypes.cmi Ancestor_CoreTypes.cmj Goober.cmi Goober.cmj Ancestor_React.cmi Ancestor_React.cmj 

@@ -1,4 +1,4 @@
-open UI_Core
+open Ancestor_Core
 
 let toFloat = value =>
   switch value {
@@ -93,7 +93,7 @@ let make = (
   ~boxSizing=?,
   // Props
   ~children,
-  ~tag: UI_React.tags=#div,
+  ~tag: Ancestor_React.tags=#div,
   ~className="",
   // Dom Props
   ~ariaDetails=?,
@@ -580,7 +580,7 @@ let make = (
   ~dangerouslySetInnerHTML=?,
   ~suppressContentEditableWarning=?,
 ) => {
-  UI_React.createElement(
+  Ancestor_React.createElement(
     tag,
     ReactDOM.domProps(
       ~className={
