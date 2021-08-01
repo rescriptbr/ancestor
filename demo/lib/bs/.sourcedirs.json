@@ -1,1 +1,1 @@
-{ "dirs" : [ "src" ] , "pkgs" : [ [ "rescript-ui" , "/home/bvihjcep/Projects/ancestor/node_modules/rescript-ui" ] , [ "@rescript/react" , "/home/bvihjcep/Projects/ancestor/node_modules/@rescript/react" ] ] , "generated" : [] }
+{ "dirs" : [ "src" ] , "pkgs" : [ [ "@rescriptbr/ancestor" , "/home/bvihjcep/Projects/ancestor/node_modules/@rescriptbr/ancestor" ] , [ "@rescript/react" , "/home/bvihjcep/Projects/ancestor/node_modules/@rescript/react" ] ] , "generated" : [] }

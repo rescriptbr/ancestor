@@ -20,6 +20,6 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "rescript": "9.1.4",
-    "@rescriptbr/ancestor": "0.0.2-beta"
+    "@rescriptbr/ancestor": "0.0.5-beta"
   }
 }

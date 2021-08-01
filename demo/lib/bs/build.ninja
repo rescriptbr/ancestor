@@ -1,6 +1,6 @@
 rescript = 1
 g_finger := /home/bvihjcep/Projects/ancestor/node_modules/@rescript/react/lib/ocaml/install.stamp
-g_finger := /home/bvihjcep/Projects/ancestor/node_modules/rescript-ui/lib/ocaml/install.stamp
+g_finger := /home/bvihjcep/Projects/ancestor/node_modules/@rescriptbr/ancestor/lib/ocaml/install.stamp
 rule astj
   command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsc.exe  -bs-v 9.1.4 -bs-jsx 3  -absname -bs-ast -o $out $i
 o src/App.ast : astj ../../src/App.res
@@ -9,7 +9,7 @@ rule deps
   restat = 1
 o src/App.d : deps src/App.ast
 rule mij
-  command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsc.exe -I src -I /home/bvihjcep/Projects/ancestor/node_modules/@rescript/react/lib/ocaml -I /home/bvihjcep/Projects/ancestor/node_modules/rescript-ui/lib/ocaml   -bs-package-name ui-primitives -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsc.exe -I src -I /home/bvihjcep/Projects/ancestor/node_modules/@rescript/react/lib/ocaml -I /home/bvihjcep/Projects/ancestor/node_modules/@rescriptbr/ancestor/lib/ocaml   -bs-package-name ui-primitives -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
   dyndep = 1
   restat = 1
 o src/App.cmj src/App.cmi ../../src/App.bs.js : mij src/App.ast

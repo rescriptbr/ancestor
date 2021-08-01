@@ -31,7 +31,7 @@ let flexBasis = maybeValue =>
   ->Belt.Option.getWithDefault("")
 
 let box = (~xxs=?, ~xs=?, ~sm=?, ~md=?, ~lg=?, ~xl=?, ()) =>
-  Goober.css(
+  Ancestor_Emotion.css(
     ""
     ->greaterThan(#xxs, flexBasis(xxs))
     ->greaterThan(#xs, flexBasis(xs))
@@ -624,7 +624,7 @@ let make = (
             ~zIndex?,
             ~boxSizing?,
             (),
-          )->Goober.css
+          )->Ancestor_Emotion.css
 
         `${boxClassName} ${className} ${responsiveStyles}`
       },
