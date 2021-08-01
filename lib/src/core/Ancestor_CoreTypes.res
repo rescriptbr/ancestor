@@ -200,7 +200,10 @@ type display = values<[#none | #block | #flex]>
 // Spacing
 type spacing = values<int>
 
-let stringifySpacing = values => values->toRecord(v => `${(v * 8)->Js.Int.toString}rem`)
+let stringifySpacing = values =>
+  values->toRecord(v =>
+    `${(Js.Int.toFloat(v) *. 0.8)->Js.Float.toFixedWithPrecision(~digits=1)}rem`
+  )
 
 // Sizing
 type size = values<

@@ -1,10 +1,10 @@
 9.1.4
-/home/bvihjcep/Projects/ancestor/node_modules/@rescriptbr/ancestor
-1 -bs-package-output es6:.:.bs.js
+/home/bvihjcep/Projects/ancestor/lib
+0
 bsconfig.json	0x1.8415ef5d83c75p+30
 src	0x1.8415d33dfb0d8p+30
 src/components	0x1.8415b6dc3626ap+30
-src/core	0x1.841a7f52f0cacp+30
+src/core	0x1.841a882ead2cep+30
 src/bindings	0x1.841a7701fe377p+30
 ===
 /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/rescript.exe	0x1.83e030cec3958p+30
