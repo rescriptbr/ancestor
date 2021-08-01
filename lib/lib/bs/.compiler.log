@@ -1,19 +1,2 @@
-#Start(1627749263209)
-
-  We've found a bug for you!
-  /home/bvihjcep/Projects/ancestor/lib/src/components/Ancestor_Base.res:34:3-12
-
-  32 │ 
-  33 │ let box = (~xxs=?, ~xs=?, ~sm=?, ~md=?, ~lg=?, ~xl=?, ()) =>
-  34 │   Goober.css(
-  35 │     ""
-  36 │     ->greaterThan(#xxs, flexBasis(xxs))
-
-  The module or file Goober can't be found.
-  - If it's a third-party dependency:
-    - Did you list it in bsconfig.json?
-    - Did you run `rescript build` instead of `rescript build -with-deps`
-      (latter builds third-parties)?
-  - Did you include the file's directory in bsconfig.json?
-
-#Done(1627749263379)
+#Start(1627823182222)
+#Done(1627823183205)
