@@ -1,6 +1,6 @@
 open Ancestor_Core
 
-let flex = Emotion.css(`
+let flex = Ancestor_Emotion.css(`
   width: 100%;
   flex-wrap: wrap;
 `)

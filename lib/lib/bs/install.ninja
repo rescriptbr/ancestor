@@ -23,12 +23,12 @@ o Ancestor_CoreTypes.cmi : cp ../bs/src/core/Ancestor_CoreTypes.cmi
 o Ancestor_CoreTypes.cmj : cp ../bs/src/core/Ancestor_CoreTypes.cmj
 o Ancestor_CoreTypes.cmt : cp ../bs/src/core/Ancestor_CoreTypes.cmt
 o Ancestor_CoreTypes.res : cp ../../src/core/Ancestor_CoreTypes.res
-o Emotion.cmi : cp ../bs/src/bindings/Emotion.cmi
-o Emotion.cmj : cp ../bs/src/bindings/Emotion.cmj
-o Emotion.cmt : cp ../bs/src/bindings/Emotion.cmt
-o Emotion.res : cp ../../src/bindings/Emotion.res
 o Ancestor_React.cmi : cp ../bs/src/bindings/Ancestor_React.cmi
 o Ancestor_React.cmj : cp ../bs/src/bindings/Ancestor_React.cmj
 o Ancestor_React.cmt : cp ../bs/src/bindings/Ancestor_React.cmt
 o Ancestor_React.res : cp ../../src/bindings/Ancestor_React.res
-build install.stamp : touch Ancestor.cmi Ancestor.cmj Ancestor_Base.cmi Ancestor_Base.cmj Ancestor_Flex.cmi Ancestor_Flex.cmj Ancestor_Core.cmi Ancestor_Core.cmj Ancestor_CoreTypes.cmi Ancestor_CoreTypes.cmj Emotion.cmi Emotion.cmj Ancestor_React.cmi Ancestor_React.cmj 
+o Ancestor_Emotion.cmi : cp ../bs/src/bindings/Ancestor_Emotion.cmi
+o Ancestor_Emotion.cmj : cp ../bs/src/bindings/Ancestor_Emotion.cmj
+o Ancestor_Emotion.cmt : cp ../bs/src/bindings/Ancestor_Emotion.cmt
+o Ancestor_Emotion.res : cp ../../src/bindings/Ancestor_Emotion.res
+build install.stamp : touch Ancestor.cmi Ancestor.cmj Ancestor_Base.cmi Ancestor_Base.cmj Ancestor_Flex.cmi Ancestor_Flex.cmj Ancestor_Core.cmi Ancestor_Core.cmj Ancestor_CoreTypes.cmi Ancestor_CoreTypes.cmj Ancestor_React.cmi Ancestor_React.cmj Ancestor_Emotion.cmi Ancestor_Emotion.cmj 

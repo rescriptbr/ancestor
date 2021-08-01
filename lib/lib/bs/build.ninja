@@ -4,7 +4,7 @@ rule astj
   command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsc.exe  -bs-v 9.1.4 -bs-jsx 3  -absname -bs-ast -o $out $i
 o src/Ancestor.ast : astj ../../src/Ancestor.res
 rule deps
-  command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsb_helper.exe -hash 50035538bf5f896f02a33a47126598bd $in
+  command = /home/bvihjcep/Projects/ancestor/node_modules/rescript/linux/bsb_helper.exe -hash c895ec628ee5141990778ef5c1d2999e $in
   restat = 1
 o src/Ancestor.d : deps src/Ancestor.ast
 rule mij
@@ -24,9 +24,9 @@ o src/core/Ancestor_Core.cmj src/core/Ancestor_Core.cmi ../../src/core/Ancestor_
 o src/core/Ancestor_CoreTypes.ast : astj ../../src/core/Ancestor_CoreTypes.res
 o src/core/Ancestor_CoreTypes.d : deps src/core/Ancestor_CoreTypes.ast
 o src/core/Ancestor_CoreTypes.cmj src/core/Ancestor_CoreTypes.cmi ../../src/core/Ancestor_CoreTypes.bs.js : mij src/core/Ancestor_CoreTypes.ast
-o src/bindings/Emotion.ast : astj ../../src/bindings/Emotion.res
-o src/bindings/Emotion.d : deps src/bindings/Emotion.ast
-o src/bindings/Emotion.cmj src/bindings/Emotion.cmi ../../src/bindings/Emotion.bs.js : mij src/bindings/Emotion.ast
 o src/bindings/Ancestor_React.ast : astj ../../src/bindings/Ancestor_React.res
 o src/bindings/Ancestor_React.d : deps src/bindings/Ancestor_React.ast
 o src/bindings/Ancestor_React.cmj src/bindings/Ancestor_React.cmi ../../src/bindings/Ancestor_React.bs.js : mij src/bindings/Ancestor_React.ast
+o src/bindings/Ancestor_Emotion.ast : astj ../../src/bindings/Ancestor_Emotion.res
+o src/bindings/Ancestor_Emotion.d : deps src/bindings/Ancestor_Emotion.ast
+o src/bindings/Ancestor_Emotion.cmj src/bindings/Ancestor_Emotion.cmi ../../src/bindings/Ancestor_Emotion.bs.js : mij src/bindings/Ancestor_Emotion.ast

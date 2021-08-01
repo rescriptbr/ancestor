@@ -1,11 +1,11 @@
 7
-Emotion
 Ancestor
 Ancestor_Base
 Ancestor_Core
 Ancestor_Flex
 Ancestor_React
+Ancestor_Emotion
 Ancestor_CoreTypes
-src/bindings	src	src/components	src/core	
-1
+src	src/components	src/core	src/bindings	
+1
 0
