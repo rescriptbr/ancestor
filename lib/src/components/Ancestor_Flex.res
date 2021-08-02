@@ -1,4 +1,4 @@
-open Ancestor_Core
+/* open Ancestor_Core
 
 let flex = Ancestor_Emotion.css(`
   width: 100%;
@@ -8,4 +8,5 @@ let flex = Ancestor_Emotion.css(`
 let make = Ancestor_Base.make
 
 let makeProps = (~className as customClass: string="") =>
-  Ancestor_Base.makeProps(~display=[xxs(#flex)], ~className=`${flex} ${customClass}`)
+  Ancestor_Base.makeProps(~display=[#xxs(#flex)], ~className=`${flex} ${customClass}`)
+ */

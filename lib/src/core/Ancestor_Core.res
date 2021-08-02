@@ -1,184 +1,439 @@
-open Ancestor_CoreTypes
+module type Config = {
+  type breakpoints<'value>
 
-/**
- * Devices
- */
-type device = [#xxs | #xs | #sm | #md | #lg | #xl]
+  let spacing: float
 
-let sizeOfDevice = (value: device) =>
-  switch value {
-  | #xxs => "0px"
-  | #xs => "375px"
-  | #sm => "600px"
-  | #md => "960px"
-  | #lg => "1280px"
-  | #xl => "1920px"
-  }
+  let sizeByBreakpoints: breakpoints<'value> => int
 
-let greaterThan = (current, device: device, styles) =>
-  `
-  ${current}
-  @media (min-width: ${device->sizeOfDevice}) {
-    ${styles}
-  }
-  `
-
-let lessThan = (current, device: device, styles) =>
-  `
-  ${current}
-  @media (max-width: ${device->sizeOfDevice}) {
-    ${styles}
-  }
-  `
-
-/*
- * Polyvariants alias, e.g:
- * <Box p=[xxs(6)] /> is equivalent to <Box p=[#xxs(6)] />
- */
-let all = v => [#xxs(v)]
-let xxs = v => #xxs(v)
-let xs = v => #xs(v)
-let sm = v => #sm(v)
-let md = v => #md(v)
-let lg = v => #lg(v)
-let xl = v => #xl(v)
-
-let valueByDevice = (record, device: device) =>
-  switch device {
-  | #xxs => record.xxs
-  | #xs => record.xs
-  | #sm => record.sm
-  | #md => record.md
-  | #lg => record.lg
-  | #xl => record.xl
-  }
-
-let createStyles = (values: array<(string, record)>, device: device) => {
-  values->Belt.Array.reduce("", (styles, (key, record)) =>
-    record
-    ->valueByDevice(device)
-    ->Belt.Option.map(value =>
-      `
-      ${styles}
-      ${key}: ${value};
-      `
-    )
-    ->Belt.Option.getWithDefault(styles)
-  )
+  let unboxBreakpointValue: breakpoints<'value> => 'value
 }
 
-let createResponsiveStyles = (
-  // Flex
-  ~display: option<display>=?,
-  ~justifyContent: option<justifyContent>=?,
-  ~flexDirection: option<flexDirection>=?,
-  ~alignItems: option<alignItems>=?,
-  ~flexGrow: option<flexGrow>=?,
-  ~flexShrink: option<flexShrink>=?,
-  ~order: option<order>=?,
-  ~alignSelf: option<alignSelf>=?,
-  // Padding
-  ~p: option<spacing>=?,
-  ~px: option<spacing>=?,
-  ~py: option<spacing>=?,
-  ~pt: option<spacing>=?,
-  ~pb: option<spacing>=?,
-  ~pl: option<spacing>=?,
-  ~pr: option<spacing>=?,
-  // Margin
-  ~m: option<spacing>=?,
-  ~mx: option<spacing>=?,
-  ~my: option<spacing>=?,
-  ~mt: option<spacing>=?,
-  ~mb: option<spacing>=?,
-  ~ml: option<spacing>=?,
-  ~mr: option<spacing>=?,
-  // Texts
-  ~textAlign: option<textAlign>=?,
-  ~letterSpacing: option<size>=?,
-  ~lineHeight: option<size>=?,
-  // Sizing
-  ~width: option<size>=?,
-  ~height: option<size>=?,
-  ~minW: option<size>=?,
-  ~minH: option<size>=?,
-  ~maxW: option<size>=?,
-  ~maxH: option<size>=?,
-  // Placement
-  ~position: option<position>=?,
-  ~top: option<size>=?,
-  ~bottom: option<size>=?,
-  ~left: option<size>=?,
-  ~right: option<size>=?,
-  ~zIndex: option<size>=?,
-  // Box sizing
-  ~boxSizing: option<boxSizing>=?,
-  (),
-) => {
-  let values = [
-    ("display", display->stringify),
-    ("justify-content", justifyContent->stringify),
-    ("align-items", alignItems->stringify),
-    ("align-self", alignSelf->stringifyAlignSelf),
-    ("flex-direction", flexDirection->stringify),
-    ("flex-grow", flexGrow->stringifyGrow),
-    ("flex-shrink", flexShrink->stringifyShrink),
-    ("order", order->stringifyOrder),
+module Make = (Config: Config) => {
+  module CoreTypes = Ancestor_CoreTypes.Make({
+    type breakpoints<'a> = Config.breakpoints<'a>
+    let spacing = Config.spacing
+    let unboxBreakpointValue = Config.unboxBreakpointValue
+  })
+
+  let createBreakpointSize = device => `${device->Config.sizeByBreakpoints->Belt.Int.toString}px`
+
+  let greaterThan = (current, device: Config.breakpoints<'a>, styles) =>
+    `
+    ${current}
+    @media (min-width: ${device->createBreakpointSize}) {
+      ${styles}
+    }
+  `
+
+  let sortBySize = (first, second) =>
+    Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
+
+  let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
+    greaterThan(
+      styles,
+      breakpointValue,
+      `${cssKey}: ${breakpointValue->Config.unboxBreakpointValue->stringify};`,
+    )
+
+  let createStyles = (cssKey, maybeCssValues, stringify) =>
+    maybeCssValues
+    ->Belt.Option.map(values =>
+      values
+      ->Js.Array2.sortInPlaceWith(sortBySize)
+      ->Belt.Array.reduce("", mergeStyles(cssKey, stringify))
+    )
+    ->Belt.Option.getWithDefault("")
+
+  let createResponsiveStyles = (
+    // Flex
+    ~display: option<CoreTypes.display>=?,
+    ~justifyContent: option<CoreTypes.justifyContent>=?,
+    ~flexDirection: option<CoreTypes.flexDirection>=?,
+    ~alignItems: option<CoreTypes.alignItems>=?,
+    ~flexGrow: option<CoreTypes.flexGrow>=?,
+    ~flexShrink: option<CoreTypes.flexShrink>=?,
+    ~order: option<CoreTypes.order>=?,
+    ~alignSelf: option<CoreTypes.alignSelf>=?,
+    ~flexBasis: option<CoreTypes.size>=?,
     // Padding
-    ("padding", p->stringifySpacing),
-    ("padding-left", px->stringifySpacing),
-    ("padding-right", px->stringifySpacing),
-    ("padding-top", py->stringifySpacing),
-    ("padding-bottom", py->stringifySpacing),
-    ("padding-top", pt->stringifySpacing),
-    ("padding-bottom", pb->stringifySpacing),
-    ("padding-left", pl->stringifySpacing),
-    ("padding-right", pr->stringifySpacing),
-    //Margin
-    ("margin", m->stringifySpacing),
-    ("margin-left", mx->stringifySpacing),
-    ("margin-right", mx->stringifySpacing),
-    ("margin-top", my->stringifySpacing),
-    ("margin-bottom", my->stringifySpacing),
-    ("margin-top", mt->stringifySpacing),
-    ("margin-bottom", mb->stringifySpacing),
-    ("margin-left", ml->stringifySpacing),
-    ("margin-right", mr->stringifySpacing),
-    //Texts
-    ("text-align", textAlign->stringify),
-    ("letter-spacing", letterSpacing->stringifySize),
-    ("line-height", lineHeight->stringifySize),
+    ~p: option<CoreTypes.spacing>=?,
+    ~px: option<CoreTypes.spacing>=?,
+    ~py: option<CoreTypes.spacing>=?,
+    ~pt: option<CoreTypes.spacing>=?,
+    ~pb: option<CoreTypes.spacing>=?,
+    ~pl: option<CoreTypes.spacing>=?,
+    ~pr: option<CoreTypes.spacing>=?,
+    // Margin
+    ~m: option<CoreTypes.spacing>=?,
+    ~mx: option<CoreTypes.spacing>=?,
+    ~my: option<CoreTypes.spacing>=?,
+    ~mt: option<CoreTypes.spacing>=?,
+    ~mb: option<CoreTypes.spacing>=?,
+    ~ml: option<CoreTypes.spacing>=?,
+    ~mr: option<CoreTypes.spacing>=?,
+    // Texts
+    ~textAlign: option<CoreTypes.textAlign>=?,
+    ~letterSpacing: option<CoreTypes.size>=?,
+    ~lineHeight: option<CoreTypes.size>=?,
     // Sizing
-    ("width", width->stringifySize),
-    ("height", height->stringifySize),
-    ("min-width", minW->stringifySize),
-    ("min-height", minH->stringifySize),
-    ("max-width", maxW->stringifySize),
-    ("max-height", maxH->stringifySize),
-    // Position
-    ("position", position->stringify),
+    ~width: option<CoreTypes.size>=?,
+    ~height: option<CoreTypes.size>=?,
+    ~minW: option<CoreTypes.size>=?,
+    ~minH: option<CoreTypes.size>=?,
+    ~maxW: option<CoreTypes.size>=?,
+    ~maxH: option<CoreTypes.size>=?,
     // Placement
-    ("top", top->stringifySize),
-    ("bottom", bottom->stringifySize),
-    ("left", left->stringifySize),
-    ("right", right->stringifySize),
-    ("z-index", zIndex->stringify),
+    ~position: option<CoreTypes.position>=?,
+    ~top: option<CoreTypes.size>=?,
+    ~bottom: option<CoreTypes.size>=?,
+    ~left: option<CoreTypes.size>=?,
+    ~right: option<CoreTypes.size>=?,
+    ~zIndex: option<CoreTypes.size>=?,
     // Box sizing
-    ("box-sizing", boxSizing->stringify),
-  ]
+    ~boxSizing: option<CoreTypes.boxSizing>=?,
+    (),
+  ) =>
+    [
+      // Flex
+      createStyles("display", display, CoreTypes.stringify),
+      createStyles("justify-content", justifyContent, CoreTypes.stringify),
+      createStyles("align-items", alignItems, CoreTypes.stringify),
+      createStyles("flex-direction", flexDirection, CoreTypes.stringify),
+      createStyles("flex-grow", flexGrow, CoreTypes.stringifyFlexValue),
+      createStyles("flex-shrink", flexShrink, CoreTypes.stringifyFlexValue),
+      createStyles("align-self", alignSelf, CoreTypes.stringifyAlignSelf),
+      createStyles("order", order, CoreTypes.stringifyFlexValue),
+      createStyles("flex-basis", flexBasis, CoreTypes.stringifySize),
+      // Padding
+      createStyles("padding", p, CoreTypes.stringifySpacing),
+      createStyles("padding-left", px, CoreTypes.stringifySpacing),
+      createStyles("padding-right", px, CoreTypes.stringifySpacing),
+      createStyles("padding-top", py, CoreTypes.stringifySpacing),
+      createStyles("padding-bottom", py, CoreTypes.stringifySpacing),
+      createStyles("padding-top", pt, CoreTypes.stringifySpacing),
+      createStyles("padding-bottom", pb, CoreTypes.stringifySpacing),
+      createStyles("padding-left", pl, CoreTypes.stringifySpacing),
+      createStyles("padding-right", pr, CoreTypes.stringifySpacing),
+      // Margin
+      createStyles("margin", m, CoreTypes.stringifySpacing),
+      createStyles("margin-left", mx, CoreTypes.stringifySpacing),
+      createStyles("margin-right", mx, CoreTypes.stringifySpacing),
+      createStyles("margin-top", my, CoreTypes.stringifySpacing),
+      createStyles("margin-bottom", my, CoreTypes.stringifySpacing),
+      createStyles("margin-top", mt, CoreTypes.stringifySpacing),
+      createStyles("margin-bottom", mb, CoreTypes.stringifySpacing),
+      createStyles("margin-left", ml, CoreTypes.stringifySpacing),
+      createStyles("margin-right", mr, CoreTypes.stringifySpacing),
+      // Texts
+      createStyles("text-align", textAlign, CoreTypes.stringify),
+      createStyles("letter-spacing", letterSpacing, CoreTypes.stringifySize),
+      createStyles("line-height", lineHeight, CoreTypes.stringifySize),
+      // Sizing
+      createStyles("width", width, CoreTypes.stringifySize),
+      createStyles("height", height, CoreTypes.stringifySize),
+      createStyles("min-width", minW, CoreTypes.stringifySize),
+      createStyles("min-height", minH, CoreTypes.stringifySize),
+      createStyles("max-width", maxW, CoreTypes.stringifySize),
+      createStyles("max-height", maxH, CoreTypes.stringifySize),
+      // Position
+      createStyles("position", position, CoreTypes.stringify),
+      // Placement
+      createStyles("top", top, CoreTypes.stringifySize),
+      createStyles("bottom", bottom, CoreTypes.stringifySize),
+      createStyles("left", left, CoreTypes.stringifySize),
+      createStyles("right", right, CoreTypes.stringifySize),
+      createStyles("z-index", zIndex, CoreTypes.stringify),
+      // Box sizing
+      createStyles("box-sizing", boxSizing, CoreTypes.stringify),
+    ]->Js.Array2.joinWith("")
 
-  let xxsStyles = createStyles(values, #xxs)
-  let xsStyles = createStyles(values, #xs)
-  let smStyles = createStyles(values, #sm)
-  let mdStyles = createStyles(values, #md)
-  let lgStyles = createStyles(values, #lg)
-  let xlStyles = createStyles(values, #xl)
+  module Base = {
+    @react.component
+    let make = (
+      // Flex
+      ~display=?,
+      ~justifyContent=?,
+      ~flexDirection=?,
+      ~alignItems=?,
+      ~flexGrow=?,
+      ~flexShrink=?,
+      ~alignSelf=?,
+      ~order=?,
+      // Padding
+      ~p=?,
+      ~px=?,
+      ~py=?,
+      ~pt=?,
+      ~pb=?,
+      ~pl=?,
+      ~pr=?,
+      //Margin
+      ~m=?,
+      ~mx=?,
+      ~my=?,
+      ~mt=?,
+      ~mb=?,
+      ~ml=?,
+      ~mr=?,
+      // Sizing
+      ~width=?,
+      ~height=?,
+      ~minW=?,
+      ~minH=?,
+      ~maxW=?,
+      ~maxH=?,
+      // Position
+      ~position=?,
+      ~top=?,
+      ~bottom=?,
+      ~left=?,
+      ~right=?,
+      ~zIndex=?,
+      // Box sizing
+      ~boxSizing=?,
+      // Props
+      ~column: option<CoreTypes.columnSize>=?,
+      ~tag: Ancestor_React.tags=#div,
+      ~className="",
+      ~children,
+      // Dom Props
+      ~onCopy=?,
+      ~onCut=?,
+      ~onPaste=?,
+      ~onCompositionEnd=?,
+      ~onCompositionStart=?,
+      ~onCompositionUpdate=?,
+      ~onKeyDown=?,
+      ~onKeyPress=?,
+      ~onKeyUp=?,
+      ~onFocus=?,
+      ~onBlur=?,
+      ~onChange=?,
+      ~onInput=?,
+      ~onSubmit=?,
+      ~onInvalid=?,
+      ~onClick=?,
+      ~onContextMenu=?,
+      ~onDoubleClick=?,
+      ~onDrag=?,
+      ~onDragEnd=?,
+      ~onDragEnter=?,
+      ~onDragExit=?,
+      ~onDragLeave=?,
+      ~onDragOver=?,
+      ~onDragStart=?,
+      ~onDrop=?,
+      ~onMouseDown=?,
+      ~onMouseEnter=?,
+      ~onMouseLeave=?,
+      ~onMouseMove=?,
+      ~onMouseOut=?,
+      ~onMouseOver=?,
+      ~onMouseUp=?,
+      ~onSelect=?,
+      ~onTouchCancel=?,
+      ~onTouchEnd=?,
+      ~onTouchMove=?,
+      ~onTouchStart=?,
+      ~onPointerOver=?,
+      ~onPointerEnter=?,
+      ~onPointerDown=?,
+      ~onPointerMove=?,
+      ~onPointerUp=?,
+      ~onPointerCancel=?,
+      ~onPointerOut=?,
+      ~onPointerLeave=?,
+      ~onGotPointerCapture=?,
+      ~onLostPointerCapture=?,
+      ~onScroll=?,
+      ~onWheel=?,
+      ~onAbort=?,
+      ~onCanPlay=?,
+      ~onCanPlayThrough=?,
+      ~onDurationChange=?,
+      ~onEmptied=?,
+      ~onEncrypetd=?,
+      ~onEnded=?,
+      ~onError=?,
+      ~onLoadedData=?,
+      ~onLoadedMetadata=?,
+      ~onLoadStart=?,
+      ~onPause=?,
+      ~onPlay=?,
+      ~onPlaying=?,
+      ~onProgress=?,
+      ~onRateChange=?,
+      ~onSeeked=?,
+      ~onSeeking=?,
+      ~onStalled=?,
+      ~onSuspend=?,
+      ~onTimeUpdate=?,
+      ~onVolumeChange=?,
+      ~onWaiting=?,
+      ~onLoad=?,
+      ~onAnimationStart=?,
+      ~onAnimationEnd=?,
+      ~onAnimationIteration=?,
+      ~onTransitionEnd=?,
+      ~dangerouslySetInnerHTML=?,
+    ) =>
+      Ancestor_React.createElement(
+        tag,
+        ReactDOM.domProps(
+          ~className={
+            let columnSizeClassName =
+              column
+              ->Belt.Option.map(values =>
+                values
+                ->Js.Array2.sortInPlaceWith(sortBySize)
+                ->Belt.Array.reduce("", (styles, value) =>
+                  greaterThan(
+                    styles,
+                    value,
+                    `flex-basis: ${value->Config.unboxBreakpointValue->CoreTypes.basisFromFloat}`,
+                  )
+                )
+              )
+              ->Belt.Option.getWithDefault("")
+              ->Ancestor_Emotion.css
 
-  ""
-  ->greaterThan(#xxs, xxsStyles)
-  ->greaterThan(#xs, xsStyles)
-  ->greaterThan(#sm, smStyles)
-  ->greaterThan(#md, mdStyles)
-  ->greaterThan(#lg, lgStyles)
-  ->greaterThan(#xl, xlStyles)
+            let responsiveStyles =
+              createResponsiveStyles(
+                ~display?,
+                ~justifyContent?,
+                ~flexDirection?,
+                ~alignItems?,
+                ~flexGrow?,
+                ~flexShrink?,
+                ~alignSelf?,
+                ~order?,
+                ~p?,
+                ~py?,
+                ~px?,
+                ~pt?,
+                ~pb?,
+                ~pl?,
+                ~pr?,
+                ~m?,
+                ~mx?,
+                ~my?,
+                ~mt?,
+                ~mb?,
+                ~ml?,
+                ~mr?,
+                ~width?,
+                ~height?,
+                ~minW?,
+                ~minH?,
+                ~maxW?,
+                ~maxH?,
+                ~position?,
+                ~top?,
+                ~bottom?,
+                ~left?,
+                ~right?,
+                ~zIndex?,
+                ~boxSizing?,
+                (),
+              )->Ancestor_Emotion.css
+
+            `${columnSizeClassName} ${className} ${responsiveStyles}`
+          },
+          ~onCopy?,
+          ~onCut?,
+          ~onPaste?,
+          ~onCompositionEnd?,
+          ~onCompositionStart?,
+          ~onCompositionUpdate?,
+          ~onKeyDown?,
+          ~onKeyPress?,
+          ~onKeyUp?,
+          ~onFocus?,
+          ~onBlur?,
+          ~onChange?,
+          ~onInput?,
+          ~onSubmit?,
+          ~onInvalid?,
+          ~onClick?,
+          ~onContextMenu?,
+          ~onDoubleClick?,
+          ~onDrag?,
+          ~onDragEnd?,
+          ~onDragEnter?,
+          ~onDragExit?,
+          ~onDragLeave?,
+          ~onDragOver?,
+          ~onDragStart?,
+          ~onDrop?,
+          ~onMouseDown?,
+          ~onMouseEnter?,
+          ~onMouseLeave?,
+          ~onMouseMove?,
+          ~onMouseOut?,
+          ~onMouseOver?,
+          ~onMouseUp?,
+          ~onSelect?,
+          ~onTouchCancel?,
+          ~onTouchEnd?,
+          ~onTouchMove?,
+          ~onTouchStart?,
+          ~onPointerOver?,
+          ~onPointerEnter?,
+          ~onPointerDown?,
+          ~onPointerMove?,
+          ~onPointerUp?,
+          ~onPointerCancel?,
+          ~onPointerOut?,
+          ~onPointerLeave?,
+          ~onGotPointerCapture?,
+          ~onLostPointerCapture?,
+          ~onScroll?,
+          ~onWheel?,
+          ~onAbort?,
+          ~onCanPlay?,
+          ~onCanPlayThrough?,
+          ~onDurationChange?,
+          ~onEmptied?,
+          ~onEncrypetd?,
+          ~onEnded?,
+          ~onError?,
+          ~onLoadedData?,
+          ~onLoadedMetadata?,
+          ~onLoadStart?,
+          ~onPause?,
+          ~onPlay?,
+          ~onPlaying?,
+          ~onProgress?,
+          ~onRateChange?,
+          ~onSeeked?,
+          ~onSeeking?,
+          ~onStalled?,
+          ~onSuspend?,
+          ~onTimeUpdate?,
+          ~onVolumeChange?,
+          ~onWaiting?,
+          ~onLoad?,
+          ~onAnimationStart?,
+          ~onAnimationEnd?,
+          ~onAnimationIteration?,
+          ~onTransitionEnd?,
+          ~dangerouslySetInnerHTML?,
+          (),
+        ),
+        children,
+      )
+  }
+
+  module Flex = {
+    let flex = Ancestor_Emotion.css(`
+      width: 100%;
+      flex-wrap: wrap;
+      display: flex;
+  `)
+
+    let make = Base.make
+
+    let makeProps = (~className as customClass: string="") =>
+      Base.makeProps(~className=`${flex} ${customClass}`)
+  }
 }
