@@ -444,4 +444,11 @@ module Make = (Config: AncestorCoreConfig) => {
     let makeProps = (~className as customClass: string="") =>
       Base.makeProps(~className=`${grid} ${customClass}`)
   }
+
+  module Hidden = Ancestor_Hidden.Make({
+    type breakpoints<'a> = Config.breakpoints<'a>
+    let sizeByBreakpoints = Config.sizeByBreakpoints
+    let unboxBreakpointValue = Config.unboxBreakpointValue
+    let greaterThan = greaterThan
+  })
 }
