@@ -27,3 +27,4 @@ lib/bs
 /node_modules/
 *.bs.js
 /demo/lib/
+/lib/lib/
