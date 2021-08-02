@@ -1,6 +1,6 @@
 include Ancestor_Core
 
-module Default = Make({
+module DefaultConfig: AncestorCoreConfig = {
   type breakpoints<'a> = [#xxs('a) | #xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
 
   let spacing = 8.0
@@ -24,4 +24,6 @@ module Default = Make({
     | #lg(v) => v
     | #xl(v) => v
     }
-})
+}
+
+module Default = Make(DefaultConfig)
