@@ -1,15 +1,13 @@
-module type Config = {
+module type AncestorCoreConfig = {
   type breakpoints<'value>
 
   let spacing: float
-
   let sizeByBreakpoints: breakpoints<'value> => int
-
   let unboxBreakpointValue: breakpoints<'value> => 'value
 }
 
-module Make = (Config: Config) => {
-  module CoreTypes = Ancestor_CoreTypes.Make({
+module Make = (Config: AncestorCoreConfig) => {
+  include Ancestor_CoreTypes.Make({
     type breakpoints<'a> = Config.breakpoints<'a>
     let spacing = Config.spacing
     let unboxBreakpointValue = Config.unboxBreakpointValue
@@ -46,105 +44,105 @@ module Make = (Config: Config) => {
 
   let createResponsiveStyles = (
     // Flex
-    ~display: option<CoreTypes.display>=?,
-    ~justifyContent: option<CoreTypes.justifyContent>=?,
-    ~flexDirection: option<CoreTypes.flexDirection>=?,
-    ~alignItems: option<CoreTypes.alignItems>=?,
-    ~flexGrow: option<CoreTypes.flexGrow>=?,
-    ~flexShrink: option<CoreTypes.flexShrink>=?,
-    ~order: option<CoreTypes.order>=?,
-    ~alignSelf: option<CoreTypes.alignSelf>=?,
-    ~flexBasis: option<CoreTypes.size>=?,
+    ~display: option<display>=?,
+    ~justifyContent: option<justifyContent>=?,
+    ~flexDirection: option<flexDirection>=?,
+    ~alignItems: option<alignItems>=?,
+    ~flexGrow: option<flexGrow>=?,
+    ~flexShrink: option<flexShrink>=?,
+    ~order: option<order>=?,
+    ~alignSelf: option<alignSelf>=?,
+    ~flexBasis: option<size>=?,
     // Padding
-    ~p: option<CoreTypes.spacing>=?,
-    ~px: option<CoreTypes.spacing>=?,
-    ~py: option<CoreTypes.spacing>=?,
-    ~pt: option<CoreTypes.spacing>=?,
-    ~pb: option<CoreTypes.spacing>=?,
-    ~pl: option<CoreTypes.spacing>=?,
-    ~pr: option<CoreTypes.spacing>=?,
+    ~p: option<spacing>=?,
+    ~px: option<spacing>=?,
+    ~py: option<spacing>=?,
+    ~pt: option<spacing>=?,
+    ~pb: option<spacing>=?,
+    ~pl: option<spacing>=?,
+    ~pr: option<spacing>=?,
     // Margin
-    ~m: option<CoreTypes.spacing>=?,
-    ~mx: option<CoreTypes.spacing>=?,
-    ~my: option<CoreTypes.spacing>=?,
-    ~mt: option<CoreTypes.spacing>=?,
-    ~mb: option<CoreTypes.spacing>=?,
-    ~ml: option<CoreTypes.spacing>=?,
-    ~mr: option<CoreTypes.spacing>=?,
+    ~m: option<spacing>=?,
+    ~mx: option<spacing>=?,
+    ~my: option<spacing>=?,
+    ~mt: option<spacing>=?,
+    ~mb: option<spacing>=?,
+    ~ml: option<spacing>=?,
+    ~mr: option<spacing>=?,
     // Texts
-    ~textAlign: option<CoreTypes.textAlign>=?,
-    ~letterSpacing: option<CoreTypes.size>=?,
-    ~lineHeight: option<CoreTypes.size>=?,
+    ~textAlign: option<textAlign>=?,
+    ~letterSpacing: option<size>=?,
+    ~lineHeight: option<size>=?,
     // Sizing
-    ~width: option<CoreTypes.size>=?,
-    ~height: option<CoreTypes.size>=?,
-    ~minW: option<CoreTypes.size>=?,
-    ~minH: option<CoreTypes.size>=?,
-    ~maxW: option<CoreTypes.size>=?,
-    ~maxH: option<CoreTypes.size>=?,
+    ~width: option<size>=?,
+    ~height: option<size>=?,
+    ~minW: option<size>=?,
+    ~minH: option<size>=?,
+    ~maxW: option<size>=?,
+    ~maxH: option<size>=?,
     // Placement
-    ~position: option<CoreTypes.position>=?,
-    ~top: option<CoreTypes.size>=?,
-    ~bottom: option<CoreTypes.size>=?,
-    ~left: option<CoreTypes.size>=?,
-    ~right: option<CoreTypes.size>=?,
-    ~zIndex: option<CoreTypes.size>=?,
+    ~position: option<position>=?,
+    ~top: option<size>=?,
+    ~bottom: option<size>=?,
+    ~left: option<size>=?,
+    ~right: option<size>=?,
+    ~zIndex: option<size>=?,
     // Box sizing
-    ~boxSizing: option<CoreTypes.boxSizing>=?,
+    ~boxSizing: option<boxSizing>=?,
     (),
   ) =>
     [
       // Flex
-      createStyles("display", display, CoreTypes.stringify),
-      createStyles("justify-content", justifyContent, CoreTypes.stringify),
-      createStyles("align-items", alignItems, CoreTypes.stringify),
-      createStyles("flex-direction", flexDirection, CoreTypes.stringify),
-      createStyles("flex-grow", flexGrow, CoreTypes.stringifyFlexValue),
-      createStyles("flex-shrink", flexShrink, CoreTypes.stringifyFlexValue),
-      createStyles("align-self", alignSelf, CoreTypes.stringifyAlignSelf),
-      createStyles("order", order, CoreTypes.stringifyFlexValue),
-      createStyles("flex-basis", flexBasis, CoreTypes.stringifySize),
+      createStyles("display", display, stringify),
+      createStyles("justify-content", justifyContent, stringify),
+      createStyles("align-items", alignItems, stringify),
+      createStyles("flex-direction", flexDirection, stringify),
+      createStyles("flex-grow", flexGrow, stringifyFlexValue),
+      createStyles("flex-shrink", flexShrink, stringifyFlexValue),
+      createStyles("align-self", alignSelf, stringifyAlignSelf),
+      createStyles("order", order, stringifyFlexValue),
+      createStyles("flex-basis", flexBasis, stringifySize),
       // Padding
-      createStyles("padding", p, CoreTypes.stringifySpacing),
-      createStyles("padding-left", px, CoreTypes.stringifySpacing),
-      createStyles("padding-right", px, CoreTypes.stringifySpacing),
-      createStyles("padding-top", py, CoreTypes.stringifySpacing),
-      createStyles("padding-bottom", py, CoreTypes.stringifySpacing),
-      createStyles("padding-top", pt, CoreTypes.stringifySpacing),
-      createStyles("padding-bottom", pb, CoreTypes.stringifySpacing),
-      createStyles("padding-left", pl, CoreTypes.stringifySpacing),
-      createStyles("padding-right", pr, CoreTypes.stringifySpacing),
+      createStyles("padding", p, stringifySpacing),
+      createStyles("padding-left", px, stringifySpacing),
+      createStyles("padding-right", px, stringifySpacing),
+      createStyles("padding-top", py, stringifySpacing),
+      createStyles("padding-bottom", py, stringifySpacing),
+      createStyles("padding-top", pt, stringifySpacing),
+      createStyles("padding-bottom", pb, stringifySpacing),
+      createStyles("padding-left", pl, stringifySpacing),
+      createStyles("padding-right", pr, stringifySpacing),
       // Margin
-      createStyles("margin", m, CoreTypes.stringifySpacing),
-      createStyles("margin-left", mx, CoreTypes.stringifySpacing),
-      createStyles("margin-right", mx, CoreTypes.stringifySpacing),
-      createStyles("margin-top", my, CoreTypes.stringifySpacing),
-      createStyles("margin-bottom", my, CoreTypes.stringifySpacing),
-      createStyles("margin-top", mt, CoreTypes.stringifySpacing),
-      createStyles("margin-bottom", mb, CoreTypes.stringifySpacing),
-      createStyles("margin-left", ml, CoreTypes.stringifySpacing),
-      createStyles("margin-right", mr, CoreTypes.stringifySpacing),
+      createStyles("margin", m, stringifySpacing),
+      createStyles("margin-left", mx, stringifySpacing),
+      createStyles("margin-right", mx, stringifySpacing),
+      createStyles("margin-top", my, stringifySpacing),
+      createStyles("margin-bottom", my, stringifySpacing),
+      createStyles("margin-top", mt, stringifySpacing),
+      createStyles("margin-bottom", mb, stringifySpacing),
+      createStyles("margin-left", ml, stringifySpacing),
+      createStyles("margin-right", mr, stringifySpacing),
       // Texts
-      createStyles("text-align", textAlign, CoreTypes.stringify),
-      createStyles("letter-spacing", letterSpacing, CoreTypes.stringifySize),
-      createStyles("line-height", lineHeight, CoreTypes.stringifySize),
+      createStyles("text-align", textAlign, stringify),
+      createStyles("letter-spacing", letterSpacing, stringifySize),
+      createStyles("line-height", lineHeight, stringifySize),
       // Sizing
-      createStyles("width", width, CoreTypes.stringifySize),
-      createStyles("height", height, CoreTypes.stringifySize),
-      createStyles("min-width", minW, CoreTypes.stringifySize),
-      createStyles("min-height", minH, CoreTypes.stringifySize),
-      createStyles("max-width", maxW, CoreTypes.stringifySize),
-      createStyles("max-height", maxH, CoreTypes.stringifySize),
+      createStyles("width", width, stringifySize),
+      createStyles("height", height, stringifySize),
+      createStyles("min-width", minW, stringifySize),
+      createStyles("min-height", minH, stringifySize),
+      createStyles("max-width", maxW, stringifySize),
+      createStyles("max-height", maxH, stringifySize),
       // Position
-      createStyles("position", position, CoreTypes.stringify),
+      createStyles("position", position, stringify),
       // Placement
-      createStyles("top", top, CoreTypes.stringifySize),
-      createStyles("bottom", bottom, CoreTypes.stringifySize),
-      createStyles("left", left, CoreTypes.stringifySize),
-      createStyles("right", right, CoreTypes.stringifySize),
-      createStyles("z-index", zIndex, CoreTypes.stringify),
+      createStyles("top", top, stringifySize),
+      createStyles("bottom", bottom, stringifySize),
+      createStyles("left", left, stringifySize),
+      createStyles("right", right, stringifySize),
+      createStyles("z-index", zIndex, stringify),
       // Box sizing
-      createStyles("box-sizing", boxSizing, CoreTypes.stringify),
+      createStyles("box-sizing", boxSizing, stringify),
     ]->Js.Array2.joinWith("")
 
   module Base = {
@@ -192,7 +190,7 @@ module Make = (Config: Config) => {
       // Box sizing
       ~boxSizing=?,
       // Props
-      ~column: option<CoreTypes.columnSize>=?,
+      ~column: option<columnSize>=?,
       ~tag: Ancestor_React.tags=#div,
       ~className="",
       ~children,
@@ -290,7 +288,7 @@ module Make = (Config: Config) => {
                   greaterThan(
                     styles,
                     value,
-                    `flex-basis: ${value->Config.unboxBreakpointValue->CoreTypes.basisFromFloat}`,
+                    `flex-basis: ${value->Config.unboxBreakpointValue->basisFromFloat}`,
                   )
                 )
               )
