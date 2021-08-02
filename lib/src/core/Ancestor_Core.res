@@ -7,144 +7,144 @@ module type AncestorCoreConfig = {
 }
 
 module Make = (Config: AncestorCoreConfig) => {
-  include Ancestor_CoreTypes.Make({
+  module Types = Ancestor_CoreTypes.Make({
     type breakpoints<'a> = Config.breakpoints<'a>
     let spacing = Config.spacing
     let unboxBreakpointValue = Config.unboxBreakpointValue
   })
 
-  let createBreakpointSize = device => `${device->Config.sizeByBreakpoints->Belt.Int.toString}px`
-
-  let greaterThan = (current, device: Config.breakpoints<'a>, styles) =>
-    `
+  %%private(
+    let createBreakpointSize = device => `${device->Config.sizeByBreakpoints->Belt.Int.toString}px`
+    let greaterThan = (current, device: Config.breakpoints<'a>, styles) =>
+      `
     ${current}
     @media (min-width: ${device->createBreakpointSize}) {
       ${styles}
     }
   `
 
-  let sortBySize = (first, second) =>
-    Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
+    let sortBySize = (first, second) =>
+      Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
 
-  let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
-    greaterThan(
-      styles,
-      breakpointValue,
-      `${cssKey}: ${breakpointValue->Config.unboxBreakpointValue->stringify};`,
-    )
+    let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
+      greaterThan(
+        styles,
+        breakpointValue,
+        `${cssKey}: ${breakpointValue->Config.unboxBreakpointValue->stringify};`,
+      )
 
-  let createStyles = (cssKey, maybeCssValues, stringify) =>
-    maybeCssValues
-    ->Belt.Option.map(values =>
-      values
-      ->Js.Array2.sortInPlaceWith(sortBySize)
-      ->Belt.Array.reduce("", mergeStyles(cssKey, stringify))
-    )
-    ->Belt.Option.getWithDefault("")
+    let createStyles = (cssKey, maybeCssValues, stringify) =>
+      maybeCssValues
+      ->Belt.Option.map(values =>
+        values
+        ->Js.Array2.sortInPlaceWith(sortBySize)
+        ->Belt.Array.reduce("", mergeStyles(cssKey, stringify))
+      )
+      ->Belt.Option.getWithDefault("")
 
-  let createResponsiveStyles = (
-    // Flex
-    ~display: option<display>=?,
-    ~justifyContent: option<justifyContent>=?,
-    ~flexDirection: option<flexDirection>=?,
-    ~alignItems: option<alignItems>=?,
-    ~flexGrow: option<flexGrow>=?,
-    ~flexShrink: option<flexShrink>=?,
-    ~order: option<order>=?,
-    ~alignSelf: option<alignSelf>=?,
-    ~flexBasis: option<size>=?,
-    // Padding
-    ~p: option<spacing>=?,
-    ~px: option<spacing>=?,
-    ~py: option<spacing>=?,
-    ~pt: option<spacing>=?,
-    ~pb: option<spacing>=?,
-    ~pl: option<spacing>=?,
-    ~pr: option<spacing>=?,
-    // Margin
-    ~m: option<spacing>=?,
-    ~mx: option<spacing>=?,
-    ~my: option<spacing>=?,
-    ~mt: option<spacing>=?,
-    ~mb: option<spacing>=?,
-    ~ml: option<spacing>=?,
-    ~mr: option<spacing>=?,
-    // Texts
-    ~textAlign: option<textAlign>=?,
-    ~letterSpacing: option<size>=?,
-    ~lineHeight: option<size>=?,
-    // Sizing
-    ~width: option<size>=?,
-    ~height: option<size>=?,
-    ~minW: option<size>=?,
-    ~minH: option<size>=?,
-    ~maxW: option<size>=?,
-    ~maxH: option<size>=?,
-    // Placement
-    ~position: option<position>=?,
-    ~top: option<size>=?,
-    ~bottom: option<size>=?,
-    ~left: option<size>=?,
-    ~right: option<size>=?,
-    ~zIndex: option<size>=?,
-    // Box sizing
-    ~boxSizing: option<boxSizing>=?,
-    (),
-  ) =>
-    [
+    let createResponsiveStyles = (
       // Flex
-      createStyles("display", display, stringify),
-      createStyles("justify-content", justifyContent, stringify),
-      createStyles("align-items", alignItems, stringify),
-      createStyles("flex-direction", flexDirection, stringify),
-      createStyles("flex-grow", flexGrow, stringifyFlexValue),
-      createStyles("flex-shrink", flexShrink, stringifyFlexValue),
-      createStyles("align-self", alignSelf, stringifyAlignSelf),
-      createStyles("order", order, stringifyFlexValue),
-      createStyles("flex-basis", flexBasis, stringifySize),
+      ~display: option<Types.display>=?,
+      ~justifyContent: option<Types.justifyContent>=?,
+      ~flexDirection: option<Types.flexDirection>=?,
+      ~alignItems: option<Types.alignItems>=?,
+      ~flexGrow: option<Types.flexGrow>=?,
+      ~flexShrink: option<Types.flexShrink>=?,
+      ~order: option<Types.order>=?,
+      ~alignSelf: option<Types.alignSelf>=?,
+      ~flexBasis: option<Types.size>=?,
       // Padding
-      createStyles("padding", p, stringifySpacing),
-      createStyles("padding-left", px, stringifySpacing),
-      createStyles("padding-right", px, stringifySpacing),
-      createStyles("padding-top", py, stringifySpacing),
-      createStyles("padding-bottom", py, stringifySpacing),
-      createStyles("padding-top", pt, stringifySpacing),
-      createStyles("padding-bottom", pb, stringifySpacing),
-      createStyles("padding-left", pl, stringifySpacing),
-      createStyles("padding-right", pr, stringifySpacing),
+      ~p: option<Types.spacing>=?,
+      ~px: option<Types.spacing>=?,
+      ~py: option<Types.spacing>=?,
+      ~pt: option<Types.spacing>=?,
+      ~pb: option<Types.spacing>=?,
+      ~pl: option<Types.spacing>=?,
+      ~pr: option<Types.spacing>=?,
       // Margin
-      createStyles("margin", m, stringifySpacing),
-      createStyles("margin-left", mx, stringifySpacing),
-      createStyles("margin-right", mx, stringifySpacing),
-      createStyles("margin-top", my, stringifySpacing),
-      createStyles("margin-bottom", my, stringifySpacing),
-      createStyles("margin-top", mt, stringifySpacing),
-      createStyles("margin-bottom", mb, stringifySpacing),
-      createStyles("margin-left", ml, stringifySpacing),
-      createStyles("margin-right", mr, stringifySpacing),
+      ~m: option<Types.spacing>=?,
+      ~mx: option<Types.spacing>=?,
+      ~my: option<Types.spacing>=?,
+      ~mt: option<Types.spacing>=?,
+      ~mb: option<Types.spacing>=?,
+      ~ml: option<Types.spacing>=?,
+      ~mr: option<Types.spacing>=?,
       // Texts
-      createStyles("text-align", textAlign, stringify),
-      createStyles("letter-spacing", letterSpacing, stringifySize),
-      createStyles("line-height", lineHeight, stringifySize),
+      ~textAlign: option<Types.textAlign>=?,
+      ~letterSpacing: option<Types.size>=?,
+      ~lineHeight: option<Types.size>=?,
       // Sizing
-      createStyles("width", width, stringifySize),
-      createStyles("height", height, stringifySize),
-      createStyles("min-width", minW, stringifySize),
-      createStyles("min-height", minH, stringifySize),
-      createStyles("max-width", maxW, stringifySize),
-      createStyles("max-height", maxH, stringifySize),
-      // Position
-      createStyles("position", position, stringify),
+      ~width: option<Types.size>=?,
+      ~height: option<Types.size>=?,
+      ~minW: option<Types.size>=?,
+      ~minH: option<Types.size>=?,
+      ~maxW: option<Types.size>=?,
+      ~maxH: option<Types.size>=?,
       // Placement
-      createStyles("top", top, stringifySize),
-      createStyles("bottom", bottom, stringifySize),
-      createStyles("left", left, stringifySize),
-      createStyles("right", right, stringifySize),
-      createStyles("z-index", zIndex, stringify),
+      ~position: option<Types.position>=?,
+      ~top: option<Types.size>=?,
+      ~bottom: option<Types.size>=?,
+      ~left: option<Types.size>=?,
+      ~right: option<Types.size>=?,
+      ~zIndex: option<Types.size>=?,
       // Box sizing
-      createStyles("box-sizing", boxSizing, stringify),
-    ]->Js.Array2.joinWith("")
-
+      ~boxSizing: option<Types.boxSizing>=?,
+      (),
+    ) =>
+      [
+        // Flex
+        createStyles("display", display, Types.stringify),
+        createStyles("justify-content", justifyContent, Types.stringify),
+        createStyles("align-items", alignItems, Types.stringify),
+        createStyles("flex-direction", flexDirection, Types.stringify),
+        createStyles("flex-grow", flexGrow, Types.stringifyFlexValue),
+        createStyles("flex-shrink", flexShrink, Types.stringifyFlexValue),
+        createStyles("align-self", alignSelf, Types.stringifyAlignSelf),
+        createStyles("order", order, Types.stringifyFlexValue),
+        createStyles("flex-basis", flexBasis, Types.stringifySize),
+        // Padding
+        createStyles("padding", p, Types.stringifySpacing),
+        createStyles("padding-left", px, Types.stringifySpacing),
+        createStyles("padding-right", px, Types.stringifySpacing),
+        createStyles("padding-top", py, Types.stringifySpacing),
+        createStyles("padding-bottom", py, Types.stringifySpacing),
+        createStyles("padding-top", pt, Types.stringifySpacing),
+        createStyles("padding-bottom", pb, Types.stringifySpacing),
+        createStyles("padding-left", pl, Types.stringifySpacing),
+        createStyles("padding-right", pr, Types.stringifySpacing),
+        // Margin
+        createStyles("margin", m, Types.stringifySpacing),
+        createStyles("margin-left", mx, Types.stringifySpacing),
+        createStyles("margin-right", mx, Types.stringifySpacing),
+        createStyles("margin-top", my, Types.stringifySpacing),
+        createStyles("margin-bottom", my, Types.stringifySpacing),
+        createStyles("margin-top", mt, Types.stringifySpacing),
+        createStyles("margin-bottom", mb, Types.stringifySpacing),
+        createStyles("margin-left", ml, Types.stringifySpacing),
+        createStyles("margin-right", mr, Types.stringifySpacing),
+        // Texts
+        createStyles("text-align", textAlign, Types.stringify),
+        createStyles("letter-spacing", letterSpacing, Types.stringifySize),
+        createStyles("line-height", lineHeight, Types.stringifySize),
+        // Sizing
+        createStyles("width", width, Types.stringifySize),
+        createStyles("height", height, Types.stringifySize),
+        createStyles("min-width", minW, Types.stringifySize),
+        createStyles("min-height", minH, Types.stringifySize),
+        createStyles("max-width", maxW, Types.stringifySize),
+        createStyles("max-height", maxH, Types.stringifySize),
+        // Position
+        createStyles("position", position, Types.stringify),
+        // Placement
+        createStyles("top", top, Types.stringifySize),
+        createStyles("bottom", bottom, Types.stringifySize),
+        createStyles("left", left, Types.stringifySize),
+        createStyles("right", right, Types.stringifySize),
+        createStyles("z-index", zIndex, Types.stringify),
+        // Box sizing
+        createStyles("box-sizing", boxSizing, Types.stringify),
+      ]->Js.Array2.joinWith("")
+  )
   module Base = {
     @react.component
     let make = (
@@ -190,7 +190,6 @@ module Make = (Config: AncestorCoreConfig) => {
       // Box sizing
       ~boxSizing=?,
       // Props
-      ~column: option<columnSize>=?,
       ~tag: Ancestor_React.tags=#div,
       ~className="",
       ~children,
@@ -279,22 +278,6 @@ module Make = (Config: AncestorCoreConfig) => {
         tag,
         ReactDOM.domProps(
           ~className={
-            let columnSizeClassName =
-              column
-              ->Belt.Option.map(values =>
-                values
-                ->Js.Array2.sortInPlaceWith(sortBySize)
-                ->Belt.Array.reduce("", (styles, value) =>
-                  greaterThan(
-                    styles,
-                    value,
-                    `flex-basis: ${value->Config.unboxBreakpointValue->basisFromFloat}`,
-                  )
-                )
-              )
-              ->Belt.Option.getWithDefault("")
-              ->Ancestor_Emotion.css
-
             let responsiveStyles =
               createResponsiveStyles(
                 ~display?,
@@ -335,7 +318,7 @@ module Make = (Config: AncestorCoreConfig) => {
                 (),
               )->Ancestor_Emotion.css
 
-            `${columnSizeClassName} ${className} ${responsiveStyles}`
+            `${className} ${responsiveStyles}`
           },
           ~onCopy?,
           ~onCut?,
@@ -419,6 +402,33 @@ module Make = (Config: AncestorCoreConfig) => {
           (),
         ),
         children,
+      )
+  }
+
+  module Box = {
+    %%private(
+      let createBox = (styles, value) =>
+        greaterThan(
+          styles,
+          value,
+          `flex-basis: ${value->Config.unboxBreakpointValue->Types.basisFromFloat}`,
+        )
+    )
+
+    let make = Base.make
+
+    let makeProps = (~className="", ~size: option<Types.columnSize>=?) =>
+      Base.makeProps(
+        ~className={
+          let box =
+            size
+            ->Belt.Option.map(values =>
+              values->Js.Array2.sortInPlaceWith(sortBySize)->Belt.Array.reduce("", createBox)
+            )
+            ->Belt.Option.getWithDefault("")
+            ->Ancestor_Emotion.css
+          `${box} ${className}`
+        },
       )
   }
 

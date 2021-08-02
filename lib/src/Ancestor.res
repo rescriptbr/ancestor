@@ -1,6 +1,6 @@
 include Ancestor_Core
 
-module DefaultConfig: AncestorCoreConfig = {
+module DefaultConfig: Ancestor_Core.AncestorCoreConfig = {
   type breakpoints<'a> = [#xxs('a) | #xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
 
   let spacing = 8.0
