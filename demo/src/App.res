@@ -1,6 +1,9 @@
-open Ancestor
+open Ancestor.Default
 
 @react.component
 let make = () => {
-  <Base display=[xxs(#flex)] p=[xxs(2)]> <img /> </Base>
+  <Flex>
+    <Base column=[#xxs(#12), #md(#6)]> <div /> </Base>
+    <Base column=[#xxs(#12), #md(#6)]> <div /> </Base>
+  </Flex>
 }
