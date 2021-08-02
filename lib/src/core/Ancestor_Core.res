@@ -432,8 +432,8 @@ module Make = (Config: AncestorCoreConfig) => {
       )
   }
 
-  module Flex = {
-    let flex = Ancestor_Emotion.css(`
+  module Grid = {
+    let grid = Ancestor_Emotion.css(`
       width: 100%;
       flex-wrap: wrap;
       display: flex;
@@ -442,6 +442,6 @@ module Make = (Config: AncestorCoreConfig) => {
     let make = Base.make
 
     let makeProps = (~className as customClass: string="") =>
-      Base.makeProps(~className=`${flex} ${customClass}`)
+      Base.makeProps(~className=`${grid} ${customClass}`)
   }
 }
