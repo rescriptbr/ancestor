@@ -1,244 +1,226 @@
-/**
- * Core types
- */
-type breakpoints<'a> = [
-  | #xxs('a)
-  | #xs('a)
-  | #sm('a)
-  | #md('a)
-  | #lg('a)
-  | #xl('a)
-]
+module type AncestorTypesConfig = {
+  type breakpoints<'value>
 
-type record = {
-  xxs: option<string>,
-  xs: option<string>,
-  sm: option<string>,
-  md: option<string>,
-  lg: option<string>,
-  xl: option<string>,
+  let spacing: float
+
+  let unboxBreakpointValue: breakpoints<'value> => 'value
 }
 
-type values<'a> = array<breakpoints<'a>>
+module Make = (Config: AncestorTypesConfig) => {
+  type values<'a> = array<Config.breakpoints<'a>>
 
-let emptyBreakpointsRecord = {
-  xxs: None,
-  xs: None,
-  sm: None,
-  md: None,
-  lg: None,
-  xl: None,
-}
+  /*
+   * Base component props
+   */
 
-// Transform an array of breakpoints into a record
-let parseRecord = (stringify, record, value) =>
-  switch value {
-  | #xxs(xxs) => {...record, xxs: Some(xxs->stringify)}
-  | #xs(xs) => {...record, xs: Some(xs->stringify)}
-  | #sm(sm) => {...record, sm: Some(sm->stringify)}
-  | #md(md) => {...record, md: Some(md->stringify)}
-  | #lg(lg) => {...record, lg: Some(lg->stringify)}
-  | #xl(xl) => {...record, xl: Some(xl->stringify)}
-  }
+  type columnSizeValue = [
+    | #auto
+    | #1
+    | #2
+    | #3
+    | #4
+    | #5
+    | #6
+    | #7
+    | #8
+    | #9
+    | #10
+    | #11
+    | #12
+  ]
 
-let toRecord = (values, stringify) =>
-  switch values {
-  | Some(values) => values->Belt.Array.reduce(emptyBreakpointsRecord, parseRecord(stringify))
-  | None => emptyBreakpointsRecord
-  }
+  let columnToFloat = (value: columnSizeValue) =>
+    switch value {
+    | #1 => 1.0
+    | #2 => 2.0
+    | #3 => 3.0
+    | #4 => 4.0
+    | #5 => 5.0
+    | #6 => 6.0
+    | #7 => 7.0
+    | #8 => 8.0
+    | #9 => 9.0
+    | #10 => 10.0
+    | #11 => 11.0
+    | #12 => 12.0
+    | _ => 12.0
+    }
 
-external magic: 'value => string = "%identity"
+  type columnSize = values<columnSizeValue>
 
-let stringify = values => values->toRecord(magic)
+  let basisFromFloat = (value: columnSizeValue) =>
+    value->columnToFloat->(v => v *. 100.0 /. 12.0)->Js.Float.toFixedWithPrecision(~digits=1) ++ "%"
 
-/**
- * Component props
- */
-type columnSize = [
-  | #auto
-  | #1
-  | #2
-  | #3
-  | #4
-  | #5
-  | #6
-  | #7
-  | #8
-  | #9
-  | #10
-  | #11
-  | #12
-]
+  /**
+   * CSS Properties
+   */
 
-/**
- * CSS Properties
- */
+  // Spacing
+  type spacing = values<int>
 
-// Flex
-type justifyContent = values<
-  [
-    | #initial
-    | #"space-between"
+  // Sizing
+  type size = values<
+    [
+      | #pct(float)
+      | #px(float)
+      | #rem(float)
+      | #em(float)
+    ],
+  >
+
+  // Flex
+  type justifyContent = values<
+    [
+      | #initial
+      | #"space-between"
+      | #center
+      | #"flex-start"
+      | #"flex-end"
+      | #"space-around"
+      | #"space-evenly"
+      | #start
+      | #end
+      | #left
+      | #right
+      | #revert
+      | #unset
+    ],
+  >
+
+  type alignItems = values<
+    [
+      | #initial
+      | #center
+      | #start
+      | #end
+      | #"flex-start"
+      | #"flex-end"
+      | #"self-start"
+      | #"self-end"
+    ],
+  >
+
+  type flexDirection = values<
+    [
+      | #row
+      | #"row-reverse"
+      | #column
+      | #"column-reverse"
+      | #inherit
+      | #initial
+      | #unset
+    ],
+  >
+
+  type flexValue = values<
+    [
+      | #inherit
+      | #initial
+      | #revert
+      | #unset
+      | #number(float)
+    ],
+  >
+
+  type alignSelfValue = [
+    | #auto
+    | #normal
     | #center
-    | #"flex-start"
-    | #"flex-end"
-    | #"space-around"
-    | #"space-evenly"
     | #start
     | #end
-    | #left
-    | #right
-    | #revert
-    | #unset
-  ],
->
-
-type alignItems = values<
-  [
-    | #initial
-    | #center
-    | #start
-    | #end
-    | #"flex-start"
-    | #"flex-end"
     | #"self-start"
     | #"self-end"
-  ],
->
-
-type flexDirection = values<
-  [
-    | #row
-    | #"row-reverse"
-    | #column
-    | #"column-reverse"
+    | #"flex-start"
+    | #"flex-end"
+    | #baseline
+    | #first
+    | #last
+    | #stretch
+    | #safe
+    | #unsafe
     | #inherit
     | #initial
     | #unset
-  ],
->
+  ]
 
-type flexValue = values<
-  [
-    | #inherit
-    | #initial
-    | #revert
-    | #unset
-    | #number(float)
-  ],
->
+  type alignSelf = values<
+    [
+      | #one(alignSelfValue)
+      | #two(alignSelfValue, alignSelfValue)
+    ],
+  >
 
-type alignSelfValue = [
-  | #auto
-  | #normal
-  | #center
-  | #start
-  | #end
-  | #"self-start"
-  | #"self-end"
-  | #"flex-start"
-  | #"flex-end"
-  | #baseline
-  | #first
-  | #last
-  | #stretch
-  | #safe
-  | #unsafe
-  | #inherit
-  | #initial
-  | #unset
-]
+  type flexGrow = flexValue
+  type flexShrink = flexValue
+  type order = flexValue
 
-type alignSelf = values<
-  [
-    | #one(alignSelfValue)
-    | #two(alignSelfValue, alignSelfValue)
-  ],
->
+  type flexWrap = values<
+    [
+      | #nowrap
+      | #wrap
+      | #"wrap-reverse"
+      | #inherit
+      | #initial
+      | #unset
+    ],
+  >
 
-type flexGrow = flexValue
-type flexShrink = flexValue
-type order = flexValue
+  // Texts
+  type textAlign = values<[#center | #left | #right]>
 
-let stringifyAlignSelf = values =>
-  values->toRecord(value =>
-    switch value {
-    | #one(value) => magic(value)
-    | #two(value, value2) => `${magic(value)} ${magic(value2)}`
-    }
-  )
+  // General
+  type display = values<[#none | #block | #flex]>
 
-let stringifyFlexValue = values =>
-  values->toRecord(value =>
-    switch value {
-    | #number(value) => value->Js.Float.toString
-    | value => magic(value)
-    }
-  )
+  // Postion
+  type position = values<
+    [
+      | #static
+      | #relative
+      | #absolute
+      | #fixed
+      | #sticky
+    ],
+  >
 
-let stringifyGrow = stringifyFlexValue
-let stringifyShrink = stringifyFlexValue
-let stringifyOrder = stringifyFlexValue
+  // Box sizing
+  type boxSizing = values<
+    [
+      | #"content-box"
+      | #"border-box"
+      | #initial
+      | #inherit
+    ],
+  >
 
-type flexWrap = values<
-  [
-    | #nowrap
-    | #wrap
-    | #"wrap-reverse"
-    | #inherit
-    | #initial
-    | #unset
-  ],
->
+  /*
+   * Stringify
+   */
 
-// Texts
-type textAlign = values<[#center | #left | #right]>
+  external magic: 'value => string = "%identity"
 
-// General
-type display = values<[#none | #block | #flex]>
+  let stringify = magic
 
-// Spacing
-type spacing = values<int>
+  let stringifySpacing = value =>
+    `${(Js.Int.toFloat(value) *. (Config.spacing /. 10.0))
+        ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
 
-let stringifySpacing = values => values->toRecord(v => `${(v * 8)->Js.Int.toString}rem`)
-
-// Sizing
-type size = values<
-  [
-    | #pct(float)
-    | #px(float)
-    | #rem(float)
-    | #em(float)
-  ],
->
-
-let stringifySize = values =>
-  values->toRecord(size =>
+  let stringifySize = size =>
     switch size {
     | #pct(value) => `${value->Js.Float.toString}%`
     | #px(value) => `${value->Js.Float.toString}px`
     | #rem(value) => `${value->Js.Float.toString}rem`
     | #em(value) => `${value->Js.Float.toString}rem`
     }
-  )
 
-// Postion
-type position = values<
-  [
-    | #static
-    | #relative
-    | #absolute
-    | #fixed
-    | #sticky
-  ],
->
+  let stringifyAlignSelf = value =>
+    switch value {
+    | #one(value) => magic(value)
+    | #two(value, value2) => `${magic(value)} ${magic(value2)}`
+    }
 
-// Box sizing
-type boxSizing = values<
-  [
-    | #"content-box"
-    | #"border-box"
-    | #initial
-    | #inherit
-  ],
->
+  let stringifyFlexValue = value =>
+    switch value {
+    | #number(value) => value->Js.Float.toString
+    | value => magic(value)
+    }
+}

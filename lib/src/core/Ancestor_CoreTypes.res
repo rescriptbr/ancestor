@@ -49,10 +49,7 @@ module Make = (Config: AncestorTypesConfig) => {
   type columnSize = values<columnSizeValue>
 
   let basisFromFloat = (value: columnSizeValue) =>
-    value
-    ->columnToFloat
-    ->(v => v *. 100.0 /. 12.0)
-    ->Js.Float.toFixedWithPrecision(~digits=1) ++ "rem"
+    value->columnToFloat->(v => v *. 100.0 /. 12.0)->Js.Float.toFixedWithPrecision(~digits=1) ++ "%"
 
   /**
    * CSS Properties
