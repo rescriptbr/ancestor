@@ -22,19 +22,22 @@ module Make = (Maker: HiddenMaker) => {
       `,
     )
 
+  let createHiddenClassName = on =>
+    on
+    ->Belt.Option.map(values =>
+      values->Js.Array2.sortInPlaceWith(sortBySize)->Belt.Array.reduce("", createStyle)
+    )
+    ->Belt.Option.getWithDefault("")
+    ->Ancestor_Emotion.css
+
   @react.component
   let make = (~on: option<array<Maker.breakpoints<bool>>>=?, ~mode: mode=#css, ~children) => {
-    let className = switch mode {
-    | #js => ""
-    | #css =>
-      on
-      ->Belt.Option.map(values =>
-        values->Js.Array2.sortInPlaceWith(sortBySize)->Belt.Array.reduce("", createStyle)
-      )
-      ->Belt.Option.getWithDefault("")
-      ->Ancestor_Emotion.css
-    }
-
-    <div className> children </div>
+    <div
+      className={switch mode {
+      | #js => ""
+      | #css => createHiddenClassName(on)
+      }}>
+      children
+    </div>
   }
 }
