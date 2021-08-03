@@ -7,8 +7,6 @@ module type HiddenMaker = {
 }
 
 module Make = (Maker: HiddenMaker) => {
-  type mode = [#css | #js]
-
   let sortBySize = (a, b) => Maker.sizeByBreakpoints(a) - Maker.sizeByBreakpoints(b)
 
   let createStyle = (styles, value) =>
@@ -31,13 +29,7 @@ module Make = (Maker: HiddenMaker) => {
     ->Ancestor_Emotion.css
 
   @react.component
-  let make = (~on: option<array<Maker.breakpoints<bool>>>=?, ~mode: mode=#css, ~children) => {
-    <div
-      className={switch mode {
-      | #js => ""
-      | #css => createHiddenClassName(on)
-      }}>
-      children
-    </div>
+  let make = (~on: option<array<Maker.breakpoints<bool>>>=?, ~children) => {
+    <div className={createHiddenClassName(on)}> children </div>
   }
 }
