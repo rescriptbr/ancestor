@@ -6,7 +6,8 @@
   "license": "MIT",
   "workspaces": [
     "lib",
-    "demo"
+    "demo",
+    "website"
   ],
   "scripts": {
     "lib": "yarn workspace @rescriptbr/ancestor",
@@ -15,7 +16,11 @@
     "demo:compile": "yarn demo build",
     "demo:dev": "yarn demo vite:dev",
     "demo:build": "yarn demo vite:build",
-    "demo:compile": "yarn demo rescript:watch"
+    "demo:compile": "yarn demo rescript:watch",
+    "docs:docusaurus": "yarn workspace website docusaurus",
+    "docs:start": "yarn workspace website docusaurus start",
+    "docs:build": "yarn workspace website docusaurus build",
+    "docs:clear": "yarn workspace website docusaurus clear"
   },
   "devDependencies": {},
   "peerDependencies": {},
