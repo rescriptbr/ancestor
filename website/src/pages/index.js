@@ -1,4 +1,4 @@
 import React from 'react'
-import Home from './Home.bs'
+import Home from './Home/Home.bs'
 
 export default Home

@@ -13,6 +13,10 @@ module.exports = {
   organizationName: 'rescriptbr',
   projectName: 'ancestor',
   themeConfig: {
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+    },
     navbar: {
       logo: {
         alt: 'Ancestor Logo',
@@ -98,7 +102,7 @@ module.exports = {
             'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/app.css'),
         },
       },
     ],

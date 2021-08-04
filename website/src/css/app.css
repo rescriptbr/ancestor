@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+* {
+  font-family: 'DM Sans', sans-serif;
+}
+
+
+/**
+ * Theming
+ * */
+:root {
+  --ifm-color-primary: #ff3366;
+  --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-darker: rgb(31, 165, 136);
+  --ifm-color-primary-darkest: rgb(26, 136, 112);
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(102, 212, 189);
+  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-code-font-size: 95%;
+}
+
+
+/**
+ * Footer
+ * */
+.footer--dark {
+  --ifm-footer-background-color: #000;
+}
+
+.footer__copyright {
+  margin-top: 56px;
+}
+
+/*
+ * Navbar
+ * **/
+@media only screen and (max-width: 995px) {
+  .navbar__items {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
