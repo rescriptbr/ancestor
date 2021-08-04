@@ -1,5 +1,5 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/themes/github')
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -10,8 +10,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'rescriptbr', 
-  projectName: 'ancestor', 
+  organizationName: 'rescriptbr',
+  projectName: 'ancestor',
   themeConfig: {
     navbar: {
       logo: {
@@ -25,7 +25,7 @@ module.exports = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/rescriptbr/ancestor',
           label: 'GitHub',
@@ -103,4 +103,4 @@ module.exports = {
       },
     ],
   ],
-};
+}
