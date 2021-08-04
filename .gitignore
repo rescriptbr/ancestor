@@ -28,3 +28,4 @@ lib/bs
 *.bs.js
 /demo/lib/
 /lib/lib/
+/website/lib/
