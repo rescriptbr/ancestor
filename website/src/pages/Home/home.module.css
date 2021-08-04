@@ -1,0 +1,20 @@
+.hero--title {
+  color: #000;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 46px;
+  line-height: 60px;
+  letter-spacing: -0.07em;
+}
+
+.hero--text {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 42px;
+  letter-spacing: -0.04em;
+
+  color: #4D4D4D;
+}
