@@ -33,7 +33,8 @@
       "yarn workspace website prettier"
     ],
     "*.res": [
-      "yarn rescript -h"
+      "yarn workspace website rescript:format",
+      "yarn workspace @rescriptbr/ancestor format"
     ]
   }
 }
