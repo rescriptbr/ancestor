@@ -14,10 +14,9 @@ module.exports = {
   projectName: 'ancestor', 
   themeConfig: {
     navbar: {
-      title: 'Ancestor',
       logo: {
         alt: 'Ancestor Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo-black.svg',
       },
       items: [
         {
