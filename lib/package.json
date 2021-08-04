@@ -18,6 +18,7 @@
     "build": "rescript build -with-deps",
     "watch": "rescript build -w",
     "clean": "rescript clean",
+    "format": "rescript format",
     "generate-interface": "bsc -i"
   },
   "dependencies": {
