@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  <div> {React.string("tests")} </div>
+  <div> {React.string("Hello from Docs")} </div>
 }
 
 let default = make
