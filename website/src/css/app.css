@@ -5,6 +5,10 @@
 }
 
 
+html, body {
+  overflow-x: hidden;
+}
+
 /**
  * Theming
  * */
@@ -17,6 +21,12 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+    
+  --xxs: 0px;
+  --xs: 475px;
+  --sm: 600px;
+  --md: 920px;
+  --lg: 1280px;
 }
 
 
