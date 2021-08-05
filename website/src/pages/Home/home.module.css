@@ -1,27 +1,13 @@
 .wrapper {
-  width:100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 92px 0;
 }
 
 .hero--image {
-  display: flex;
-  justify-content: center;
-  flex-basis: 40%;
 }
 
 .hero--title-container {
-  flex-basis: 60%;
 }
 
 .hero--title {
@@ -42,43 +28,117 @@
   line-height: 42px;
   letter-spacing: -0.04em;
 
-  color: #4D4D4D;
+  color: #4d4d4d;
 }
 
-
-
-@media only screen and (max-width: 1280px) {
+@media only screen and (min-width: 0px) {
   .hero {
-    padding: 92px 56px;
-  }
-}
-
-
-@media only screen and (max-width: 920px) {
-  .hero {
-    flex-direction: column;
     position: relative;
-    padding: 92px 42px;
-  }
-
-  .hero--title-container {
-    flex-basis: 100%;
-    z-index: 10;
+    padding: 124px 32px;
   }
 
   .hero--image {
-    width: 350px;
+    display: none;
+  }
+
+  #lines-1 {
+    top: 42px;
+    left: -32px;
     position: absolute;
-    bottom: -150px;
-    right: -72px;
+  }
+
+  #lines-2 {
+    bottom: 0px;
+    right: -32px;
+    position: absolute;
+  }
+
+  #square-1 {
+    position: absolute;
+    bottom: 32px;
+    left: 56px;
+  }
+
+  #circle-1 {
+    position: absolute;
+    bottom: 16px;
+    left: 124px;
+  }
+
+  #square-2 {
+    position: absolute;
+    top: 72px;
+    right: 92px;
+  }
+
+  #circle-2 {
+    position: absolute;
+    top: 56px;
+    right: 56px;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
   .hero {
-    flex-direction: column;
-    position: relative;
-    padding: 92px 32px;
+    padding: 132px 42px;
   }
 }
 
+@media only screen and (min-width: 920px) {
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+    
+  .hero--image {
+    display: block;
+  }
+
+  .hero--title-container {
+    flex-basis: 50%;
+    z-index: 10;
+  }
+
+  #lines-1 {
+    top: 72px;
+    left: -24px;
+    position: absolute;
+  }
+
+  #lines-2 {
+    bottom: -56px;
+    right: -16px;
+    position: absolute;
+  }
+
+  #square-1 {
+    position: absolute;
+    bottom: 56px;
+    left: 92px;
+  }
+
+  #circle-1 {
+    position: absolute;
+    bottom: 32px;
+    left: 150px;
+  }
+
+  #square-2 {
+    position: absolute;
+    top: 72px;
+    right: 200px;
+  }
+
+  #circle-2 {
+    position: absolute;
+    top: 56px;
+    right: 250px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .hero {
+  }
+}

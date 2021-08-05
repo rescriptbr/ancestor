@@ -10,6 +10,7 @@ let make = () => {
     title={siteConfig.title} description="Description will go into a meta tag in <head />">
     <main>
       <div className={styles["hero"]}>
+        <Memphis />
         <div className={styles["hero--title-container"]}>
           <h1 className={styles["hero--title"]}> {"Simple, fast and powerful"->s} </h1>
           <p className={styles["hero--text"]}>
