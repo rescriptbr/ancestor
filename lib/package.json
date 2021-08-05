@@ -1,6 +1,6 @@
 {
   "name": "@rescriptbr/ancestor",
-  "version": "0.0.7-beta",
+  "version": "0.0.8-beta",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
