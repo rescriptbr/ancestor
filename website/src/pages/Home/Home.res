@@ -93,13 +93,26 @@ module About = {
   }
 }
 
+module CodePreview = {
+  @react.component
+  let make = () => {
+    <div className={styles["code-preview"]}>
+      <div className={styles["code-preview--texts"]}>
+        <h2> {`Textos sobre a simplicidade`->s} </h2>
+        <p> {`Lorem ipsum dolor sit ame, simet endorsen tunlam somat isolomat essomape.`->s} </p>
+      </div>
+      <img src="/img/snippet.png" />
+    </div>
+  }
+}
+
 @react.component
 let make = () => {
   let {siteConfig} = Docusaurus.useDocusaurusContext()
 
   <Docusaurus.Layout
     title={siteConfig.title} description="Description will go into a meta tag in <head />">
-    <main> <Hero /> <About /> </main>
+    <main> <Hero /> <About /> <CodePreview /> </main>
   </Docusaurus.Layout>
 }
 
