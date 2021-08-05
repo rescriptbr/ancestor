@@ -106,13 +106,30 @@ module CodePreview = {
   }
 }
 
+module StartUsing = {
+  @react.component
+  let make = () => {
+    <div className={styles["start-box"]}>
+      <div className={styles["start-box--texts"]}>
+        <h2> {`Start using right now`->s} </h2>
+        <p>
+          {`Ancestor is production-ready and actively maintained. It’s used in production`->s}
+          <br />
+          {`projects daily and keep breaking changes to a minimum whereever possible.`->s}
+        </p>
+      </div>
+      <button> {`Let’s start`->s} </button>
+    </div>
+  }
+}
+
 @react.component
 let make = () => {
   let {siteConfig} = Docusaurus.useDocusaurusContext()
 
   <Docusaurus.Layout
     title={siteConfig.title} description="Description will go into a meta tag in <head />">
-    <main> <Hero /> <About /> <CodePreview /> </main>
+    <main> <Hero /> <About /> <CodePreview /> <StartUsing /> </main>
   </Docusaurus.Layout>
 }
 
