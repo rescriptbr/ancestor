@@ -1,3 +1,23 @@
+.wrapper {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px red;
+}
+
+.hero {
+  padding-top: 92px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 92px 56px;
+}
+
+.hero--title-cntainer {
+  flex-basis: 50%;
+}
+
 .hero--title {
   color: #000;
   font-family: DM Sans;
