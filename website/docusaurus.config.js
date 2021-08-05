@@ -27,9 +27,9 @@ module.exports = {
           type: 'doc',
           docId: 'intro',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Documentation',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        { to: '/getting-started', label: 'Getting started', position: 'left' },
         {
           href: 'https://github.com/rescriptbr/ancestor',
           label: 'GitHub',
@@ -41,41 +41,36 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'ReScript Brazil',
           items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.gg/wj7Ak9JJtZ',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://twitter.com/rescriptbr',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/rescriptbr',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'About',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Getting Started',
+              to: '/getting-started',
+            },
+            {
+              label: 'Docs',
+              to: '/docs',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/rescriptbr/ancestor',
             },
           ],
         },

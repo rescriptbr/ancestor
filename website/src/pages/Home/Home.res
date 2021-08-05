@@ -126,9 +126,9 @@ module StartUsing = {
 @react.component
 let make = () => {
   let {siteConfig} = Docusaurus.useDocusaurusContext()
-
   <Docusaurus.Layout
-    title={siteConfig.title} description="Description will go into a meta tag in <head />">
+    title={siteConfig.title}
+    description="A suite of layout primitives for ReScript and React with focus on responsiveness.">
     <main> <Hero /> <About /> <CodePreview /> <StartUsing /> </main>
   </Docusaurus.Layout>
 }
