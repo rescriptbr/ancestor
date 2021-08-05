@@ -139,6 +139,49 @@
   .code-preview--texts {
     margin-bottom: 46px;
   }
+
+  .start-box {
+    background: #000;
+    margin-bottom: 124px;
+    padding: 56px;
+  }
+  
+  .start-box--texts > h2 {
+    color: white;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.04em;
+  }
+
+  .start-box--texts > p {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: -0.04em;
+    color: var(--gray-2);
+  }
+
+  .start-box > button {
+    height: 46px;
+    border-radius: 32px;
+    width: 192px;
+    background: #fafafa;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -243,6 +286,20 @@
   .code-preview--texts {
     margin-bottom: 0;
     margin-right: 32px;
+  }
+  
+  .start-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .start-box {
+    max-width: 1280px;
+    margin: 224px auto;
+    display: flex;
+    align-items: center;
+    padding: 72px;
+    margin-bottom: 224px;
   }
 }
 
