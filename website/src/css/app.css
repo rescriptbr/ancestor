@@ -13,6 +13,7 @@ html, body {
  * Theming
  * */
 :root {
+  --gray-2: #B1B1B1;
   --ifm-color-primary: #ff3366;
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
