@@ -2,6 +2,40 @@ open Render
 
 @module("./home.module.css") external styles: {..} = "default"
 
+module Memphis = {
+  module Lines = {
+    @react.component
+    let make = (~id) => {
+      <img src="/img/memphis-01.svg" id />
+    }
+  }
+  module Square = {
+    @react.component
+    let make = (~id) => {
+      <img src="/img/memphis-02.svg" id />
+    }
+  }
+
+  module Circle = {
+    @react.component
+    let make = (~id) => {
+      <img src="/img/memphis-03.svg" id />
+    }
+  }
+
+  @react.component
+  let make = () => {
+    <div className={styles["memphis"]}>
+      <Lines id={styles["lines-1"]} />
+      <Lines id={styles["lines-2"]} />
+      <Square id={styles["square-1"]} />
+      <Circle id={styles["circle-1"]} />
+      <Square id={styles["square-2"]} />
+      <Circle id={styles["circle-2"]} />
+    </div>
+  }
+}
+
 @react.component
 let make = () => {
   let {siteConfig} = Docusaurus.useDocusaurusContext()
@@ -19,16 +53,6 @@ let make = () => {
         </div>
         <div className={styles["hero--image"]}> <img src="/img/hero-symbol.svg" /> </div>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <br />
       <br />
       <br />
