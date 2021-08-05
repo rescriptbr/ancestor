@@ -3,19 +3,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px red;
 }
 
 .hero {
-  padding-top: 92px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 92px 56px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 92px 0;
 }
 
-.hero--title-cntainer {
-  flex-basis: 50%;
+.hero--image {
+  display: flex;
+  justify-content: center;
+  flex-basis: 40%;
+}
+
+.hero--title-container {
+  flex-basis: 60%;
 }
 
 .hero--title {
@@ -38,3 +44,41 @@
 
   color: #4D4D4D;
 }
+
+
+
+@media only screen and (max-width: 1280px) {
+  .hero {
+    padding: 92px 56px;
+  }
+}
+
+
+@media only screen and (max-width: 920px) {
+  .hero {
+    flex-direction: column;
+    position: relative;
+    padding: 92px 42px;
+  }
+
+  .hero--title-container {
+    flex-basis: 100%;
+    z-index: 10;
+  }
+
+  .hero--image {
+    width: 350px;
+    position: absolute;
+    bottom: -150px;
+    right: -72px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .hero {
+    flex-direction: column;
+    position: relative;
+    padding: 92px 32px;
+  }
+}
+
