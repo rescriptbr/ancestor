@@ -2,34 +2,86 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+**Ancestor** é uma suite de componentes que funcionam como primitivas de layout para construção de projetos, design systems e styleguides de alta qualidade com foco em responsividade.
 
-## Getting Started
+## What and Why?
 
-Get started by **creating a new site**.
+Todo projeto front-end construido com bibliotecas/frameworks baseados em componentes como [React](https://reactjs.org),
+se deparam com a mesma situação: Desenvolver ou escolher uma biblioteca de UI para desenvolvimento das interfaces do projeto.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Em alguns casos você pode optar facilmente por bibliotecas conhecidas como [Chakra UI](https://chakra-ui.com/), [Material UI](https://material-ui.com/pt/) e
+[Ant Design](https://material-ui.com/pt/) que possuem uma gama de componentes estilizados (grid, buttons, inputs, selects, etc) e outras funções e componentes utilitários
+para o seu projeto.
 
-## Generate a new site
+No entanto, é comum que alguns times de produto desenvolvam seu próprio Design System ou Styleguide, com uma linguagem de design, cores, fontes e outras caracteristícas
+derivadas a partir de um branding do produto pensados do zero e sob medida para aquele projeto.
 
-Generate a new Docusaurus site using the **classic template**:
+Nesses casos, o uso de uma biblioteca como as citadas acima, nem sempre é a melhor
+escolha por demandar de muitas customizações e mudanças nos componentes estilizados para se adequar a linguagem de design criada para o produto.
 
-```shell
-npx @docusaurus/init@latest init my-website classic
+Foi por essas e outras situações que o **Ancestor** foi criado, para funcionar como uma fundação para seu projeto, design system ou styleguide.
+A biblioteca foi baseada em três pilares: Primitivas de layout, Responsividade e Design Consistente.
+
+## Key features
+
+### Unstyled 💀
+
+Diferente de bibliotecas populares como Material UI e Chakra UI, nós não temos nenhum componente com estilos de cores, fontes, bordas, etc.
+Todos os nossos componentes são **primitivas de layout** com suporte a diversas props como padding, margin, height, width, etc.
+
+### Responsiveness 💡
+
+Todas as propriedades dos componentes são **responsivas**, o que facilita a construção de interfaces que suportam multiplos dispositivos.
+Através dos **breakpoints** definidos pela biblioteca, você pode mudar facilmente os aspectos de um componente em um determinado tamanho de tela ou dispositivo.
+
+### Consistent design 🎨
+
+Apesar de não ter componentes estilizados, nós prezamos pela consistência no design, principalmente quando se trata de espaçamentos, bordas e grids.
+
+### Customizable ⚙️
+
+Todas as propriedades e parâmetros utilizados pelo Ancestor são customizaveis: Breakpoints, Padding, Margin, Colunas do Grid, etc.
+
+## How it looks
+
+```ocaml
+open Render
+open Ancestor.Default
+
+@react.component
+let make = () => {
+  <Grid height=[xxs(100.0->#pct)]>
+    <Box
+      flexDirection=[xxs(#column), md(#row)]
+      p=[xxs(6), md(12), lg(8)]
+      position=[xxs(#relative)]
+      size=[xxs(#12), md(#6)]
+    >
+      <Box
+        flexGrow=[xxs(#number(1.0))]
+        width=[xxs(15.0->#rem), md(20.0->#rem)]
+      >
+        <Logo />
+      </Box>
+      <Box flexGrow=[xxs(#number(3.0))] pt=[xxs(4)]>
+        <h1>
+          {`A place to share knowledge`->s}
+        </h1>
+        <p>
+          {`Where good ideas find you.`->s}
+        </p>
+      </Box>
+      <Box
+        position=[xxs(#absolute)]
+        bottom=[xxs(-5.0->#rem)]
+        left=[xxs(-5.0->#rem)]
+      >
+          ....
+      </Box>
+    </Box>
+  </Grid>
+}
+
 ```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
