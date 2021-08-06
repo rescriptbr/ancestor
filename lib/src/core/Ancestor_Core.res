@@ -16,7 +16,7 @@ module Make = (Maker: AncestorCoreConfig) => {
 
   %%private(
     let createBreakpointSize = device => `${device->Maker.sizeByBreakpoints->Belt.Int.toString}px`
-    let greaterThan = (current, device: Maker.breakpoints<'a>, styles) =>
+    let mediaQuery = (current, device: Maker.breakpoints<'a>, styles) =>
       `
     ${current}
     @media (min-width: ${device->createBreakpointSize}) {
@@ -28,7 +28,7 @@ module Make = (Maker: AncestorCoreConfig) => {
       Maker.sizeByBreakpoints(first) - Maker.sizeByBreakpoints(second)
 
     let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
-      greaterThan(
+      mediaQuery(
         styles,
         breakpointValue,
         `${cssKey}: ${breakpointValue->Maker.unboxBreakpointValue->stringify};`,
@@ -409,7 +409,7 @@ module Make = (Maker: AncestorCoreConfig) => {
   module Box = {
     %%private(
       let createBox = (styles, value) =>
-        greaterThan(
+        mediaQuery(
           styles,
           value,
           `flex-basis: ${value->Maker.unboxBreakpointValue->Types.basisFromFloat}`,
@@ -450,7 +450,7 @@ module Make = (Maker: AncestorCoreConfig) => {
     type breakpoints<'a> = Maker.breakpoints<'a>
     let sizeByBreakpoints = Maker.sizeByBreakpoints
     let unboxBreakpointValue = Maker.unboxBreakpointValue
-    let greaterThan = greaterThan
+    let mediaQuery = mediaQuery
     let css = Maker.css
   })
 }
