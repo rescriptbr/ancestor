@@ -25,6 +25,8 @@ module Default = {
       | #lg(v) => v
       | #xl(v) => v
       }
+
+    let css = Ancestor_Emotion.css
   })
 
   // Aliases

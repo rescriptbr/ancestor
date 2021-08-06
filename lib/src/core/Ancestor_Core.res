@@ -4,18 +4,19 @@ module type AncestorCoreConfig = {
   let spacing: float
   let sizeByBreakpoints: breakpoints<'value> => int
   let unboxBreakpointValue: breakpoints<'value> => 'value
+  let css: string => string
 }
 
-module Make = (Config: AncestorCoreConfig) => {
+module Make = (Maker: AncestorCoreConfig) => {
   module Types = Ancestor_CoreTypes.Make({
-    type breakpoints<'a> = Config.breakpoints<'a>
-    let spacing = Config.spacing
-    let unboxBreakpointValue = Config.unboxBreakpointValue
+    type breakpoints<'a> = Maker.breakpoints<'a>
+    let spacing = Maker.spacing
+    let unboxBreakpointValue = Maker.unboxBreakpointValue
   })
 
   %%private(
-    let createBreakpointSize = device => `${device->Config.sizeByBreakpoints->Belt.Int.toString}px`
-    let greaterThan = (current, device: Config.breakpoints<'a>, styles) =>
+    let createBreakpointSize = device => `${device->Maker.sizeByBreakpoints->Belt.Int.toString}px`
+    let greaterThan = (current, device: Maker.breakpoints<'a>, styles) =>
       `
     ${current}
     @media (min-width: ${device->createBreakpointSize}) {
@@ -24,13 +25,13 @@ module Make = (Config: AncestorCoreConfig) => {
   `
 
     let sortBySize = (first, second) =>
-      Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
+      Maker.sizeByBreakpoints(first) - Maker.sizeByBreakpoints(second)
 
     let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
       greaterThan(
         styles,
         breakpointValue,
-        `${cssKey}: ${breakpointValue->Config.unboxBreakpointValue->stringify};`,
+        `${cssKey}: ${breakpointValue->Maker.unboxBreakpointValue->stringify};`,
       )
 
     let createStyles = (cssKey, maybeCssValues, stringify) =>
@@ -316,7 +317,7 @@ module Make = (Config: AncestorCoreConfig) => {
                 ~zIndex?,
                 ~boxSizing?,
                 (),
-              )->Ancestor_Emotion.css
+              )->Maker.css
 
             `${className} ${responsiveStyles}`
           },
@@ -411,7 +412,7 @@ module Make = (Config: AncestorCoreConfig) => {
         greaterThan(
           styles,
           value,
-          `flex-basis: ${value->Config.unboxBreakpointValue->Types.basisFromFloat}`,
+          `flex-basis: ${value->Maker.unboxBreakpointValue->Types.basisFromFloat}`,
         )
     )
 
@@ -426,14 +427,14 @@ module Make = (Config: AncestorCoreConfig) => {
               values->Js.Array2.sortInPlaceWith(sortBySize)->Belt.Array.reduce("", createBox)
             )
             ->Belt.Option.getWithDefault("")
-            ->Ancestor_Emotion.css
+            ->Maker.css
           `${box} ${className}`
         },
       )
   }
 
   module Grid = {
-    let grid = Ancestor_Emotion.css(`
+    let grid = Maker.css(`
       width: 100%;
       flex-wrap: wrap;
       display: flex;
@@ -446,9 +447,10 @@ module Make = (Config: AncestorCoreConfig) => {
   }
 
   module Hidden = Ancestor_Hidden.Make({
-    type breakpoints<'a> = Config.breakpoints<'a>
-    let sizeByBreakpoints = Config.sizeByBreakpoints
-    let unboxBreakpointValue = Config.unboxBreakpointValue
+    type breakpoints<'a> = Maker.breakpoints<'a>
+    let sizeByBreakpoints = Maker.sizeByBreakpoints
+    let unboxBreakpointValue = Maker.unboxBreakpointValue
     let greaterThan = greaterThan
+    let css = Maker.css
   })
 }

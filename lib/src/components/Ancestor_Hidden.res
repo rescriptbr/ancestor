@@ -4,6 +4,7 @@ module type HiddenMaker = {
   let sizeByBreakpoints: breakpoints<'value> => int
   let unboxBreakpointValue: breakpoints<'value> => 'value
   let greaterThan: (string, breakpoints<'a>, string) => string
+  let css: string => string
 }
 
 module Make = (Maker: HiddenMaker) => {
@@ -26,7 +27,7 @@ module Make = (Maker: HiddenMaker) => {
       values->Js.Array2.sortInPlaceWith(sortBySize)->Belt.Array.reduce("", createStyle)
     )
     ->Belt.Option.getWithDefault("")
-    ->Ancestor_Emotion.css
+    ->Maker.css
 
   @react.component
   let make = (~on: option<array<Maker.breakpoints<bool>>>=?, ~children) => {
