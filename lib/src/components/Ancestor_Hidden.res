@@ -3,7 +3,7 @@ module type HiddenMaker = {
 
   let sizeByBreakpoints: breakpoints<'value> => int
   let unboxBreakpointValue: breakpoints<'value> => 'value
-  let greaterThan: (string, breakpoints<'a>, string) => string
+  let mediaQuery: (string, breakpoints<'a>, string) => string
   let css: string => string
 }
 
@@ -11,7 +11,7 @@ module Make = (Maker: HiddenMaker) => {
   let sortBySize = (a, b) => Maker.sizeByBreakpoints(a) - Maker.sizeByBreakpoints(b)
 
   let createStyle = (styles, value) =>
-    Maker.greaterThan(
+    Maker.mediaQuery(
       styles,
       value,
       `
