@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
-* {
-  font-family: 'DM Sans', sans-serif;
-}
-
-
 html, body {
   overflow-x: hidden;
 }
@@ -22,7 +17,7 @@ html, body {
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
-    
+  --ifm-font-family-base: 'DM Sans', sans-serif;
   --xxs: 0px;
   --xs: 475px;
   --sm: 600px;
