@@ -24,7 +24,7 @@ escolha por demandar de muitas customizações e mudanças nos componentes estil
 Foi por essas e outras situações que o **Ancestor** foi criado, para funcionar como uma fundação para seu projeto, design system ou styleguide.
 A biblioteca foi baseada em três pilares: Primitivas de layout, Responsividade e Design Consistente.
 
-## Key features
+## Features
 
 ### Unstyled 💀
 
@@ -67,10 +67,10 @@ let make = () => {
       </Box>
       <Box flexGrow=[xxs(#number(3.0))] pt=[xxs(4)]>
         <h1>
-          {`A place to share knowledge`->s}
+          {"A place to share knowledg"->s}
         </h1>
         <p>
-          {`Where good ideas find you.`->s}
+          {"Where good ideas find you."->s}
         </p>
       </Box>
       <Box
@@ -85,3 +85,5 @@ let make = () => {
 }
 
 ```
+
+_Code sample from [ReScript Conduit](https://github.com/rescriptbr/rescript-conduit/blob/master/src/pages/Signin/Signin.res)_
