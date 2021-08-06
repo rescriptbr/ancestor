@@ -29,4 +29,8 @@ lib/bs
 /demo/lib/
 /lib/lib/
 /website/lib/
+/demo/node_modules/
+/lib/node_modules/
+/website/node_modules/
+
 .DS_STORE
