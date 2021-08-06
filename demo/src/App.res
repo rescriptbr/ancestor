@@ -1,4 +1,5 @@
 open Ancestor.Default
+
 let s = React.string
 
 @module("@emotion/css") external css: string => string = "css"
@@ -18,11 +19,18 @@ let box = css(`
 
 @react.component
 let make = () => {
-  <div>
-    <Grid>
-      <Box size=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-      <Box size=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-      <Box size=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-    </Grid>
-  </div>
+  let {path} = RescriptReactRouter.useUrl()
+
+  switch path {
+  | list{} =>
+    <div>
+      <Grid>
+        <Box size=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+        <Box size=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+        <Box size=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+      </Grid>
+    </div>
+  | list{"custom"} => <CustomConfig />
+  | _ => "Not found"->s
+  }
 }
