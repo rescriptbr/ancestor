@@ -29,7 +29,6 @@ module.exports = {
           position: 'left',
           label: 'Documentation',
         },
-        { to: '/getting-started', label: 'Getting started', position: 'left' },
         {
           href: 'https://github.com/rescriptbr/ancestor',
           label: 'GitHub',
@@ -62,11 +61,11 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: '/getting-started',
+              to: '/docs/intro',
             },
             {
               label: 'Docs',
-              to: '/docs',
+              to: '/docs/intro',
             },
             {
               label: 'GitHub',
