@@ -19,8 +19,7 @@
     "docs:docusaurus": "yarn workspace website docusaurus",
     "docs:start": "yarn workspace website docusaurus start",
     "docs:build": "yarn workspace website build",
-    "docs:clear": "yarn workspace website docusaurus clear",
-    "prepare": "husky install"
+    "docs:clear": "yarn workspace website docusaurus clear"
   },
   "devDependencies": {},
   "peerDependencies": {},
