@@ -1,4 +1,4 @@
-module type AncestorCoreConfig = {
+module type AncestorCoreMaker = {
   type breakpoints<'value>
 
   let spacing: float
@@ -7,7 +7,7 @@ module type AncestorCoreConfig = {
   let css: string => string
 }
 
-module Make = (Maker: AncestorCoreConfig) => {
+module Make = (Maker: AncestorCoreMaker) => {
   module Types = Ancestor_CoreTypes.Make({
     type breakpoints<'a> = Maker.breakpoints<'a>
     let spacing = Maker.spacing
