@@ -2,9 +2,9 @@
   <img src="./assets/ancestor-logo.svg" /> 
   <br />
   <br />
-  <a target="_blank" href=""> Docs </a> ●
-    <a target="_blank" href=""> Getting Started </a> ●
-  <a target="_blank" href=""> Examples </a> ●
+  <a target="_blank" href=""> Docs </a> //
+    <a target="_blank" href=""> Getting Started </a> //
+  <a target="_blank" href=""> Examples </a> //
   <a target="_blank" href="https://github.com/rescripbr"> ReScript Brazil Community </a>
  </p>
 
@@ -26,8 +26,7 @@ Adicione o pacote ao seu `bsconfig.json`:
 
 ```json
 {
- ...
-"bs-dependencies": [
+ "bs-dependencies": [
   "@rescript/react",
   "@rescriptbr/ancestor"
  ]
@@ -39,9 +38,9 @@ Adicione o pacote ao seu `bsconfig.json`:
 
 O Ancestor vem com uma configuração padrão para você utilizar no seu projeto.
 
-> Se preferir você pode customizar e/ou modificar a configuração padrão seguindo as [instruções de customização](/docs/customization).
+> Se preferir você pode customizar e/ou modificar a configuração padrão seguindo as [instruções de customização](https://ancestor.netlify.app/docs/getting-started).
 
-```ocaml
+```rescript
 open Ancestor.Default
 
 @react.component
