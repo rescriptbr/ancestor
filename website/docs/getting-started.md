@@ -37,7 +37,7 @@ Adicione o pacote ao seu `bsconfig.json`:
 
 O Ancestor vem com uma configuração padrão para você utilizar no seu projeto.
 
-> Se preferir você pode customizar e/ou modificar a configuração padrão seguindo as [instruções de customização](/teste).
+> Se preferir você pode customizar e/ou modificar a configuração padrão seguindo as [instruções de customização](/docs/customization).
 
 ```ocaml
 open Ancestor.Default
