@@ -25,9 +25,9 @@ let make = () => {
   | list{} =>
     <div>
       <Grid>
-        <Box size=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-        <Box size=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-        <Box size=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+        <Box columns=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+        <Box columns=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+        <Box columns=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
       </Grid>
     </div>
   | list{"custom"} => <CustomConfig />
