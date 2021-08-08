@@ -14,7 +14,6 @@
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "prettier": "prettier --write 'src/**/*.{js,json,md}'",
@@ -31,6 +30,7 @@
     "file-loader": "^6.2.0",
     "prettier": "2.3.2",
     "prism-react-renderer": "^1.2.1",
+    "raw-loader": "4.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "rescript": "9.1.4",
@@ -48,7 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "husky": "^7.0.1"
-  }
+  "devDependencies": {}
 }

@@ -22,18 +22,5 @@
     "docs:clear": "yarn workspace website docusaurus clear"
   },
   "devDependencies": {},
-  "peerDependencies": {},
-  "dependencies": {
-    "husky": "7.0.1",
-    "lint-staged": "11.1.1"
-  },
-  "lint-staged": {
-    "*.{js,md,json}": [
-      "yarn workspace website prettier"
-    ],
-    "*.res": [
-      "yarn workspace website rescript:format",
-      "yarn workspace @rescriptbr/ancestor format"
-    ]
-  }
+  "peerDependencies": {}
 }

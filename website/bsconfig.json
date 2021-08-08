@@ -1,10 +1,16 @@
 {
   "name": "website",
   "version": "0.0.1",
-  "sources": {
-    "dir": "src",
-    "subdirs": true
-  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "docs",
+      "subdirs": true
+    }
+  ],
 
   "package-specs": [
     {
