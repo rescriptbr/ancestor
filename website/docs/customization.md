@@ -126,12 +126,25 @@ Como você pode ver, além da definição de tipo dos breakpoints, você precisa
 
 ## Spacing
 
+Por padrão o Ancestor utiliza um fator de escala de `8px` manter o espaçamento consistente entre os componentes.
+Você pode customizar o fator de escala através da propriedade `spacing`:
+
+```ocaml
+
+module AncestorCustom = Ancestor.Make({
+  include Ancestor.DefaultConfig
+
+  let spacing = 6.0
+})
+
+```
+
 ## CSS in JS
 
-Para geração de estilos o Ancestor utiliza o pacote [@emotion/css](https://emotion.sh/docs/introduction). Se você prefere utilizar
-outra biblioteca que forneça uma função equivalente como [Goober](https://github.com/cristianbote/goober#csstaggedtemplate)
+Para geração de estilos o Ancestor utiliza o pacote [@emotion/css](https://emotion.sh/docs/introduction). Se preferir, você pode usar
+outra biblioteca que forneça uma função equivalente, como [Goober](https://github.com/cristianbote/goober#csstaggedtemplate)
 ou [styled-components](https://styled-components.com/docs/api#css).
-Exemplo de um setup customizado do Ancestor utilizando Goober:
+Exemplo de um setup customizado do Ancestor utilizando o Goober:
 
 ```ocaml
 
