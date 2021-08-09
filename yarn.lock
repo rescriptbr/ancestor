@@ -1683,13 +1683,6 @@
   resolved "https://registry.yarnpkg.com/@rescript/react/-/react-0.10.3.tgz#a2a8bed6b017940ec26c2154764b350f50348889"
   integrity sha512-Lf9rzrR3bQPKJjOK3PBRa/B3xrJ7CqQ1HYr9VHPVxJidarIJJFZBhj0Dg1uZURX+Wg/xiP0PHFxXmdj2bK8Vxw==
 
-"@rescriptbr/ancestor@0.0.7-beta":
-  version "0.0.7-beta"
-  resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-0.0.7-beta.tgz#f259bbf8c739390695ab332fa6f2717a6988f589"
-  integrity sha512-CuR/lkJnH/xRD0b4xFg5pcICahrM2cdAdcsJeme8kCDTgEoDnPBI0WrAMUOs49TMpOLuo8nMK0zvHRh+ACBinw==
-  dependencies:
-    "@emotion/css" "11.1.3"
-
 "@rescriptbr/ancestor@0.0.8-beta":
   version "0.0.8-beta"
   resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-0.0.8-beta.tgz#29d740f69aec977f34f3a13d5ac9a396fed40386"

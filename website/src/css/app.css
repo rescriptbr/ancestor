@@ -47,3 +47,21 @@ html, body {
   }
 }
 
+/**
+ * Demos
+ */
+
+.playground {
+  padding: 42px;
+  border: solid 1px var(--gray-2);
+  border-radius: 6px;
+}
+
+.placeholder {
+  background: #000;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  border-radius: 6px;
+  color: white;
+  padding: 32px;
+}

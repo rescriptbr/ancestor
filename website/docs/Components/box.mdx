@@ -1,5 +1,11 @@
-import CodeBlock from '@theme/CodeBlock';
-import MyComponentSource from '!!raw-loader!./DemoBox.bs';
+---
+sidebar_position: 3
+---
+
+import CodeBlock from '@theme/CodeBlock'
+import { Wrapper } from '../helpers/Preview.js'
+import { make as FirstBoxExample } from './examples/FirstBoxExample.bs'
+import FirstBoxExampleSource from '!!raw-loader!./examples/FirstBoxExample.res'
 
 # Box
 
@@ -8,4 +14,8 @@ elementos através de props utilitárias.
 
 ## Example
 
+<CodeBlock className='language-reason'> {FirstBoxExampleSource.replaceAll('className="placeholder" ', '')}</CodeBlock>
 
+<Wrapper>
+  <FirstBoxExample />
+</Wrapper>
