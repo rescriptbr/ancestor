@@ -63,5 +63,7 @@ html, body {
   font-family: 'DM Sans', sans-serif;
   border-radius: 6px;
   color: white;
+  font-size: 18px;
+  font-weight: 600;
   padding: 32px;
 }

@@ -1,21 +1,51 @@
 ---
+title: Box
 sidebar_position: 3
 ---
 
 import CodeBlock from '@theme/CodeBlock'
-import { Wrapper } from '../helpers/Preview.js'
+import { Wrapper, cleanUpCode } from '../helpers'
 import { make as FirstBoxExample } from './examples/FirstBoxExample.bs'
 import FirstBoxExampleSource from '!!raw-loader!./examples/FirstBoxExample.res'
 
-# Box
-
-Um componente que funciona como um wrapper para alterar a aparência dos
-elementos através de props utilitárias.
+Um componente que serve como wrapper para alterar a aparência dos elementos através de props CSS.
 
 ## Example
 
-<CodeBlock className='language-reason'> {FirstBoxExampleSource}</CodeBlock>
+<CodeBlock className='language-reason'> {cleanUpCode(FirstBoxExampleSource)}</CodeBlock>
 
 <Wrapper>
   <FirstBoxExample />
 </Wrapper>
+
+## Props
+
+O component `Box` é construido a partir do componente [`Base`](/docs/components/base) e herda todas as props definidas pelo system props.
+Além disso o componente possui as seguintes props adicionais:
+
+### `columns`
+
+Define o tamanho da coluna dentro do [Grid](/docs/components/Grid).
+
+- Type: `array<Ancestor.breakpoints<[
+    | # auto
+    | #1
+    | #2
+    | #3
+    | #4
+    | #5
+    | #6
+    | #7
+    | #8
+    | #9
+    | #10
+    | #11
+    | #12
+]>>`
+
+- Optional: `true`
+
+:::note
+ O tipo **Ancestor.breakpoints** é um tipo generico definido no setup do Ancestor. 
+ Você pode ver os breakpoints definidos no [setup padrão do Ancestor](/docs/customization#default-setup) ou criar os seus próprios breakpoints em um [setup customizado](/docs/customization#breakpoints).
+:::

@@ -7,6 +7,8 @@ sidebar_position: 3
 O Ancestor abusa dos [Module Functors](https://rescript-lang.org/docs/manual/v8.0.0/module#module-functions-functors)
 para customização de breakpoints, espaçamento e outras propriedades.
 
+## Default setup
+
 A interface de customização do Ancestor tem a seguinte assinatura:
 
 ```ocaml
