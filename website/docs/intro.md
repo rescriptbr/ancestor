@@ -8,21 +8,18 @@ sidebar_position: 1
 
 ## What and Why?
 
-Todo projeto front-end construido com bibliotecas/frameworks baseados em componentes como [React](https://reactjs.org),
+Todo projeto front-end construido com bibliotecas baseadas em componentes como o [React](https://reactjs.org),
 se deparam com a mesma situação: Desenvolver ou escolher uma biblioteca de UI para desenvolvimento das interfaces do projeto.
 
 Em alguns casos você pode optar facilmente por bibliotecas conhecidas como [Chakra UI](https://chakra-ui.com/), [Material UI](https://material-ui.com/pt/) e
-[Ant Design](https://material-ui.com/pt/) que possuem uma gama de componentes estilizados (grid, buttons, inputs, selects, etc) e outras funções e componentes utilitários
-para o seu projeto.
+[Ant Design](https://material-ui.com/pt/) que possuem uma gama de componentes estilizados (grid, buttons, inputs, selects, etc) e outras funções e componentes utilitários para o seu projeto.
 
-No entanto, é comum que alguns times de produto desenvolvam seu próprio Design System ou Styleguide, com uma linguagem de design, cores, fontes e outras caracteristícas
-derivadas a partir de um branding do produto pensados do zero e sob medida para aquele projeto.
+No entanto, é comum que alguns times de produto desenvolvam seu próprio Design System ou Styleguide, com uma linguagem de design, cores, fontes e outras caracteristícas derivadas a partir de um branding do produto que foi feito sob medida para o projeto.
 
 Nesses casos, o uso de uma biblioteca como as citadas acima, nem sempre é a melhor
-escolha por demandar de muitas customizações e mudanças nos componentes estilizados para se adequar a linguagem de design criada para o produto.
+escolha, pois geralmente, demandam de muitas customizações e mudanças para adequar a biblioteca a linguagem de design criada para o produto em questão.
 
-Foi por essas e outras situações que o **Ancestor** foi criado, para funcionar como uma fundação para seu projeto, design system ou styleguide.
-A biblioteca foi baseada em três pilares: Primitivas de layout, Responsividade e Design Consistente.
+Foi por esse outros motivos que o **Ancestor** foi criado, para funcionar como uma fundação para seu projeto, design system ou styleguide.
 
 ## Features
 
@@ -44,7 +41,7 @@ Apesar de não ter componentes estilizados, nós prezamos pela consistência no 
 
 Todas as propriedades e parâmetros utilizados pelo Ancestor são customizaveis: Breakpoints, Padding, Margin, Colunas do Grid, etc.
 
-## How it looks
+## Basic usage
 
 ```ocaml
 open Render
@@ -86,4 +83,4 @@ let make = () => {
 
 ```
 
-_Code sample from [ReScript Conduit](https://github.com/rescriptbr/rescript-conduit/blob/master/src/pages/Signin/Signin.res)_
+_ Exemplo de código do projeto [ReScript Conduit](https://github.com/rescriptbr/rescript-conduit/blob/master/src/pages/Signin/Signin.res)_
