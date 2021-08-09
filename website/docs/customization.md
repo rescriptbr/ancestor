@@ -77,9 +77,7 @@ Os breakpoints do Ancestor são customizáveis, por padrão a biblioteca conta c
 Se você quer customizar somente os valores dos breakpoints, você pode utilizar o módulo `DefaultConfig` e sobreescrever os tipos e funções
 relacionados aos breakpoints.
 
-```reason
-// YourAncestorConfig.res
-
+```reason title="MyApp.res"
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = [
     | #small('value)
@@ -125,6 +123,18 @@ Como você pode ver, além da definição de tipo dos breakpoints, você precisa
 - `let sizeByBreakpoints: breakpoints<'value> => int` - Função que retorna o valor em `px` para cada breakpoint definido.
 
 - `let unboxBreakpointValue: breakpoints<'value> => 'value` - Função que faz o "unbox" do valor para cada breakpoint definido.
+
+:::important
+  Todas as props dos componentes do Ancestor são **arrays** de **breakpoints**. Se você precisa que uma prop tenha sempre o mesmo valor 
+  em todos os breakpoints, você deve passar o valor para o **menor breakpoint** definido. No setup default do Ancestor esse breakpoint é o `#xxs`.
+:::
+
+:::tip
+Se preferir, você pode criar funções para usar no lugar das variants de breakpoints, o que pode melhorar legibilidade do código em alguns casos.
+Ao invés de você escrever `display=[#xxs(#flex)]` você pode escrever `display=[xxs(#center)]`. O mesmo serve para os casos onde você precisa
+definir um valor só para todos os breakpoints, ao invés de escrever `display=[#xxs(center)]` você poderia criar uma função `always` ou `all` e
+utiliza-las nas props dos componentes assim `display=always(#center)`.
+:::
 
 ## Spacing
 

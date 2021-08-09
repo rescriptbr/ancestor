@@ -44,7 +44,6 @@ Todas as propriedades e parâmetros utilizados pelo Ancestor são customizaveis:
 ## Basic usage
 
 ```ocaml
-open Render
 open Ancestor.Default
 
 @react.component
@@ -64,10 +63,10 @@ let make = () => {
       </Box>
       <Box flexGrow=[xxs(#number(3.0))] pt=[xxs(4)]>
         <h1>
-          {"A place to share knowledg"->s}
+          {"A place to share knowledge"->React.string}
         </h1>
         <p>
-          {"Where good ideas find you."->s}
+          {"Where good ideas find you."->React.string}
         </p>
       </Box>
       <Box

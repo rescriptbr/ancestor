@@ -4,23 +4,28 @@ sidebar_position: 2
 
 # Getting started
 
-Passo a passo rápido para instalar e configurar o Ancestor no seu projeto.
+Passo a passo rápido para instalar e configurar o **Ancestor** no seu projeto.
+
+:::important
+ Esse tutorial presume que você tem um setup funcional de um projeto ReScript com React. Se necessário você pode consultar a documentação
+ oficial do ReScript como **[criar um projeto ReScript com React](https://rescript-lang.org/docs/react/latest/installation).**
+:::
 
 ## Installation
 
 O primeiro passo é instalar o **Ancestor** no seu projeto:
 
-```sh
+```sh title="Terminal"
 yarn add @rescriptbr/ancestor
 ```
 
 Se você for utilizar a configuração padrão do Ancestor, sem customizações, você precisa instalar o [Emotion](https://emotion.sh):
 
-```sh
+```sh title="Terminal"
 yarn add @emotion/css
 ```
 
-Adicione o pacote ao seu `bsconfig.json`:
+Adicione o pacote ao `bsconfig.json` do seu projeto:
 
 ```json title="bsconfig.json"
 {
@@ -36,8 +41,6 @@ Adicione o pacote ao seu `bsconfig.json`:
 ## Basic usage
 
 O Ancestor vem com uma configuração padrão para você utilizar no seu projeto.
-
-> Se preferir você pode customizar e/ou modificar a configuração padrão seguindo as [instruções de customização](/docs/customization).
 
 ```ocaml title="App.res"
 open Ancestor.Default
@@ -68,3 +71,8 @@ let make = () => {
   </Grid>
 }
 ```
+
+:::important
+Se preferir, você pode customizar o setup padrão seguindo as **[instruções de customização](/docs/customization)**.
+:::
+
