@@ -1,19 +1,52 @@
 module Make = (Maker: Ancestor_Styles.Maker) => {
   module Base = Ancestor_Base.Make(Maker)
+  module Styles = Ancestor_Styles.Make(Maker)
 
   %%private(
-    let grid = Maker.css(`
+    let defaultStyles = Maker.css(`
       width: 100%;
-      flex-wrap: wrap;
+      flex-wrap;
       display: flex;
-  `)
+    `)
+
+    let createResponsiveStyles = (currentStyles, value) => {
+      let spacingInRem = value->Maker.unboxBreakpointValue->Styles.calculateSpacing
+
+      Styles.mediaQuery(
+        currentStyles,
+        value,
+        `
+          display: flex;
+          flex-wrap: wrap;
+          width: calc(100% + ${spacingInRem});
+          margin-left: -${spacingInRem};
+          margin-top: -${spacingInRem};
+
+          > * {
+            box-sizing: border-box;
+            padding-left: ${spacingInRem};
+            padding-top: ${spacingInRem};
+          }
+          `,
+      )
+    }
+
+    let grid = (~spacing=?, ()) =>
+      spacing
+      ->Belt.Option.map(values =>
+        values
+        ->Js.Array2.sortInPlaceWith(Styles.sortBySize)
+        ->Belt.Array.reduce("", createResponsiveStyles)
+        ->Maker.css
+      )
+      ->Belt.Option.getWithDefault(defaultStyles)
   )
 
   @react.component
   let make = (
-    // Box props
-    ~className="",
-    // Base Props
+    /**
+     * Base Props
+     */
     // Flex
     ~display=?,
     ~justifyContent=?,
@@ -55,19 +88,22 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~zIndex=?,
     // Box sizing
     ~boxSizing=?,
-    // Props
+    /**
+     * Grid Props
+     */
+    ~spacing: option<Styles.values<int>>=?,
+    ~className="",
     ~children,
     ~tag: Ancestor_React.tags=#div,
-    // Dom Props
+    // DOM Props
     ~id=?,
     ~onClick=?,
     ~onSubmit=?,
     ~onChange=?,
-    // React
     ~dangerouslySetInnerHTML=?,
   ) => {
     <Base
-      className={`${grid} ${className}`}
+      className={`${grid(~spacing?, ())} ${className}`}
       ?display
       ?justifyContent
       ?flexDirection

@@ -3,8 +3,6 @@
 import * as React from "react";
 import * as Ancestor from "@rescriptbr/ancestor/src/Ancestor.bs.js";
 import * as Css from "@emotion/css";
-import * as CustomConfig from "./CustomConfig.bs.js";
-import * as RescriptReactRouter from "@rescript/react/src/RescriptReactRouter.bs.js";
 
 function s(prim) {
   return prim;
@@ -13,43 +11,43 @@ function s(prim) {
 var box = Css.css("\n  background: rgba(0,0,0,0.1);\n  border: solid 2px #000;\n  border-radius: 6px;\n  padding: 32px;\n  color: #000;\n  font-family: 'DM Sans';\n  font-size: 18px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n");
 
 function App(Props) {
-  var match = RescriptReactRouter.useUrl(undefined, undefined);
-  var path = match.path;
-  if (path) {
-    if (path.hd === "custom" && !path.tl) {
-      return React.createElement(CustomConfig.make, {});
-    } else {
-      return "Not found";
-    }
-  } else {
-    return React.createElement("div", undefined, React.createElement(Ancestor.Default.Grid.make, {
-                    children: null
-                  }, React.createElement(Ancestor.Default.Box.make, {
-                        columns: [
-                          Ancestor.Default.xxs(12),
-                          Ancestor.Default.md(4)
-                        ],
-                        children: React.createElement("div", {
-                              className: box
-                            }, "4 columns")
-                      }), React.createElement(Ancestor.Default.Box.make, {
-                        columns: [
-                          Ancestor.Default.xxs(6),
-                          Ancestor.Default.md(4)
-                        ],
-                        children: React.createElement("div", {
-                              className: box
-                            }, "4 columns")
-                      }), React.createElement(Ancestor.Default.Box.make, {
-                        columns: [
-                          Ancestor.Default.xxs(6),
-                          Ancestor.Default.md(4)
-                        ],
-                        children: React.createElement("div", {
-                              className: box
-                            }, "4 columns")
-                      })));
-  }
+  return React.createElement(Ancestor.Default.Grid.make, {
+              spacing: [
+                Ancestor.Default.xxs(2),
+                Ancestor.Default.md(6),
+                Ancestor.Default.lg(12)
+              ],
+              children: null
+            }, React.createElement(Ancestor.Default.Box.make, {
+                  columns: [
+                    Ancestor.Default.xxs(12),
+                    Ancestor.Default.md(4)
+                  ],
+                  children: React.createElement("div", {
+                        className: box
+                      }, "4 columns")
+                }), React.createElement(Ancestor.Default.Box.make, {
+                  columns: [
+                    Ancestor.Default.xxs(12),
+                    Ancestor.Default.md(4)
+                  ],
+                  children: React.createElement("div", {
+                        className: box
+                      }, "4 columns")
+                }), React.createElement(Ancestor.Default.Box.make, {
+                  columns: [
+                    Ancestor.Default.xxs(12),
+                    Ancestor.Default.md(4)
+                  ],
+                  children: React.createElement("div", {
+                        className: box
+                      }, "4 columns")
+                }), React.createElement(Ancestor.Default.Box.make, {
+                  columns: [Ancestor.Default.xxs(12)],
+                  children: React.createElement("div", {
+                        className: box
+                      }, "12 columns")
+                }));
 }
 
 var make = App;

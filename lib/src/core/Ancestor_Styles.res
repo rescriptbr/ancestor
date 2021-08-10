@@ -197,17 +197,18 @@ module Make = (Maker: Maker) => {
     ],
   >
 
+  let calculateSpacing = value =>
+    `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
+        ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
+
   /*
    * Stringify
    */
-
   external magic: 'value => string = "%identity"
 
   let stringify = magic
 
-  let stringifySpacing = value =>
-    `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
-        ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
+  let stringifySpacing = calculateSpacing
 
   let stringifySize = size =>
     switch size {

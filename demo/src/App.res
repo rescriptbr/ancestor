@@ -3,6 +3,7 @@ open Ancestor.Default
 let s = React.string
 
 @module("@emotion/css") external css: string => string = "css"
+@module("@emotion/css") external global: string => unit = "injectGlobal"
 
 let box = css(`
   background: rgba(0,0,0,0.1);
@@ -19,18 +20,10 @@ let box = css(`
 
 @react.component
 let make = () => {
-  let {path} = RescriptReactRouter.useUrl()
-
-  switch path {
-  | list{} =>
-    <div>
-      <Grid>
-        <Box columns=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-        <Box columns=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-        <Box columns=[xxs(#6), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
-      </Grid>
-    </div>
-  | list{"custom"} => <CustomConfig />
-  | _ => "Not found"->s
-  }
+  <Grid spacing=[xxs(2), md(6), lg(12)]>
+    <Box columns=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+    <Box columns=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+    <Box columns=[xxs(#12), md(#4)]> <div className=box> {"4 columns"->s} </div> </Box>
+    <Box columns=[xxs(#12)]> <div className=box> {"12 columns"->s} </div> </Box>
+  </Grid>
 }
