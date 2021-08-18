@@ -15,9 +15,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       styles,
       value,
       `
-        > * {
-          display: ${Maker.unboxBreakpointValue(value) ? "none" : "block"};
-        }
+        display: ${Maker.unboxBreakpointValue(value) ? "none" : "block"};
       `,
     )
 

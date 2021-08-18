@@ -197,6 +197,8 @@ module Make = (Maker: Maker) => {
     ],
   >
 
+  type zIndex = values<int>
+
   let calculateSpacing = value =>
     `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
         ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
@@ -302,7 +304,7 @@ module Make = (Maker: Maker) => {
     ~bottom: option<size>=?,
     ~left: option<size>=?,
     ~right: option<size>=?,
-    ~zIndex: option<size>=?,
+    ~zIndex: option<zIndex>=?,
     // Box sizing
     ~boxSizing: option<boxSizing>=?,
     (),
