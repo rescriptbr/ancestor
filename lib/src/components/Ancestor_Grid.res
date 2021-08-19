@@ -5,7 +5,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
   %%private(
     let defaultStyles = Maker.css(`
       width: 100%;
-      flex-wrap;
+      flex-wrap: wrap;
       display: flex;
     `)
 
