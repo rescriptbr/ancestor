@@ -174,7 +174,30 @@ module Make = (Maker: Maker) => {
   type textAlign = values<[#center | #left | #right]>
 
   // General
-  type display = values<[#none | #block | #flex]>
+  type display = values<
+    [
+      | #none
+      | #inline
+      | #block
+      | #"list-item"
+      | #"inline-block"
+      | #"inline-table"
+      | #table
+      | #"table-cell"
+      | #"table-column"
+      | #"table-column-group"
+      | #"table-footer-group"
+      | #"table-header-group"
+      | #"table-row"
+      | #"table-row-group"
+      | #flex
+      | #"inline-flex"
+      | #grid
+      | #"inline-grid"
+      | #"run-in"
+      | #inherit
+    ],
+  >
 
   // Postion
   type position = values<
