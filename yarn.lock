@@ -1683,6 +1683,11 @@
   resolved "https://registry.yarnpkg.com/@rescript/react/-/react-0.10.3.tgz#a2a8bed6b017940ec26c2154764b350f50348889"
   integrity sha512-Lf9rzrR3bQPKJjOK3PBRa/B3xrJ7CqQ1HYr9VHPVxJidarIJJFZBhj0Dg1uZURX+Wg/xiP0PHFxXmdj2bK8Vxw==
 
+"@rescriptbr/ancestor@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-0.1.4.tgz#0e250fc9f7725ced64047ed419693a9a960b2ebb"
+  integrity sha512-Y+alELrTH1TKKY0amocjLgTljXj6hvpTeNjFA2JnHPv4YdxCrvcfucREJpwglNUrjtc5l2OfyXvwJfCLVaIvKA==
+
 "@rollup/pluginutils@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.1.tgz#1d4da86dd4eded15656a57d933fda2b9a08d47ec"
