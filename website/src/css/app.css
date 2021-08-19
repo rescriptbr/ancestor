@@ -58,11 +58,12 @@ html, body {
 }
 
 .placeholder {
-  background: #000;
+  border: solid 2px #ff3366;
+  background: #ff336630;
   text-align: center;
   font-family: 'DM Sans', sans-serif;
   border-radius: 6px;
-  color: white;
+  color: #ff3366;
   font-size: 18px;
   font-weight: 600;
   padding: 32px;
