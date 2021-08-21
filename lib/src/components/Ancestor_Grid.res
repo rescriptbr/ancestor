@@ -44,15 +44,12 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
 
   @react.component
   let make = (
-    /**
-     * Base Props
-     */
-    // Flex
     ~display=?,
     ~justifyContent=?,
     ~flexDirection=?,
     ~alignItems=?,
-    // Padding
+    ~flexBasis=?,
+    ~flexWrap=?,
     ~p=?,
     ~px=?,
     ~py=?,
@@ -60,7 +57,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~pb=?,
     ~pl=?,
     ~pr=?,
-    //Margin
     ~m=?,
     ~mx=?,
     ~my=?,
@@ -68,30 +64,28 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~mb=?,
     ~ml=?,
     ~mr=?,
-    // Sizing
+    ~textAlign=?,
+    ~fontWeight=?,
+    ~fontSize=?,
+    ~letterSpacing=?,
+    ~lineHeight=?,
     ~width=?,
     ~height=?,
     ~minW=?,
     ~minH=?,
     ~maxW=?,
     ~maxH=?,
-    // Position
     ~position=?,
     ~top=?,
     ~bottom=?,
     ~left=?,
     ~right=?,
     ~zIndex=?,
-    // Box sizing
     ~boxSizing=?,
-    /**
-     * Grid Props
-     */
     ~spacing: option<Styles.responsiveProp<int>>=?,
     ~className="",
     ~children,
     ~tag: Ancestor_React.tags=#div,
-    // DOM Props
     ~id=?,
     ~onClick=?,
     ~onSubmit=?,
@@ -104,7 +98,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?justifyContent
       ?flexDirection
       ?alignItems
-      // Padding
+      ?flexBasis
+      ?flexWrap
       ?p
       ?px
       ?py
@@ -112,7 +107,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?pb
       ?pl
       ?pr
-      //Margin
       ?m
       ?mx
       ?my
@@ -120,25 +114,25 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?mb
       ?ml
       ?mr
-      // Sizing
+      ?textAlign
+      ?fontWeight
+      ?fontSize
+      ?letterSpacing
+      ?lineHeight
       ?width
       ?height
       ?minW
       ?minH
       ?maxW
       ?maxH
-      // Position
       ?position
       ?top
       ?bottom
       ?left
       ?right
       ?zIndex
-      // Box sizing
       ?boxSizing
-      // Props
       tag
-      // Dom Props
       ?id
       ?onClick
       ?onSubmit
