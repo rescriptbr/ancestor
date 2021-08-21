@@ -129,6 +129,24 @@ module FlexWrap = {
   let toString = Obj.magic
 }
 
+module FlexBasis = {
+  type t = [
+    | #length(Length.t)
+    | #auto
+    | #fill
+    | #content
+    | #"max-content"
+    | #"min-content"
+    | #"fit-content"
+  ]
+
+  let toString = (value: t) =>
+    switch value {
+    | #length(value) => Length.toString(value)
+    | value => Obj.magic(value)
+    }
+}
+
 module Position = {
   type t = [
     | #static
@@ -142,6 +160,28 @@ module Position = {
 
 module TextAlign = {
   type t = [#center | #left | #right]
+
+  let toString = Obj.magic
+}
+
+module FontWeight = {
+  type t = [
+    | #normal
+    | #bold
+    | #bolder
+    | #lighter
+    | #100
+    | #200
+    | #300
+    | #400
+    | #500
+    | #600
+    | #700
+    | #800
+    | #900
+    | #initial
+    | #inherit
+  ]
 
   let toString = Obj.magic
 }
