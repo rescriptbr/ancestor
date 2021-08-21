@@ -25,6 +25,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~justifyContent=?,
     ~flexDirection=?,
     ~alignItems=?,
+    ~flexBasis=?,
+    ~flexWrap=?,
     // Padding
     ~p=?,
     ~px=?,
@@ -41,6 +43,11 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~mb=?,
     ~ml=?,
     ~mr=?,
+    ~textAlign=?,
+    ~fontWeight=?,
+    ~fontSize=?,
+    ~letterSpacing=?,
+    ~lineHeight=?,
     // Sizing
     ~width=?,
     ~height=?,
@@ -78,7 +85,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?justifyContent
       ?flexDirection
       ?alignItems
-      // Padding
+      ?flexBasis
+      ?flexWrap
       ?p
       ?px
       ?py
@@ -86,7 +94,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?pb
       ?pl
       ?pr
-      //Margin
       ?m
       ?mx
       ?my
@@ -94,25 +101,25 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?mb
       ?ml
       ?mr
-      // Sizing
+      ?textAlign
+      ?fontWeight
+      ?fontSize
+      ?letterSpacing
+      ?lineHeight
       ?width
       ?height
       ?minW
       ?minH
       ?maxW
       ?maxH
-      // Position
       ?position
       ?top
       ?bottom
       ?left
       ?right
       ?zIndex
-      // Box sizing
       ?boxSizing
-      // Props
       tag
-      // Dom Props
       ?id
       ?onClick
       ?onSubmit
