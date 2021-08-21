@@ -11,7 +11,7 @@ module type Maker = {
 }
 
 module Make = (Maker: Maker) => {
-  module CssTypes = Ancestor_CssTypes
+  open Ancestor_CssTypes
 
   module Spacing = {
     type t = int
@@ -91,12 +91,12 @@ module Make = (Maker: Maker) => {
     ->Belt.Option.getWithDefault("")
 
   let createResponsiveStyles = (
-    ~display: option<responsiveProp<CssTypes.Display.t>>=?,
-    ~justifyContent: option<responsiveProp<CssTypes.JustifyContent.t>>=?,
-    ~flexDirection: option<responsiveProp<CssTypes.FlexDirection.t>>=?,
-    ~alignItems: option<responsiveProp<CssTypes.AlignItems.t>>=?,
-    ~flexBasis: option<responsiveProp<CssTypes.FlexBasis.t>>=?,
-    ~flexWrap: option<responsiveProp<CssTypes.FlexWrap.t>>=?,
+    ~display: option<responsiveProp<Display.t>>=?,
+    ~justifyContent: option<responsiveProp<JustifyContent.t>>=?,
+    ~flexDirection: option<responsiveProp<FlexDirection.t>>=?,
+    ~alignItems: option<responsiveProp<AlignItems.t>>=?,
+    ~flexBasis: option<responsiveProp<FlexBasis.t>>=?,
+    ~flexWrap: option<responsiveProp<FlexWrap.t>>=?,
     ~p: option<responsiveProp<Spacing.t>>=?,
     ~px: option<responsiveProp<Spacing.t>>=?,
     ~py: option<responsiveProp<Spacing.t>>=?,
@@ -111,27 +111,26 @@ module Make = (Maker: Maker) => {
     ~mb: option<responsiveProp<Spacing.t>>=?,
     ~ml: option<responsiveProp<Spacing.t>>=?,
     ~mr: option<responsiveProp<Spacing.t>>=?,
-    ~textAlign: option<responsiveProp<CssTypes.TextAlign.t>>=?,
-    ~fontWeight: option<responsiveProp<CssTypes.FontWeight.t>>=?,
-    ~fontSize: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~letterSpacing: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~lineHeight: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~width: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~height: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~minW: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~minH: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~maxW: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~maxH: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~position: option<responsiveProp<CssTypes.Position.t>>=?,
-    ~top: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~bottom: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~left: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~right: option<responsiveProp<CssTypes.Length.t>>=?,
-    ~zIndex: option<responsiveProp<CssTypes.ZIndex.t>>=?,
-    ~boxSizing: option<responsiveProp<CssTypes.BoxSizing.t>>=?,
+    ~textAlign: option<responsiveProp<TextAlign.t>>=?,
+    ~fontWeight: option<responsiveProp<FontWeight.t>>=?,
+    ~fontSize: option<responsiveProp<Length.t>>=?,
+    ~letterSpacing: option<responsiveProp<Length.t>>=?,
+    ~lineHeight: option<responsiveProp<Length.t>>=?,
+    ~width: option<responsiveProp<Length.t>>=?,
+    ~height: option<responsiveProp<Length.t>>=?,
+    ~minW: option<responsiveProp<Length.t>>=?,
+    ~minH: option<responsiveProp<Length.t>>=?,
+    ~maxW: option<responsiveProp<Length.t>>=?,
+    ~maxH: option<responsiveProp<Length.t>>=?,
+    ~position: option<responsiveProp<Position.t>>=?,
+    ~top: option<responsiveProp<Length.t>>=?,
+    ~bottom: option<responsiveProp<Length.t>>=?,
+    ~left: option<responsiveProp<Length.t>>=?,
+    ~right: option<responsiveProp<Length.t>>=?,
+    ~zIndex: option<responsiveProp<ZIndex.t>>=?,
+    ~boxSizing: option<responsiveProp<BoxSizing.t>>=?,
     (),
-  ) => {
-    open CssTypes
+  ) =>
     [
       createCssValueFromArray("display", display, Display.toString),
       createCssValueFromArray("justify-content", justifyContent, JustifyContent.toString),
@@ -176,5 +175,4 @@ module Make = (Maker: Maker) => {
       createCssValueFromArray("z-index", zIndex, ZIndex.toString),
       createCssValueFromArray("box-sizing", boxSizing, BoxSizing.toString),
     ]->Js.Array2.joinWith("")
-  }
 }
