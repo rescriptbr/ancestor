@@ -16,18 +16,14 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
 
   @react.component
   let make = (
-    // Box props
     ~className="",
     ~columns: option<Styles.columnSize>=?,
-    // Base Props
-    // Flex
     ~display=?,
     ~justifyContent=?,
     ~flexDirection=?,
     ~alignItems=?,
     ~flexBasis=?,
     ~flexWrap=?,
-    // Padding
     ~p=?,
     ~px=?,
     ~py=?,
@@ -35,7 +31,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~pb=?,
     ~pl=?,
     ~pr=?,
-    //Margin
     ~m=?,
     ~mx=?,
     ~my=?,
@@ -48,31 +43,25 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~fontSize=?,
     ~letterSpacing=?,
     ~lineHeight=?,
-    // Sizing
     ~width=?,
     ~height=?,
     ~minW=?,
     ~minH=?,
     ~maxW=?,
     ~maxH=?,
-    // Position
     ~position=?,
     ~top=?,
     ~bottom=?,
     ~left=?,
     ~right=?,
     ~zIndex=?,
-    // Box sizing
     ~boxSizing=?,
-    // Props
     ~children,
     ~tag: Ancestor_React.tags=#div,
-    // Dom Props
     ~id=?,
     ~onClick=?,
     ~onSubmit=?,
     ~onChange=?,
-    // React
     ~dangerouslySetInnerHTML=?,
   ) => {
     <Base
