@@ -4,19 +4,24 @@ module type Maker = {
   let spacing: float
 
   let unboxBreakpointValue: breakpoints<'value> => 'value
+
   let sizeByBreakpoints: breakpoints<'value> => int
+
   let css: string => string
 }
 
 module Make = (Maker: Maker) => {
-  /*
-   * Types
-   */
-  type values<'a> = array<Maker.breakpoints<'a>>
+  module CssTypes = Ancestor_CssTypes
 
-  /*
-   * Base component props
-   */
+  module Spacing = {
+    type t = int
+
+    let toString = value =>
+      `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
+          ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
+  }
+
+  type responsiveProp<'a> = array<Maker.breakpoints<'a>>
 
   type columnSizeValue = [
     | #auto
@@ -51,211 +56,13 @@ module Make = (Maker: Maker) => {
     | _ => 12.0
     }
 
-  type columnSize = values<columnSizeValue>
+  type columnSize = responsiveProp<columnSizeValue>
 
   let basisFromFloat = (value: columnSizeValue) =>
     value->columnToFloat->(v => v *. 100.0 /. 12.0)->Js.Float.toFixedWithPrecision(~digits=1) ++ "%"
 
-  /**
-   * CSS Properties
-   */
-
-  // Spacing
-  type spacing = values<int>
-
-  // Sizing
-  type size = values<
-    [
-      | #pct(float)
-      | #px(float)
-      | #rem(float)
-      | #em(float)
-    ],
-  >
-
-  // Flex
-  type justifyContent = values<
-    [
-      | #initial
-      | #"space-between"
-      | #center
-      | #"flex-start"
-      | #"flex-end"
-      | #"space-around"
-      | #"space-evenly"
-      | #start
-      | #end
-      | #left
-      | #right
-      | #revert
-      | #unset
-    ],
-  >
-
-  type alignItems = values<
-    [
-      | #initial
-      | #center
-      | #start
-      | #end
-      | #"flex-start"
-      | #"flex-end"
-      | #"self-start"
-      | #"self-end"
-    ],
-  >
-
-  type flexDirection = values<
-    [
-      | #row
-      | #"row-reverse"
-      | #column
-      | #"column-reverse"
-      | #inherit
-      | #initial
-      | #unset
-    ],
-  >
-
-  type flexValue = values<
-    [
-      | #inherit
-      | #initial
-      | #revert
-      | #unset
-      | #number(float)
-    ],
-  >
-
-  type alignSelfValue = [
-    | #auto
-    | #normal
-    | #center
-    | #start
-    | #end
-    | #"self-start"
-    | #"self-end"
-    | #"flex-start"
-    | #"flex-end"
-    | #baseline
-    | #first
-    | #last
-    | #stretch
-    | #safe
-    | #unsafe
-    | #inherit
-    | #initial
-    | #unset
-  ]
-
-  type alignSelf = values<
-    [
-      | #one(alignSelfValue)
-      | #two(alignSelfValue, alignSelfValue)
-    ],
-  >
-
-  type flexGrow = flexValue
-  type flexShrink = flexValue
-  type order = flexValue
-
-  type flexWrap = values<
-    [
-      | #nowrap
-      | #wrap
-      | #"wrap-reverse"
-      | #inherit
-      | #initial
-      | #unset
-    ],
-  >
-
-  // Texts
-  type textAlign = values<[#center | #left | #right]>
-
-  // General
-  type display = values<
-    [
-      | #none
-      | #inline
-      | #block
-      | #"list-item"
-      | #"inline-block"
-      | #"inline-table"
-      | #table
-      | #"table-cell"
-      | #"table-column"
-      | #"table-column-group"
-      | #"table-footer-group"
-      | #"table-header-group"
-      | #"table-row"
-      | #"table-row-group"
-      | #flex
-      | #"inline-flex"
-      | #grid
-      | #"inline-grid"
-      | #"run-in"
-      | #inherit
-    ],
-  >
-
-  // Postion
-  type position = values<
-    [
-      | #static
-      | #relative
-      | #absolute
-      | #fixed
-      | #sticky
-    ],
-  >
-
-  // Box sizing
-  type boxSizing = values<
-    [
-      | #"content-box"
-      | #"border-box"
-      | #initial
-      | #inherit
-    ],
-  >
-
-  type zIndex = values<int>
-
-  let calculateSpacing = value =>
-    `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
-        ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
-
-  /*
-   * Stringify
-   */
-  external magic: 'value => string = "%identity"
-
-  let stringify = magic
-
-  let stringifySpacing = calculateSpacing
-
-  let stringifySize = size =>
-    switch size {
-    | #pct(value) => `${value->Js.Float.toString}%`
-    | #px(value) => `${value->Js.Float.toString}px`
-    | #rem(value) => `${value->Js.Float.toString}rem`
-    | #em(value) => `${value->Js.Float.toString}rem`
-    }
-
-  let stringifyAlignSelf = value =>
-    switch value {
-    | #one(value) => magic(value)
-    | #two(value, value2) => `${magic(value)} ${magic(value2)}`
-    }
-
-  let stringifyFlexValue = value =>
-    switch value {
-    | #number(value) => value->Js.Float.toString
-    | value => magic(value)
-    }
-
   let createBreakpointSize = device => `${device->Maker.sizeByBreakpoints->Belt.Int.toString}px`
+
   let mediaQuery = (current, device: Maker.breakpoints<'a>, styles) =>
     `
     ${current}
@@ -274,7 +81,7 @@ module Make = (Maker: Maker) => {
       `${cssKey}: ${breakpointValue->Maker.unboxBreakpointValue->stringify};`,
     )
 
-  let createStyles = (cssKey, maybeCssValues, stringify) =>
+  let createCssValueFromArray = (cssKey, maybeCssValues, stringify) =>
     maybeCssValues
     ->Belt.Option.map(values =>
       values
@@ -284,105 +91,86 @@ module Make = (Maker: Maker) => {
     ->Belt.Option.getWithDefault("")
 
   let createResponsiveStyles = (
-    // Flex
-    ~display: option<display>=?,
-    ~justifyContent: option<justifyContent>=?,
-    ~flexDirection: option<flexDirection>=?,
-    ~alignItems: option<alignItems>=?,
-    ~flexGrow: option<flexGrow>=?,
-    ~flexShrink: option<flexShrink>=?,
-    ~order: option<order>=?,
-    ~alignSelf: option<alignSelf>=?,
-    ~flexBasis: option<size>=?,
-    // Padding
-    ~p: option<spacing>=?,
-    ~px: option<spacing>=?,
-    ~py: option<spacing>=?,
-    ~pt: option<spacing>=?,
-    ~pb: option<spacing>=?,
-    ~pl: option<spacing>=?,
-    ~pr: option<spacing>=?,
-    // Margin
-    ~m: option<spacing>=?,
-    ~mx: option<spacing>=?,
-    ~my: option<spacing>=?,
-    ~mt: option<spacing>=?,
-    ~mb: option<spacing>=?,
-    ~ml: option<spacing>=?,
-    ~mr: option<spacing>=?,
-    // Texts
-    ~textAlign: option<textAlign>=?,
-    ~letterSpacing: option<size>=?,
-    ~lineHeight: option<size>=?,
-    // Sizing
-    ~width: option<size>=?,
-    ~height: option<size>=?,
-    ~minW: option<size>=?,
-    ~minH: option<size>=?,
-    ~maxW: option<size>=?,
-    ~maxH: option<size>=?,
-    // Placement
-    ~position: option<position>=?,
-    ~top: option<size>=?,
-    ~bottom: option<size>=?,
-    ~left: option<size>=?,
-    ~right: option<size>=?,
-    ~zIndex: option<zIndex>=?,
-    // Box sizing
-    ~boxSizing: option<boxSizing>=?,
+    ~display: option<responsiveProp<CssTypes.Display.t>>=?,
+    ~justifyContent: option<responsiveProp<CssTypes.JustifyContent.t>>=?,
+    ~flexDirection: option<responsiveProp<CssTypes.FlexDirection.t>>=?,
+    ~alignItems: option<responsiveProp<CssTypes.AlignItems.t>>=?,
+    ~flexBasis: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~flexWrap: option<responsiveProp<CssTypes.FlexWrap.t>>=?,
+    ~p: option<responsiveProp<Spacing.t>>=?,
+    ~px: option<responsiveProp<Spacing.t>>=?,
+    ~py: option<responsiveProp<Spacing.t>>=?,
+    ~pt: option<responsiveProp<Spacing.t>>=?,
+    ~pb: option<responsiveProp<Spacing.t>>=?,
+    ~pl: option<responsiveProp<Spacing.t>>=?,
+    ~pr: option<responsiveProp<Spacing.t>>=?,
+    ~m: option<responsiveProp<Spacing.t>>=?,
+    ~mx: option<responsiveProp<Spacing.t>>=?,
+    ~my: option<responsiveProp<Spacing.t>>=?,
+    ~mt: option<responsiveProp<Spacing.t>>=?,
+    ~mb: option<responsiveProp<Spacing.t>>=?,
+    ~ml: option<responsiveProp<Spacing.t>>=?,
+    ~mr: option<responsiveProp<Spacing.t>>=?,
+    ~textAlign: option<responsiveProp<CssTypes.TextAlign.t>>=?,
+    ~letterSpacing: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~lineHeight: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~width: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~height: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~minW: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~minH: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~maxW: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~maxH: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~position: option<responsiveProp<CssTypes.Position.t>>=?,
+    ~top: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~bottom: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~left: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~right: option<responsiveProp<CssTypes.Length.t>>=?,
+    ~zIndex: option<responsiveProp<CssTypes.ZIndex.t>>=?,
+    ~boxSizing: option<responsiveProp<CssTypes.BoxSizing.t>>=?,
     (),
-  ) =>
+  ) => {
+    open CssTypes
     [
-      // Flex
-      createStyles("display", display, stringify),
-      createStyles("justify-content", justifyContent, stringify),
-      createStyles("align-items", alignItems, stringify),
-      createStyles("flex-direction", flexDirection, stringify),
-      createStyles("flex-grow", flexGrow, stringifyFlexValue),
-      createStyles("flex-shrink", flexShrink, stringifyFlexValue),
-      createStyles("align-self", alignSelf, stringifyAlignSelf),
-      createStyles("order", order, stringifyFlexValue),
-      createStyles("flex-basis", flexBasis, stringifySize),
-      // Padding
-      createStyles("padding", p, stringifySpacing),
-      createStyles("padding-left", px, stringifySpacing),
-      createStyles("padding-right", px, stringifySpacing),
-      createStyles("padding-top", py, stringifySpacing),
-      createStyles("padding-bottom", py, stringifySpacing),
-      createStyles("padding-top", pt, stringifySpacing),
-      createStyles("padding-bottom", pb, stringifySpacing),
-      createStyles("padding-left", pl, stringifySpacing),
-      createStyles("padding-right", pr, stringifySpacing),
-      // Margin
-      createStyles("margin", m, stringifySpacing),
-      createStyles("margin-left", mx, stringifySpacing),
-      createStyles("margin-right", mx, stringifySpacing),
-      createStyles("margin-top", my, stringifySpacing),
-      createStyles("margin-bottom", my, stringifySpacing),
-      createStyles("margin-top", mt, stringifySpacing),
-      createStyles("margin-bottom", mb, stringifySpacing),
-      createStyles("margin-left", ml, stringifySpacing),
-      createStyles("margin-right", mr, stringifySpacing),
-      // Texts
-      createStyles("text-align", textAlign, stringify),
-      createStyles("letter-spacing", letterSpacing, stringifySize),
-      createStyles("line-height", lineHeight, stringifySize),
-      // Sizing
-      createStyles("width", width, stringifySize),
-      createStyles("height", height, stringifySize),
-      createStyles("min-width", minW, stringifySize),
-      createStyles("min-height", minH, stringifySize),
-      createStyles("max-width", maxW, stringifySize),
-      createStyles("max-height", maxH, stringifySize),
-      // Position
-      createStyles("position", position, stringify),
-      // Placement
-      createStyles("top", top, stringifySize),
-      createStyles("bottom", bottom, stringifySize),
-      createStyles("left", left, stringifySize),
-      createStyles("right", right, stringifySize),
-      createStyles("z-index", zIndex, stringify),
-      // Box sizing
-      createStyles("box-sizing", boxSizing, stringify),
+      createCssValueFromArray("display", display, Display.toString),
+      createCssValueFromArray("justify-content", justifyContent, JustifyContent.toString),
+      createCssValueFromArray("align-items", alignItems, AlignItems.toString),
+      createCssValueFromArray("flex-direction", flexDirection, FlexDirection.toString),
+      createCssValueFromArray("flex-basis", flexBasis, Length.toString),
+      createCssValueFromArray("flex-wrap", flexWrap, FlexWrap.toString),
+      createCssValueFromArray("padding", p, Spacing.toString),
+      createCssValueFromArray("padding-left", px, Spacing.toString),
+      createCssValueFromArray("padding-right", px, Spacing.toString),
+      createCssValueFromArray("padding-top", py, Spacing.toString),
+      createCssValueFromArray("padding-bottom", py, Spacing.toString),
+      createCssValueFromArray("padding-top", pt, Spacing.toString),
+      createCssValueFromArray("padding-bottom", pb, Spacing.toString),
+      createCssValueFromArray("padding-left", pl, Spacing.toString),
+      createCssValueFromArray("padding-right", pr, Spacing.toString),
+      createCssValueFromArray("margin", m, Spacing.toString),
+      createCssValueFromArray("margin-left", mx, Spacing.toString),
+      createCssValueFromArray("margin-right", mx, Spacing.toString),
+      createCssValueFromArray("margin-top", my, Spacing.toString),
+      createCssValueFromArray("margin-bottom", my, Spacing.toString),
+      createCssValueFromArray("margin-top", mt, Spacing.toString),
+      createCssValueFromArray("margin-bottom", mb, Spacing.toString),
+      createCssValueFromArray("margin-left", ml, Spacing.toString),
+      createCssValueFromArray("margin-right", mr, Spacing.toString),
+      createCssValueFromArray("text-align", textAlign, TextAlign.toString),
+      createCssValueFromArray("letter-spacing", letterSpacing, Length.toString),
+      createCssValueFromArray("line-height", lineHeight, Length.toString),
+      createCssValueFromArray("width", width, Length.toString),
+      createCssValueFromArray("height", height, Length.toString),
+      createCssValueFromArray("min-width", minW, Length.toString),
+      createCssValueFromArray("min-height", minH, Length.toString),
+      createCssValueFromArray("max-width", maxW, Length.toString),
+      createCssValueFromArray("max-height", maxH, Length.toString),
+      createCssValueFromArray("position", position, Position.toString),
+      createCssValueFromArray("top", top, Length.toString),
+      createCssValueFromArray("bottom", bottom, Length.toString),
+      createCssValueFromArray("left", left, Length.toString),
+      createCssValueFromArray("right", right, Length.toString),
+      createCssValueFromArray("z-index", zIndex, ZIndex.toString),
+      createCssValueFromArray("box-sizing", boxSizing, BoxSizing.toString),
     ]->Js.Array2.joinWith("")
+  }
 }

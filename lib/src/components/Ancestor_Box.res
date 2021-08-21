@@ -25,10 +25,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~justifyContent=?,
     ~flexDirection=?,
     ~alignItems=?,
-    ~flexGrow=?,
-    ~flexShrink=?,
-    ~alignSelf=?,
-    ~order=?,
     // Padding
     ~p=?,
     ~px=?,
@@ -82,10 +78,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?justifyContent
       ?flexDirection
       ?alignItems
-      ?flexGrow
-      ?flexShrink
-      ?alignSelf
-      ?order
       // Padding
       ?p
       ?px
