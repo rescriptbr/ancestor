@@ -10,7 +10,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     `)
 
     let createResponsiveStyles = (currentStyles, value) => {
-      let spacingInRem = value->Maker.unboxBreakpointValue->Styles.calculateSpacing
+      let spacingInRem = value->Maker.unboxBreakpointValue->Styles.Spacing.toString
 
       Styles.mediaQuery(
         currentStyles,
@@ -52,10 +52,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~justifyContent=?,
     ~flexDirection=?,
     ~alignItems=?,
-    ~flexGrow=?,
-    ~flexShrink=?,
-    ~alignSelf=?,
-    ~order=?,
     // Padding
     ~p=?,
     ~px=?,
@@ -91,7 +87,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     /**
      * Grid Props
      */
-    ~spacing: option<Styles.values<int>>=?,
+    ~spacing: option<Styles.responsiveProp<int>>=?,
     ~className="",
     ~children,
     ~tag: Ancestor_React.tags=#div,
@@ -108,10 +104,6 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?justifyContent
       ?flexDirection
       ?alignItems
-      ?flexGrow
-      ?flexShrink
-      ?alignSelf
-      ?order
       // Padding
       ?p
       ?px
