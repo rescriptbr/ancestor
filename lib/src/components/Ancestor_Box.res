@@ -63,6 +63,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     ~alignItems=?,
     ~flexBasis=?,
     ~flexWrap=?,
+    ~flexGrow=?,
+    ~alignContent=?,
     ~p=?,
     ~px=?,
     ~py=?,
@@ -115,6 +117,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
       ?alignItems
       ?flexBasis
       ?flexWrap
+      ?flexGrow
+      ?alignContent
       ?p
       ?px
       ?py
