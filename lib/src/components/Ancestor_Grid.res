@@ -44,6 +44,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
 
   @react.component
   let make = (
+    ~bgColor=?,
+    ~color=?,
     ~display=?,
     ~justifyContent=?,
     ~flexDirection=?,
@@ -99,6 +101,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
   ) => {
     <Base
       className={`${grid(~spacing?, ())} ${className}`}
+      ?bgColor
+      ?color
       ?display
       ?justifyContent
       ?flexDirection

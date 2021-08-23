@@ -11,6 +11,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
 
   @react.component
   let make = (
+    ~bgColor=?,
+    ~color=?,
     ~display=?,
     ~justifyContent=?,
     ~flexDirection=?,
@@ -69,6 +71,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
         ~className={
           let responsiveStyles =
             Styles.createResponsiveStyles(
+              ~bgColor?,
+              ~color?,
               ~display?,
               ~justifyContent?,
               ~flexDirection?,
