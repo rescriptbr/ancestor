@@ -277,3 +277,23 @@ module ZIndex = {
 
   let toString = Js.Int.toString
 }
+
+module Border = {
+  type style = [
+    | #none
+    | #hidden
+    | #dotted
+    | #dashed
+    | #solid
+    | #double
+    | #groove
+    | #ridge
+    | #inset
+    | #outset
+  ]
+
+  type t = (Length.t, style, Color.t)
+
+  let toString = ((width, style, color): t) =>
+    `${Length.toString(width)} ${(style :> string)} ${Color.toString(color)}`
+}
