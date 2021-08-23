@@ -53,6 +53,8 @@ module Make = (Maker: Maker) => {
     ->Belt.Option.getWithDefault("")
 
   let createResponsiveStyles = (
+    ~bgColor: option<responsiveProp<Color.t>>=?,
+    ~color: option<responsiveProp<Color.t>>=?,
     ~display: option<responsiveProp<Display.t>>=?,
     ~justifyContent: option<responsiveProp<JustifyContent.t>>=?,
     ~flexDirection: option<responsiveProp<FlexDirection.t>>=?,
@@ -99,6 +101,8 @@ module Make = (Maker: Maker) => {
     (),
   ) =>
     [
+      createCssValueFromArray("background-color", bgColor, Color.toString),
+      createCssValueFromArray("color", color, Color.toString),
       createCssValueFromArray("display", display, Display.toString),
       createCssValueFromArray("justify-content", justifyContent, JustifyContent.toString),
       createCssValueFromArray("align-items", alignItems, AlignItems.toString),

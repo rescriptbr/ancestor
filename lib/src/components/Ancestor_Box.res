@@ -57,6 +57,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
   let make = (
     ~className="",
     ~columns: option<Styles.responsiveProp<columnSize>>=?,
+    ~bgColor=?,
+    ~color=?,
     ~display=?,
     ~justifyContent=?,
     ~flexDirection=?,
@@ -114,6 +116,8 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
           columns->Belt.Option.map(sortValues)->Belt.Option.getWithDefault("")->Maker.css
         `${boxClassName} ${className}`
       }
+      ?bgColor
+      ?color
       ?display
       ?justifyContent
       ?flexDirection

@@ -1,3 +1,20 @@
+module Color = {
+  type t = [
+    | #rgb(int, int, int)
+    | #hex(string)
+    | #transparent
+    | #currentColor
+  ]
+
+  let toString = (color: t) =>
+    switch color {
+    | #rgb(r, g, b) => `rgb(${r->Js.Int.toString}, ${g->Js.Int.toString}, ${b->Js.Int.toString})`
+    | #hex(hexColor) => hexColor
+    | #transparent => "transparent"
+    | #currentColor => "currentColor"
+    }
+}
+
 module Length = {
   type t = [
     | #ch(float)
