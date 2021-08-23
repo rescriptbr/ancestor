@@ -2,12 +2,51 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
   module Styles = Ancestor_Styles.Make(Maker)
   module Base = Ancestor_Base.Make(Maker)
 
+  type columnSize = [
+    | #auto
+    | #1
+    | #2
+    | #3
+    | #4
+    | #5
+    | #6
+    | #7
+    | #8
+    | #9
+    | #10
+    | #11
+    | #12
+  ]
+
   %%private(
+    let columnToFloat = (value: columnSize) =>
+      switch value {
+      | #1 => 1.0
+      | #2 => 2.0
+      | #3 => 3.0
+      | #4 => 4.0
+      | #5 => 5.0
+      | #6 => 6.0
+      | #7 => 7.0
+      | #8 => 8.0
+      | #9 => 9.0
+      | #10 => 10.0
+      | #11 => 11.0
+      | #12 => 12.0
+      | _ => 12.0
+      }
+
+    let basisFromFloat = value =>
+      value
+      ->columnToFloat
+      ->(v => v *. 100.0 /. 12.0)
+      ->Js.Float.toFixedWithPrecision(~digits=1) ++ "%"
+
     let createBox = (styles, value) =>
       Styles.mediaQuery(
         styles,
         value,
-        `flex-basis: ${value->Maker.unboxBreakpointValue->Styles.basisFromFloat}`,
+        `flex-basis: ${value->Maker.unboxBreakpointValue->basisFromFloat}`,
       )
 
     let sortValues = values =>
@@ -17,7 +56,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
   @react.component
   let make = (
     ~className="",
-    ~columns: option<Styles.columnSize>=?,
+    ~columns: option<Styles.responsiveProp<columnSize>>=?,
     ~display=?,
     ~justifyContent=?,
     ~flexDirection=?,
