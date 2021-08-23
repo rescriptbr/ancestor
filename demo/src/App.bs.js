@@ -2,51 +2,43 @@
 
 import * as React from "react";
 import * as Ancestor from "@rescriptbr/ancestor/src/Ancestor.bs.js";
-import * as Css from "@emotion/css";
 
 function s(prim) {
   return prim;
 }
 
-var box = Css.css("\n  background: rgba(0,0,0,0.1);\n  border: solid 2px #000;\n  border-radius: 6px;\n  padding: 32px;\n  color: #000;\n  font-family: 'DM Sans';\n  font-size: 18px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n");
-
 function App(Props) {
   return React.createElement(Ancestor.Default.Grid.make, {
-              spacing: [
-                Ancestor.Default.xxs(2),
-                Ancestor.Default.md(6),
-                Ancestor.Default.lg(12)
-              ],
+              spacing: [Ancestor.Default.xxs(2)],
               children: null
             }, React.createElement(Ancestor.Default.Box.make, {
                   columns: [
                     Ancestor.Default.xxs(12),
                     Ancestor.Default.md(4)
                   ],
-                  children: React.createElement("div", {
-                        className: box
-                      }, "4 columns")
+                  bgColor: [Ancestor.Default.xxs({
+                          NAME: "hex",
+                          VAL: "#000"
+                        })],
+                  color: [Ancestor.Default.xxs({
+                          NAME: "hex",
+                          VAL: "#fafafa"
+                        })],
+                  children: "4 columns"
                 }), React.createElement(Ancestor.Default.Box.make, {
                   columns: [
                     Ancestor.Default.xxs(12),
                     Ancestor.Default.md(4)
                   ],
-                  children: React.createElement("div", {
-                        className: box
-                      }, "4 columns")
-                }), React.createElement(Ancestor.Default.Box.make, {
-                  columns: [
-                    Ancestor.Default.xxs(12),
-                    Ancestor.Default.md(4)
-                  ],
-                  children: React.createElement("div", {
-                        className: box
-                      }, "4 columns")
-                }), React.createElement(Ancestor.Default.Box.make, {
-                  columns: [Ancestor.Default.xxs(12)],
-                  children: React.createElement("div", {
-                        className: box
-                      }, "12 columns")
+                  bgColor: [Ancestor.Default.xxs({
+                          NAME: "hex",
+                          VAL: "#000"
+                        })],
+                  color: [Ancestor.Default.xxs({
+                          NAME: "hex",
+                          VAL: "#fafafa"
+                        })],
+                  children: "4 columns"
                 }));
 }
 
@@ -54,8 +46,7 @@ var make = App;
 
 export {
   s ,
-  box ,
   make ,
   
 }
-/* box Not a pure module */
+/* react Not a pure module */
