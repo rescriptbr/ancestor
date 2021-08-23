@@ -53,6 +53,11 @@ module Make = (Maker: Maker) => {
     ->Belt.Option.getWithDefault("")
 
   let createResponsiveStyles = (
+    ~border: option<responsiveProp<Border.t>>=?,
+    ~borderRight: option<responsiveProp<Border.t>>=?,
+    ~borderLeft: option<responsiveProp<Border.t>>=?,
+    ~borderTop: option<responsiveProp<Border.t>>=?,
+    ~borderBottom: option<responsiveProp<Border.t>>=?,
     ~bgColor: option<responsiveProp<Color.t>>=?,
     ~color: option<responsiveProp<Color.t>>=?,
     ~display: option<responsiveProp<Display.t>>=?,
@@ -101,6 +106,11 @@ module Make = (Maker: Maker) => {
     (),
   ) =>
     [
+      createCssValueFromArray("border", border, Border.toString),
+      createCssValueFromArray("border-right", borderRight, Border.toString),
+      createCssValueFromArray("border-left", borderLeft, Border.toString),
+      createCssValueFromArray("border-top", borderTop, Border.toString),
+      createCssValueFromArray("border-bottom", borderBottom, Border.toString),
       createCssValueFromArray("background-color", bgColor, Color.toString),
       createCssValueFromArray("color", color, Color.toString),
       createCssValueFromArray("display", display, Display.toString),
