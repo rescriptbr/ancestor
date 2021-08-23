@@ -5,6 +5,8 @@ module DefaultConfig = {
 
   let spacing = 8.0
 
+  let radius = 8.0
+
   let sizeByBreakpoints = values =>
     switch values {
     | #xxs(_) => 0
@@ -31,8 +33,6 @@ module DefaultConfig = {
 module Default = {
   include Make(DefaultConfig)
 
-  // Aliases
-  let always = v => [#xxs(v)]
   let xxs = v => #xxs(v)
   let xs = v => #xs(v)
   let sm = v => #sm(v)
