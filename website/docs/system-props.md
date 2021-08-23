@@ -90,39 +90,6 @@ Used for spacing, width, height and all CSS properties related to sizing.
 - CSS Key: `margin-top`, `margin-bottom`
 - Type: `values<int>`
 
-## 
-
-### `p`
-
-- CSS Key: `padding`
-- Type: `values<int>`
-- Optional: `true`
-
-### `px`
-
-- CSS Key: `padding-left`, `padding-right`
-- Type: `values<int>`
--
-### `py`
-
-- CSS Key: `padding-top`, `padding-bottom`
-- Type: `values<int>`
-
-### `m`
-
-- CSS Key: `padding`
-- Type: `values<int>`
-
-### `mx`
-
-- CSS Key: `margin-left`, `margin-right`
-- Type: `values<int>`
-
-### `my`
-
-- CSS Key: `margin-top`, `margin-bottom`
-- Type: `values<int>`
-
 ## Flex 
 
 :::caution
