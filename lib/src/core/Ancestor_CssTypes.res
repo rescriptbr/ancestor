@@ -147,6 +147,54 @@ module FlexBasis = {
     }
 }
 
+module FlexGrow = {
+  type t = [
+    | #num(float)
+    | #inherit
+    | #initial
+    | #revert
+    | #unset
+  ]
+
+  let toString = (value: t) =>
+    switch value {
+    | #num(growValue) => growValue->Js.Float.toString
+    | growValue => Obj.magic(growValue)
+    }
+}
+
+module AlignContent = {
+  type t = [
+    | #center
+    | #start
+    | #end
+    | #"flex-end"
+    | #normal
+    | #baseline
+    | #"first-baseline"
+    | #"last-baseline"
+    | #"space-between"
+    | #"space-around"
+    | #"space-evenly"
+    | #stretch
+    | #"safe-center"
+    | #"unsafe-center"
+    | #inherit
+    | #initial
+    | #unset
+    | #"flex-start"
+  ]
+
+  let toString = (value: t) =>
+    switch value {
+    | #"first-baseline" => "first baseline"
+    | #"last-baseline" => "last baseline"
+    | #"safe-center" => "safe center"
+    | #"unsafe-center" => "unsafe center"
+    | value => (value :> string)
+    }
+}
+
 module Position = {
   type t = [
     | #static
