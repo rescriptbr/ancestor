@@ -2,11 +2,9 @@ module type Maker = {
   type breakpoints<'value>
 
   let spacing: float
-
+  let radius: float
   let unboxBreakpointValue: breakpoints<'value> => 'value
-
   let sizeByBreakpoints: breakpoints<'value> => int
-
   let css: string => string
 }
 
@@ -16,8 +14,16 @@ module Make = (Maker: Maker) => {
   module Spacing = {
     type t = int
 
-    let toString = value =>
+    let make = value =>
       `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
+          ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
+  }
+
+  module Radius = {
+    type t = int
+
+    let make = value =>
+      `${(Js.Int.toFloat(value) *. (Maker.radius /. 10.0))
           ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
   }
 
@@ -53,6 +59,7 @@ module Make = (Maker: Maker) => {
     ->Belt.Option.getWithDefault("")
 
   let createResponsiveStyles = (
+    ~borderRadius: option<responsiveProp<Radius.t>>=?,
     ~border: option<responsiveProp<Border.t>>=?,
     ~borderRight: option<responsiveProp<Border.t>>=?,
     ~borderLeft: option<responsiveProp<Border.t>>=?,
@@ -106,6 +113,7 @@ module Make = (Maker: Maker) => {
     (),
   ) =>
     [
+      createCssValueFromArray("border-radius", borderRadius, Radius.make),
       createCssValueFromArray("border", border, Border.toString),
       createCssValueFromArray("border-right", borderRight, Border.toString),
       createCssValueFromArray("border-left", borderLeft, Border.toString),
@@ -124,24 +132,24 @@ module Make = (Maker: Maker) => {
       createCssValueFromArray("align-self", alignSelf, AlignSelf.toString),
       createCssValueFromArray("justify-self", justifySelf, JustifySelf.toString),
       createCssValueFromArray("flex-flow", flexFlow, FlexFlow.toString),
-      createCssValueFromArray("padding", p, Spacing.toString),
-      createCssValueFromArray("padding-left", px, Spacing.toString),
-      createCssValueFromArray("padding-right", px, Spacing.toString),
-      createCssValueFromArray("padding-top", py, Spacing.toString),
-      createCssValueFromArray("padding-bottom", py, Spacing.toString),
-      createCssValueFromArray("padding-top", pt, Spacing.toString),
-      createCssValueFromArray("padding-bottom", pb, Spacing.toString),
-      createCssValueFromArray("padding-left", pl, Spacing.toString),
-      createCssValueFromArray("padding-right", pr, Spacing.toString),
-      createCssValueFromArray("margin", m, Spacing.toString),
-      createCssValueFromArray("margin-left", mx, Spacing.toString),
-      createCssValueFromArray("margin-right", mx, Spacing.toString),
-      createCssValueFromArray("margin-top", my, Spacing.toString),
-      createCssValueFromArray("margin-bottom", my, Spacing.toString),
-      createCssValueFromArray("margin-top", mt, Spacing.toString),
-      createCssValueFromArray("margin-bottom", mb, Spacing.toString),
-      createCssValueFromArray("margin-left", ml, Spacing.toString),
-      createCssValueFromArray("margin-right", mr, Spacing.toString),
+      createCssValueFromArray("padding", p, Spacing.make),
+      createCssValueFromArray("padding-left", px, Spacing.make),
+      createCssValueFromArray("padding-right", px, Spacing.make),
+      createCssValueFromArray("padding-top", py, Spacing.make),
+      createCssValueFromArray("padding-bottom", py, Spacing.make),
+      createCssValueFromArray("padding-top", pt, Spacing.make),
+      createCssValueFromArray("padding-bottom", pb, Spacing.make),
+      createCssValueFromArray("padding-left", pl, Spacing.make),
+      createCssValueFromArray("padding-right", pr, Spacing.make),
+      createCssValueFromArray("margin", m, Spacing.make),
+      createCssValueFromArray("margin-left", mx, Spacing.make),
+      createCssValueFromArray("margin-right", mx, Spacing.make),
+      createCssValueFromArray("margin-top", my, Spacing.make),
+      createCssValueFromArray("margin-bottom", my, Spacing.make),
+      createCssValueFromArray("margin-top", mt, Spacing.make),
+      createCssValueFromArray("margin-bottom", mb, Spacing.make),
+      createCssValueFromArray("margin-left", ml, Spacing.make),
+      createCssValueFromArray("margin-right", mr, Spacing.make),
       createCssValueFromArray("text-align", textAlign, TextAlign.toString),
       createCssValueFromArray("font-weight", fontWeight, FontWeight.toString),
       createCssValueFromArray("font-size", fontSize, Length.toString),

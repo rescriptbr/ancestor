@@ -10,7 +10,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
     `)
 
     let createResponsiveStyles = (currentStyles, value) => {
-      let spacingInRem = value->Maker.unboxBreakpointValue->Styles.Spacing.toString
+      let spacingInRem = value->Maker.unboxBreakpointValue->Styles.Spacing.make
 
       Styles.mediaQuery(
         currentStyles,
@@ -44,6 +44,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
 
   @react.component
   let make = (
+    ~borderRadius=?,
     ~border=?,
     ~borderRight=?,
     ~borderLeft=?,
@@ -106,6 +107,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
   ) => {
     <Base
       className={`${grid(~spacing?, ())} ${className}`}
+      ?borderRadius
       ?border
       ?borderRight
       ?borderLeft

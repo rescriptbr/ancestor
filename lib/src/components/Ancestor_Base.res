@@ -11,6 +11,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
 
   @react.component
   let make = (
+    ~borderRadius=?,
     ~border=?,
     ~borderRight=?,
     ~borderLeft=?,
@@ -76,6 +77,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
         ~className={
           let responsiveStyles =
             Styles.createResponsiveStyles(
+              ~borderRadius?,
               ~border?,
               ~borderRight?,
               ~borderLeft?,

@@ -57,6 +57,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
   let make = (
     ~className="",
     ~columns: option<Styles.responsiveProp<columnSize>>=?,
+    ~borderRadius=?,
     ~border=?,
     ~borderRight=?,
     ~borderLeft=?,
@@ -121,6 +122,7 @@ module Make = (Maker: Ancestor_Styles.Maker) => {
           columns->Belt.Option.map(sortValues)->Belt.Option.getWithDefault("")->Maker.css
         `${boxClassName} ${className}`
       }
+      ?borderRadius
       ?border
       ?borderRight
       ?borderLeft
