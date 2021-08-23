@@ -195,6 +195,16 @@ module AlignContent = {
     }
 }
 
+module AlignSelf = AlignContent
+
+module JustifySelf = AlignContent
+
+module FlexFlow = {
+  type t = (FlexDirection.t, FlexWrap.t)
+
+  let toString = ((direction, wrap): t) => `${(direction :> string)} ${(wrap :> string)}`
+}
+
 module Position = {
   type t = [
     | #static
