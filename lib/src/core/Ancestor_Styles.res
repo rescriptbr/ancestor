@@ -23,44 +23,6 @@ module Make = (Maker: Maker) => {
 
   type responsiveProp<'a> = array<Maker.breakpoints<'a>>
 
-  type columnSizeValue = [
-    | #auto
-    | #1
-    | #2
-    | #3
-    | #4
-    | #5
-    | #6
-    | #7
-    | #8
-    | #9
-    | #10
-    | #11
-    | #12
-  ]
-
-  let columnToFloat = (value: columnSizeValue) =>
-    switch value {
-    | #1 => 1.0
-    | #2 => 2.0
-    | #3 => 3.0
-    | #4 => 4.0
-    | #5 => 5.0
-    | #6 => 6.0
-    | #7 => 7.0
-    | #8 => 8.0
-    | #9 => 9.0
-    | #10 => 10.0
-    | #11 => 11.0
-    | #12 => 12.0
-    | _ => 12.0
-    }
-
-  type columnSize = responsiveProp<columnSizeValue>
-
-  let basisFromFloat = (value: columnSizeValue) =>
-    value->columnToFloat->(v => v *. 100.0 /. 12.0)->Js.Float.toFixedWithPrecision(~digits=1) ++ "%"
-
   let createBreakpointSize = device => `${device->Maker.sizeByBreakpoints->Belt.Int.toString}px`
 
   let mediaQuery = (current, device: Maker.breakpoints<'a>, styles) =>
