@@ -9,7 +9,7 @@ Essa página lista todas as props utilitárias do componente `Base` e que são h
 
 ## API
 
-Todas as props utilitárias do Ancestor são responsivas, logo todas são do tipo `Ancestor.Styles.values<'a>`. 
+Todas as props utilitárias do Ancestor são responsivas, logo todas são do tipo `Ancestor.Styles.responsiveProp<'a>`. 
 Para entender melhor o sistema de props responsivas, observe o exemplo abaixo com a propriedade `display`:
 ```reason title=Ancestor_Styles.res
   type responsiveProp = array<breakpoints<'a>>
@@ -41,177 +41,290 @@ _Veja o módulo [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blo
 Todas as props utilitárias são opcionais.
 :::
 
-## Types
-
-### `size`
-Used for spacing, width, height and all CSS properties related to sizing.
-
-```reason
-  type size = values<
-    [
-      | #pct(float)
-      | #px(float)
-      | #rem(float)
-      | #em(float)
-    ],
-  >
-```
-
 ## Spacing 
 
 ### `p`
 
 - CSS Key: `padding`
-- Type: `values<int>`
+- Type: `responsiveProp<int>`
 - Optional: `true`
 
 ### `px`
 
 - CSS Key: `padding-left`, `padding-right`
-- Type: `values<int>`
+- Type: `responsiveProp<int>`
 -
 ### `py`
 
 - CSS Key: `padding-top`, `padding-bottom`
-- Type: `values<int>`
+- Type: `responsiveProp<int>`
 
 ### `m`
 
 - CSS Key: `padding`
-- Type: `values<int>`
+- Type: `responsiveProp<int>`
 
 ### `mx`
 
 - CSS Key: `margin-left`, `margin-right`
-- Type: `values<int>`
+- Type: `responsiveProp<int>`
 
 ### `my`
 
 - CSS Key: `margin-top`, `margin-bottom`
-- Type: `values<int>`
+- Type: `responsiveProp<int>`
 
 ## Flex 
 
-:::caution
-Flexbox support is partial and work in progress.
-:::
-
 ### `justifyContent`
 - CSS Key: `justify-content`
-- Type: `values< [ | #initial | #"space-between" | #center | #"flex-start" | #"flex-end" | #"space-around" | #"space-evenly" | #start | #end | #left | #right | #revert | #unset ]>`
+- Type: `responsiveProp<[ | #initial | #"space-between" | #center | #"flex-start" | #"flex-end" | #"space-around" | #"space-evenly" | #start | #end | #left | #right | #revert | #unset ]>`
 
 ### `alignItems` 
 
 - CSS Key: `align-items`
-- Type: `values< [| #initial | #center | #start | #end | #"flex-start" | #"flex-end" | #"self-start" | #"self-end" ]>`
+- Type: `responsiveProp< [| #initial | #center | #start | #end | #"flex-start" | #"flex-end" | #"self-start" | #"self-end" ]>`
 
 ### `flexDirection`
 - CSS Key: `flex-direction`
-- Type: `values<[ | #row | #"row-reverse" | #column | #"column-reverse" | #inherit | #initial | #unset ]>`
+- Type: `responsiveProp<[ | #row | #"row-reverse" | #column | #"column-reverse" | #inherit | #initial | #unset ]>`
 
-### `flexValue`
-- CSS Key: `flex-value`
-- Type: `values<[ | #inherit | #initial | #revert | #unset | #number(float) ]>`
+### `flexBasis`
+- CSS Key: `flex-basis`
+- Type: `responsiveProp<[ | #length(Length.t) | #auto | #fill | #content | #"max-content" | #"min-content" | #"fit-content"]`
 
-### `flex-grow`
-- CSS Key: `flex-grow`
-- Type: `values<[ | #inherit | #initial | #revert | #unset | #number(float) ]>`
-
-### `flex-shrink`
-- CSS Key: `flex-shrink`
-- Type: `values<[ | #inherit | #initial | #revert | #unset | #number(float) ]>`
-
-### `order`
-- CSS Key: `order`
-- Type: `values<[ | #inherit | #initial | #revert | #unset | #number(float) ]>`
-
-### `flex-wrap`
+### `flexWrap`
 - CSS Key: `flex-wrap`
-- Type: `values<[ | #nowrap | #wrap | #"wrap-reverse" | #inherit | #initial | #unset ]>`
+- Type: `responsiveProp<[ | #nowrap | #wrap | #"wrap-reverse" | #inherit | #initial | #unset]>`
+
+### `flexGrow`
+- CSS Key: `flex-grow`
+- Type: `responsiveProp<[`
+  - `| #num(float) `
+  - `| #inherit `
+  - `| #initial` 
+  - `| #revert `
+  - `| #unset `
+  
+ `]>`
+
+### `alignContent`
+- CSS Key: `align-content`
+- Type: `responsiveProp<[` 
+  - `| #center `
+  - `| #start `
+  - `| #end `
+  - `| #"flex-end" `
+  - `| #normal `
+  - `| #baseline `
+  - `| #"first-baseline" `
+  - `| #"last-baseline" `
+  - `| #"space-between" `
+  - `| #"space-around" `
+  - `| #"space-evenly" `
+  - `| #stretch `
+  - `| #"safe-center" `
+  - `| #"unsafe-center" `
+  - `| #inherit `
+  - `| #initial `
+  - `| #unset `
+  - `| #"flex-start" `
+  
+ `]>`
+
+### `alignSelf`
+- CSS Key: `align-self`
+- Type: 
+
+### `justifySelf`
+- CSS Key: `justify-self`
+- Type: 
+
+### `flexFlow`
+- CSS Key: `flex-flow`
+- Type: 
+
+## Border
+
+### `borderRadius`
+- CSS Key: `border`
+- Type: `responsiveProp<int>`
+
+### `border`
+- CSS Key: `border`
+- Type: `responsiveProp<Border.t>`
+
+### `borderTop`
+
+- CSS Key: `border-top`
+- Type: `responsiveProp<Border.t>`
+
+### `borderBottom`
+- CSS Key: `border-bottom`
+- Type: `responsiveProp<Border.t>`
+
+### `borderLeft`
+- CSS Key: `border-left`
+- Type: `responsiveProp<Border.t>`
+
+### `borderRight`
+- CSS Key: `border-right`
+- Type: `responsiveProp<Border.t>`
+
+:::important
+Check it out the [`Border.t`](/docs/system-props#lengtht) type signature.
+:::
 
 ## Size
 
 ### `width`
 - CSS Key: `width`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `height`
 - CSS Key: `height`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `maxW`
 - CSS Key: `max-width`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `minW`
 - CSS Key: `min-width`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `maxH`
 - CSS Key: `max-width`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `minH`
 - CSS Key: `min-width`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 :::important
-Check it out the [`size`](/docs/system-props#size) type signature.
+Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 :::
 
 ## Texts
 
-:::caution
-All CSS properties related do texts and font manipulation are partial supported.
-:::
-
+### `fontWeight`
+- CSS Key: `font-weight`
+- Type: `responsiveProp<[ | #normal | #bold | #bolder | #lighter | #100 | #200 | #300 | #400 | #500 | #600 | #700 | #800 | #900 | #initial | #inherit ]>`
 
 ### `textAlign`
 - CSS Key: `text-align`
-- Type: `values<[#center | #left | #right]>`
-
+- Type: `responsiveProp<[#center | #left | #right]>`
 
 ### `letterSpacing`
 - CSS Key: `letter-spacing`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `lineHeight`
 - CSS Key: `line-height`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ## Position & Placement
 
 ### `position`
 -  CSS Key: `position`
--  Type: `values<[ | #static | #relative | #absolute | #fixed | #sticky ]>`
+-  Type: `responsiveProp<[ | #static | #relative | #absolute | #fixed | #sticky ]>`
 
 ### `top`
 - CSS Key: `top`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `bottom`
 - CSS Key: `top`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
  
 ### `left`
 - CSS Key: `top`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
  
 ### `right`
 - CSS Key: `top`
-- Type: `values<size>`
+- Type: `responsiveProp<Length.t>`
 
 ### `zIndex`
 - CSS Key: `z-index`
-- Type: `values<int>`
+- Type: `responsiveProp<int>`
 
-## Other props
+## General 
 
 ### `display`
 - CSS Key: `display`
-- Type: `values<[| #none | #inline | #block | #"list-item" | #"inline-block" | #"inline-table" | #table | #"table-cell" | #"table-column" | #"table-column-group" | #"table-footer-group" | #"table-header-group" | #"table-row" | #"table-row-group" | #flex| #"inline-flex" | #grid | #"inline-grid" | #"run-in" | #inherit]>`
+- Type: `responsiveProp<[| #none | #inline | #block | #"list-item" | #"inline-block" | #"inline-table" | #table | #"table-cell" | #"table-column" | #"table-column-group" | #"table-footer-group" | #"table-header-group" | #"table-row" | #"table-row-group" | #flex| #"inline-flex" | #grid | #"inline-grid" | #"run-in" | #inherit]>`
 -
 ### `boxSizing`
 - CSS Key: `box-sizing`
-- Type: `values<[| #"content-box" | #"border-box" | #initial | #inherit ]>`
+- Type: `responsiveProp<[| #"content-box" | #"border-box" | #initial | #inherit ]>`
+
+### `color`
+- CSS Key: `color`
+- Type: `responsiveProp<Color.t>`
+
+### `bgColor`
+- CSS Key: `background-color`
+- Type: `responsiveProp<Color.t>`
+
+:::important
+Check it out the [`Color.t`](/docs/system-props#colort) type signature.
+:::
+
+## Types
+
+### `Length.t`
+Este tipo é utilizado em props como `width`, `height`, `line-height`, etc:
+```reason
+  type t = [
+    | #ch(float)
+    | #em(float)
+    | #ex(float)
+    | #rem(float)
+    | #vh(float)
+    | #vw(float)
+    | #vmin(float)
+    | #vmax(float)
+    | #px(int)
+    | #pxFloat(float)
+    | #cm(float)
+    | #mm(float)
+    | #inch(float)
+    | #pc(float)
+    | #pt(int)
+    | #zero
+    | #pct(float)
+  ]
+```
+
+### `Border.t`
+
+Este tipo é utilizado nas props `border`, `borderTop`, etc:
+```reason
+  type style = [
+    | #none
+    | #hidden
+    | #dotted
+    | #dashed
+    | #solid
+    | #double
+    | #groove
+    | #ridge
+    | #inset
+    | #outset
+  ]
+
+  type t = (Length.t, style, Color.t)
+```
+
+### `Color.t`
+Este tipo é utilizado em props como `border`, `bgColor`, `color`, etc:
+```reason
+  type t = [
+    | #rgb(int, int, int)
+    | #hex(string)
+    | #transparent
+    | #currentColor
+  ]
+```
 
