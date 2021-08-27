@@ -78,24 +78,74 @@ Todas as props utilitárias são opcionais.
 
 ### `justifyContent`
 - CSS Key: `justify-content`
-- Type: `responsiveProp<[ | #initial | #"space-between" | #center | #"flex-start" | #"flex-end" | #"space-around" | #"space-evenly" | #start | #end | #left | #right | #revert | #unset ]>`
+- Type: `responsiveProp<[` 
+  - `| #initial `
+  - `| #"space-between" `
+  - `| #center `
+  - `| #"flex-start" `
+  - `| #"flex-end" `
+  - `| #"space-around" `
+  - `| #"space-evenly" `
+  - `| #start `
+  - `| #end `
+  - `| #left `
+  - `| #right `
+  - `| #revert `
+  - `| #unset `
+
+  `]>`
 
 ### `alignItems` 
-
 - CSS Key: `align-items`
-- Type: `responsiveProp< [| #initial | #center | #start | #end | #"flex-start" | #"flex-end" | #"self-start" | #"self-end" ]>`
+- Type: `responsiveProp< [|` 
+  - `| #initial `
+  - `| #center `
+  - `| #start `
+  - `| #end `
+  - `| #"flex-start" `
+  - `| #"flex-end" `
+  - `| #"self-start" `
+  - `| #"self-end" `
+  
+  `]>`
 
 ### `flexDirection`
 - CSS Key: `flex-direction`
-- Type: `responsiveProp<[ | #row | #"row-reverse" | #column | #"column-reverse" | #inherit | #initial | #unset ]>`
+- Type: `responsiveProp<[`
+  - `| #row `
+  - `| #"row-reverse" `
+  - `| #column `
+  - `| #"column-reverse" `
+  - `| #inherit `
+  - `| #initial `
+  - `| #unset `
+  
+  `]>`
 
 ### `flexBasis`
 - CSS Key: `flex-basis`
-- Type: `responsiveProp<[ | #length(Length.t) | #auto | #fill | #content | #"max-content" | #"min-content" | #"fit-content"]`
+- Type: `responsiveProp<[` 
+  - `| #length(Length.t) `
+  - `| #auto `
+  - `| #fill `
+  - `| #content `
+  - `| #"max-content" `
+  - `| #"min-content" `
+  - `| #"fit-content" `
+
+  `]>`
 
 ### `flexWrap`
 - CSS Key: `flex-wrap`
-- Type: `responsiveProp<[ | #nowrap | #wrap | #"wrap-reverse" | #inherit | #initial | #unset]>`
+- Type: `responsiveProp<[` 
+  - `| #nowrap `
+  - `| #wrap `
+  - `| #"wrap-reverse" `
+  - `| #inherit `
+  - `| #initial `
+  - `| #unset`
+
+  `]>`
 
 ### `flexGrow`
 - CSS Key: `flex-grow`
@@ -130,7 +180,7 @@ Todas as props utilitárias são opcionais.
   - `| #unset `
   - `| #"flex-start" `
   
- `]>`
+  `]>`
 
 ### `alignSelf`
 - CSS Key: `align-self`
@@ -209,7 +259,24 @@ Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 
 ### `fontWeight`
 - CSS Key: `font-weight`
-- Type: `responsiveProp<[ | #normal | #bold | #bolder | #lighter | #100 | #200 | #300 | #400 | #500 | #600 | #700 | #800 | #900 | #initial | #inherit ]>`
+- Type: `responsiveProp<[` 
+  - `| #normal `
+  - `| #bold `
+  - `| #bolder `
+  - `| #lighter `
+  - `| #100 `
+  - `| #200 `
+  - `| #300 `
+  - `| #400 `
+  - `| #500 `
+  - `| #600 `
+  - `| #700 `
+  - `| #800 `
+  - `| #900 `
+  - `| #initial `
+  - `| #inherit` 
+
+  `]>`
 
 ### `textAlign`
 - CSS Key: `text-align`
@@ -253,8 +320,30 @@ Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 
 ### `display`
 - CSS Key: `display`
-- Type: `responsiveProp<[| #none | #inline | #block | #"list-item" | #"inline-block" | #"inline-table" | #table | #"table-cell" | #"table-column" | #"table-column-group" | #"table-footer-group" | #"table-header-group" | #"table-row" | #"table-row-group" | #flex| #"inline-flex" | #grid | #"inline-grid" | #"run-in" | #inherit]>`
--
+- Type: `responsiveProp<[|` 
+  - `| #none `
+  - `| #inline `
+  - `| #block `
+  - `| #"list-item" `
+  - `| #"inline-block" `
+  - `| #"inline-table" `
+  - `| #table `
+  - `| #"table-cell" `
+  - `| #"table-column" `
+  - `| #"table-column-group" `
+  - `| #"table-footer-group" `
+  - `| #"table-header-group" `
+  - `| #"table-row" `
+  - `| #"table-row-group" `
+  - `| #flex`
+  - `| #"inline-flex" `
+  - `| #grid `
+  - `| #"inline-grid" `
+  - `| #"run-in" `
+  - `| #inherit`
+
+  `]>`
+
 ### `boxSizing`
 - CSS Key: `box-sizing`
 - Type: `responsiveProp<[| #"content-box" | #"border-box" | #initial | #inherit ]>`
@@ -327,4 +416,5 @@ Este tipo é utilizado em props como `border`, `bgColor`, `color`, etc:
     | #currentColor
   ]
 ```
+
 
