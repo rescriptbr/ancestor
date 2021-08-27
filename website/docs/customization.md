@@ -4,12 +4,11 @@ sidebar_position: 3
 
 # Customization
 
-O Ancestor abusa dos [Module Functors](https://rescript-lang.org/docs/manual/v8.0.0/module#module-functions-functors)
-para customização de breakpoints, espaçamento e outras propriedades.
+Ancestor take advantage of [Module Functors](https://rescript-lang.org/docs/manual/v8.0.0/module#module-functions-functors) for customization of breakpoints, spacing, radius, etc.
 
 ## Default setup
 
-A interface de customização do Ancestor tem a seguinte assinatura:
+The customization interface has the following type signature:
 
 ```ocaml
 module type AncestorCoreMaker = {
@@ -22,7 +21,7 @@ module type AncestorCoreMaker = {
 }
 ```
 
-Já os valores da configuração padrão tem os seguintes valores e tipos:
+And the default setup has the following values and types:
 
 ```ocaml
 
@@ -65,7 +64,7 @@ module DefaultConfig = {
 
 ## Breakpoints
 
-Os breakpoints do Ancestor são customizáveis, por padrão a biblioteca conta com os seguintes breakpoints:
+Ancestor's breakpoints are customizable. By default the default setup has the following values:
 
 - `#xxs` → 0px
 - `#xs` → 375px
@@ -74,8 +73,7 @@ Os breakpoints do Ancestor são customizáveis, por padrão a biblioteca conta c
 - `#lg` → 1280px
 - `#xl` → 1920px
 
-Se você quer customizar somente os valores dos breakpoints, você pode utilizar o módulo `DefaultConfig` e sobreescrever os tipos e funções
-relacionados aos breakpoints.
+If you wish, you can customize **only** the breakpoints by overriding all types and values from the default setup:
 
 ```reason title="MyApp.res"
 module AncestorCustom = Ancestor.Make({
@@ -100,6 +98,7 @@ module AncestorCustom = Ancestor.Make({
     }
 
   let spacing = Ancestor.DefaultConfig.spacing
+  let radius = Ancestor.DefaultConfig.radius
   let css = Ancestor.DefaultConfig.css
 })
 
@@ -118,22 +117,24 @@ module App = {
 
 ```
 
-Como você pode ver, além da definição de tipo dos breakpoints, você precisa definir algumas funções auxiliares, sendo elas:
+How you can see, beyond the type definition, you need to define two functions:
 
-- `let sizeByBreakpoints: breakpoints<'value> => int` - Função que retorna o valor em `px` para cada breakpoint definido.
+#### `sizeByBreakpoints`
+  - Type: `let sizeByBreakpoints: breakpoints<'value> => int`
+  - Description: A function that receives a `breakpoint<'value>` and returns an integer (the breakpoint value in `px`).
 
-- `let unboxBreakpointValue: breakpoints<'value> => 'value` - Função que faz o "unbox" do valor para cada breakpoint definido.
+
+#### `unboxBreakpointValue`
+  - Type: `let unboxBreakpointValue: breakpoints<'value> => 'value` 
+  - Description: A function that receives a `breakpoint<'value>`, "unbox" and returns its value.
 
 :::important
-  Todas as props dos componentes do Ancestor são **arrays** de **breakpoints**. Se você precisa que uma prop tenha sempre o mesmo valor 
-  em todos os breakpoints, você deve passar o valor para o **menor breakpoint** definido. No setup default do Ancestor esse breakpoint é o `#xxs`.
+All Ancestor's components properties are an **array** of **breakpoints**.  If you want a property with the same value in all breakpoints, you need to provide the value for the lowest breakpoint.
 :::
 
 :::tip
-Se preferir, você pode criar funções para usar no lugar das variants de breakpoints, o que pode melhorar legibilidade do código em alguns casos.
-Ao invés de você escrever `display=[#xxs(#flex)]` você pode escrever `display=[xxs(#center)]`. O mesmo serve para os casos onde você precisa
-definir um valor só para todos os breakpoints, ao invés de escrever `display=[#xxs(center)]` você poderia criar uma função `always` ou `all` e
-utiliza-las nas props dos componentes assim `display=always(#center)`.
+If you wish, you can create **"aliases functions"** to replace the poly variants or variants that you defined in your custom setup. 
+Instead of write `display=[#xxs(#flex)]` you can do `display=[xxs(#flex)]`. In some cases, it improves the code readability.
 :::
 
 ## Spacing

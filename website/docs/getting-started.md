@@ -4,28 +4,27 @@ sidebar_position: 2
 
 # Getting started
 
-Passo a passo rápido para instalar e configurar o **Ancestor** no seu projeto.
+Step by step to install Ancestor in your project.
 
 :::important
- Esse tutorial presume que você tem um setup funcional de um projeto ReScript com React. Se necessário você pode consultar a documentação
- oficial do ReScript como **[criar um projeto ReScript com React](https://rescript-lang.org/docs/react/latest/installation).**
+This project assumes that you have a functional project with ReScript and React. Check out [how to create a ReScript project with React](https://rescript-lang.org/docs/react/latest/installation).
 :::
 
 ## Installation
 
-O primeiro passo é instalar o **Ancestor** no seu projeto:
+First off, install **Ancestor** using npm/yarn:
 
 ```sh title="Terminal"
 yarn add @rescriptbr/ancestor
 ```
 
-Se você for utilizar a configuração padrão do Ancestor, sem customizações, você precisa instalar o [Emotion](https://emotion.sh):
+If you want to use the default setup, you need to install [Emotion](https://emotion.sh).
 
 ```sh title="Terminal"
 yarn add @emotion/css
 ```
 
-Adicione o pacote ao `bsconfig.json` do seu projeto:
+Add the package to `bs-dependencies` in your `bsconfig.json`:
 
 ```json title="bsconfig.json"
 {
@@ -40,7 +39,7 @@ Adicione o pacote ao `bsconfig.json` do seu projeto:
 
 ## Basic usage
 
-O Ancestor vem com uma configuração padrão para você utilizar no seu projeto.
+Ancestor comes with a default setup. You can use the default setup by exposing the module writing `open Ancestor.Default`:
 
 ```ocaml title="App.res"
 open Ancestor.Default
@@ -73,6 +72,6 @@ let make = () => {
 ```
 
 :::important
-Se preferir, você pode customizar o setup padrão seguindo as **[instruções de customização](/docs/customization)**.
+If you wish, you can customize the default setup by following the **[instructions of customization](/docs/customization)**.
 :::
 
