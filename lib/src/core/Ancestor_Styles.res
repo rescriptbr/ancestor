@@ -1,14 +1,4 @@
-module type Maker = {
-  type breakpoints<'value>
-
-  let spacing: float
-  let radius: float
-  let unboxBreakpointValue: breakpoints<'value> => 'value
-  let sizeByBreakpoints: breakpoints<'value> => int
-  let css: string => string
-}
-
-module Make = (Maker: Maker) => {
+module Make = (Maker: Ancestor_StylesMaker.T) => {
   open Ancestor_CssTypes
 
   module Spacing = {

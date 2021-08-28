@@ -1,4 +1,4 @@
-module Make = (Maker: Ancestor_Styles.Maker) => {
+module Make = (Maker: Ancestor_StylesMaker.T) => {
   module Styles = Ancestor_Styles.Make(Maker)
   module Base = Ancestor_Base.Make(Maker)
 

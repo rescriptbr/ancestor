@@ -5,7 +5,7 @@ sidebar_position: 1
 # Introduction
 
 **Ancestor** is a suite of components that works as layout primitives to develop high-quality 
-projects, design systems, and style guides focused on responsiveness.
+web apps, design systems, and style guides focused on responsiveness.
 
 ## What and Why?
 Every front-end project that is using libraries based on components like [React](https://reactjs.org), faces the same situation: 
@@ -13,7 +13,7 @@ Every front-end project that is using libraries based on components like [React]
 
 In some cases, you can use libraries like [Chakra UI](https://chakra-ui.com/), [Material UI](https://material-ui.com/pt/), or
 [Ant Design](https://material-ui.com/pt/) that delivers a set of styled components (grids, buttons, inputs, selects, etc) 
-and a lot of other utility functions and components for your project.
+and a lot of other utility functions and components for your web app.
 
 However, in some cases, the team needs to create its own design system or style guide with a design language, colors, fonts, buttons, inputs
 and other specifications created by a design team. In this case, the usage of a library like Material UI or Chakra UI might 

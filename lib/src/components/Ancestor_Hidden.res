@@ -1,13 +1,4 @@
-module type HiddenMaker = {
-  type breakpoints<'a>
-
-  let sizeByBreakpoints: breakpoints<'value> => int
-  let unboxBreakpointValue: breakpoints<'value> => 'value
-  let mediaQuery: (string, breakpoints<'a>, string) => string
-  let css: string => string
-}
-
-module Make = (Maker: Ancestor_Styles.Maker) => {
+module Make = (Maker: Ancestor_StylesMaker.T) => {
   module Styles = Ancestor_Styles.Make(Maker)
 
   let createStyle = (styles, value) =>
