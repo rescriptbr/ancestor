@@ -8,11 +8,11 @@ import { Wrapper, cleanUpCode } from '../helpers'
 import { make as FirstBoxExample } from './examples/FirstBoxExample.bs'
 import FirstBoxExampleSource from '!!raw-loader!./examples/FirstBoxExample.res'
 
-Um componente que serve como wrapper para alterar a aparência dos elementos através de props CSS.
+A component that works as a wrapper to change the appearance of elements through utility properties.
 
 ## Example
 
-<CodeBlock f className='language-reason'> {cleanUpCode(FirstBoxExampleSource)}</CodeBlock>
+<CodeBlock className='language-reason'> {cleanUpCode(FirstBoxExampleSource)}</CodeBlock>
 
 <Wrapper>
   <FirstBoxExample />
@@ -20,32 +20,33 @@ Um componente que serve como wrapper para alterar a aparência dos elementos atr
 
 ## Props
 
-O component `Box` é construido a partir do componente [`Base`](/docs/components/base) e herda todas as props definidas pelo [system props](/docs/system-props).
-Além disso o componente possui as seguintes props adicionais:
+The component `Box` is built using the `Base` and accepts all props defined by the [system props](/docs/system-props).
+Furthermore, the component accepts the following properties:
 
 ### `columns`
 
-Define o tamanho da coluna dentro do [Grid](/docs/components/Grid).
+Defines the column size inside of a [Grid](/docs/components/Grid) component.
 
-- Type: `array<Ancestor.breakpoints<[
-    | # auto
-    | #1
-    | #2
-    | #3
-    | #4
-    | #5
-    | #6
-    | #7
-    | #8
-    | #9
-    | #10
-    | #11
-    | #12
-]>>`
+- Type: `responsiveProp<[`
+   - ` | # auto`
+   - ` | #1`
+   - ` | #2`
+   - ` | #3`
+   - ` | #4`
+   - ` | #5`
+   - ` | #6`
+   - ` | #7`
+   - ` | #8`
+   - ` | #9`
+   - ` | #10`
+   - ` | #11`
+   - ` | #12`
+
+ `]>`
 
 - Optional: `true`
 
 :::important
- O tipo **Ancestor.breakpoints** é um tipo generico definido no setup do Ancestor. 
- Você pode ver os breakpoints definidos no **[setup padrão do Ancestor](/docs/customization#default-setup)** ou criar os seus próprios breakpoints em um **[setup customizado](/docs/customization#breakpoints)**.
+ The `responsiveProp` is a customizable type defined in the Ancestor's setup.
+ You can see the default breakpoints defined in the **[Ancestor's default setup](/docs/customization#default-breakpoints)** or define **[your own breakpoints](/docs/customization#custom-breakpoints)**.
 :::

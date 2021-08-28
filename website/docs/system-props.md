@@ -5,17 +5,25 @@ sidebar_position: 5
 
 # System props
 
-Essa página lista todas as props utilitárias do componente `Base` e que são herdadas pelos componentes `Box`.
+This page list all utility props of all Ancestor's components like `Base` or `Box`.
 
 ## API
 
-Todas as props utilitárias do Ancestor são responsivas, logo todas são do tipo `Ancestor.Styles.responsiveProp<'a>`. 
-Para entender melhor o sistema de props responsivas, observe o exemplo abaixo com a propriedade `display`:
+Since all Ancestor's utility props are responsive, they are typed as `responsiveProp<'value>`. 
+If you want to understand more, see the following example:
+
 ```reason title=Ancestor_Styles.res
   type responsiveProp = array<breakpoints<'a>>
 ```
+_Check out the module [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Styles.res#L15)_ para saber mais.
 
-_Veja o módulo [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Styles.res#L15)_ para saber mais.
+The breakpoint type is customizable (check out the [customization section](/docs/customization)), by default it has the following type signature:
+
+```reason 
+  type breakpoint<'a> = [#xs('value') | #md('a) | #lg('a) | #xl('a)]
+```
+
+Now, see a type signature of a component property:
 
 ```reason title=Ancestor_Base.res
   module Base = {
@@ -27,56 +35,64 @@ _Veja o módulo [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blo
   }
 ```
 
-_Veja o módulo [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Base.res)_ para saber mais.
+_Check out [Ancestor_Base.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Base.res)_ para saber mais.
+
+Example of usage: 
 
 ```reason title=App.res
   open Ancestor.Default
 
-  <Base display=[#xxs(#flex)]>
+  <Base display=[#xs(#flex)]>
     ...
   </Base>
 
 ```
 :::important
-Todas as props utilitárias são opcionais.
+All utility props are optional.
 :::
 
-## Spacing 
+### Properties reference
 
-### `p`
+### Spacing 
+
+:::important
+Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
+:::
+
+#### `p`
 
 - CSS Key: `padding`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Spacing.t>`
 - Optional: `true`
 
-### `px`
+#### `px`
 
 - CSS Key: `padding-left`, `padding-right`
-- Type: `responsiveProp<int>`
--
-### `py`
+- Type: `responsiveProp<Spacing.t>`
+
+#### `py`
 
 - CSS Key: `padding-top`, `padding-bottom`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Spacing.t>`
 
-### `m`
+#### `m`
 
 - CSS Key: `padding`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Spacing.t>`
 
-### `mx`
+#### `mx`
 
 - CSS Key: `margin-left`, `margin-right`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Spacing.t>`
 
-### `my`
+#### `my`
 
 - CSS Key: `margin-top`, `margin-bottom`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Spacing.t>`
 
-## Flex 
+### Flex 
 
-### `justifyContent`
+#### `justifyContent`
 - CSS Key: `justify-content`
 - Type: `responsiveProp<[` 
   - `| #initial `
@@ -95,7 +111,7 @@ Todas as props utilitárias são opcionais.
 
   `]>`
 
-### `alignItems` 
+#### `alignItems` 
 - CSS Key: `align-items`
 - Type: `responsiveProp< [|` 
   - `| #initial `
@@ -109,7 +125,7 @@ Todas as props utilitárias são opcionais.
   
   `]>`
 
-### `flexDirection`
+#### `flexDirection`
 - CSS Key: `flex-direction`
 - Type: `responsiveProp<[`
   - `| #row `
@@ -122,7 +138,7 @@ Todas as props utilitárias são opcionais.
   
   `]>`
 
-### `flexBasis`
+#### `flexBasis`
 - CSS Key: `flex-basis`
 - Type: `responsiveProp<[` 
   - `| #length(Length.t) `
@@ -135,7 +151,7 @@ Todas as props utilitárias são opcionais.
 
   `]>`
 
-### `flexWrap`
+#### `flexWrap`
 - CSS Key: `flex-wrap`
 - Type: `responsiveProp<[` 
   - `| #nowrap `
@@ -147,7 +163,7 @@ Todas as props utilitárias são opcionais.
 
   `]>`
 
-### `flexGrow`
+#### `flexGrow`
 - CSS Key: `flex-grow`
 - Type: `responsiveProp<[`
   - `| #num(float) `
@@ -158,7 +174,7 @@ Todas as props utilitárias são opcionais.
   
  `]>`
 
-### `alignContent`
+#### `alignContent`
 - CSS Key: `align-content`
 - Type: `responsiveProp<[` 
   - `| #center `
@@ -182,42 +198,42 @@ Todas as props utilitárias são opcionais.
   
   `]>`
 
-### `alignSelf`
+#### `alignSelf`
 - CSS Key: `align-self`
 - Type: 
 
-### `justifySelf`
+#### `justifySelf`
 - CSS Key: `justify-self`
 - Type: 
 
-### `flexFlow`
+#### `flexFlow`
 - CSS Key: `flex-flow`
 - Type: 
 
-## Border
+### Border
 
-### `borderRadius`
+#### `borderRadius`
 - CSS Key: `border`
 - Type: `responsiveProp<int>`
 
-### `border`
+#### `border`
 - CSS Key: `border`
 - Type: `responsiveProp<Border.t>`
 
-### `borderTop`
+#### `borderTop`
 
 - CSS Key: `border-top`
 - Type: `responsiveProp<Border.t>`
 
-### `borderBottom`
+#### `borderBottom`
 - CSS Key: `border-bottom`
 - Type: `responsiveProp<Border.t>`
 
-### `borderLeft`
+#### `borderLeft`
 - CSS Key: `border-left`
 - Type: `responsiveProp<Border.t>`
 
-### `borderRight`
+#### `borderRight`
 - CSS Key: `border-right`
 - Type: `responsiveProp<Border.t>`
 
@@ -225,29 +241,29 @@ Todas as props utilitárias são opcionais.
 Check it out the [`Border.t`](/docs/system-props#lengtht) type signature.
 :::
 
-## Size
+### Size
 
-### `width`
+#### `width`
 - CSS Key: `width`
 - Type: `responsiveProp<Length.t>`
 
-### `height`
+#### `height`
 - CSS Key: `height`
 - Type: `responsiveProp<Length.t>`
 
-### `maxW`
+#### `maxW`
 - CSS Key: `max-width`
 - Type: `responsiveProp<Length.t>`
 
-### `minW`
+#### `minW`
 - CSS Key: `min-width`
 - Type: `responsiveProp<Length.t>`
 
-### `maxH`
+#### `maxH`
 - CSS Key: `max-width`
 - Type: `responsiveProp<Length.t>`
 
-### `minH`
+#### `minH`
 - CSS Key: `min-width`
 - Type: `responsiveProp<Length.t>`
 
@@ -255,9 +271,9 @@ Check it out the [`Border.t`](/docs/system-props#lengtht) type signature.
 Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 :::
 
-## Texts
+### Texts
 
-### `fontWeight`
+#### `fontWeight`
 - CSS Key: `font-weight`
 - Type: `responsiveProp<[` 
   - `| #normal `
@@ -278,47 +294,47 @@ Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 
   `]>`
 
-### `textAlign`
+#### `textAlign`
 - CSS Key: `text-align`
 - Type: `responsiveProp<[#center | #left | #right]>`
 
-### `letterSpacing`
+#### `letterSpacing`
 - CSS Key: `letter-spacing`
 - Type: `responsiveProp<Length.t>`
 
-### `lineHeight`
+#### `lineHeight`
 - CSS Key: `line-height`
 - Type: `responsiveProp<Length.t>`
 
-## Position & Placement
+### Position & Placement
 
-### `position`
+#### `position`
 -  CSS Key: `position`
 -  Type: `responsiveProp<[ | #static | #relative | #absolute | #fixed | #sticky ]>`
 
-### `top`
+#### `top`
 - CSS Key: `top`
 - Type: `responsiveProp<Length.t>`
 
-### `bottom`
+#### `bottom`
 - CSS Key: `top`
 - Type: `responsiveProp<Length.t>`
  
-### `left`
+#### `left`
 - CSS Key: `top`
 - Type: `responsiveProp<Length.t>`
  
-### `right`
+#### `right`
 - CSS Key: `top`
 - Type: `responsiveProp<Length.t>`
 
-### `zIndex`
+#### `zIndex`
 - CSS Key: `z-index`
 - Type: `responsiveProp<int>`
 
-## General 
+### General 
 
-### `display`
+#### `display`
 - CSS Key: `display`
 - Type: `responsiveProp<[|` 
   - `| #none `
@@ -344,15 +360,15 @@ Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 
   `]>`
 
-### `boxSizing`
+#### `boxSizing`
 - CSS Key: `box-sizing`
 - Type: `responsiveProp<[| #"content-box" | #"border-box" | #initial | #inherit ]>`
 
-### `color`
+#### `color`
 - CSS Key: `color`
 - Type: `responsiveProp<Color.t>`
 
-### `bgColor`
+#### `bgColor`
 - CSS Key: `background-color`
 - Type: `responsiveProp<Color.t>`
 
@@ -360,10 +376,19 @@ Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 Check it out the [`Color.t`](/docs/system-props#colort) type signature.
 :::
 
-## Types
+## Types reference
+
+### `Spacing.t`
+
+This type is just an alias for `int` and is used by props like `py`, `my`, `mx`, etc.
+
+```reason
+  type t = int
+```
+Since the type is just an alias, the value will be calculated using the scale factor defined [here](/docs/customization#spacing).
 
 ### `Length.t`
-Este tipo é utilizado em props como `width`, `height`, `line-height`, etc:
+Used by props like `width`, `height`, `line-height`, etc:
 ```reason
   type t = [
     | #ch(float)
@@ -388,7 +413,7 @@ Este tipo é utilizado em props como `width`, `height`, `line-height`, etc:
 
 ### `Border.t`
 
-Este tipo é utilizado nas props `border`, `borderTop`, etc:
+Used by props like `border`, `borderTop`, etc:
 ```reason
   type style = [
     | #none
@@ -407,7 +432,7 @@ Este tipo é utilizado nas props `border`, `borderTop`, etc:
 ```
 
 ### `Color.t`
-Este tipo é utilizado em props como `border`, `bgColor`, `color`, etc:
+Used by props like `border`, `bgColor`, `color`, etc:
 ```reason
   type t = [
     | #rgb(int, int, int)

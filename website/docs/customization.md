@@ -64,7 +64,9 @@ module DefaultConfig = {
 
 ## Breakpoints
 
-Ancestor's breakpoints are customizable. By default the default setup has the following values:
+### Default breakpoints
+
+Ancestor's breakpoints are customizable. The default setup has the following values:
 
 - `#xxs` → 0px
 - `#xs` → 375px
@@ -72,6 +74,8 @@ Ancestor's breakpoints are customizable. By default the default setup has the fo
 - `#md` → 920px
 - `#lg` → 1280px
 - `#xl` → 1920px
+
+### Custom breakpoints 
 
 If you wish, you can customize **only** the breakpoints by overriding all types and values from the default setup:
 
@@ -133,14 +137,27 @@ All Ancestor's components properties are an **array** of **breakpoints**.  If yo
 :::
 
 :::tip
-If you wish, you can create **"aliases functions"** to replace the poly variants or variants that you defined in your custom setup. 
-Instead of write `display=[#xxs(#flex)]` you can do `display=[xxs(#flex)]`. In some cases, it improves the code readability.
+If you wish, you can create **"aliases functions"** to replace the variants that you defined in your custom setup. 
+Instead of write `display=[#xxs(#flex)]` you can write `display=[xxs(#flex)]`. In some cases, it improves the code readability.
 :::
 
 ## Spacing
+By default, Ancestor uses a scale factor of `8px` to keep the spacing consistent between the elements.
+You can customize the scale factor by providing a new value for the `spacing` property:
 
-Por padrão o Ancestor utiliza um fator de escala de `8px` manter o espaçamento consistente entre os componentes.
-Você pode customizar o fator de escala através da propriedade `spacing`:
+```ocaml
+
+module AncestorCustom = Ancestor.Make({
+  include Ancestor.DefaultConfig
+
+  let spacing = 6.0
+})
+
+```
+
+## Border Radius
+By default, Ancestor uses a scale factor of `8px` to keep the border radius consistent between the elements.
+You can customize the scale factor by providing a new value for the `radius` property:
 
 ```ocaml
 
@@ -153,11 +170,9 @@ module AncestorCustom = Ancestor.Make({
 ```
 
 ## CSS in JS
-
-Para geração de estilos o Ancestor utiliza o pacote [@emotion/css](https://emotion.sh/docs/introduction). Se preferir, você pode usar
-outra biblioteca que forneça uma função equivalente, como [Goober](https://github.com/cristianbote/goober#csstaggedtemplate)
-ou [styled-components](https://styled-components.com/docs/api#css).
-Exemplo de um setup customizado do Ancestor utilizando o Goober:
+To generate styles Ancestor uses [@emotion/css](https://emotion.sh/docs/introduction).
+If you wish, you can use another CSS in JS library that provides an equivalent function, like [Goober](https://github.com/cristianbote/goober#csstaggedtemplate)
+or [styled-components](https://styled-components.com/docs/api#css).
 
 ```ocaml
 
@@ -170,13 +185,4 @@ module AncestorCustom = Ancestor.Make({
 
   let css = Goober.css
 })
-
-module App = {
-  open AncestorCustom
-
-  @react.component
-  let make = () => {
-    <Box width=[#xxs(100.0->#rem)]> ... </Box>
-  }
-}
 ```
