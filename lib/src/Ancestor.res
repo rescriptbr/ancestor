@@ -9,7 +9,6 @@ module DefaultConfig = {
 
   let sizeByBreakpoints = values =>
     switch values {
-    | #xxs(_) => 0
     | #xs(_) => 375
     | #sm(_) => 600
     | #md(_) => 920
@@ -19,7 +18,6 @@ module DefaultConfig = {
 
   let unboxBreakpointValue = values =>
     switch values {
-    | #xxs(v) => v
     | #xs(v) => v
     | #sm(v) => v
     | #md(v) => v
