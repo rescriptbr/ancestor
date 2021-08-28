@@ -4,42 +4,41 @@ sidebar_position: 1
 
 # Introduction
 
-**Ancestor** é uma suite de componentes que funcionam como primitivas de layout para construção de projetos, design systems e styleguides de alta qualidade com foco em responsividade.
+**Ancestor** is a suite of components that works as layout primitives to develop high-quality 
+projects, design systems, and style guides focused on responsiveness.
 
 ## What and Why?
+Every front-end project that is using libraries based on components like [React](https://reactjs.org), faces the same situation: 
+**Choose or develop a UI library to develop the interfaces.**
 
-Todo projeto front-end construido com bibliotecas baseadas em componentes como o [React](https://reactjs.org),
-se deparam com a mesma situação: Desenvolver ou escolher uma biblioteca de UI para desenvolvimento das interfaces do projeto.
+In some cases, you can use libraries like [Chakra UI](https://chakra-ui.com/), [Material UI](https://material-ui.com/pt/), or
+[Ant Design](https://material-ui.com/pt/) that delivers a set of styled components (grids, buttons, inputs, selects, etc) 
+and a lot of other utility functions and components for your project.
 
-Em alguns casos você pode optar facilmente por bibliotecas conhecidas como [Chakra UI](https://chakra-ui.com/), [Material UI](https://material-ui.com/pt/) e
-[Ant Design](https://material-ui.com/pt/) que possuem uma gama de componentes estilizados (grid, buttons, inputs, selects, etc) e outras funções e componentes utilitários para o seu projeto.
+However, in some cases, the team needs to create its own design system or style guide with a design language, colors, fonts, buttons, inputs
+and other specifications created by a design team. In this case, the usage of a library like Material UI or Chakra UI might 
+not be the best choice, because depends on a lot of customizations or changes to adapt the library to the design specification.
 
-No entanto, é comum que alguns times de produto desenvolvam seu próprio Design System ou Styleguide, com uma linguagem de design, cores, fontes e outras caracteristícas derivadas a partir de um branding do produto que foi feito sob medida para o projeto.
-
-Nesses casos, o uso de uma biblioteca como as citadas acima, nem sempre é a melhor
-escolha, pois geralmente, demandam de muitas customizações e mudanças para adequar a biblioteca a linguagem de design criada para o produto em questão.
-
-Foi por esse outros motivos que o **Ancestor** foi criado, para funcionar como uma fundação para seu projeto, design system ou styleguide.
+It was the reason that we created Ancestor: **to act as a foundation for your project or design system.**
 
 ## Features
 
 ### Unstyled 💀
 
-Diferente de bibliotecas populares como Material UI e Chakra UI, nós não temos nenhum componente com estilos de cores, fontes, bordas, etc.
-Todos os nossos componentes são **primitivas de layout** com suporte a diversas props como padding, margin, height, width, etc.
+Different from popular libraries like Material UI, we don't deliver styled components with colors, fonts, borders, etc. 
+All Ancestor's components are **layout primitives** with support to a lot of CSS properties like padding, margin, height, width, etc.
 
 ### Responsiveness 💡
-
-Todas as propriedades dos componentes são **responsivas**, o que facilita a construção de interfaces que suportam multiplos dispositivos.
-Através dos **breakpoints** definidos pela biblioteca, você pode mudar facilmente os aspectos de um componente em um determinado tamanho de tela ou dispositivo.
+All properties from Ancestor's components are responsive, which makes it easy to develop interfaces that need to support multiple devices. 
+Through the **breakpoints** defined by the library, you can change the appearance of a component in a specific device or screen size.
 
 ### Consistent design 🎨
-
-Apesar de não ter componentes estilizados, nós prezamos pela consistência no design, principalmente quando se trata de espaçamentos, bordas e grids.
+We don't deliver styled components, but we care about design consistency, especially when dealing with spacing, borders, etc.
 
 ### Customizable ⚙️
 
-Todas as propriedades e parâmetros utilizados pelo Ancestor são customizaveis: Breakpoints, Padding, Margin, Colunas do Grid, etc.
+All properties from Ancestor's components and parameters are customizable: 
+Breakpoints, spacing, radius, grid columns, etc which makes it easy to customize and adapt Ancestor to your design system or style guide.
 
 ## Basic usage
 
@@ -53,7 +52,7 @@ let make = () => {
       flexDirection=[xxs(#column), md(#row)]
       p=[xxs(6), md(12), lg(8)]
       position=[xxs(#relative)]
-      size=[xxs(#12), md(#6)]
+      columns=[xxs(#12), md(#6)]
     >
       <Box
         flexGrow=[xxs(#number(1.0))]
@@ -82,4 +81,4 @@ let make = () => {
 
 ```
 
-_ Exemplo de código do projeto [ReScript Conduit](https://github.com/rescriptbr/rescript-conduit/blob/master/src/pages/Signin/Signin.res)_
+_ Example from [ReScript Conduit](https://github.com/rescriptbr/rescript-conduit/blob/master/src/pages/Signin/Signin.res)_

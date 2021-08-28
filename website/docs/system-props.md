@@ -15,7 +15,7 @@ If you want to understand more, see the following example:
 ```reason title=Ancestor_Styles.res
   type responsiveProp = array<breakpoints<'a>>
 ```
-_Check out the module [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Styles.res#L15)_ para saber mais.
+_Check out the module [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Styles.res#L15)_.
 
 The breakpoint type is customizable (check out the [customization section](/docs/customization)), by default it has the following type signature:
 
@@ -35,7 +35,7 @@ Now, see a type signature of a component property:
   }
 ```
 
-_Check out [Ancestor_Base.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Base.res)_ para saber mais.
+_Check out the module [Ancestor_Base.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Base.res)_.
 
 Example of usage: 
 
@@ -238,7 +238,7 @@ Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
 - Type: `responsiveProp<Border.t>`
 
 :::important
-Check it out the [`Border.t`](/docs/system-props#lengtht) type signature.
+Check out the [`Border.t`](/docs/system-props#lengtht) type signature.
 :::
 
 ### Size
@@ -268,7 +268,7 @@ Check it out the [`Border.t`](/docs/system-props#lengtht) type signature.
 - Type: `responsiveProp<Length.t>`
 
 :::important
-Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
+Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 :::
 
 ### Texts
@@ -373,7 +373,7 @@ Check it out the [`Length.t`](/docs/system-props#lengtht) type signature.
 - Type: `responsiveProp<Color.t>`
 
 :::important
-Check it out the [`Color.t`](/docs/system-props#colort) type signature.
+Check out the [`Color.t`](/docs/system-props#colort) type signature.
 :::
 
 ## Types reference
