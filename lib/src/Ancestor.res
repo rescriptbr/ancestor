@@ -3,14 +3,29 @@ include Ancestor_Core
 module DefaultConfig = {
   type breakpoints<'a> = [#xs('a) | #xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
 
+  type columns = [
+    | #1
+    | #2
+    | #3
+    | #4
+    | #5
+    | #6
+    | #7
+    | #8
+    | #9
+    | #10
+    | #11
+    | #12
+  ]
+
   let spacing = 8.0
 
   let radius = 8.0
 
   let sizeByBreakpoints = values =>
     switch values {
-    | #xs(_) => 375
-    | #sm(_) => 600
+    | #xs(_) => 0
+    | #sm(_) => 475
     | #md(_) => 920
     | #lg(_) => 1280
     | #xl(_) => 1920
