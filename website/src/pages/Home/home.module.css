@@ -165,8 +165,12 @@
     letter-spacing: -0.04em;
     color: var(--gray-2);
   }
+    
+  .start-box > a {
+    text-decoration: none;
+  }
 
-  .start-box > button {
+  .start-box > a > button {
     height: 46px;
     border-radius: 32px;
     width: 192px;

@@ -98,10 +98,12 @@ module CodePreview = {
   let make = () => {
     <div className={styles["code-preview"]}>
       <div className={styles["code-preview--texts"]}>
-        <h2> {`Textos sobre a simplicidade`->s} </h2>
-        <p> {`Lorem ipsum dolor sit ame, simet endorsen tunlam somat isolomat essomape.`->s} </p>
+        <h2> {`Built for ReScript`->s} </h2>
+        <p>
+          {`It's not a set of bindings for an existing library, Ancestor was created from scratch to use with ReScript.`->s}
+        </p>
       </div>
-      <img src="/img/snippet.png" />
+      <img width="" src="/img/snippet.png" />
     </div>
   }
 }
@@ -113,12 +115,12 @@ module StartUsing = {
       <div className={styles["start-box--texts"]}>
         <h2> {`Start using right now`->s} </h2>
         <p>
-          {`Ancestor is production-ready and actively maintained. It’s used in production`->s}
+          {`This project is still beta but also actively maintained. It's used in some production `->s}
           <br />
           {`projects daily and keep breaking changes to a minimum whereever possible.`->s}
         </p>
       </div>
-      <button> {`Let’s start`->s} </button>
+      <a href="/docs/getting-started"> <button> {`Let’s start`->s} </button> </a>
     </div>
   }
 }
