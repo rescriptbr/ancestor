@@ -97,7 +97,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~boxSizing=?,
     ~spacing: option<Styles.responsiveProp<int>>=?,
     ~className="",
-    ~children,
+    ~children=?,
     ~tag: Ancestor_React.tags=#div,
     ~id=?,
     ~onClick=?,
@@ -163,8 +163,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?onClick
       ?onSubmit
       ?onChange
-      ?dangerouslySetInnerHTML>
-      children
-    </Base>
+      ?dangerouslySetInnerHTML
+      ?children
+    />
   }
 }

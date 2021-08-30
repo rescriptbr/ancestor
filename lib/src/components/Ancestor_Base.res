@@ -56,7 +56,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~boxSizing=?,
     ~tag: Ancestor_React.tags=#div,
     ~className="",
-    ~children,
+    ~children=?,
     ~id=?,
     ~onClick=?,
     ~onSubmit=?,

@@ -90,7 +90,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~right=?,
     ~zIndex=?,
     ~boxSizing=?,
-    ~children,
+    ~children=?,
     ~tag: Ancestor_React.tags=#div,
     ~id=?,
     ~onClick=?,
@@ -160,8 +160,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?onClick
       ?onSubmit
       ?onChange
-      ?dangerouslySetInnerHTML>
-      children
-    </Base>
+      ?dangerouslySetInnerHTML
+      ?children
+    />
   }
 }
