@@ -61,6 +61,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~onClick=?,
     ~onSubmit=?,
     ~onChange=?,
+    ~alt=?,
+    ~src=?,
     ~dangerouslySetInnerHTML=?,
   ) =>
     Ancestor_React.createElement(
@@ -129,6 +131,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
         ~onClick?,
         ~onSubmit?,
         ~onChange?,
+        ~src?,
+        ~alt?,
         ~dangerouslySetInnerHTML?,
         (),
       ),

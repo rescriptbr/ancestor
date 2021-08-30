@@ -96,6 +96,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~onClick=?,
     ~onSubmit=?,
     ~onChange=?,
+    ~src=?,
+    ~alt=?,
     ~dangerouslySetInnerHTML=?,
   ) => {
     <Base
@@ -161,6 +163,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?onSubmit
       ?onChange
       ?dangerouslySetInnerHTML
+      ?src
+      ?alt
       ?children
     />
   }
