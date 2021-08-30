@@ -26,19 +26,19 @@ open Ancestor.Default
 @react.component
 let make = () => {
   <Box
-    bgColor=[xxs(#hex("#000"))]
-    p=[xxs(3)]
-    display=[xxs(#flex)]
-    justifyContent=[xxs(#"flex-start"), lg(#"space-between")]
-    alignItems=[xxs(#center)]
-    flexDirection=[xxs(#column), lg(#row)]>
-    <Box mr=[xxs(0), lg(3)]>
-      <Base textAlign=[xxs(#center), lg(#left)] color=[xxs(#hex("#fff"))] tag=#h1>
+    bgColor=[xs(#hex("#000"))]
+    p=[xs(3)]
+    display=[xs(#flex)]
+    justifyContent=[xs(#"flex-start"), lg(#"space-between")]
+    alignItems=[xs(#center)]
+    flexDirection=[xs(#column), lg(#row)]>
+    <Box mr=[xs(0), lg(3)]>
+      <Typography textAlign=[xs(#center), lg(#left)] color=[xs(#hex("#fff"))] tag=#h1>
         {`Start using right now`->s}
-      </Base>
-      <Base textAlign=[xxs(#center), lg(#left)] color=[xxs(#hex("#b1b1b1"))] tag=#p>
+      </Typography>
+      <Typography textAlign=[xs(#center), lg(#left)] color=[xs(#hex("#b1b1b1"))] tag=#p>
         {`Ancestor is production-ready and actively maintained. It’s used in production projects daily and keep breaking changes to a minimum whereever possible.`->s}
-      </Base>
+      </Typography>
     </Box>
     <Button> "Let's start" </Button>
   </Box>

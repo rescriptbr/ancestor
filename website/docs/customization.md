@@ -27,7 +27,6 @@ And the default setup has the following values and types:
 
 module DefaultConfig = {
   type breakpoints<'a> = [
-    | #xxs('a)
     | #xs('a)
     | #sm('a)
     | #md('a)
@@ -36,12 +35,13 @@ module DefaultConfig = {
   ]
 
   let spacing = 8.0
+  
+  let radius = 8.0
 
   let sizeByBreakpoints = values =>
     switch values {
-    | #xxs(_) => 0
-    | #xs(_) => 375
-    | #sm(_) => 600
+    | #xs(_) => 0
+    | #sm(_) => 475
     | #md(_) => 920
     | #lg(_) => 1280
     | #xl(_) => 1920
@@ -49,7 +49,6 @@ module DefaultConfig = {
 
   let unboxBreakpointValue = values =>
     switch values {
-    | #xxs(v) => v
     | #xs(v) => v
     | #sm(v) => v
     | #md(v) => v
@@ -68,12 +67,11 @@ module DefaultConfig = {
 
 Ancestor's breakpoints are customizable. The default setup has the following values:
 
-- `#xxs` → 0px
-- `#xs` → 375px
-- `#sm` → 600px
-- `#md` → 920px
-- `#lg` → 1280px
-- `#xl` → 1920px
+- `xs` 0px → 475px
+- `sm` 475px → 920px
+- `md` 920px → 1280 
+- `lg` 1280px → 1440 
+- `xl` 1440px
 
 ### Custom breakpoints 
 
@@ -89,8 +87,8 @@ module AncestorCustom = Ancestor.Make({
 
   let sizeByBreakpoints = values =>
     switch values {
-    | #small(_) => 600
-    | #medium(_) => 920
+    | #small(_) => 0 
+    | #medium(_) => 600
     | #large(_) => 1280
     }
 

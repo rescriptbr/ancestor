@@ -5,6 +5,4 @@ export const cleanUpCode = (code = '') => {
 
   return cleanCode
     .replace(/className="(placeholder|teste)"\s/g, '')
-
-
 }

@@ -5,17 +5,17 @@ sidebar_position: 3
 
 import CodeBlock from '@theme/CodeBlock'
 import { Wrapper, cleanUpCode } from '../helpers'
-import { make as FirstBoxExample } from './examples/FirstBoxExample.bs'
-import FirstBoxExampleSource from '!!raw-loader!./examples/FirstBoxExample.res'
+import { make as FirstGridExample } from './examples/FirstGridExample.bs.js'
+import FirstGridExampleSource from '!!raw-loader!./examples/FirstGridExample.res'
 
-A component that works as a wrapper to change the appearance of elements through utility properties.
+A simple grid component based on columns.
 
 ## Example
 
-<CodeBlock className='language-reason'> {cleanUpCode(FirstBoxExampleSource)}</CodeBlock>
+<CodeBlock className='language-reason'> {FirstGridExampleSource}</CodeBlock>
 
 <Wrapper>
-  <FirstBoxExample />
+  <FirstGridExample />
 </Wrapper>
 
 ## Props
