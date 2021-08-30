@@ -1,6 +1,5 @@
 module type T = {
   type breakpoints<'value>
-  type columns
   let spacing: float
   let radius: float
   let unboxBreakpointValue: breakpoints<'value> => 'value

@@ -2,8 +2,23 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
   module Styles = Ancestor_Styles.Make(Maker)
   module Base = Ancestor_Base.Make(Maker)
 
+  type columns = [
+    | #1
+    | #2
+    | #3
+    | #4
+    | #5
+    | #6
+    | #7
+    | #8
+    | #9
+    | #10
+    | #11
+    | #12
+  ]
+
   %%private(
-    let basisFromFloat = (value: Maker.columns) =>
+    let basisFromFloat = (value: columns) =>
       (value :> int)
       ->Js.Int.toFloat
       ->(v => v *. 100.0 /. 12.0)
@@ -23,7 +38,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
   @react.component
   let make = (
     ~className="",
-    ~columns: option<Styles.responsiveProp<Maker.columns>>=?,
+    ~columns: option<Styles.responsiveProp<columns>>=?,
     ~borderRadius=?,
     ~border=?,
     ~borderRight=?,
