@@ -68,8 +68,8 @@ module About = {
       <div className={styles["about--row"]}>
         <AboutItem
           icon="/img/layout-icon.svg"
-          title="Layout primitives"
-          description="A set of unstyled components that works as layout primitives."
+          title="UI primitives"
+          description="A set of unstyled components that works as UI primitives."
         />
         <AboutItem
           icon="/img/responsive-icon.svg"
@@ -130,7 +130,7 @@ let make = () => {
   let {siteConfig} = Docusaurus.useDocusaurusContext()
   <Docusaurus.Layout
     title={siteConfig.title}
-    description="A suite of layout primitives for ReScript and React with focus on responsiveness.">
+    description="A suite of UI primitives for ReScript and React with focus on responsiveness.">
     <main> <Hero /> <About /> <CodePreview /> <StartUsing /> </main>
   </Docusaurus.Layout>
 }
