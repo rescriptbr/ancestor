@@ -44,7 +44,7 @@ module Hero = {
       <div className={styles["hero--title-container"]}>
         <h1 className={styles["hero--title"]}> {"Simple, fast and powerful"->s} </h1>
         <p className={styles["hero--text"]}>
-          {`A suite of layout primitives for ReScript and React with focus on responsiveness.`->s}
+          {`A suite of UI primitives for ReScript and React with focus on responsiveness.`->s}
         </p>
       </div>
       <div className={styles["hero--image"]}> <img src="/img/hero-symbol.svg" /> </div>

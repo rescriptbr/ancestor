@@ -3,7 +3,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Ancestor — Layout primitives for ReScript and React',
+  title: 'Ancestor — UI primitives for ReScript and React',
   tagline: '',
   url: 'https://ancestor.netlify.app',
   baseUrl: '/',

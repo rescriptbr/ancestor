@@ -1,4 +1,4 @@
-# Hidden
+# Stack
 
 :::caution
  WIP Section.
