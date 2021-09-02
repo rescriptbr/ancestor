@@ -69,8 +69,8 @@ Ancestor's breakpoints are customizable. The default setup has the following val
 
 - `xs` 0px → 475px
 - `sm` 475px → 920px
-- `md` 920px → 1280 
-- `lg` 1280px → 1440 
+- `md` 920px → 1280px 
+- `lg` 1280px → 1440px
 - `xl` 1440px
 
 ### Custom breakpoints 
@@ -162,7 +162,7 @@ You can customize the scale factor by providing a new value for the `radius` pro
 module AncestorCustom = Ancestor.Make({
   include Ancestor.DefaultConfig
 
-  let spacing = 6.0
+  let radius = 6.0
 })
 
 ```
