@@ -47,8 +47,6 @@ We don't deliver styled components, but we care about design consistency, especi
 All properties from Ancestor's components and parameters are customizable: 
 Breakpoints, spacing, radius, grid columns, etc which makes it easy to customize and adapt Ancestor to your design system or style guide.
 
-_Example from [ReScript Conduit](https://github.com/rescriptbr/rescript-conduit/blob/master/src/pages/Signin/Signin.res)_
-
 ## Installation
 
 First off, install **Ancestor** using npm/yarn:
@@ -115,6 +113,8 @@ let make = () => {
 }
 
 ```
+
+_Example from [ReScript Conduit](https://github.com/rescriptbr/rescript-conduit/blob/master/src/pages/Signin/Signin.res)_
 
 ## Documentation
 
