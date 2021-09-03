@@ -20,6 +20,7 @@ module AncestorCustom = Ancestor.Make({
     }
 
   let spacing = Ancestor.DefaultConfig.spacing
+  let radius = Ancestor.DefaultConfig.radius
   let css = Ancestor.DefaultConfig.css
 })
 
