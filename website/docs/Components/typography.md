@@ -1,4 +1,4 @@
-# Stack
+# Typography
 
 :::caution
  WIP Section.
