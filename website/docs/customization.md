@@ -15,6 +15,7 @@ module type AncestorCoreMaker = {
   type breakpoints<'value>
 
   let spacing: float
+  let radius: float
   let sizeByBreakpoints: breakpoints<'value> => int
   let unboxBreakpointValue: breakpoints<'value> => 'value
   let css: string => string
