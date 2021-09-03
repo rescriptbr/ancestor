@@ -74,14 +74,14 @@ module About = {
         <AboutItem
           icon="/img/responsive-icon.svg"
           title="Focus on Responsiveness"
-          description="All system props are responsive are responsive."
+          description="All system props are responsive."
         />
       </div>
       <div className={styles["about--row"]}>
         <AboutItem
           icon="/img/focus-icon.svg"
           title="Focused on ReScript"
-          description="Is not a set of bindings of an existing library, Ancestor was written with ReScript."
+          description="It's not a set of bindings for an existing library, Ancestor was written with ReScript."
         />
         <AboutItem
           icon="/img/customizable-icon.svg"
