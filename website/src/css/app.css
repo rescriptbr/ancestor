@@ -4,6 +4,11 @@ html, body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: #000;
+  color: #fff;
+}
+
 /**
  * Theming
  * */
