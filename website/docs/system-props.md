@@ -9,6 +9,11 @@ This page list all utility props of all Ancestor's components like `Base` or `Bo
 
 ## API
 
+:::caution
+We don't support all CSS props yet. It's still working progress.
+:::
+
+
 Since all Ancestor's utility props are responsive, they are typed as `responsiveProp<'value>`. 
 If you want to understand more, see the following example:
 
