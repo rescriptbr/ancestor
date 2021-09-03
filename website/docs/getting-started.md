@@ -48,21 +48,21 @@ open Ancestor.Default
 let make = () => {
   <Grid>
     <Box
-      columns=[#xxs(#12), #md(#6), #(4)]
-      display=[#xxs(#flex)]
-      alignItems=[#xxs(#center)]
-      px=[#xxs(8), #md(12)]
-      mt=[#xxs(12)]
+      columns=[#xs(#12), #md(#6), #(#4)]
+      display=[#xs(#flex)]
+      alignItems=[#xs(#center)]
+      px=[#xs(8), #md(12)]
+      mt=[#xs(12)]
     >
       ...
     </Box>
 
     <Box
-      columns=[#xxs(#12), #md(#6), #(4)]
-      display=[#xxs(#flex)]
-      alignItems=[#xxs(#center)]
-      py=[#xxs(6), #md(8)]
-      m=[#xxs(12)]
+      columns=[#xs(#12), #md(#6), #(#4)]
+      display=[#xs(#flex)]
+      alignItems=[#xs(#center)]
+      py=[#xs(6), #md(8)]
+      m=[#xs(12)]
     >
       ...
     </Box>
