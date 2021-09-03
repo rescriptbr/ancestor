@@ -2,10 +2,9 @@
   <img src="./assets/ancestor-logo.svg" /> 
   <br />
   <br />
-  <a target="_blank" href=""> Docs </a> //
-    <a target="_blank" href=""> Getting Started </a> //
-  <a target="_blank" href=""> Examples </a> //
-  <a target="_blank" href="https://github.com/rescripbr"> ReScript Brazil Community </a>
+  <a target="_blank" href="https://ancestor.netlify.app"> Docs </a> //
+    <a target="_blank" href="https://ancestor.netlify.app/docs/getting-started"> Getting Started </a> //
+  <a target="_blank" href="https://github.com/rescriptbr"> ReScript Brazil Community </a>
  </p>
 
 > ⚠️ **DISCLAIMER**: This library is still beta, check out our roadmap [here](https://github.com/rescriptbr/ancestor/projects/1).
