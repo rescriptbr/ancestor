@@ -10,7 +10,7 @@ This page list all utility props of all Ancestor's components like `Base` or `Bo
 ## API
 
 :::caution
-We don't support all CSS props yet. It's still working progress.
+We don't support all CSS props yet. It's still work in progress.
 :::
 
 
