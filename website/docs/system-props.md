@@ -322,15 +322,15 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 - Type: `responsiveProp<Length.t>`
 
 #### `bottom`
-- CSS Key: `top`
+- CSS Key: `bottom`
 - Type: `responsiveProp<Length.t>`
  
 #### `left`
-- CSS Key: `top`
+- CSS Key: `left`
 - Type: `responsiveProp<Length.t>`
  
 #### `right`
-- CSS Key: `top`
+- CSS Key: `right`
 - Type: `responsiveProp<Length.t>`
 
 #### `zIndex`
