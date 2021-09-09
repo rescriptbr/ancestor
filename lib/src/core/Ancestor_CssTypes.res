@@ -1,3 +1,9 @@
+module TextDecorationStyle = {
+  type t = [#solid | #double | #dotted | #dashed | #wavy]
+
+  let toString = (textDecorationStyle: t) => (textDecorationStyle :> string)
+}
+
 module OutlineStyle = {
   type t = [
     | #none

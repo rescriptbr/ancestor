@@ -107,6 +107,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~visibility: option<responsiveProp<Visibility.t>>=?,
     ~listStyleType: option<responsiveProp<ListStyleType.t>>=?,
     ~outlineStyle: option<responsiveProp<OutlineStyle.t>>=?,
+    ~textDecorationStyle: option<responsiveProp<TextDecorationStyle.t>>=?,
     (),
   ) =>
     [
@@ -172,5 +173,10 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       createCssValueFromArray("visibility", visibility, Visibility.toString),
       createCssValueFromArray("list-style-type", listStyleType, ListStyleType.toString),
       createCssValueFromArray("outline-style", outlineStyle, OutlineStyle.toString),
+      createCssValueFromArray(
+        "text-decoration-style",
+        textDecorationStyle,
+        TextDecorationStyle.toString,
+      ),
     ]->Js.Array2.joinWith("")
 }
