@@ -100,6 +100,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~overflowY=?,
     ~cursor=?,
     ~visibility=?,
+    ~listStyleType=?,
+    ~outlineStyle=?,
     // Grid props
     ~spacing: option<Styles.responsiveProp<int>>=?,
     ~tag: Ancestor_React.tags=#div,
@@ -172,6 +174,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?overflowY
       ?cursor
       ?visibility
+      ?listStyleType
+      ?outlineStyle
       tag
       ?id
       ?onClick

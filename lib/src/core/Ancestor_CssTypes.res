@@ -1,3 +1,39 @@
+module OutlineStyle = {
+  type t = [
+    | #none
+    | #hidden
+    | #dotted
+    | #dashed
+    | #solid
+    | #double
+    | #groove
+    | #ridge
+    | #inset
+    | #outset
+  ]
+
+  let toString = (outlineStyle: t) => (outlineStyle :> string)
+}
+
+module ListStyleType = {
+  type t = [
+    | #disc
+    | #circle
+    | #square
+    | #decimal
+    | #"lower-alpha"
+    | #"upper-alpha"
+    | #"lower-greek"
+    | #"lower-latin"
+    | #"upper-latin"
+    | #"lower-roman"
+    | #"upper-roman"
+    | #none
+  ]
+
+  let toString = (listStyleType: t) => (listStyleType :> string)
+}
+
 module Overflow = {
   type t = [#hidden | #visible | #scroll | #auto]
 
