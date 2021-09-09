@@ -54,7 +54,13 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~right=?,
     ~zIndex=?,
     ~boxSizing=?,
+    ~overflow=?,
+    ~overflowX=?,
+    ~overflowY=?,
+    ~cursor=?,
+    ~visibility=?,
     ~tag: Ancestor_React.tags=#div,
+    // DOM Props
     ~className="",
     ~children=?,
     ~id=?,
@@ -122,6 +128,11 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
               ~right?,
               ~zIndex?,
               ~boxSizing?,
+              ~overflow?,
+              ~overflowX?,
+              ~overflowY?,
+              ~cursor?,
+              ~visibility?,
               (),
             )->Maker.css
 

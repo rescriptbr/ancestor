@@ -90,6 +90,12 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~right=?,
     ~zIndex=?,
     ~boxSizing=?,
+    ~overflow=?,
+    ~overflowX=?,
+    ~overflowY=?,
+    ~cursor=?,
+    ~visibility=?,
+    // DOM Props
     ~children=?,
     ~tag: Ancestor_React.tags=#div,
     ~id=?,
@@ -157,10 +163,15 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?right
       ?zIndex
       ?boxSizing
+      ?overflow
+      ?overflowX
+      ?overflowY
+      ?cursor
+      ?visibility
       tag
       ?id
-      ?onClick
       ?onSubmit
+      ?onClick
       ?onChange
       ?dangerouslySetInnerHTML
       ?src

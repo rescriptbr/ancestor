@@ -100,6 +100,11 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~right: option<responsiveProp<Length.t>>=?,
     ~zIndex: option<responsiveProp<ZIndex.t>>=?,
     ~boxSizing: option<responsiveProp<BoxSizing.t>>=?,
+    ~overflowX: option<responsiveProp<Overflow.t>>=?,
+    ~overflowY: option<responsiveProp<Overflow.t>>=?,
+    ~overflow: option<responsiveProp<Overflow.t>>=?,
+    ~cursor: option<responsiveProp<Cursor.t>>=?,
+    ~visibility: option<responsiveProp<Visibility.t>>=?,
     (),
   ) =>
     [
@@ -158,5 +163,10 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       createCssValueFromArray("right", right, Length.toString),
       createCssValueFromArray("z-index", zIndex, ZIndex.toString),
       createCssValueFromArray("box-sizing", boxSizing, BoxSizing.toString),
+      createCssValueFromArray("overflow", overflow, Overflow.toString),
+      createCssValueFromArray("overflow-x", overflowX, Overflow.toString),
+      createCssValueFromArray("overflow-y", overflowY, Overflow.toString),
+      createCssValueFromArray("cursor", cursor, Cursor.toString),
+      createCssValueFromArray("visibility", visibility, Visibility.toString),
     ]->Js.Array2.joinWith("")
 }
