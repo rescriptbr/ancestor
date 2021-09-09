@@ -95,10 +95,17 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~right=?,
     ~zIndex=?,
     ~boxSizing=?,
+    ~overflow=?,
+    ~overflowX=?,
+    ~overflowY=?,
+    ~cursor=?,
+    ~visibility=?,
+    // Grid props
     ~spacing: option<Styles.responsiveProp<int>>=?,
+    ~tag: Ancestor_React.tags=#div,
+    // DOM Props
     ~className="",
     ~children=?,
-    ~tag: Ancestor_React.tags=#div,
     ~id=?,
     ~onClick=?,
     ~onSubmit=?,
@@ -160,6 +167,11 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?right
       ?zIndex
       ?boxSizing
+      ?overflow
+      ?overflowX
+      ?overflowY
+      ?cursor
+      ?visibility
       tag
       ?id
       ?onClick
