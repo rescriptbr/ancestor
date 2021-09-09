@@ -377,6 +377,99 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 - CSS Key: `background-color`
 - Type: `responsiveProp<Color.t>`
 
+#### `overflow`
+- CSS Key: `overflow`
+- Type: `responsiveProp<[#hidden | #visible | #scroll | #auto]>`
+
+#### `overflowX`
+- CSS Key: `overflow-x`
+- Type: `responsiveProp<[#hidden | #visible | #scroll | #auto]>`
+
+#### `overflowY`
+- CSS Key: `overflow-y`
+- Type: `responsiveProp<[#hidden | #visible | #scroll | #auto]>`
+
+#### `cursor`
+- CSS Key: `cursor`
+- Type: `responsiveProp<[` 
+   - ` | #auto`
+   - ` | #default`
+   - ` | #none`
+   - ` | #"context-menu"`
+   - ` | #help`
+   - ` | #pointer`
+   - ` | #progress`
+   - ` | #wait`
+   - ` | #cell`
+   - ` | #crosshair`
+   - ` | #text`
+   - ` | #"vertical-text"`
+   - ` | #alias`
+   - ` | #copy`
+   - ` | #move`
+   - ` | #"no-drop"`
+   - ` | #"not-allowed"`
+   - ` | #grab`
+   - ` | #grabbing`
+   - ` | #"all-scroll"`
+   - ` | #"col-resize"`
+   - ` | #"row-resize"`
+   - ` | #"n-resize"`
+   - ` | #"e-resize"`
+   - ` | #"s-resize"`
+   - ` | #"w-resize"`
+   - ` | #"ne-resize"`
+   - ` | #"nw-resize"`
+   - ` | #"se-resize"`
+   - ` | #"sw-resize"`
+   - ` | #"ew-resize"`
+   - ` | #"ns-resize"`
+   - ` | #"nesw-resize"`
+   - ` | #"nwse-resize"`
+   - ` | #"zoom-in"`
+   - ` | #"zoom-out"`
+  `]>`
+
+#### `visibility`
+- CSS Key: `visibility`
+- Type: `responsiveProp<[#hidden | #visible | #collapse]>`
+
+#### `listStyleType`
+- CSS Key: `list-style-type`
+- Type: `responsiveProp<`
+    - `| #disc`
+    - `| #circle`
+    - `| #square`
+    - `| #decimal`
+    - `| #"lower-alpha"`
+    - `| #"upper-alpha"`
+    - `| #"lower-greek"`
+    - `| #"lower-latin"`
+    - `| #"upper-latin"`
+    - `| #"lower-roman"`
+    - `| #"upper-roman"`
+    - `| #none`
+  `]>`
+
+#### `outlineStyle`
+- CSS Key: `outline-style`
+- Type: `responsiveProp<`
+    - `| #none`
+    - `| #hidden`
+    - `| #dotted`
+    - `| #dashed`
+    - `| #solid`
+    - `| #double`
+    - `| #groove`
+    - `| #ridge`
+    - `| #inset`
+    - `| #outset`
+  `]>`
+
+#### `textDecorationStyle`
+- CSS Key: `text-decoration-style`
+- Type: `responsiveProp<[#solid | #double | #dotted | #dashed | #wavy]>`
+
 :::important
 Check out the [`Color.t`](/docs/system-props#colort) type signature.
 :::
