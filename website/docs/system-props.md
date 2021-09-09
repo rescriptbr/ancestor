@@ -377,6 +377,10 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 - CSS Key: `background-color`
 - Type: `responsiveProp<Color.t>`
 
+:::important
+Check out the [`Color.t`](/docs/system-props#colort) type signature.
+:::
+
 #### `overflow`
 - CSS Key: `overflow`
 - Type: `responsiveProp<[#hidden | #visible | #scroll | #auto]>`
@@ -469,10 +473,6 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 #### `textDecorationStyle`
 - CSS Key: `text-decoration-style`
 - Type: `responsiveProp<[#solid | #double | #dotted | #dashed | #wavy]>`
-
-:::important
-Check out the [`Color.t`](/docs/system-props#colort) type signature.
-:::
 
 ## Types reference
 
