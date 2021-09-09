@@ -37,8 +37,6 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
 
   @react.component
   let make = (
-    ~className="",
-    ~columns: option<Styles.responsiveProp<columns>>=?,
     ~borderRadius=?,
     ~border=?,
     ~borderRight=?,
@@ -95,8 +93,13 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~overflowY=?,
     ~cursor=?,
     ~visibility=?,
+    ~listStyleType=?,
+    ~outlineStyle=?,
+    // Box props
+    ~columns: option<Styles.responsiveProp<columns>>=?,
     // DOM Props
     ~children=?,
+    ~className="",
     ~tag: Ancestor_React.tags=#div,
     ~id=?,
     ~onClick=?,
@@ -168,6 +171,8 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?overflowY
       ?cursor
       ?visibility
+      ?listStyleType
+      ?outlineStyle
       tag
       ?id
       ?onSubmit
