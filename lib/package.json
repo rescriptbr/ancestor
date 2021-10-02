@@ -1,8 +1,17 @@
 {
   "name": "@rescriptbr/ancestor",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "index.js",
   "license": "MIT",
+  "keywoprds": [
+    "rescript",
+    "rescript-react",
+    "rescript ui library",
+    "rescript ui primitives",
+    "rescript unstyled components",
+    "ui library",
+    "layout primitives"
+  ],
   "devDependencies": {
     "@rescript/react": "0.10.3",
     "react": "17.0.2",
