@@ -28,7 +28,10 @@
     "watch": "rescript build -w",
     "clean": "rescript clean",
     "format": "rescript format",
+    "test": "jest",
     "generate-interface": "bsc -i"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jest": "27.2.5"
+  }
 }

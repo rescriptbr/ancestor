@@ -113,7 +113,9 @@ module Color = {
 }
 
 module Length = {
-  type t = [
+  type operator = [#sub | #add | #mult | #div]
+
+  type rec t = [
     | #ch(float)
     | #em(float)
     | #ex(float)
@@ -131,9 +133,18 @@ module Length = {
     | #pt(int)
     | #zero
     | #pct(float)
+    | #calc(t, operator, t)
   ]
 
-  let toString = (x: t) =>
+  let operatorToString = operator =>
+    switch operator {
+    | #sub => `-`
+    | #add => `+`
+    | #mult => `*`
+    | #div => `/`
+    }
+
+  let rec toString = (x: t) =>
     switch x {
     | #ch(x) => Js.Float.toString(x) ++ "ch"
     | #em(x) => Js.Float.toString(x) ++ "em"
@@ -152,6 +163,8 @@ module Length = {
     | #pt(x) => Js.Int.toString(x) ++ "pt"
     | #zero => "0"
     | #pct(x) => Js.Float.toString(x) ++ "%"
+    | #calc(value1, operator, value2) =>
+      `calc(${value1->toString} ${operatorToString(operator)} ${value2->toString})`
     }
 }
 
@@ -393,4 +406,93 @@ module Border = {
 
   let toString = ((width, style, color): t) =>
     `${Length.toString(width)} ${(style :> string)} ${Color.toString(color)}`
+}
+
+module Angle = {
+  type t = [#deg(float) | #rad(float) | #grad(float) | #turn(float)]
+
+  let toString = x =>
+    switch x {
+    | #deg(x) => `${Js.Float.toString(x)}deg`
+    | #rad(x) => `${Js.Float.toString(x)}rad`
+    | #grad(x) => `${Js.Float.toString(x)}grad`
+    | #turn(x) => `${Js.Float.toString(x)}turn`
+    }
+}
+
+module Transform = {
+  type t = [
+    | #translate(Length.t, Length.t)
+    | #translate3d(Length.t, Length.t, Length.t)
+    | #translateX(Length.t)
+    | #translateY(Length.t)
+    | #translateZ(Length.t)
+    | #scale(float, float)
+    | #scale3d(float, float, float)
+    | #scaleX(float)
+    | #scaleY(float)
+    | #scaleZ(float)
+    | #rotate(Angle.t)
+    | #rotate3d(float, float, float, Angle.t)
+    | #rotateX(Angle.t)
+    | #rotateY(Angle.t)
+    | #rotateZ(Angle.t)
+    | #skew(Angle.t, Angle.t)
+    | #skewX(Angle.t)
+    | #skewY(Angle.t)
+    | #perspective(int)
+  ]
+
+  let translate = (x, y) => #translate(x, y)
+  let translate3d = (x, y, z) => #translate3d(x, y, z)
+  let translateX = x => #translateX(x)
+  let translateY = y => #translateY(y)
+  let translateZ = z => #translateZ(z)
+  let scale = (x, y) => #scale(x, y)
+  let scale3d = (x, y, z) => #scale3d(x, y, z)
+  let scaleX = x => #scaleX(x)
+  let scaleY = x => #scaleY(x)
+  let scaleZ = x => #scaleZ(x)
+  let rotate = a => #rotate(a)
+  let rotate3d = (x, y, z, a) => #rotate3d(x, y, z, a)
+  let rotateX = a => #rotateX(a)
+  let rotateY = a => #rotateY(a)
+  let rotateZ = a => #rotateZ(a)
+  let skew = (a, a') => #skew(a, a')
+  let skewX = a => #skewX(a)
+  let skewY = a => #skewY(a)
+
+  let string_of_scale = (x, y) => `scale(${Js.Float.toString(x)}, ${Js.Float.toString(y)})`
+
+  let string_of_translate3d = (x, y, z) =>
+    `translate3d(${Length.toString(x)}, ${Length.toString(y)}, ${Length.toString(z)})`
+
+  let toString = x =>
+    switch x {
+    | #translate(x, y) => `translate(${Length.toString(x)}, ${Length.toString(y)})`
+    | #translate3d(x, y, z) => string_of_translate3d(x, y, z)
+    | #translateX(x) => `translateX(${Length.toString(x)})`
+    | #translateY(y) => `translateY(${Length.toString(y)})`
+    | #translateZ(z) => `translateZ(${Length.toString(z)})`
+    | #scale(x, y) => string_of_scale(x, y)
+    | #scale3d(x, y, z) =>
+      `scale3d(${Js.Float.toString(x)}, ${Js.Float.toString(y)}, ${Js.Float.toString(z)})`
+    | #scaleX(x) => `scaleX(${Js.Float.toString(x)})`
+    | #scaleY(y) => `scaleY(${Js.Float.toString(y)})`
+    | #scaleZ(z) => "scaleZ(" ++ (Js.Float.toString(z) ++ ")")
+    | #rotate(a) => "rotate(" ++ (Angle.toString(a) ++ ")")
+    | #rotate3d(x, y, z, a) =>
+      "rotate3d(" ++
+      (Js.Float.toString(x) ++
+      (", " ++
+      (Js.Float.toString(y) ++
+      (", " ++ (Js.Float.toString(z) ++ (", " ++ (Angle.toString(a) ++ ")")))))))
+    | #rotateX(a) => "rotateX(" ++ (Angle.toString(a) ++ ")")
+    | #rotateY(a) => "rotateY(" ++ (Angle.toString(a) ++ ")")
+    | #rotateZ(a) => "rotateZ(" ++ (Angle.toString(a) ++ ")")
+    | #skew(x, y) => "skew(" ++ (Angle.toString(x) ++ (", " ++ (Angle.toString(y) ++ ")")))
+    | #skewX(a) => "skewX(" ++ (Angle.toString(a) ++ ")")
+    | #skewY(a) => "skewY(" ++ (Angle.toString(a) ++ ")")
+    | #perspective(x) => "perspective(" ++ (Js.Int.toString(x) ++ ")")
+    }
 }
