@@ -8,38 +8,25 @@ function s(prim) {
 }
 
 function App(Props) {
-  return React.createElement(Ancestor.Default.Grid.make, {
-              spacing: [Ancestor.Default.xs(2)],
-              children: null
-            }, React.createElement(Ancestor.Default.Box.make, {
-                  columns: [
-                    Ancestor.Default.xs(12),
-                    Ancestor.Default.md(4)
-                  ],
-                  bgColor: [Ancestor.Default.xs({
-                          NAME: "hex",
-                          VAL: "#000"
-                        })],
-                  color: [Ancestor.Default.xs({
-                          NAME: "hex",
-                          VAL: "#fafafa"
-                        })],
-                  children: "4 columns"
-                }), React.createElement(Ancestor.Default.Box.make, {
-                  columns: [
-                    Ancestor.Default.xs(12),
-                    Ancestor.Default.md(4)
-                  ],
-                  bgColor: [Ancestor.Default.xs({
-                          NAME: "hex",
-                          VAL: "#000"
-                        })],
-                  color: [Ancestor.Default.xs({
-                          NAME: "hex",
-                          VAL: "#fafafa"
-                        })],
-                  children: "4 columns"
-                }));
+  return React.createElement(Ancestor.Default.Box.make, {
+              children: React.createElement(Ancestor.Default.Base.make, {
+                    fontSize: [Ancestor.Default.xs({
+                            NAME: "calc",
+                            VAL: [
+                              {
+                                NAME: "px",
+                                VAL: 10
+                              },
+                              "add",
+                              {
+                                NAME: "rem",
+                                VAL: 0.5
+                              }
+                            ]
+                          })],
+                    children: "Teste"
+                  })
+            });
 }
 
 var make = App;
