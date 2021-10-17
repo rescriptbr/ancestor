@@ -15,7 +15,7 @@ type jestFn
 @val external expectFn: jestFn => testable<'value> = "expect"
 @val external expectArray: array<'value> => testable<'value> = "expect"
 
-@send external toBe: (testable<'value>, 'value) => testable<'value> = "toBe"
+@send external toBe: (testable<'value>, 'value) => unit = "toBe"
 @send external toEqual: (testable<'value>, 'value) => testable<'value> = "toEqual"
 @send external toContain: (testable<'value>, 'value) => testable<'value> = "toContain"
 @send external toHaveBeenCalled: (testable<'value>, unit) => testable<'value> = "toHaveBeenCalled"

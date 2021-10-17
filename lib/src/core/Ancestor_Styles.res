@@ -50,6 +50,10 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
 
   let createResponsiveStyles = (
     ~borderRadius: option<responsiveProp<Radius.t>>=?,
+    ~borderTLRadius: option<responsiveProp<Radius.t>>=?,
+    ~borderTRRadius: option<responsiveProp<Radius.t>>=?,
+    ~borderBLRadius: option<responsiveProp<Radius.t>>=?,
+    ~borderBRRadius: option<responsiveProp<Radius.t>>=?,
     ~border: option<responsiveProp<Border.t>>=?,
     ~borderRight: option<responsiveProp<Border.t>>=?,
     ~borderLeft: option<responsiveProp<Border.t>>=?,
@@ -112,6 +116,10 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
   ) =>
     [
       createCssValueFromArray("border-radius", borderRadius, Radius.make),
+      createCssValueFromArray("border-top-left-radius", borderTLRadius, Radius.make),
+      createCssValueFromArray("border-top-right-radius", borderTRRadius, Radius.make),
+      createCssValueFromArray("border-bottom-left-radius", borderBLRadius, Radius.make),
+      createCssValueFromArray("border-bottom-right-radius", borderBRRadius, Radius.make),
       createCssValueFromArray("border", border, Border.toString),
       createCssValueFromArray("border-right", borderRight, Border.toString),
       createCssValueFromArray("border-left", borderLeft, Border.toString),

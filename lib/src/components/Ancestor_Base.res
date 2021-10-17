@@ -4,6 +4,10 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
   @react.component
   let make = (
     ~borderRadius=?,
+    ~borderTLRadius=?,
+    ~borderTRRadius=?,
+    ~borderBLRadius=?,
+    ~borderBRRadius=?,
     ~border=?,
     ~borderRight=?,
     ~borderLeft=?,
@@ -306,6 +310,10 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
           let responsiveStyles =
             Styles.createResponsiveStyles(
               ~borderRadius?,
+              ~borderTLRadius?,
+              ~borderTRRadius?,
+              ~borderBLRadius?,
+              ~borderBRRadius?,
               ~border?,
               ~borderRight?,
               ~borderLeft?,
