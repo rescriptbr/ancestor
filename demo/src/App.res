@@ -7,12 +7,7 @@ let s = React.string
 
 @react.component
 let make = () => {
-  <Grid spacing=[xs(2)]>
-    <Box columns=[xs(#12), md(#4)] color=[xs(#hex("#fafafa"))] bgColor=[xs(#hex("#000"))]>
-      {"4 columns"->s}
-    </Box>
-    <Box columns=[xs(#12), md(#4)] color=[xs(#hex("#fafafa"))] bgColor=[xs(#hex("#000"))]>
-      {"4 columns"->s}
-    </Box>
-  </Grid>
+  <Box>
+    <Typography fontSize=[xs(#calc(10->#px, #add, 0.5->#rem))]> {"Teste"->s} </Typography>
+  </Box>
 }
