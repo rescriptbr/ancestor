@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: 14
       - run: yarn
-      - run: yarn lib:test
       - run: yarn lib:compile
+      - run: yarn lib:test
 
   publish-npm:
     needs: build

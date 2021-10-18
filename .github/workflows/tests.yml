@@ -1,4 +1,4 @@
-name: Tests 
+name: Run library tests 
 
 on: [pull_request]
 
@@ -11,4 +11,5 @@ jobs:
         with:
           node-version: 14
       - run: yarn
+      - run: yarn lib:compile
       - run: yarn lib:test
