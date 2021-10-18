@@ -49,6 +49,21 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~borderTRRadius=?,
     ~borderBLRadius=?,
     ~borderBRRadius=?,
+    ~borderStyle=?,
+    ~borderColor=?,
+    ~borderWidth=?,
+    ~borderRightStyle=?,
+    ~borderLeftStyle=?,
+    ~borderTopStyle=?,
+    ~borderBottomStyle=?,
+    ~borderRightColor=?,
+    ~borderLeftColor=?,
+    ~borderTopColor=?,
+    ~borderBottomColor=?,
+    ~borderRightWidth=?,
+    ~borderLeftWidth=?,
+    ~borderTopWidth=?,
+    ~borderBottomWidth=?,
     ~border=?,
     ~borderRight=?,
     ~borderLeft=?,
@@ -352,6 +367,21 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?borderTRRadius
       ?borderBLRadius
       ?borderBRRadius
+      ?borderStyle
+      ?borderColor
+      ?borderWidth
+      ?borderRightStyle
+      ?borderLeftStyle
+      ?borderTopStyle
+      ?borderBottomStyle
+      ?borderRightColor
+      ?borderLeftColor
+      ?borderTopColor
+      ?borderBottomColor
+      ?borderRightWidth
+      ?borderLeftWidth
+      ?borderTopWidth
+      ?borderBottomWidth
       ?border
       ?borderRight
       ?borderLeft
