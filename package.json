@@ -12,6 +12,7 @@
   "scripts": {
     "lib": "yarn workspace @rescriptbr/ancestor",
     "lib:compile": "yarn lib build",
+    "lib:test": "yarn lib test",
     "demo": "yarn workspace demo-workspace",
     "demo:compile": "yarn demo rescript:watch",
     "demo:dev": "yarn demo vite:dev",
