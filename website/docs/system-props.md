@@ -217,8 +217,29 @@ Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
 
 ### Border
 
+:::important
+Check out the [`Border.t`](/docs/system-props#bordert) and [`BordeStyle.t`](/docs/system-props/#borderstylet) type signature.
+:::
+
 #### `borderRadius`
 - CSS Key: `border`
+- Type: `responsiveProp<int>`
+
+#### `borderTLRadius`
+- CSS Key: `border-top-left-radius`
+- Type: `responsiveProp<int>`
+
+#### `borderTRRadius`
+- CSS Key: `border-top-right-radius`
+- Type: `responsiveProp<int>`
+
+
+#### `borderBLRadius`
+- CSS Key: `border-bottom-left-radius`
+- Type: `responsiveProp<int>`
+
+#### `borderBRRadius`
+- CSS Key: `border-bottom-right-radius`
 - Type: `responsiveProp<int>`
 
 #### `border`
@@ -242,9 +263,53 @@ Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
 - CSS Key: `border-right`
 - Type: `responsiveProp<Border.t>`
 
-:::important
-Check out the [`Border.t`](/docs/system-props#lengtht) type signature.
-:::
+#### `borderTopStyle`
+- CSS Key: `border-top-style`
+- Type: `responsiveProp<BorderStyle.t>`
+
+#### `borderBottomStyle`
+- CSS Key: `border-bottom-style`
+- Type: `responsiveProp<BorderStyle.t>`
+
+#### `borderLeftStyle`
+- CSS Key: `border-left-style`
+- Type: `responsiveProp<BorderStyle.t>`
+
+#### `borderRightStyle`
+- CSS Key: `border-right-style`
+- Type: `responsiveProp<BorderStyle.t>`
+
+#### `borderTopWidth`
+- CSS Key: `border-top-width`
+- Type: `responsiveProp<Length.t>`
+
+#### `borderBottomWidth`
+- CSS Key: `border-bottom-width`
+- Type: `responsiveProp<Length.t>`
+
+#### `borderLeftWidth`
+- CSS Key: `border-left-width`
+- Type: `responsiveProp<Length.t>`
+
+#### `borderRightWidth`
+- CSS Key: `border-right-width`
+- Type: `responsiveProp<Length.t>`
+
+#### `borderTopColor`
+- CSS Key: `border-top-color`
+- Type: `responsiveProp<Color.t>`
+
+#### `borderBottomColor`
+- CSS Key: `border-bottom-color`
+- Type: `responsiveProp<Color.t>`
+
+#### `borderLeftColor`
+- CSS Key: `border-left-color`
+- Type: `responsiveProp<Color.t>`
+
+#### `borderRightColor`
+- CSS Key: `border-right-color`
+- Type: `responsiveProp<Color.t>`
 
 ### Size
 
@@ -474,6 +539,14 @@ Check out the [`Color.t`](/docs/system-props#colort) type signature.
 - CSS Key: `text-decoration-style`
 - Type: `responsiveProp<[#solid | #double | #dotted | #dashed | #wavy]>`
 
+#### `transform`
+- CSS Key: `transform`
+- Type: `responsiveProp<Transform.t>`
+
+:::important
+Check out the [`Transform.t`](/docs/system-props#transformt) type signature.
+:::
+
 ## Types reference
 
 ### `Spacing.t`
@@ -509,11 +582,11 @@ Used by props like `width`, `height`, `line-height`, etc:
   ]
 ```
 
-### `Border.t`
+### `BorderStyle.t`
 
-Used by props like `border`, `borderTop`, etc:
+Used by props like `borderLeftStyle`, `borderStyle`, etc:
 ```reason
-  type style = [
+  type t = [
     | #none
     | #hidden
     | #dotted
@@ -525,13 +598,18 @@ Used by props like `border`, `borderTop`, etc:
     | #inset
     | #outset
   ]
+```
 
-  type t = (Length.t, style, Color.t)
+### `Border.t`
+
+Used by props like `border`, `borderTop`, etc:
+```reason
+  type t = (Length.t, BorderStyle.t, Color.t)
 ```
 
 ### `Color.t`
 Used by props like `border`, `bgColor`, `color`, etc:
-```reason
+```ocaml
   type t = [
     | #rgb(int, int, int)
     | #hex(string)
@@ -540,4 +618,28 @@ Used by props like `border`, `bgColor`, `color`, etc:
   ]
 ```
 
-
+### `Transform.t`
+Used by `transform`:
+```ocaml
+  type t = [
+    | #translate(Length.t, Length.t)
+    | #translate3d(Length.t, Length.t, Length.t)
+    | #translateX(Length.t)
+    | #translateY(Length.t)
+    | #translateZ(Length.t)
+    | #scale(float, float)
+    | #scale3d(float, float, float)
+    | #scaleX(float)
+    | #scaleY(float)
+    | #scaleZ(float)
+    | #rotate(Angle.t)
+    | #rotate3d(float, float, float, Angle.t)
+    | #rotateX(Angle.t)
+    | #rotateY(Angle.t)
+    | #rotateZ(Angle.t)
+    | #skew(Angle.t, Angle.t)
+    | #skewX(Angle.t)
+    | #skewY(Angle.t)
+    | #perspective(int)
+  ]
+  ```
