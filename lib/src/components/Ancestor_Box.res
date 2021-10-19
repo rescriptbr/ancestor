@@ -115,7 +115,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~listStyleType=?,
     ~outlineStyle=?,
     ~textDecorationStyle=?,
-    ~transform,
+    ~transform=?,
     // Box props
     ~columns: option<Styles.responsiveProp<columns>>=?,
     // React props
