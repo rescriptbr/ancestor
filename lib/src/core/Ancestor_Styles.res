@@ -127,6 +127,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~listStyleType: option<responsiveProp<ListStyleType.t>>=?,
     ~outlineStyle: option<responsiveProp<OutlineStyle.t>>=?,
     ~textDecorationStyle: option<responsiveProp<TextDecorationStyle.t>>=?,
+    ~transform: option<responsiveProp<Transform.t>>=?,
     (),
   ) =>
     [
@@ -216,5 +217,6 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
         textDecorationStyle,
         TextDecorationStyle.toString,
       ),
+      createCssValueFromArray("transform", transform, Transform.toString),
     ]->Js.Array2.joinWith("")
 }

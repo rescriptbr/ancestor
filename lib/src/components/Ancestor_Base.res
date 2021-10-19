@@ -81,6 +81,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~listStyleType=?,
     ~outlineStyle=?,
     ~textDecorationStyle=?,
+    ~transform=?,
     // Base props
     ~tag: Ancestor_React.tags=#div,
     // React props
@@ -402,6 +403,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
               ~listStyleType?,
               ~outlineStyle?,
               ~textDecorationStyle?,
+              ~transform?,
               (),
             )->Maker.css
 

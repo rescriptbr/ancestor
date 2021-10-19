@@ -115,6 +115,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~listStyleType=?,
     ~outlineStyle=?,
     ~textDecorationStyle=?,
+    ~transform,
     // Box props
     ~columns: option<Styles.responsiveProp<columns>>=?,
     // React props
@@ -437,6 +438,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?listStyleType
       ?outlineStyle
       ?textDecorationStyle
+      ?transform
       // DOM Props
       tag
       ?id

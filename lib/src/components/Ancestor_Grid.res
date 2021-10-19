@@ -122,6 +122,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~listStyleType=?,
     ~outlineStyle=?,
     ~textDecorationStyle=?,
+    ~transform=?,
     // Grid props
     ~spacing: option<Styles.responsiveProp<int>>=?,
     ~tag: Ancestor_React.tags=#div,
@@ -440,6 +441,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?listStyleType
       ?outlineStyle
       ?textDecorationStyle
+      ?transform
       // DOM Props
       tag
       ?id
