@@ -158,16 +158,11 @@ module Length = {
     | #pt(int)
     | #zero
     | #pct(float)
-    | #calc(t, operator, t)
+    | #add(t, t)
+    | #sub(t, t)
+    | #div(t, t)
+    | #mult(t, t)
   ]
-
-  let operatorToString = operator =>
-    switch operator {
-    | #sub => `-`
-    | #add => `+`
-    | #mult => `*`
-    | #div => `/`
-    }
 
   let rec toString = (x: t) =>
     switch x {
@@ -188,8 +183,10 @@ module Length = {
     | #pt(x) => Js.Int.toString(x) ++ "pt"
     | #zero => "0"
     | #pct(x) => Js.Float.toString(x) ++ "%"
-    | #calc(value1, operator, value2) =>
-      `calc(${value1->toString} ${operatorToString(operator)} ${value2->toString})`
+    | #add(v1, v2) => `calc(${v1->toString} + ${v2->toString})`
+    | #sub(v1, v2) => `calc(${v1->toString} - ${v2->toString})`
+    | #mult(v1, v2) => `calc(${v1->toString} * ${v2->toString})`
+    | #div(v1, v2) => `calc(${v1->toString} / ${v2->toString})`
     }
 }
 

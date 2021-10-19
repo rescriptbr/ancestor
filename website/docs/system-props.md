@@ -579,8 +579,20 @@ Used by props like `width`, `height`, `line-height`, etc:
     | #pt(int)
     | #zero
     | #pct(float)
+    | #add(t, t)
+    | #sub(t, t)
+    | #mult(t, t)
+    | #div(t, t)
   ]
 ```
+
+### Using CSS `calc`
+```ocaml
+  <Box width=[xs(#add(1.6->#rem, 10->#px))]>
+    ...
+  </Box>
+```
+The expression `#add(1.6->#rem, 10->#px)` is equivalent to `calc(1.6rem + 10px)` in plain CSS. You can replace `#add` by `#sub`, `#mult` or `#div` to use another calc operator.
 
 ### `BorderStyle.t`
 

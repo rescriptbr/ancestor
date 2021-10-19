@@ -7,10 +7,10 @@ describe("Ancestor_CssTypes", (. ()) => {
     expect(toString(#rem(10.2)))->toBe(`10.2rem`)
 
     // CSS calc(...)
-    expect(#calc(1.6->#rem, #add, 10->#px)->toString)->toBe(`calc(1.6rem + 10px)`)
-    expect(#calc(1.6->#rem, #sub, 10->#px)->toString)->toBe(`calc(1.6rem - 10px)`)
-    expect(#calc(1.6->#rem, #div, 10->#px)->toString)->toBe(`calc(1.6rem / 10px)`)
-    expect(#calc(1.6->#rem, #mult, 10->#px)->toString)->toBe(`calc(1.6rem * 10px)`)
+    expect(#add(1.6->#rem, 10->#px)->toString)->toBe(`calc(1.6rem + 10px)`)
+    expect(#sub(1.6->#rem, 10->#px)->toString)->toBe(`calc(1.6rem - 10px)`)
+    expect(#div(1.6->#rem, 10->#px)->toString)->toBe(`calc(1.6rem / 10px)`)
+    expect(#mult(1.6->#rem, 10->#px)->toString)->toBe(`calc(1.6rem * 10px)`)
   })
 
   it("Transform.toString", (. ()) => {
