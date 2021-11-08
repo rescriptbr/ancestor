@@ -17,6 +17,9 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
           ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
   }
 
+  @ocaml.doc("
+    * Important note on this module
+  ")
   type responsiveProp<'a> = array<Maker.breakpoints<'a>>
 
   let createBreakpointSize = device => `${device->Maker.sizeByBreakpoints->Belt.Int.toString}px`
