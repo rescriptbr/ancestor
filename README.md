@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/ancestor-logo.svg" /> 
+  <img src="https://raw.githubusercontent.com/rescriptbr/ancestor/master/assets/ancestor-logo.svg" /> 
   <br />
   <br />
   <a target="_blank" href="https://ancestor.netlify.app"> Docs </a> //
