@@ -31,9 +31,55 @@ module DefaultConfig = {
 module Default = {
   include Make(DefaultConfig)
 
+  @ocaml.doc("
+    * Alias function to the #xs('value) breakpoint
+  ")
   let xs = v => #xs(v)
+  @ocaml.doc("
+    * Alias function to the #sm('value) breakpoint
+    * Size: 475px
+  ")
   let sm = v => #sm(v)
+  @ocaml.doc("
+    * Alias function to the #md('value) breakpoint
+    * Size: 920px
+  ")
   let md = v => #md(v)
+  @ocaml.doc("
+    * Alias function to the #lg('value) breakpoint
+    * Size: 1280px
+  ")
   let lg = v => #lg(v)
+  @ocaml.doc("
+    * Alias function to the #xl('value) breakpoint. 
+    * Size: 1920px
+  ")
   let xl = v => #xl(v)
 }
+
+include Make(DefaultConfig)
+
+@ocaml.doc("
+    * Alias function to the #xs('value) breakpoint
+  ")
+let xs = v => #xs(v)
+@ocaml.doc("
+    * Alias function to the #sm('value) breakpoint
+    * Size: 475px
+  ")
+let sm = v => #sm(v)
+@ocaml.doc("
+    * Alias function to the #md('value) breakpoint
+    * Size: 920px
+  ")
+let md = v => #md(v)
+@ocaml.doc("
+    * Alias function to the #lg('value) breakpoint
+    * Size: 1280px
+  ")
+let lg = v => #lg(v)
+@ocaml.doc("
+    * Alias function to the #xl('value) breakpoint. 
+    * Size: 1920px
+  ")
+let xl = v => #xl(v)
