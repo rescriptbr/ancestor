@@ -8,22 +8,8 @@ function s(prim) {
 }
 
 function App(Props) {
-  return React.createElement(Ancestor.Default.Box.make, {
-              children: React.createElement(Ancestor.Default.Base.make, {
-                    fontSize: [Ancestor.Default.xs({
-                            NAME: "calc",
-                            VAL: [
-                              {
-                                NAME: "px",
-                                VAL: 10
-                              },
-                              "add",
-                              {
-                                NAME: "rem",
-                                VAL: 0.5
-                              }
-                            ]
-                          })],
+  return React.createElement(Ancestor.Box.make, {
+              children: React.createElement(Ancestor.Base.make, {
                     children: "Teste"
                   })
             });

@@ -1,4 +1,4 @@
-open Ancestor.Default
+open Ancestor
 
 let s = React.string
 
@@ -7,7 +7,5 @@ let s = React.string
 
 @react.component
 let make = () => {
-  <Box>
-    <Typography fontSize=[xs(#calc(10->#px, #add, 0.5->#rem))]> {"Teste"->s} </Typography>
-  </Box>
+  <Box> <Typography> {"Teste"->s} </Typography> </Box>
 }
