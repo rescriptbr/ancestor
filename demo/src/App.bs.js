@@ -9,10 +9,62 @@ function s(prim) {
 
 function App(Props) {
   return React.createElement(Ancestor.Box.make, {
-              children: React.createElement(Ancestor.Base.make, {
-                    children: "Teste"
-                  })
-            });
+              children: null
+            }, React.createElement(Ancestor.Base.make, {
+                  textDecoration: [Ancestor.xs("none")],
+                  tag: "a",
+                  children: "Test",
+                  href: "test"
+                }), React.createElement(Ancestor.Box.make, {
+                  display: [Ancestor.xs("flex")],
+                  gap: [Ancestor.xs({
+                          NAME: "one",
+                          VAL: {
+                            NAME: "rem",
+                            VAL: 3.2
+                          }
+                        })],
+                  children: null
+                }, React.createElement(Ancestor.Box.make, {
+                      bgColor: [Ancestor.xs({
+                              NAME: "hex",
+                              VAL: "#000"
+                            })],
+                      width: [Ancestor.xs({
+                              NAME: "px",
+                              VAL: 50
+                            })],
+                      height: [Ancestor.xs({
+                              NAME: "px",
+                              VAL: 50
+                            })]
+                    }), React.createElement(Ancestor.Box.make, {
+                      bgColor: [Ancestor.xs({
+                              NAME: "hex",
+                              VAL: "#000"
+                            })],
+                      width: [Ancestor.xs({
+                              NAME: "px",
+                              VAL: 50
+                            })],
+                      height: [Ancestor.xs({
+                              NAME: "px",
+                              VAL: 50
+                            })]
+                    }), React.createElement(Ancestor.Box.make, {
+                      bgColor: [Ancestor.xs({
+                              NAME: "hex",
+                              VAL: "#000"
+                            })],
+                      width: [Ancestor.xs({
+                              NAME: "px",
+                              VAL: 50
+                            })],
+                      height: [Ancestor.xs({
+                              NAME: "px",
+                              VAL: 50
+                            })]
+                    })));
 }
 
 var make = App;
