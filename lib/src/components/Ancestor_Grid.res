@@ -70,6 +70,9 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~borderTop=?,
     ~borderBottom=?,
     ~bgColor=?,
+    ~bgSize=?,
+    ~bgPosition=?,
+    ~bgImage=?,
     ~color=?,
     ~display=?,
     ~justifyContent=?,
@@ -82,6 +85,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~alignSelf=?,
     ~justifySelf=?,
     ~flexFlow=?,
+    ~gap=?,
     ~p=?,
     ~px=?,
     ~py=?,
@@ -120,8 +124,14 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~cursor=?,
     ~visibility=?,
     ~listStyleType=?,
+    ~listStylePosition=?,
+    ~listStyleImage=?,
+    ~listStyle=?,
     ~outlineStyle=?,
+    ~outline=?,
     ~textDecorationStyle=?,
+    ~textDecorationLine=?,
+    ~textDecoration=?,
     ~transform=?,
     // Grid props
     ~spacing: option<Styles.responsiveProp<int>>=?,
@@ -389,6 +399,9 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?borderTop
       ?borderBottom
       ?bgColor
+      ?bgSize
+      ?bgPosition
+      ?bgImage
       ?color
       ?display
       ?justifyContent
@@ -401,6 +414,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?alignSelf
       ?justifySelf
       ?flexFlow
+      ?gap
       ?p
       ?px
       ?py
@@ -439,8 +453,14 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ?cursor
       ?visibility
       ?listStyleType
+      ?listStylePosition
+      ?listStyleImage
+      ?listStyle
       ?outlineStyle
+      ?outline
       ?textDecorationStyle
+      ?textDecorationLine
+      ?textDecoration
       ?transform
       // DOM Props
       tag
