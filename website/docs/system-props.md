@@ -205,15 +205,27 @@ Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
 
 #### `alignSelf`
 - CSS Key: `align-self`
-- Type: 
+- Type: `AlignContent.t`
 
 #### `justifySelf`
 - CSS Key: `justify-self`
-- Type: 
+- Type: `AlignContent.t`
 
 #### `flexFlow`
 - CSS Key: `flex-flow`
-- Type: 
+- Type: `(FlexDirection.t, FlexWrap.t)`
+
+#### `gap`
+- CSS Key: `gap`
+- Type: `responsiveProp<[`
+ - `| #one(Length.t)`
+ - `| #two(Length.t, Length.t) `
+ - `| #inherit`
+ - `| #initial`
+ - `| #revert`
+ - `| #unset`
+ 
+`]>`
 
 ### Border
 
@@ -442,6 +454,43 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 - CSS Key: `background-color`
 - Type: `responsiveProp<Color.t>`
 
+#### `bgSize`
+- CSS Key: `background-size`
+- Type: `responsiveProp<[`
+   - `| #size` 
+   - `| #contain`
+   - `| #inherit`
+   - `| #initial`
+   - `| #unset`
+   - `| #auto`
+   - `| #length(Length.t)`
+
+`]>`
+
+#### `bgPosition`
+- CSS Key: `background-position`
+- Type: `responsiveProp<[`
+   -`| #top`
+   -`| #bottom`
+   -`| #left`
+   -`| #right`
+   -`| #center`
+   -`| #inherit`
+   -`| #initial`
+   -`| #unset`
+   -`| #length(Length.t)`
+
+`]>`
+
+#### `bgImage`
+- CSS Key: `background-image`
+- Type: `responsiveProp<[`
+   -`| #url(string)`
+`]>`
+
+
+
+
 :::important
 Check out the [`Color.t`](/docs/system-props#colort) type signature.
 :::
@@ -520,6 +569,36 @@ Check out the [`Color.t`](/docs/system-props#colort) type signature.
     - `| #none`
   `]>`
 
+#### `listStylePosition`
+- CSS Key: `list-style-position`
+- Type: `responsiveProp<`
+    - `| #inside`
+    - `| #outside`
+
+  `]>`
+
+#### `listStyleImage`
+- CSS Key: `list-style-image`
+- Type: `responsiveProp<`
+    - `| #url(string)`
+
+  `]>`
+
+#### `listStyle`
+- CSS Key: `list-style`
+- Type: `responsiveProp<`
+   - `| #"type"(ListStyleType.t)`
+   - `| #position(ListStylePosition.t)`
+   - `| #image(ListStyleImage.t)`
+   - `| #short(ListStyleType.t, ListStylePosition.t, ListStyleImage.t)`
+   - `| #inherit`
+   - `| #initial`
+   - `| #revert`
+   - `| #unset`
+   - `| #none`
+
+  `]>`
+
 #### `outlineStyle`
 - CSS Key: `outline-style`
 - Type: `responsiveProp<`
@@ -533,11 +612,38 @@ Check out the [`Color.t`](/docs/system-props#colort) type signature.
     - `| #ridge`
     - `| #inset`
     - `| #outset`
+
   `]>`
+
+#### `outline`
+- CSS Key: `outline`
+- Type: `responsiveProp<`
+  - `| #short(Length.t, OutlineStyle.t, Color.t)`
+  - `| #inherit`
+  - `| #initial`
+  - `| #unset`
+
+  `]>`
+
 
 #### `textDecorationStyle`
 - CSS Key: `text-decoration-style`
 - Type: `responsiveProp<[#solid | #double | #dotted | #dashed | #wavy]>`
+
+#### `textDecorationLine`
+- CSS Key: `text-decoration-line`
+- Type: `responsiveProp<[#none | #underline | #overline | #"line-through" | #blink]>`
+
+#### `textDecoration`
+- CSS Key: `text-decoration`
+- Type: `responsiveProp<[`
+   - `| #short(TextDecorationLine.t, Color.t, TextDecorationStyle.t)`
+   - `| #initial`
+   - `| #inherit`
+   - `| #none`
+
+`]>`
+
 
 #### `transform`
 - CSS Key: `transform`

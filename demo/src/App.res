@@ -7,5 +7,12 @@ let s = React.string
 
 @react.component
 let make = () => {
-  <Box> <Typography> {"Teste"->s} </Typography> </Box>
+  <Box>
+    <Base tag=#a href="test" textDecoration=[xs(#none)]> {"Test"->React.string} </Base>
+    <Box display=[xs(#flex)] gap=[xs(#one(3.2->#rem))]>
+      <Box width=[xs(50->#px)] height=[xs(50->#px)] bgColor=[xs(#hex("#000"))] />
+      <Box width=[xs(50->#px)] height=[xs(50->#px)] bgColor=[xs(#hex("#000"))] />
+      <Box width=[xs(50->#px)] height=[xs(50->#px)] bgColor=[xs(#hex("#000"))] />
+    </Box>
+  </Box>
 }
