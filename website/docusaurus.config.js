@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 module.exports = {
   title: 'Ancestor — UI primitives for ReScript and React',
   tagline: '',
-  url: 'https://ancestor.netlify.app',
+  url: 'https://ancestor.rescriptbrasil.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
