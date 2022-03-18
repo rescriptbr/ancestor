@@ -1,4 +1,4 @@
-name: Create version
+name: Create version and update main branch
 
 on:
   workflow_dispatch:
@@ -13,7 +13,6 @@ on:
             - minor
             - major
 
-
 jobs:
   create-version:
     runs-on: ubuntu-latest
@@ -25,9 +24,20 @@ jobs:
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          
+      
+      - name: Merge main and dev
+      - run: |
+          git checkout main
+          git rebase dev
+      
       - name: Generate new version ${{ github.event.inputs.versionType }}
         run: npm version ${{ github.event.inputs.versionType }}
-      
+
       - name: Push the tags
         run: git push origin main --tags
+
+      - name: Sync main and dev
+        run: |
+         git checkout dev
+         git rebase main
+         git push origin dev 
