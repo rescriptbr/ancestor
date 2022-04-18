@@ -19,7 +19,7 @@ However, in some cases, the team needs to create its own design system or style 
 and other specifications created by a design team. In this case, the usage of a library like Material UI or Chakra UI might 
 not be the best choice, because depends on a lot of customizations or changes to adapt the library to the design specification.
 
-It was the reason that we created Ancestor: **to act as a foundation for your project or design system.**
+It was the rescript that we created Ancestor: **to act as a foundation for your project or design system.**
 
 ## Features
 
@@ -42,7 +42,7 @@ Breakpoints, spacing, radius, grid columns, etc which makes it easy to customize
 
 ## Basic usage
 
-```ocaml
+```rescript
 open Ancestor.Default
 
 @react.component

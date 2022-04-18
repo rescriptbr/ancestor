@@ -10,7 +10,7 @@ Ancestor take advantage of [Module Functors](https://rescript-lang.org/docs/manu
 
 The customization interface has the following type signature:
 
-```ocaml
+```rescript
 module type AncestorCoreMaker = {
   type breakpoints<'value>
 
@@ -24,7 +24,7 @@ module type AncestorCoreMaker = {
 
 And the default setup has the following values and types:
 
-```ocaml
+```rescript
 
 module DefaultConfig = {
   type breakpoints<'a> = [
@@ -78,7 +78,7 @@ Ancestor's breakpoints are customizable. The default setup has the following val
 
 If you wish, you can customize **only** the breakpoints by overriding all types and values from the default setup:
 
-```reason title="MyApp.res"
+```rescript title="MyApp.res"
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = [
     | #small('value)
@@ -144,7 +144,7 @@ Instead of write `display=[#xxs(#flex)]` you can write `display=[xxs(#flex)]`. I
 By default, Ancestor uses a scale factor of `8px` to keep the spacing consistent between the elements.
 You can customize the scale factor by providing a new value for the `spacing` property:
 
-```ocaml
+```rescript
 
 module AncestorCustom = Ancestor.Make({
   include Ancestor.DefaultConfig
@@ -158,7 +158,7 @@ module AncestorCustom = Ancestor.Make({
 By default, Ancestor uses a scale factor of `8px` to keep the border radius consistent between the elements.
 You can customize the scale factor by providing a new value for the `radius` property:
 
-```ocaml
+```rescript
 
 module AncestorCustom = Ancestor.Make({
   include Ancestor.DefaultConfig
@@ -173,7 +173,7 @@ To generate styles Ancestor uses [@emotion/css](https://emotion.sh/docs/introduc
 If you wish, you can use another CSS in JS library that provides an equivalent function, like [Goober](https://github.com/cristianbote/goober#csstaggedtemplate)
 or [styled-components](https://styled-components.com/docs/api#css).
 
-```ocaml
+```rescript
 
 module Goober = {
   @module("goober") external css: string => string = "css"

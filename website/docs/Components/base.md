@@ -11,7 +11,7 @@ A base component to built other components that accepts responsive props.
 
 ## Example
 
-<CodeBlock className="language-reason"> {cleanUpCode(FirstBaseExampleSource)}</CodeBlock>
+<CodeBlock className="language-rescript"> {cleanUpCode(FirstBaseExampleSource)}</CodeBlock>
 
 <Wrapper>
   <FirstBaseExample />

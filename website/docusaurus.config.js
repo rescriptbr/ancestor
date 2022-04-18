@@ -1,5 +1,4 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github')
-const darkCodeTheme = require('prism-react-renderer/themes/dracula')
+const theme = require('prism-react-renderer/themes/nightOwl')
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -77,8 +76,9 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} ReScript Brazil Community, Built with Docusaurus and ReScript.`,
     },
     prism: {
-      theme: lightCodeTheme,
-      darkTheme: darkCodeTheme,
+       additionalLanguages: ['rescript'],
+      theme: theme,
+      darkTheme: theme,
     },
   },
   presets: [

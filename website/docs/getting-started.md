@@ -41,7 +41,7 @@ Add the package to `bs-dependencies` in your `bsconfig.json`:
 
 Ancestor comes with a default setup. You can use the default setup by exposing the module writing `open Ancestor.Default`:
 
-```ocaml title="App.res"
+```rescript title="App.res"
 open Ancestor.Default
 
 @react.component
