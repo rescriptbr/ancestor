@@ -17,20 +17,20 @@ We don't support all CSS props yet. It's still work in progress.
 Since all Ancestor's utility props are responsive, they are typed as `responsiveProp<'value>`. 
 If you want to understand more, see the following example:
 
-```reason title=Ancestor_Styles.res
+```rescript title=Ancestor_Styles.res
   type responsiveProp = array<breakpoints<'a>>
 ```
 _Check out the module [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Styles.res#L15)_.
 
 The breakpoint type is customizable (check out the [customization section](/docs/customization)), by default it has the following type signature:
 
-```reason 
+```rescript 
   type breakpoint<'a> = [#xs('value') | #md('a) | #lg('a) | #xl('a)]
 ```
 
 Now, see a type signature of a component property:
 
-```reason title=Ancestor_Base.res
+```rescript title=Ancestor_Base.res
   module Base = {
     @react.component
     let make = (
@@ -44,7 +44,7 @@ _Check out the module [Ancestor_Base.res](https://github.com/rescriptbr/ancestor
 
 Example of usage: 
 
-```reason title=App.res
+```rescript title=App.res
   open Ancestor.Default
 
   <Base display=[#xs(#flex)]>
@@ -659,14 +659,14 @@ Check out the [`Transform.t`](/docs/system-props#transformt) type signature.
 
 This type is just an alias for `int` and is used by props like `py`, `my`, `mx`, etc.
 
-```reason
+```rescript
   type t = int
 ```
 Since the type is just an alias, the value will be calculated using the scale factor defined [here](/docs/customization#spacing).
 
 ### `Length.t`
 Used by props like `width`, `height`, `line-height`, etc:
-```reason
+```rescript
   type t = [
     | #ch(float)
     | #em(float)
@@ -693,7 +693,7 @@ Used by props like `width`, `height`, `line-height`, etc:
 ```
 
 ### Using CSS `calc`
-```ocaml
+```rescript
   <Box width=[xs(#add(1.6->#rem, 10->#px))]>
     ...
   </Box>
@@ -703,7 +703,7 @@ The expression `#add(1.6->#rem, 10->#px)` is equivalent to `calc(1.6rem + 10px)`
 ### `BorderStyle.t`
 
 Used by props like `borderLeftStyle`, `borderStyle`, etc:
-```reason
+```rescript
   type t = [
     | #none
     | #hidden
@@ -721,13 +721,13 @@ Used by props like `borderLeftStyle`, `borderStyle`, etc:
 ### `Border.t`
 
 Used by props like `border`, `borderTop`, etc:
-```reason
+```rescript
   type t = (Length.t, BorderStyle.t, Color.t)
 ```
 
 ### `Color.t`
 Used by props like `border`, `bgColor`, `color`, etc:
-```ocaml
+```rescript
   type t = [
     | #rgb(int, int, int)
     | #hex(string)
@@ -738,7 +738,7 @@ Used by props like `border`, `bgColor`, `color`, etc:
 
 ### `Transform.t`
 Used by `transform`:
-```ocaml
+```rescript
   type t = [
     | #translate(Length.t, Length.t)
     | #translate3d(Length.t, Length.t, Length.t)
