@@ -1,4 +1,8 @@
-<p align="center">
+[![npm version](https://badge.fury.io/js/@rescriptbr%2Fancestor.svg)](https://badge.fury.io/js/@rescriptbr%2Fancestor)
+![example workflow](https://github.com/rescriptbr/ancestor/actions/workflows/tests.yml/badge.svg)
+
+<p align="center">  
+  <br/>
   <img src="https://raw.githubusercontent.com/rescriptbr/ancestor/master/assets/ancestor-logo.svg" /> 
   <br />
   <br />
