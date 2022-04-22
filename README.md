@@ -1,5 +1,5 @@
 [![npm version](https://badge.fury.io/js/@rescriptbr%2Fancestor.svg)](https://badge.fury.io/js/@rescriptbr%2Fancestor)
-![example workflow](https://github.com/rescriptbr/ancestor/actions/workflows/tests.yml/badge.svg)
+![tests](https://github.com/rescriptbr/ancestor/actions/workflows/tests.yml/badge.svg)
 
 <p align="center">  
   <br/>
