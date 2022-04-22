@@ -1,4 +1,4 @@
-name: Run library tests 
+name: tests
 
 on: [pull_request]
 
