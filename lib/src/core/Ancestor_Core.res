@@ -8,4 +8,5 @@ module Make = (StylesMaker: Ancestor_StylesMaker.T) => {
   module Spacing = Styles.Spacing
   module Radius = Styles.Radius
   module Typography = Base
+  module Stack = Ancestor_Stack.Make(StylesMaker)
 }
