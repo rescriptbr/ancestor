@@ -30,6 +30,22 @@ module Make = (Config: Ancestor_Config.T) => {
       `${cssKey}: ${breakpointValue->Config.unboxBreakpointValue->stringify};`,
     )
 
+  /**
+   * Creates responsive styles for responsive props.
+   * Its used to create responsive props by components like Box or Stack.
+   * Check out Ancestor_Stack.res to see more.
+   */
+  let createResponsiveProp = (~prop, ~defaultStyles="", transform) => {
+    switch prop {
+    | None => defaultStyles
+    | Some(values) =>
+      values->Js.Array2.sortInPlaceWith(sortBySize)->Js.Array2.reduce((currentStyles, value) => {
+        let parsed = value->Config.unboxBreakpointValue
+        mediaQuery(currentStyles, value, transform(parsed))
+      }, "")
+    }
+  }
+
   let createCssValueFromArray = (cssKey, maybeCssValues, stringify) =>
     maybeCssValues
     ->Belt.Option.map(values =>
@@ -234,4 +250,6 @@ module Make = (Config: Ancestor_Config.T) => {
       createCssValueFromArray("text-decoration", textDecoration, TextDecoration.toString),
       createCssValueFromArray("transform", transform, Transform.toString),
     ]->Js.Array2.joinWith("")
+
+  let merge = styles => styles->Js.Array2.joinWith("")
 }
