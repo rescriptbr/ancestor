@@ -23,5 +23,6 @@
     "docs:clear": "yarn workspace website docusaurus clear"
   },
   "devDependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "dependencies": {}
 }
