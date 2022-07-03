@@ -1,6 +1,6 @@
-module Make = (Maker: Ancestor_StylesMaker.T) => {
-  module Styles = Ancestor_Styles.Make(Maker)
-  module Base = Ancestor_Base.Make(Maker)
+module Make = (Config: Ancestor_Config.T) => {
+  module Styles = Ancestor_Styles.Make(Config)
+  module Base = Ancestor_Base.Make(Config)
 
   type direction = [
     | #vertical
@@ -17,7 +17,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
 
     let responsiveStyles = [
       Styles.createResponsiveProp(~prop=spacing, spacing =>
-        `gap: ${Styles.Spacing.make(spacing)};`
+        `gap: ${spacing->Config.spacing->Styles.Css.Length.toString};`
       ),
       Styles.createResponsiveProp(
         ~prop=direction,
@@ -30,7 +30,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       ),
     ]
 
-    Maker.css(
+    Config.css(
       `
       ${baseStyles}
       ${responsiveStyles->Styles.merge}
@@ -53,7 +53,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
   let make = (
     // Stack props
     ~direction: option<Styles.responsiveProp<direction>>=?,
-    ~spacing: option<Styles.responsiveProp<Styles.Spacing.t>>=?,
+    ~spacing: option<Styles.responsiveProp<Config.spacing>>=?,
     ~divider: option<React.element>=?,
     // System props
     ~borderRadius=?,
