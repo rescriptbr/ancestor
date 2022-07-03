@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stack should render a Stack correctly 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (min-width: 0px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 920px) {
+  .emotion-0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+<div
+  className="emotion-0  emotion-1"
+>
+  <div />
+</div>
+`;
+
+exports[`Stack should render a Stack with dividers correctly 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+  className="emotion-0  emotion-1"
+>
+  <div>
+    Placeholder
+  </div>
+  <div>
+    Divider
+  </div>
+  <div>
+    Placeholder
+  </div>
+</div>
+`;
