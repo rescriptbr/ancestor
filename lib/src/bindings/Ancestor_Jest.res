@@ -22,6 +22,8 @@ type jestFn
 @send
 external toHaveBeenCalledTimes: (testable<'value>, int) => testable<'value> =
   "toHaveBeenCalledTimes"
+@send external toMatchSnapshot: testable<'value> => unit = "toMatchSnapshot"
+
 // .resolves
 // .rejects
 // .toHaveBeenCalled()
@@ -52,7 +54,6 @@ external toHaveBeenCalledTimes: (testable<'value>, int) => testable<'value> =
 // .toContainEqual(item)
 // .toMatch(regexp | string)
 // .toMatchObject(object)
-// .toMatchSnapshot(propertyMatchers?, hint?)
 // .toMatchInlineSnapshot(propertyMatchers?, inlineSnapshot)
 // .toStrictEqual(value)
 // .toThrow(error?)
