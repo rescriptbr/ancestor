@@ -23,8 +23,10 @@
     "@storybook/testing-library": "0.0.9",
     "babel-loader": "8.2.3",
     "jest": "27.2.5",
+    "jsdom": "20.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-test-renderer": "17.0.2",
     "rescript": "9.1.4"
   },
   "peerDependencies": {
