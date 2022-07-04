@@ -15,8 +15,7 @@
   font-size: 32px;
   line-height: 42px;
   letter-spacing: -0.04em;
-
-  color: #4d4d4d;
+  color: var(--gray-2);
 }
 
 /*
@@ -30,6 +29,7 @@
   font-size: 24px;
   line-height: 31px;
   margin: 0;
+  margin-bottom: 8px;
   text-align: center;
 }
 
@@ -37,7 +37,7 @@
   font-family: DM Sans;
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 23px;
   color: var(--gray-2);
   text-align: center;
@@ -123,16 +123,17 @@
     line-height: 55px;
     letter-spacing: -0.07em;
     margin: 0;
+    margin-bottom: 8px;
   }
 
   .code-preview--texts > p {
     font-family: DM Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 32px;
-    line-height: 42px;
+    font-size: 26px;
+    line-height: 32px;
     color: var(--gray-2);
-    letter-spacing: -0.04em;
+    letter-spacing: -0.06em;
     margin: 0;
   }
 
@@ -143,16 +144,17 @@
   .start-box {
     background: #000;
     margin: 124px 0;
-    padding: 56px;
+    padding: 32px;
   }
   
   .start-box--texts > h2 {
     color: white;
+    margin-bottom: 16px;
     font-family: DM Sans;
     font-style: normal;
     font-weight: bold;
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 32px;
+    line-height: 32px;
     letter-spacing: -0.04em;
   }
 
@@ -160,8 +162,8 @@
     font-family: DM Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 23px;
+    font-size: 20px;
+    line-height: 28px;
     letter-spacing: -0.04em;
     color: var(--gray-2);
   }
@@ -171,14 +173,14 @@
   }
 
   .start-box > a > button {
-    height: 46px;
+    height: 52px;
     border-radius: 32px;
     width: 192px;
     background: #fafafa;
     font-family: DM Sans;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 23px;
     text-align: center;
     letter-spacing: -0.04em;
@@ -186,9 +188,17 @@
     border: 0;
     cursor: pointer;
   }
+
+  .start-box > a > button:hover {
+    background: #e4e4e4;
+  }
 }
 
 @media only screen and (min-width: 600px) {
+  .start-box {
+    padding: 56px;
+  }
+
   .hero {
     padding: 132px 42px;
   }
@@ -304,10 +314,6 @@
     align-items: center;
     padding: 72px;
     margin-bottom: 124px;
-  }
-
-  .start-box img {
-    filter: contra
   }
 }
 
