@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Stack should render a Stack correctly 1`] = `
+exports[`Stack should render correctly 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -31,7 +31,7 @@ exports[`Stack should render a Stack correctly 1`] = `
 </div>
 `;
 
-exports[`Stack should render a Stack with dividers correctly 1`] = `
+exports[`Stack should render with dividers correctly 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;

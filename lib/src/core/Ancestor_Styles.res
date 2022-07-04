@@ -32,7 +32,7 @@ module Make = (Config: Ancestor_Config.T) => {
 
   /**
    * Creates responsive styles for responsive props.
-   * Its used to create responsive props by components like Box or Stack.
+   * It's used to create responsive props in components like Box or Stack.
    * Check out Ancestor_Stack.res to see more.
    */
   let createResponsiveProp = (~prop, ~defaultStyles="", transform) => {

@@ -3,7 +3,7 @@ open Ancestor.Default
 module Renderer = Ancestor_ReactTestRenderer
 
 describe("Stack", (. ()) => {
-  it("should render a Stack correctly", (. ()) => {
+  it("should render correctly", (. ()) => {
     expect(
       Renderer.create(
         <Stack direction=[xs(#horizontal), md(#vertical)]> <div /> </Stack>,
@@ -11,7 +11,7 @@ describe("Stack", (. ()) => {
     )->toMatchSnapshot
   })
 
-  it("should render a Stack with dividers correctly", (. ()) => {
+  it("should render with dividers correctly", (. ()) => {
     let placeholder = <div> {`Placeholder`->React.string} </div>
     let divider = <div> {`Divider`->React.string} </div>
 
