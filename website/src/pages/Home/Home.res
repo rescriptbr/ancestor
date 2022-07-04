@@ -129,7 +129,7 @@ module StartUsing = {
 let make = () => {
   <Docusaurus.Layout
     title=``
-    description="A suite of UI primitives for ReScript and React with focus on responsiveness.">
+    description="A suite of UI primitives for ReScript and React focused on responsiveness.">
     <main> <Hero /> <About /> <CodePreview /> <StartUsing /> </main>
   </Docusaurus.Layout>
 }
