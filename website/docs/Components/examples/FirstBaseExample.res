@@ -1,6 +1,6 @@
-open Render
-//hidden-end
-open Ancestor.Default
+open Ancestor
+
+let s = React.string
 
 @react.component
 let make = () => {

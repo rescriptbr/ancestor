@@ -19,10 +19,13 @@ yarn add @rescriptbr/ancestor
 ```
 
 If you want to use the default setup, you need to install [Emotion](https://emotion.sh).
-
 ```sh title="Terminal"
 yarn add @emotion/css
 ```
+:::important
+This step is optional. Ancestor is agnostic of CSS in JS library. You can use any CSS in JS library of your preference by providing a CSS function on the setup.
+Read more about it on the [**customization section**](/docs/customization#css-in-js).
+:::
 
 Add the package to `bs-dependencies` in your `bsconfig.json`:
 
@@ -39,10 +42,10 @@ Add the package to `bs-dependencies` in your `bsconfig.json`:
 
 ## Basic usage
 
-Ancestor comes with a default setup. You can use the default setup by exposing the module writing `open Ancestor.Default`:
+Ancestor comes with a default setup. You can use the default setup by exposing the module writing `open Ancestor`:
 
 ```rescript title="App.res"
-open Ancestor.Default
+open Ancestor
 
 @react.component
 let make = () => {

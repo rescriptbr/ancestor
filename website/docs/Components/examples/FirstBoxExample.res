@@ -1,27 +1,6 @@
+open Ancestor
+
 let s = React.string
-
-module Button = {
-  open Ancestor.Default
-
-  let button = Emotion.css({
-    "height": "42px",
-    "padding": "0 12px",
-    "minWidth": "200px",
-    "backgroundColor": "white",
-    "outline": "none",
-    "borderRadius": "32px",
-    "boxShadow": "none",
-    "border": "none",
-    "fontSize": "16px",
-  })
-
-  @react.component
-  let make = (~children) => {
-    <Base className=button tag=#button> {children->s} </Base>
-  }
-}
-// hidden-end
-open Ancestor.Default
 
 @react.component
 let make = () => {
@@ -32,14 +11,35 @@ let make = () => {
     justifyContent=[xs(#"flex-start"), lg(#"space-between")]
     alignItems=[xs(#center)]
     flexDirection=[xs(#column), lg(#row)]>
-    <Box mr=[xs(0), lg(3)]>
-      <Typography textAlign=[xs(#center), lg(#left)] color=[xs(#hex("#fff"))] tag=#h1>
+    <Box mr=[xs(0), lg(3)] mb=[xs(2), md(0)]>
+      <Typography
+        textAlign=[xs(#center), lg(#left)]
+        color=[xs(#hex("#fff"))]
+        mb=[xs(0)]
+        tag=#h1
+        fontSize=[xs(24->#px)]
+        m=[xs(0)]>
         {`Start using right now`->s}
       </Typography>
-      <Typography textAlign=[xs(#center), lg(#left)] color=[xs(#hex("#b1b1b1"))] tag=#p>
+      <Typography
+        textAlign=[xs(#center), lg(#left)]
+        color=[xs(#hex("#b1b1b1"))]
+        tag=#p
+        m=[xs(0)]
+        lineHeight=[xs(20->#px)]>
         {`Ancestor is production-ready and actively maintained. It’s used in production projects daily and keep breaking changes to a minimum whereever possible.`->s}
       </Typography>
     </Box>
-    <Button> "Let's start" </Button>
+    <Base
+      bgColor=[xs(#hex("#fafafa"))]
+      borderStyle=[xs(#none)]
+      fontSize=[xs(18->#px)]
+      width=[xs(232->#px)]
+      height=[xs(48->#px)]
+      borderRadius=[xs(2)]
+      fontWeight=[xs(#600)]
+      tag=#button>
+      {"Let's start"->React.string}
+    </Base>
   </Box>
 }

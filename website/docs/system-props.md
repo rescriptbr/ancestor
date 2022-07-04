@@ -68,7 +68,6 @@ Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
 
 - CSS Key: `padding`
 - Type: `responsiveProp<Spacing.t>`
-- Optional: `true`
 
 #### `px`
 

@@ -43,7 +43,7 @@ Breakpoints, spacing, radius, grid columns, etc which makes it easy to customize
 ## Basic usage
 
 ```rescript
-open Ancestor.Default
+open Ancestor
 
 @react.component
 let make = () => {
