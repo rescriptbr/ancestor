@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Box should render a Box with columns correctly 1`] = `
+exports[`Box should render with columns correctly 1`] = `
 @media (min-width: 0px) {
   .emotion-0 {
     -webkit-flex-basis: 50.0%;
