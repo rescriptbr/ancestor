@@ -4,15 +4,17 @@ sidebar_position: 3
 ---
 
 import CodeBlock from '@theme/CodeBlock'
-import { Wrapper, cleanUpCode } from '../helpers'
+import { Wrapper } from '../_helpers'
 import { make as FirstBoxExample } from './examples/FirstBoxExample.bs'
 import FirstBoxExampleSource from '!!raw-loader!./examples/FirstBoxExample.res'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 A component that works as a wrapper to change the appearance of elements through utility properties.
 
 ## Example
 
-<CodeBlock className='language-rescript'> {cleanUpCode(FirstBoxExampleSource)}</CodeBlock>
+<CodeBlock className='language-rescript'> {FirstBoxExampleSource}</CodeBlock>
 
 <Wrapper>
   <FirstBoxExample />

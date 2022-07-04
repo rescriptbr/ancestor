@@ -3,7 +3,7 @@ title: Base
 ---
 
 import CodeBlock from '@theme/CodeBlock'
-import { Wrapper, cleanUpCode } from '../helpers'
+import { Wrapper, cleanUpCode } from '../_helpers'
 import { make as FirstBaseExample } from './examples/FirstBaseExample.bs'
 import FirstBaseExampleSource from '!!raw-loader!./examples/FirstBaseExample.res'
 
@@ -11,7 +11,7 @@ A base component to built other components that accepts responsive props.
 
 ## Example
 
-<CodeBlock className="language-rescript"> {cleanUpCode(FirstBaseExampleSource)}</CodeBlock>
+<CodeBlock className="language-rescript"> {FirstBaseExampleSource}</CodeBlock>
 
 <Wrapper>
   <FirstBaseExample />
