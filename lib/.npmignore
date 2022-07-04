@@ -1,0 +1,5 @@
+*_Stories.res
+*_Test.res
+src/_helpers_/
+**/__snapshots__/
+.storybook
