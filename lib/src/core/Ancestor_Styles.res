@@ -1,25 +1,9 @@
 module Make = (Maker: Ancestor_StylesMaker.T) => {
   open Ancestor_CssTypes
 
-  module Spacing = {
-    type t = int
+  module Spacing = Ancestor_Spacing.Make(Maker)
+  module Radius = Ancestor_Radius.Make(Maker)
 
-    let make = value =>
-      `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
-          ->Js.Float.toFixedWithPrecision(~digits=1)}px`
-  }
-
-  module Radius = {
-    type t = int
-
-    let make = value =>
-      `${(Js.Int.toFloat(value) *. (Maker.radius /. 10.0))
-          ->Js.Float.toFixedWithPrecision(~digits=1)}px`
-  }
-
-  @ocaml.doc("
-    * Important note on this module
-  ")
   type responsiveProp<'a> = array<Maker.breakpoints<'a>>
 
   let createBreakpointSize = device => `${device->Maker.sizeByBreakpoints->Belt.Int.toString}px`
