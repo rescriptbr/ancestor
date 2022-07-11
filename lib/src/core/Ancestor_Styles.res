@@ -6,7 +6,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
 
     let make = value =>
       `${(Js.Int.toFloat(value) *. (Maker.spacing /. 10.0))
-          ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
+          ->Js.Float.toFixedWithPrecision(~digits=1)}px`
   }
 
   module Radius = {
@@ -14,7 +14,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
 
     let make = value =>
       `${(Js.Int.toFloat(value) *. (Maker.radius /. 10.0))
-          ->Js.Float.toFixedWithPrecision(~digits=1)}rem`
+          ->Js.Float.toFixedWithPrecision(~digits=1)}px`
   }
 
   @ocaml.doc("
