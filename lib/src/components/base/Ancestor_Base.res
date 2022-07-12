@@ -1,5 +1,5 @@
-module Make = (Maker: Ancestor_StylesMaker.T) => {
-  module Styles = Ancestor_Styles.Make(Maker)
+module Make = (Config: Ancestor_Config.T) => {
+  module Styles = Ancestor_Styles.Make(Config)
 
   @react.component
   let make = (
@@ -425,7 +425,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
               ~textDecoration?,
               ~transform?,
               (),
-            )->Maker.css
+            )->Config.css
 
           `${className} ${responsiveStyles}`
         },

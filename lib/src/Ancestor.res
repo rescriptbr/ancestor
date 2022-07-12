@@ -2,10 +2,11 @@ include Ancestor_Core
 
 module DefaultConfig = {
   type breakpoints<'a> = [#xs('a) | #xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
+  type spacing = int
+  type radius = int
 
-  let spacing = 8.0
-
-  let radius = 8.0
+  let spacing = spacing => #px(spacing * 8)
+  let radius = radius => #px(radius * 8)
 
   let sizeByBreakpoints = values =>
     switch values {
