@@ -1,7 +1,10 @@
 open Ancestor_Jest
-open Ancestor_CssTypes
+include Ancestor_Css.Make({
+  type spacing = int
+  let spacing = v => #px(v * 8)
+})
 
-describe("Ancestor_CssTypes", (. ()) => {
+describe("Ancestor_Css", (. ()) => {
   describe("Length.toString", (. ()) => {
     it("should convert into string correctly", (. ()) => {
       let {toString} = module(Length)
