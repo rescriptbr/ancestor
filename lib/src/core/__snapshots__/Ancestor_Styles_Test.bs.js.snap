@@ -5,11 +5,11 @@ exports[`Styles .createCssValueFromArray should create responsive CSS for the at
     
     
     @media (min-width: 0px) {
-      padding: 1.6rem;
+      padding: 16px;
     }
   
     @media (min-width: 920px) {
-      padding: 3.2rem;
+      padding: 32px;
     }
   "
 `;
