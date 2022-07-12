@@ -1,14 +1,18 @@
-module Make = (Maker: Ancestor_StylesMaker.T) => {
-  open Ancestor_CssTypes
+module Make = (Config: Ancestor_Config.T) => {
+  module Css = Ancestor_Css.Make({
+    type spacing = Config.spacing
+    let spacing = Config.spacing
+  })
 
-  module Spacing = Ancestor_Spacing.Make(Maker)
-  module Radius = Ancestor_Radius.Make(Maker)
+  open Css
 
-  type responsiveProp<'a> = array<Maker.breakpoints<'a>>
+  let radius = v => v->Config.radius->Length.toString
+  let spacing = v => v->Config.spacing->Length.toString
 
-  let createBreakpointSize = device => `${device->Maker.sizeByBreakpoints->Belt.Int.toString}px`
+  type responsiveProp<'a> = array<Config.breakpoints<'a>>
+  let createBreakpointSize = device => `${device->Config.sizeByBreakpoints->Belt.Int.toString}px`
 
-  let mediaQuery = (current, device: Maker.breakpoints<'a>, styles) =>
+  let mediaQuery = (current, device: Config.breakpoints<'a>, styles) =>
     `
     ${current}
     @media (min-width: ${device->createBreakpointSize}) {
@@ -17,13 +21,13 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
   `
 
   let sortBySize = (first, second) =>
-    Maker.sizeByBreakpoints(first) - Maker.sizeByBreakpoints(second)
+    Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
 
   let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
     mediaQuery(
       styles,
       breakpointValue,
-      `${cssKey}: ${breakpointValue->Maker.unboxBreakpointValue->stringify};`,
+      `${cssKey}: ${breakpointValue->Config.unboxBreakpointValue->stringify};`,
     )
 
   let createCssValueFromArray = (cssKey, maybeCssValues, stringify) =>
@@ -36,11 +40,11 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ->Belt.Option.getWithDefault("")
 
   let createResponsiveStyles = (
-    ~borderRadius: option<responsiveProp<Radius.t>>=?,
-    ~borderTLRadius: option<responsiveProp<Radius.t>>=?,
-    ~borderTRRadius: option<responsiveProp<Radius.t>>=?,
-    ~borderBLRadius: option<responsiveProp<Radius.t>>=?,
-    ~borderBRRadius: option<responsiveProp<Radius.t>>=?,
+    ~borderRadius: option<responsiveProp<Config.radius>>=?,
+    ~borderTLRadius: option<responsiveProp<Config.radius>>=?,
+    ~borderTRRadius: option<responsiveProp<Config.radius>>=?,
+    ~borderBLRadius: option<responsiveProp<Config.radius>>=?,
+    ~borderBRRadius: option<responsiveProp<Config.radius>>=?,
     ~borderStyle: option<responsiveProp<BorderStyle.t>>=?,
     ~borderColor: option<responsiveProp<Color.t>>=?,
     ~borderWidth: option<responsiveProp<Length.t>>=?,
@@ -78,20 +82,20 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~justifySelf: option<responsiveProp<JustifySelf.t>>=?,
     ~flexFlow: option<responsiveProp<FlexFlow.t>>=?,
     ~gap: option<responsiveProp<Gap.t>>=?,
-    ~p: option<responsiveProp<Spacing.t>>=?,
-    ~px: option<responsiveProp<Spacing.t>>=?,
-    ~py: option<responsiveProp<Spacing.t>>=?,
-    ~pt: option<responsiveProp<Spacing.t>>=?,
-    ~pb: option<responsiveProp<Spacing.t>>=?,
-    ~pl: option<responsiveProp<Spacing.t>>=?,
-    ~pr: option<responsiveProp<Spacing.t>>=?,
-    ~m: option<responsiveProp<Spacing.t>>=?,
-    ~mx: option<responsiveProp<Spacing.t>>=?,
-    ~my: option<responsiveProp<Spacing.t>>=?,
-    ~mt: option<responsiveProp<Spacing.t>>=?,
-    ~mb: option<responsiveProp<Spacing.t>>=?,
-    ~ml: option<responsiveProp<Spacing.t>>=?,
-    ~mr: option<responsiveProp<Spacing.t>>=?,
+    ~p: option<responsiveProp<Config.spacing>>=?,
+    ~px: option<responsiveProp<Config.spacing>>=?,
+    ~py: option<responsiveProp<Config.spacing>>=?,
+    ~pt: option<responsiveProp<Config.spacing>>=?,
+    ~pb: option<responsiveProp<Config.spacing>>=?,
+    ~pl: option<responsiveProp<Config.spacing>>=?,
+    ~pr: option<responsiveProp<Config.spacing>>=?,
+    ~m: option<responsiveProp<Config.spacing>>=?,
+    ~mx: option<responsiveProp<Config.spacing>>=?,
+    ~my: option<responsiveProp<Config.spacing>>=?,
+    ~mt: option<responsiveProp<Config.spacing>>=?,
+    ~mb: option<responsiveProp<Config.spacing>>=?,
+    ~ml: option<responsiveProp<Config.spacing>>=?,
+    ~mr: option<responsiveProp<Config.spacing>>=?,
     ~textAlign: option<responsiveProp<TextAlign.t>>=?,
     ~fontWeight: option<responsiveProp<FontWeight.t>>=?,
     ~fontSize: option<responsiveProp<Length.t>>=?,
@@ -128,11 +132,11 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     (),
   ) =>
     [
-      createCssValueFromArray("border-radius", borderRadius, Radius.make),
-      createCssValueFromArray("border-top-left-radius", borderTLRadius, Radius.make),
-      createCssValueFromArray("border-top-right-radius", borderTRRadius, Radius.make),
-      createCssValueFromArray("border-bottom-left-radius", borderBLRadius, Radius.make),
-      createCssValueFromArray("border-bottom-right-radius", borderBRRadius, Radius.make),
+      createCssValueFromArray("border-radius", borderRadius, radius),
+      createCssValueFromArray("border-top-left-radius", borderTLRadius, radius),
+      createCssValueFromArray("border-top-right-radius", borderTRRadius, radius),
+      createCssValueFromArray("border-bottom-left-radius", borderBLRadius, radius),
+      createCssValueFromArray("border-bottom-right-radius", borderBRRadius, radius),
       createCssValueFromArray("border-style", borderStyle, BorderStyle.toString),
       createCssValueFromArray("border-color", borderColor, Color.toString),
       createCssValueFromArray("border-width", borderWidth, Length.toString),
@@ -170,24 +174,24 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       createCssValueFromArray("justify-self", justifySelf, JustifySelf.toString),
       createCssValueFromArray("flex-flow", flexFlow, FlexFlow.toString),
       createCssValueFromArray("gap", gap, Gap.toString),
-      createCssValueFromArray("padding", p, Spacing.make),
-      createCssValueFromArray("padding-left", px, Spacing.make),
-      createCssValueFromArray("padding-right", px, Spacing.make),
-      createCssValueFromArray("padding-top", py, Spacing.make),
-      createCssValueFromArray("padding-bottom", py, Spacing.make),
-      createCssValueFromArray("padding-top", pt, Spacing.make),
-      createCssValueFromArray("padding-bottom", pb, Spacing.make),
-      createCssValueFromArray("padding-left", pl, Spacing.make),
-      createCssValueFromArray("padding-right", pr, Spacing.make),
-      createCssValueFromArray("margin", m, Spacing.make),
-      createCssValueFromArray("margin-left", mx, Spacing.make),
-      createCssValueFromArray("margin-right", mx, Spacing.make),
-      createCssValueFromArray("margin-top", my, Spacing.make),
-      createCssValueFromArray("margin-bottom", my, Spacing.make),
-      createCssValueFromArray("margin-top", mt, Spacing.make),
-      createCssValueFromArray("margin-bottom", mb, Spacing.make),
-      createCssValueFromArray("margin-left", ml, Spacing.make),
-      createCssValueFromArray("margin-right", mr, Spacing.make),
+      createCssValueFromArray("padding", p, spacing),
+      createCssValueFromArray("padding-left", px, spacing),
+      createCssValueFromArray("padding-right", px, spacing),
+      createCssValueFromArray("padding-top", py, spacing),
+      createCssValueFromArray("padding-bottom", py, spacing),
+      createCssValueFromArray("padding-top", pt, spacing),
+      createCssValueFromArray("padding-bottom", pb, spacing),
+      createCssValueFromArray("padding-left", pl, spacing),
+      createCssValueFromArray("padding-right", pr, spacing),
+      createCssValueFromArray("margin", m, spacing),
+      createCssValueFromArray("margin-left", mx, spacing),
+      createCssValueFromArray("margin-right", mx, spacing),
+      createCssValueFromArray("margin-top", my, spacing),
+      createCssValueFromArray("margin-bottom", my, spacing),
+      createCssValueFromArray("margin-top", mt, spacing),
+      createCssValueFromArray("margin-bottom", mb, spacing),
+      createCssValueFromArray("margin-left", ml, spacing),
+      createCssValueFromArray("margin-right", mr, spacing),
       createCssValueFromArray("text-align", textAlign, TextAlign.toString),
       createCssValueFromArray("font-weight", fontWeight, FontWeight.toString),
       createCssValueFromArray("font-size", fontSize, Length.toString),

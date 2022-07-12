@@ -1,16 +1,17 @@
-module Make = (Maker: Ancestor_StylesMaker.T) => {
-  module Base = Ancestor_Base.Make(Maker)
-  module Styles = Ancestor_Styles.Make(Maker)
+module Make = (Config: Ancestor_Config.T) => {
+  module Base = Ancestor_Base.Make(Config)
+  module Styles = Ancestor_Styles.Make(Config)
 
   %%private(
-    let defaultStyles = Maker.css(`
+    let defaultStyles = Config.css(`
       width: 100%;
       flex-wrap: wrap;
       display: flex;
     `)
 
     let createResponsiveStyles = (currentStyles, value) => {
-      let spacingInRem = value->Maker.unboxBreakpointValue->Styles.Spacing.make
+      let spacingInRem =
+        value->Config.unboxBreakpointValue->Config.spacing->Ancestor_Css.Length.toString
 
       Styles.mediaQuery(
         currentStyles,
@@ -37,7 +38,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
         values
         ->Js.Array2.sortInPlaceWith(Styles.sortBySize)
         ->Belt.Array.reduce("", createResponsiveStyles)
-        ->Maker.css
+        ->Config.css
       )
       ->Belt.Option.getWithDefault(defaultStyles)
   )
@@ -134,7 +135,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     ~textDecoration=?,
     ~transform=?,
     // Grid props
-    ~spacing: option<Styles.responsiveProp<int>>=?,
+    ~spacing: option<Styles.responsiveProp<Config.spacing>>=?,
     ~tag: Ancestor_React.tags=#div,
     // React props
     ~children=?,

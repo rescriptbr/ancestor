@@ -1,6 +1,6 @@
-module Make = (Maker: Ancestor_StylesMaker.T) => {
-  module Styles = Ancestor_Styles.Make(Maker)
-  module Base = Ancestor_Base.Make(Maker)
+module Make = (Config: Ancestor_Config.T) => {
+  module Styles = Ancestor_Styles.Make(Config)
+  module Base = Ancestor_Base.Make(Config)
 
   type columns = [
     | #1
@@ -28,7 +28,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
       Styles.mediaQuery(
         styles,
         value,
-        `flex-basis: ${value->Maker.unboxBreakpointValue->basisFromFloat}`,
+        `flex-basis: ${value->Config.unboxBreakpointValue->basisFromFloat}`,
       )
 
     let sortValues = values =>
@@ -367,7 +367,7 @@ module Make = (Maker: Ancestor_StylesMaker.T) => {
     <Base
       className={
         let boxClassName =
-          columns->Belt.Option.map(sortValues)->Belt.Option.getWithDefault("")->Maker.css
+          columns->Belt.Option.map(sortValues)->Belt.Option.getWithDefault("")->Config.css
         `${boxClassName} ${className}`
       }
       ?borderRadius
