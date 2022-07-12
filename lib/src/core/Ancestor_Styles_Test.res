@@ -1,33 +1,6 @@
 open Ancestor_Jest
 
-module Config = {
-  type breakpoints<'a> = [#xs('a) | #xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
-
-  let spacing = 8.0
-
-  let radius = 8.0
-
-  let sizeByBreakpoints = values =>
-    switch values {
-    | #xs(_) => 0
-    | #sm(_) => 475
-    | #md(_) => 920
-    | #lg(_) => 1280
-    | #xl(_) => 1920
-    }
-
-  let unboxBreakpointValue = values =>
-    switch values {
-    | #xs(v) => v
-    | #sm(v) => v
-    | #md(v) => v
-    | #lg(v) => v
-    | #xl(v) => v
-    }
-
-  let css = Ancestor_Emotion.css
-}
-module Styles = Ancestor_Styles.Make(Config)
+module Styles = Ancestor_Styles.Make(Ancestor.DefaultConfig)
 
 describe("Styles", (. ()) => {
   describe(".createCssValueFromArray", (. ()) => {
@@ -35,13 +8,13 @@ describe("Styles", (. ()) => {
       let padding = Styles.createCssValueFromArray(
         "padding",
         Some([#xs(2), #md(4)]),
-        Styles.Spacing.make,
+        Styles.spacing,
       )
 
       let width = Styles.createCssValueFromArray(
         "width",
         Some([#xs(100.0->#pct), #md(32->#px)]),
-        Ancestor_CssTypes.Length.toString,
+        Styles.Css.Length.toString,
       )
 
       expect(padding)->toMatchSnapshot
