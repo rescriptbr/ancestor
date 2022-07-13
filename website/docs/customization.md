@@ -10,14 +10,15 @@ Ancestor take advantage of [Module Functors](https://rescript-lang.org/docs/manu
 
 The customization interface has the following type signature:
 
-```rescript
-module type AncestorCoreMaker = {
+```rescript title="Ancestor_Config.res"
+module type T = {
   type breakpoints<'value>
-
-  let spacing: float
-  let radius: float
-  let sizeByBreakpoints: breakpoints<'value> => int
+  type spacing
+  type radius
+  let spacing: spacing => Ancestor_Css.Length.t
+  let radius: radius => Ancestor_Css.Length.t
   let unboxBreakpointValue: breakpoints<'value> => 'value
+  let sizeByBreakpoints: breakpoints<'value> => int
   let css: string => string
 }
 ```
@@ -27,17 +28,12 @@ And the default setup has the following values and types:
 ```rescript
 
 module DefaultConfig = {
-  type breakpoints<'a> = [
-    | #xs('a)
-    | #sm('a)
-    | #md('a)
-    | #lg('a)
-    | #xl('a)
-  ]
+  type breakpoints<'a> = [#xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
+  type spacing = int
+  type radius = int
 
-  let spacing = 8.0
-  
-  let radius = 8.0
+  let spacing = spacing => #px(spacing * 8)
+  let radius = radius => #px(radius * 8)
 
   let sizeByBreakpoints = values =>
     switch values {
@@ -59,7 +55,6 @@ module DefaultConfig = {
 
   let css = Ancestor_Emotion.css
 }
-
 ```
 
 ## Breakpoints
@@ -80,6 +75,8 @@ If you wish, you can customize **only** the breakpoints by overriding all types 
 
 ```rescript title="MyApp.res"
 module AncestorCustom = Ancestor.Make({
+  type spacing = Ancestor.DefaultConfig.spacing
+  type radius = Ancestor.DefaultConfig.radius
   type breakpoints<'value> = [
     | #small('value)
     | #medium('value)
@@ -99,7 +96,7 @@ module AncestorCustom = Ancestor.Make({
     | #medium(v) => v
     | #large(v) => v
     }
-
+  
   let spacing = Ancestor.DefaultConfig.spacing
   let radius = Ancestor.DefaultConfig.radius
   let css = Ancestor.DefaultConfig.css
@@ -137,37 +134,114 @@ All Ancestor's components properties are an **array** of **breakpoints**.  If yo
 
 :::tip
 If you wish, you can create **"aliases functions"** to replace the variants that you defined in your custom setup. 
-Instead of write `display=[#xxs(#flex)]` you can write `display=[xxs(#flex)]`. In some cases, it improves the code readability.
+Instead of write `display=[#xs(#flex)]` you can write `display=[xs(#flex)]`. In some cases, it improves the code readability.
 :::
 
 ## Spacing
-By default, Ancestor uses a scale factor of `8px` to keep the spacing consistent between the elements.
-You can customize the scale factor by providing a new value for the `spacing` property:
+The `spacing` api is fully customizable. By default, Ancestor uses `int` and a scale factor of `8px` to keep the spacing consistent between the elements.
+You can customize the scale factor by providing a new value for the `spacing` function:
 
 ```rescript
 
 module AncestorCustom = Ancestor.Make({
   include Ancestor.DefaultConfig
 
-  let spacing = 6.0
+  let spacing = v => #px(v * 4.0) 
+})
+```
+### Customizing the type of `spacing` props
+You can also customize the type of the spacing properties. Let's see how to use `float` instead of int:
+```rescript 
+module AncestorCustom = Ancestor.Make({
+  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
+  type radius = Ancestor.DefaultConfig.radius
+  let radius = Ancestor.DefaultConfig.radius
+  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
+  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
+  let css = Ancestor.DefaultConfig.css
+
+  type spacing = float
+  let spacing = v => #pxFloat(v *. 8.0)
 })
 
+@react.component
+let make = () => {
+  <AncestorCustom.Box m=[#md(2.25)]>
+    <AncestorCustom.Box p=[#xs(4.0), #md(3.0)] />
+  </AncestorCustom.Box>
+}
 ```
+### Using design tokens
+We can also define a set of spacing tokens using polymorphic variants:
+```rescript
+module AncestorCustom = Ancestor.Make({
+  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
+  type radius = Ancestor.DefaultConfig.radius
+  let radius = Ancestor.DefaultConfig.radius
+  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
+  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
+  let css = Ancestor.DefaultConfig.css
 
+  type spacing = [#xs | #md | #lg]
+  let spacing = v =>
+    switch v {
+    | #xs => #px(8)
+    | #md => #px(16)
+    | #lg => #px(24)
+    }
+})
+
+@react.component
+let make = () => {
+  <AncestorCustom.Box m=[#md(#lg)]>
+    <AncestorCustom.Box p=[#xs(#md), #md(#lg)] />
+  </AncestorCustom.Box>
+}
+```
+### Using CSS units
+Sometimes, you just want to use CSS units like `rem` or `px`:
+```rescript
+module AncestorCustom = Ancestor.Make({
+  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
+  type radius = Ancestor.DefaultConfig.radius
+  let radius = Ancestor.DefaultConfig.radius
+  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
+  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
+  let css = Ancestor.DefaultConfig.css
+
+  type spacing = Ancestor_Css.Length.t
+  let spacing = v => v
+})
+
+@react.component
+let make = () => {
+  <AncestorCustom.Box m=[#xs(24->#px)]>
+    <AncestorCustom.Box p=[#xs(32->#px)] />
+  </AncestorCustom.Box>
+}
+```
 ## Border Radius
-By default, Ancestor uses a scale factor of `8px` to keep the border radius consistent between the elements.
-You can customize the scale factor by providing a new value for the `radius` property:
-
+All of those customizations above, also works for the radius. You need just to replace the `spacing` type and value by `radius`. Let's see:
 ```rescript
-
 module AncestorCustom = Ancestor.Make({
-  include Ancestor.DefaultConfig
+  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
+  type spacing = Ancestor.DefaultConfig.spacing
+  let spacing = Ancestor.DefaultConfig.spacing
+  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
+  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
+  let css = Ancestor.DefaultConfig.css
 
-  let radius = 6.0
+  type radius = Ancestor_Css.Length.t
+  let radius = v => v
 })
 
+@react.component
+let make = () => {
+  <AncestorCustom.Box borderRadius=[#xs(24->#px)]>
+    <AncestorCustom.Box borderRadius=[#xs(32->#px)] />
+  </AncestorCustom.Box>
+}
 ```
-
 ## CSS in JS
 To generate styles Ancestor uses [@emotion/css](https://emotion.sh/docs/introduction).
 If you wish, you can use another CSS in JS library that provides an equivalent function, like [Goober](https://github.com/cristianbote/goober#csstaggedtemplate)
