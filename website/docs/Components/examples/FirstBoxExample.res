@@ -6,18 +6,18 @@ let s = React.string
 let make = () => {
   <Box
     bgColor=[xs(#hex("#000"))]
-    p=[xs(3)]
+    p=[xs(3), md(4)]
     display=[xs(#flex)]
     justifyContent=[xs(#"flex-start"), lg(#"space-between")]
     alignItems=[xs(#center)]
     flexDirection=[xs(#column), lg(#row)]>
-    <Box mr=[xs(0), lg(3)] mb=[xs(2), md(0)]>
+    <Box mr=[xs(0), lg(6)] mb=[xs(2), lg(0)]>
       <Typography
         textAlign=[xs(#center), lg(#left)]
         color=[xs(#hex("#fff"))]
         mb=[xs(0)]
         tag=#h1
-        fontSize=[xs(24->#px)]
+        fontSize=[xs(24->#px), md(32->#px)]
         m=[xs(0)]>
         {`Start using right now`->s}
       </Typography>
@@ -36,7 +36,7 @@ let make = () => {
       fontSize=[xs(18->#px)]
       width=[xs(232->#px)]
       height=[xs(48->#px)]
-      borderRadius=[xs(2)]
+      borderRadius=[xs(3)]
       fontWeight=[xs(#600)]
       tag=#button>
       {"Let's start"->React.string}
