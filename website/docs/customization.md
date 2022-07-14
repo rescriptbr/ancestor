@@ -148,7 +148,7 @@ module AncestorCustom = Ancestor.Make({
 })
 ```
 ### Customizing the type of `spacing` props
-You can also customize the type of the spacing properties. Let's see how to use `float` instead of int:
+You can also customize the type of the spacing properties. This feature is very useful when you need to use scale values like `1.25`, `2.5`, etc. Let's see how to use `float` instead of int:
 ```rescript {9,10,15-17}
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
@@ -170,7 +170,7 @@ let make = () => {
 }
 ```
 ### Using design tokens
-We can also define a set of spacing tokens using polymorphic variants:
+We can also define a set of spacing tokens using polymorphic variants. Sometimes the design team doesn't use scale values like `1` or `1.5`, but they define a set of design tokens that represents a value in `px`. Let's see how to do this with Ancestor:
 ```rescript {9-15,20-22}
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
