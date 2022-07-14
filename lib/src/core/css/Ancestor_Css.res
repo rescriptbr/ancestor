@@ -456,12 +456,20 @@ module Make = (
   }
 
   module Gap = {
-    type t = [#one(Length.t) | #two(Length.t, Length.t) | #inherit | #initial | #revert | #unset]
+    type t = [#v(array<Config.spacing>) | #inherit | #initial | #revert | #unset]
+    let spacingToString = v => v->Config.spacing->Length.toString
+    let getFirstTwoValues = arr => {
+      let value = arr->Belt.Array.get(0)->Belt.Option.mapWithDefault(`0`, spacingToString)
+      let value2 = arr->Belt.Array.get(1)->Belt.Option.mapWithDefault(`0`, spacingToString)
+
+      `${value} ${value2}`
+    }
 
     let toString = (gap: t) =>
       switch gap {
-      | #one(value) => value->Length.toString
-      | #two(value1, value2) => `${value1->Length.toString} ${value2->Length.toString}`
+      | #v([]) => `0 0`
+      | #v([value]) => value->spacingToString
+      | #v(values) => values->getFirstTwoValues
       | #inherit => "inherit"
       | #initial => "initial"
       | #revert => "revert"

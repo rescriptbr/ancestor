@@ -1,4 +1,5 @@
 open Ancestor_Jest
+
 include Ancestor_Css.Make({
   type spacing = int
   let spacing = v => #px(v * 8)
@@ -8,7 +9,6 @@ describe("Ancestor_Css", (. ()) => {
   describe("Length.toString", (. ()) => {
     it("should convert into string correctly", (. ()) => {
       let {toString} = module(Length)
-
       expect(toString(#rem(10.2)))->toBe(`10.2rem`)
       expect(toString(#em(7.5)))->toBe(`7.5em`)
       expect(toString(#px(1)))->toBe(`1px`)
@@ -60,8 +60,8 @@ describe("Ancestor_Css", (. ()) => {
     it("should convert into string correctly", (. ()) => {
       let {toString} = module(Gap)
 
-      expect(#one(12.5->#rem)->toString)->toBe(`12.5rem`)
-      expect(#two(5->#px, 10.5->#rem)->toString)->toBe(`5px 10.5rem`)
+      expect(#v([1])->toString)->toBe(`8.0px`)
+      expect(#v([1, 1])->toString)->toBe(`8.0px 8.0px`)
 
       expect(#inherit->toString)->toBe(`inherit`)
       expect(#unset->toString)->toBe(`unset`)
