@@ -47,6 +47,7 @@ h1,h2,h3,h4,h5,h6,button,a {
 }
 
 /*
+ 
  * Navbar
  * **/
 @media only screen and (max-width: 995px) {
@@ -54,4 +55,8 @@ h1,h2,h3,h4,h5,h6,button,a {
     flex-direction: row-reverse;
     justify-content: space-between;
   }
+}
+
+.theme-code-block-highlighted-line {
+  background-color: rgb(255 255 255 / 7%)!important;
 }

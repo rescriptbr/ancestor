@@ -26,7 +26,6 @@ module type T = {
 And the default setup has the following values and types:
 
 ```rescript
-
 module DefaultConfig = {
   type breakpoints<'a> = [#xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
   type spacing = int
@@ -73,11 +72,9 @@ Ancestor's breakpoints are customizable. The default setup has the following val
 
 If you wish, you can customize **only** the breakpoints by overriding all types and values from the default setup:
 
-```rescript title="MyApp.res"
+```rescript {2-6,8-13,15-20,36}
 module AncestorCustom = Ancestor.Make({
-  type spacing = Ancestor.DefaultConfig.spacing
-  type radius = Ancestor.DefaultConfig.radius
-  type breakpoints<'value> = [
+ type breakpoints<'value> = [
     | #small('value)
     | #medium('value)
     | #large('value)
@@ -97,6 +94,9 @@ module AncestorCustom = Ancestor.Make({
     | #large(v) => v
     }
   
+  type spacing = Ancestor.DefaultConfig.spacing
+  type radius = Ancestor.DefaultConfig.radius
+
   let spacing = Ancestor.DefaultConfig.spacing
   let radius = Ancestor.DefaultConfig.radius
   let css = Ancestor.DefaultConfig.css
@@ -114,7 +114,6 @@ module App = {
     </Grid>
   }
 }
-
 ```
 
 How you can see, beyond the type definition, you need to define two functions:
@@ -141,8 +140,7 @@ Instead of write `display=[#xs(#flex)]` you can write `display=[xs(#flex)]`. In 
 The `spacing` api is fully customizable. By default, Ancestor uses `int` and a scale factor of `8px` to keep the spacing consistent between the elements.
 You can customize the scale factor by providing a new value for the `spacing` function:
 
-```rescript
-
+```rescript {4}
 module AncestorCustom = Ancestor.Make({
   include Ancestor.DefaultConfig
 
@@ -151,7 +149,7 @@ module AncestorCustom = Ancestor.Make({
 ```
 ### Customizing the type of `spacing` props
 You can also customize the type of the spacing properties. Let's see how to use `float` instead of int:
-```rescript 
+```rescript {9,10,15-17}
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
   type radius = Ancestor.DefaultConfig.radius
@@ -173,7 +171,7 @@ let make = () => {
 ```
 ### Using design tokens
 We can also define a set of spacing tokens using polymorphic variants:
-```rescript
+```rescript {9-15,20-22}
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
   type radius = Ancestor.DefaultConfig.radius
@@ -200,7 +198,7 @@ let make = () => {
 ```
 ### Using CSS units
 Sometimes, you just want to use CSS units like `rem` or `px`:
-```rescript
+```rescript {9-10,15-17}
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
   type radius = Ancestor.DefaultConfig.radius
@@ -222,7 +220,7 @@ let make = () => {
 ```
 ## Border Radius
 All of those customizations above, also works for the radius. You need just to replace the `spacing` type and value by `radius`. Let's see:
-```rescript
+```rescript {9-10,15-17}
 module AncestorCustom = Ancestor.Make({
   type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
   type spacing = Ancestor.DefaultConfig.spacing
