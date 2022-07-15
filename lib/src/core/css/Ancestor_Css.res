@@ -456,25 +456,26 @@ module Make = (
   }
 
   module Gap = {
-    type t = [#v(array<Config.spacing>) | #inherit | #initial | #revert | #unset]
-    let spacingToString = v => v->Config.spacing->Length.toString
-    let getFirstTwoValues = arr => {
-      let value = arr->Belt.Array.get(0)->Belt.Option.mapWithDefault(`0`, spacingToString)
-      let value2 = arr->Belt.Array.get(1)->Belt.Option.mapWithDefault(`0`, spacingToString)
+    type t = [
+      | #one(Config.spacing)
+      | #two(Config.spacing, Config.spacing)
+      | #inherit
+      | #initial
+      | #revert
+      | #unset
+    ]
 
-      `${value} ${value2}`
-    }
-
-    let toString = (gap: t) =>
+    let toString = (gap: t) => {
+      let spacingToString = v => v->Config.spacing->Length.toString
       switch gap {
-      | #v([]) => `0 0`
-      | #v([value]) => value->spacingToString
-      | #v(values) => values->getFirstTwoValues
+      | #one(v) => v->spacingToString
+      | #two(v1, v2) => `${v1->spacingToString} ${v2->spacingToString}`
       | #inherit => "inherit"
       | #initial => "initial"
       | #revert => "revert"
       | #unset => "unset"
       }
+    }
   }
 
   module Position = {
