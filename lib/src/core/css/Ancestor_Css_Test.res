@@ -87,7 +87,7 @@ describe("Ancestor_Css", (. ()) => {
     it("should convert into string correctly", (. ()) => {
       let {toString} = module(BackgroundSize)
 
-      expect(#size->toString)->toBe(`size`)
+      expect(#cover->toString)->toBe(`cover`)
       expect(#contain->toString)->toBe(`contain`)
       expect(#inherit->toString)->toBe(`inherit`)
       expect(#initial->toString)->toBe(`initial`)
@@ -118,6 +118,17 @@ describe("Ancestor_Css", (. ()) => {
       let {toString} = module(BackgroundImage)
 
       expect(#url("path/to/image.png")->toString)->toBe(`url("path/to/image.png")`)
+      expect(#none->toString)->toBe(`none`)
+    })
+  })
+
+  describe("FontFamily.toString", (. ()) => {
+    it("should convert into string correctly", (. ()) => {
+      let {toString} = module(FontFamily)
+
+      expect(#custom(["DM Sans", "sans-serif"])->toString)->toBe(`DM Sans, sans-serif`)
+      expect(#initial->toString)->toBe(`initial`)
+      expect(#inherit->toString)->toBe(`inherit`)
     })
   })
 })
