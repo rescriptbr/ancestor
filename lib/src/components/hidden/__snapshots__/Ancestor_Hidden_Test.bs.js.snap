@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Box should visually hide elements correctly 1`] = `
+@media (min-width: 0px) {
+  .emotion-0 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (min-width: 920px) {
+  .emotion-0 {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+    white-space: normal;
+    border: initial;
+    clip: initial;
+  }
+}
+
+@media (min-width: 1280px) {
+  .emotion-0 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+<div
+  className="emotion-0  emotion-1"
+>
+  <div />
+</div>
+`;

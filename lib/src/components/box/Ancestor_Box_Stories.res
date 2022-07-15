@@ -1,4 +1,4 @@
-open Ancestor.Default
+open Ancestor
 
 let default = Ancestor_Storybook.story(~title="Components/Box")
 
