@@ -217,8 +217,8 @@ Check out the [`Config.spacing`](/docs/system-props#configspacing) type signatur
 #### `gap`
 - CSS Key: `gap`
 - Type: `responsiveProp<[`
- - `| #one(Length.t)`
- - `| #two(Length.t, Length.t) `
+ - `| #one(Config.spacing)`
+ - `| #two(Config.t, Config.spacing) `
  - `| #inherit`
  - `| #initial`
  - `| #revert`
