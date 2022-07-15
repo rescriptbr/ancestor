@@ -60,8 +60,8 @@ describe("Ancestor_Css", (. ()) => {
     it("should convert into string correctly", (. ()) => {
       let {toString} = module(Gap)
 
-      expect(#v([1])->toString)->toBe(`8.0px`)
-      expect(#v([1, 1])->toString)->toBe(`8.0px 8.0px`)
+      expect(#one(1)->toString)->toBe(`8px`)
+      expect(#two(1, 2)->toString)->toBe(`8px 16px`)
 
       expect(#inherit->toString)->toBe(`inherit`)
       expect(#unset->toString)->toBe(`unset`)
