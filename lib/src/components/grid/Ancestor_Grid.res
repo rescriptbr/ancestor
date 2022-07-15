@@ -102,6 +102,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~ml=?,
     ~mr=?,
     ~textAlign=?,
+    ~fontFamily=?,
     ~fontWeight=?,
     ~fontSize=?,
     ~letterSpacing=?,
@@ -431,6 +432,7 @@ module Make = (Config: Ancestor_Config.T) => {
       ?ml
       ?mr
       ?textAlign
+      ?fontFamily
       ?fontWeight
       ?fontSize
       ?letterSpacing

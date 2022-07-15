@@ -495,6 +495,17 @@ module Make = (
     let toString = Obj.magic
   }
 
+  module FontFamily = {
+    type t = [#custom(array<string>) | #initial | #inherit]
+
+    let toString = (v: t) =>
+      switch v {
+      | #custom(families) => families->Js.Array2.joinWith(", ")
+      | #initial => "initial"
+      | #inherit => "inherit"
+      }
+  }
+
   module FontWeight = {
     type t = [
       | #normal
@@ -632,7 +643,7 @@ module Make = (
    */
   module BackgroundSize = {
     type t = [
-      | #size
+      | #cover
       | #contain
       | #inherit
       | #initial
@@ -643,7 +654,7 @@ module Make = (
 
     let toString = (bgSize: t) =>
       switch bgSize {
-      | #size => "size"
+      | #cover => "cover"
       | #contain => "contain"
       | #inherit => "inherit"
       | #initial => "initial"
@@ -681,11 +692,12 @@ module Make = (
   }
 
   module BackgroundImage = {
-    type t = [#url(string)]
+    type t = [#url(string) | #none]
 
     let toString = (bgImage: t) =>
       switch bgImage {
       | #url(url) => `url("${url}")`
+      | #none => "none"
       }
   }
 }
