@@ -20,7 +20,7 @@ If you want to understand more, see the following example:
 ```rescript title=Ancestor_Styles.res
   type responsiveProp = array<breakpoints<'a>>
 ```
-_Check out the module [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Styles.res#L15)_.
+> :bulb: Check out the module [Ancestor_Styles.res](https://github.com/rescriptbr/ancestor/blob/master/lib/src/core/Ancestor_Styles.res#L15).
 
 The breakpoint type is customizable (check out the [customization section](/docs/customization)), by default it has the following type signature:
 
@@ -61,38 +61,38 @@ All utility props are optional.
 ### Spacing 
 
 :::important
-Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
+Check out the [`Config.spacing`](/docs/system-props#configspacing) type signature.
 :::
 
 #### `p`
 
 - CSS Key: `padding`
-- Type: `responsiveProp<Spacing.t>`
+- Type: `responsiveProp<Config.spacing>`
 
 #### `px`
 
 - CSS Key: `padding-left`, `padding-right`
-- Type: `responsiveProp<Spacing.t>`
+- Type: `responsiveProp<Config.spacing>`
 
 #### `py`
 
 - CSS Key: `padding-top`, `padding-bottom`
-- Type: `responsiveProp<Spacing.t>`
+- Type: `responsiveProp<Config.spacing>`
 
 #### `m`
 
 - CSS Key: `padding`
-- Type: `responsiveProp<Spacing.t>`
+- Type: `responsiveProp<Config.spacing>`
 
 #### `mx`
 
 - CSS Key: `margin-left`, `margin-right`
-- Type: `responsiveProp<Spacing.t>`
+- Type: `responsiveProp<Config.spacing>`
 
 #### `my`
 
 - CSS Key: `margin-top`, `margin-bottom`
-- Type: `responsiveProp<Spacing.t>`
+- Type: `responsiveProp<Config.spacing>`
 
 ### Flex 
 
@@ -229,29 +229,33 @@ Check out the [`Spacing.t`](/docs/system-props#spacingt) type signature.
 ### Border
 
 :::important
-Check out the [`Border.t`](/docs/system-props#bordert) and [`BordeStyle.t`](/docs/system-props/#borderstylet) type signature.
+Check out the [`Config.radius`](/docs/system-props#configradius) type signature.
 :::
 
 #### `borderRadius`
 - CSS Key: `border`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Config.radius>`
 
 #### `borderTLRadius`
 - CSS Key: `border-top-left-radius`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Config.radius>`
 
 #### `borderTRRadius`
 - CSS Key: `border-top-right-radius`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Config.radius>`
 
 
 #### `borderBLRadius`
 - CSS Key: `border-bottom-left-radius`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Config.radius>`
 
 #### `borderBRRadius`
 - CSS Key: `border-bottom-right-radius`
-- Type: `responsiveProp<int>`
+- Type: `responsiveProp<Config.radius>`
+
+:::important
+Check out the [`Border.t`](/docs/system-props#bordert) and [`BordeStyle.t`](/docs/system-props/#borderstylet) type signature.
+:::
 
 #### `border`
 - CSS Key: `border`
@@ -654,14 +658,21 @@ Check out the [`Transform.t`](/docs/system-props#transformt) type signature.
 
 ## Types reference
 
-### `Spacing.t`
+### `Config.spacing`
 
-This type is just an alias for `int` and is used by props like `py`, `my`, `mx`, etc.
+The `Config.spacing` type is customizable, check out its [customization section](/docs/customization#spacing). By default, it's typed as an `int`.
 
 ```rescript
-  type t = int
+  type spacing = int
 ```
-Since the type is just an alias, the value will be calculated using the scale factor defined [here](/docs/customization#spacing).
+
+### `Config.radius`
+
+The `Config.radius` type is customizable, check out its [customization section](/docs/customization#border-radius). By default, it's typed as an `int`.
+
+```rescript
+  type radius = int
+```
 
 ### `Length.t`
 Used by props like `width`, `height`, `line-height`, etc:
