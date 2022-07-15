@@ -53,6 +53,25 @@ module Length = {
     | #div(v1, v2) => `calc(${v1->toString} / ${v2->toString})`
     }
 }
+/*
+ * color (color, background, etc)
+ */
+module Color = {
+  type t = [
+    | #rgb(int, int, int)
+    | #hex(string)
+    | #transparent
+    | #currentColor
+  ]
+
+  let toString = (color: t) =>
+    switch color {
+    | #rgb(r, g, b) => `rgb(${r->Js.Int.toString}, ${g->Js.Int.toString}, ${b->Js.Int.toString})`
+    | #hex(hexColor) => hexColor
+    | #transparent => "transparent"
+    | #currentColor => "currentColor"
+    }
+}
 
 module Make = (
   Config: {
@@ -60,27 +79,8 @@ module Make = (
     let spacing: spacing => Length.t
   },
 ) => {
-  /*
-   * color (color, background, etc)
-   */
-  module Color = {
-    type t = [
-      | #rgb(int, int, int)
-      | #hex(string)
-      | #transparent
-      | #currentColor
-    ]
-
-    let toString = (color: t) =>
-      switch color {
-      | #rgb(r, g, b) => `rgb(${r->Js.Int.toString}, ${g->Js.Int.toString}, ${b->Js.Int.toString})`
-      | #hex(hexColor) => hexColor
-      | #transparent => "transparent"
-      | #currentColor => "currentColor"
-      }
-  }
-
   module Length = Length
+  module Color = Color
 
   module TextTransform = {
     type t = [#none | #capitalize | #uppercase | #lowercase]
