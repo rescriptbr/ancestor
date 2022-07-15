@@ -358,6 +358,16 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 
 ### Texts
 
+#### `fontFamily`
+- CSS Key: `font-family`
+- Type: `responsiveProp<[` 
+  - `| #custom(array<string>)`
+  - `| #initial`
+  - `| #inherit` 
+  `]>`
+
+
+
 #### `fontWeight`
 - CSS Key: `font-weight`
 - Type: `responsiveProp<[` 
@@ -460,7 +470,7 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 #### `bgSize`
 - CSS Key: `background-size`
 - Type: `responsiveProp<[`
-   - `| #size` 
+   - `| #cover` 
    - `| #contain`
    - `| #inherit`
    - `| #initial`
@@ -489,6 +499,8 @@ Check out the [`Length.t`](/docs/system-props#lengtht) type signature.
 - CSS Key: `background-image`
 - Type: `responsiveProp<[`
    -`| #url(string)`
+   -`| #initial`
+   -`| #inherit`
 `]>`
 
 
