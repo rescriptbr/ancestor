@@ -47,20 +47,20 @@ open Ancestor
 
 @react.component
 let make = () => {
-  <Grid height=[xxs(100.0->#pct)]>
+  <Grid height=[xs(100.0->#pct)]>
     <Box
-      flexDirection=[xxs(#column), md(#row)]
-      p=[xxs(6), md(12), lg(8)]
-      position=[xxs(#relative)]
-      columns=[xxs(#12), md(#6)]
+      flexDirection=[xs(#column), md(#row)]
+      p=[xs(6), md(12), lg(8)]
+      position=[xs(#relative)]
+      columns=[xs(#12), md(#6)]
     >
       <Box
-        flexGrow=[xxs(#number(1.0))]
-        width=[xxs(15.0->#rem), md(20.0->#rem)]
+        flexGrow=[xs(#number(1.0))]
+        width=[xs(15.0->#rem), md(20.0->#rem)]
       >
         <Logo />
       </Box>
-      <Box flexGrow=[xxs(#number(3.0))] pt=[xxs(4)]>
+      <Box flexGrow=[xs(#number(3.0))] pt=[xs(4)]>
         <h1>
           {"A place to share knowledge"->React.string}
         </h1>
@@ -69,9 +69,9 @@ let make = () => {
         </p>
       </Box>
       <Box
-        position=[xxs(#absolute)]
-        bottom=[xxs(-5.0->#rem)]
-        left=[xxs(-5.0->#rem)]
+        position=[xs(#absolute)]
+        bottom=[xs(-5.0->#rem)]
+        left=[xs(-5.0->#rem)]
       >
           ....
       </Box>
