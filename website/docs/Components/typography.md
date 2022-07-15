@@ -1,5 +1,0 @@
-# Typography
-
-:::caution
- WIP Section.
-:::
