@@ -1,6 +1,5 @@
 ---
 title: <Base />
-sidebar_position: 1
 ---
 
 import CodeBlock from '@theme/CodeBlock'

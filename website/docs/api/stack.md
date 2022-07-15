@@ -1,6 +1,5 @@
 ---
 title: <Stack /> 
-sidebar_position: 4
 ---
 
 import CodeBlock from '@theme/CodeBlock'

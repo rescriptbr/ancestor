@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Getting started
 
 Step by step to install Ancestor in your project.

@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Introduction
 
 **Ancestor** is a suite of components that works as layout primitives to develop high-quality 
