@@ -1,7 +1,5 @@
 open Ancestor
 
-let s = React.string
-
 @react.component
 let make = () => {
   <Base display=[#xs(#flex)] justifyContent=[#xs(#center)] width=[#xs(100.->#pct)]>
@@ -30,15 +28,15 @@ let make = () => {
         textAlign=[#xs(#center)]
         fontSize=[#xs(24->#px)]
         tag=#h1>
-        {"Walter White"->s}
+        {"Walter White"->React.string}
       </Typography>
       <Typography
         textAlign=[#xs(#center)] color=[#xs(#hex("#545454"))] fontSize=[#xs(20->#px)] tag=#p>
-        {"Teacher"->s}
+        {"Teacher"->React.string}
       </Typography>
       <Typography
         textAlign=[#xs(#center)] color=[#xs(#hex("#a1a1a1"))] fontSize=[#xs(16->#px)] tag=#p>
-        {"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old"->s}
+        {"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old"->React.string}
       </Typography>
     </Base>
   </Base>

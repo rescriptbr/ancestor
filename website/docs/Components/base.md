@@ -1,5 +1,6 @@
 ---
-title: Base
+title: <Base />
+sidebar_position: 1
 ---
 
 import CodeBlock from '@theme/CodeBlock'
@@ -7,7 +8,7 @@ import { Wrapper, cleanUpCode } from '../_helpers'
 import { make as FirstBaseExample } from './examples/FirstBaseExample.bs'
 import FirstBaseExampleSource from '!!raw-loader!./examples/FirstBaseExample.res'
 
-A base component to built other components that accepts responsive props.
+`<Base />` works as a component to build other components that accepts responsive props.
 
 ## Example
 

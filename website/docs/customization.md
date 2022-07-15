@@ -116,7 +116,7 @@ module App = {
 }
 ```
 
-How you can see, beyond the type definition, you need to define two functions:
+Beyond the type definition, you need to define two functions:
 
 #### `sizeByBreakpoints`
   - Type: `let sizeByBreakpoints: breakpoints<'value> => int`
