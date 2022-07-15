@@ -4385,6 +4385,11 @@
   resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-0.3.1.tgz#99625d92793da62dd166d3aff40409fbc9244c73"
   integrity sha512-nzYCjYPKYFf73c7hS6898XBK55YxVIrSB+Aia+t3NlLXXfV1k1BNy+jRUlm64ABxwOx6Uz4NTK+YDz/SHq98MA==
 
+"@rescriptbr/ancestor@0.6.0-1":
+  version "0.6.0-1"
+  resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-0.6.0-1.tgz#7898a41fbe399439b03664198ae85de7722b8de5"
+  integrity sha512-5oph24fEPbE70AAD36xSNzFvwwcx9+KvC/qUNfeQ/HpUaWLQxSpK0DNJzFt+Ei2O68knG63qHy6o6YhR+9czvA==
+
 "@rollup/pluginutils@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.1.tgz#1d4da86dd4eded15656a57d933fda2b9a08d47ec"
