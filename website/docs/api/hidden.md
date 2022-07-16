@@ -21,4 +21,15 @@ Resize your browser to see the responsive styles in action.
   <FirstHiddenExample />
 </Wrapper>
 
+## Props
+`<Hidden />` acceppts all props defined by the [system props](/docs/system-props).
+Furthermore, it also accepts the following properties:
 
+### `on`
+- Type: `responsiveProp<bool>`
+- Optional: True
+
+:::important
+ The `responsiveProp` is a customizable type defined in the Ancestor's setup.
+ You can see the default breakpoints defined in the **[Ancestor's default setup](/docs/customization#default-breakpoints)** or define **[your own breakpoints](/docs/customization#custom-breakpoints)**.
+:::
