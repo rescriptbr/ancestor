@@ -10,7 +10,8 @@
   <a target="_blank" href="https://github.com/rescriptbr"> ReScript Brazil Community </a>
  </p>
 
-> ⚠️ **DISCLAIMER**: This library is still beta, check out our roadmap [here](https://github.com/rescriptbr/ancestor/projects/1).
+> ⚠️ **DISCLAIMER**: This library is still beta, you can check our roadmap [here](https://github.com/rescriptbr/ancestor/projects/1).
+We're trying to keep the breaking changes to a minimum whereever possible, but some breaking changes might happen until we release the v1.0.0.
 
 # Introduction
 
