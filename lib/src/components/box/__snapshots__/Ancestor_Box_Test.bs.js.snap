@@ -31,3 +31,11 @@ exports[`Box should render with columns correctly 1`] = `
   <div />
 </div>
 `;
+
+exports[`Box should render without columns correctly 1`] = `
+<div
+  className="emotion-0  emotion-0"
+>
+  <div />
+</div>
+`;

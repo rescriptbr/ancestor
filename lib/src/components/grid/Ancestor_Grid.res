@@ -3,44 +3,33 @@ module Make = (Config: Ancestor_Config.T) => {
   module Styles = Ancestor_Styles.Make(Config)
 
   %%private(
-    let defaultStyles = Config.css(`
+    let defaultStyles = `
       width: 100%;
       flex-wrap: wrap;
       display: flex;
-    `)
+    `
 
-    let createResponsiveStyles = (currentStyles, value) => {
-      let spacingInRem =
-        value->Config.unboxBreakpointValue->Config.spacing->Ancestor_Css.Length.toString
+    let grid = (~spacing=?, ()) => {
+      let spacingStyles = Styles.createResponsiveProp(~prop=spacing, ~defaultStyles, spacing => {
+        let spacingInPx = spacing->Config.spacing->Ancestor_Css.Length.toString
 
-      Styles.mediaQuery(
-        currentStyles,
-        value,
         `
           display: flex;
           flex-wrap: wrap;
-          width: calc(100% + ${spacingInRem});
-          margin-left: -${spacingInRem};
-          margin-top: -${spacingInRem};
+          width: calc(100% + ${spacingInPx});
+          margin-left: -${spacingInPx};
+          margin-top: -${spacingInPx};
 
           > * {
             box-sizing: border-box;
-            padding-left: ${spacingInRem};
-            padding-top: ${spacingInRem};
+            padding-left: ${spacingInPx};
+            padding-top: ${spacingInPx};
           }
-          `,
-      )
-    }
+          `
+      })
 
-    let grid = (~spacing=?, ()) =>
-      spacing
-      ->Belt.Option.map(values =>
-        values
-        ->Js.Array2.sortInPlaceWith(Styles.sortBySize)
-        ->Belt.Array.reduce("", createResponsiveStyles)
-        ->Config.css
-      )
-      ->Belt.Option.getWithDefault(defaultStyles)
+      Config.css(spacingStyles)
+    }
   )
 
   @react.component

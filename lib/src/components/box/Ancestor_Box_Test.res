@@ -8,4 +8,8 @@ describe("Box", (. ()) => {
       Renderer.create(<Box columns=[xs(#6), md(#12), lg(#3)]> <div /> </Box>)->Renderer.toJSON,
     )->toMatchSnapshot
   })
+
+  it("should render without columns correctly", (. ()) => {
+    expect(Renderer.create(<Box> <div /> </Box>)->Renderer.toJSON)->toMatchSnapshot
+  })
 })

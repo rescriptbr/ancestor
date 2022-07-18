@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid should with spacing render correctly 1`] = `
+@media (min-width: 0px) {
+  .emotion-0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: calc(100% + 8px);
+    margin-left: -8px;
+    margin-top: -8px;
+  }
+
+  .emotion-0>* {
+    box-sizing: border-box;
+    padding-left: 8px;
+    padding-top: 8px;
+  }
+}
+
+@media (min-width: 920px) {
+  .emotion-0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: calc(100% + 0px);
+    margin-left: -0px;
+    margin-top: -0px;
+  }
+
+  .emotion-0>* {
+    box-sizing: border-box;
+    padding-left: 0px;
+    padding-top: 0px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .emotion-0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: calc(100% + 24px);
+    margin-left: -24px;
+    margin-top: -24px;
+  }
+
+  .emotion-0>* {
+    box-sizing: border-box;
+    padding-left: 24px;
+    padding-top: 24px;
+  }
+}
+
+@media (min-width: 0px) {
+  .emotion-2 {
+    -webkit-flex-basis: 50.0%;
+    -ms-flex-preferred-size: 50.0%;
+    flex-basis: 50.0%;
+  }
+}
+
+@media (min-width: 920px) {
+  .emotion-2 {
+    -webkit-flex-basis: 33.3%;
+    -ms-flex-preferred-size: 33.3%;
+    flex-basis: 33.3%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .emotion-2 {
+    -webkit-flex-basis: 25.0%;
+    -ms-flex-preferred-size: 25.0%;
+    flex-basis: 25.0%;
+  }
+}
+
+<div
+  className="emotion-0  emotion-1"
+>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 1
+  </div>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 2
+  </div>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 3
+  </div>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 4
+  </div>
+</div>
+`;
+
+exports[`Grid should without spacing render correctly 1`] = `
+.emotion-0 {
+  width: 100%;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (min-width: 0px) {
+  .emotion-2 {
+    -webkit-flex-basis: 50.0%;
+    -ms-flex-preferred-size: 50.0%;
+    flex-basis: 50.0%;
+  }
+}
+
+@media (min-width: 920px) {
+  .emotion-2 {
+    -webkit-flex-basis: 33.3%;
+    -ms-flex-preferred-size: 33.3%;
+    flex-basis: 33.3%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .emotion-2 {
+    -webkit-flex-basis: 25.0%;
+    -ms-flex-preferred-size: 25.0%;
+    flex-basis: 25.0%;
+  }
+}
+
+<div
+  className="emotion-0  emotion-1"
+>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 1
+  </div>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 2
+  </div>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 3
+  </div>
+  <div
+    className="emotion-2  emotion-1"
+  >
+    Column 4
+  </div>
+</div>
+`;
