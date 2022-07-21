@@ -1,6 +1,6 @@
 open Ancestor.Default
 
-let default = Ancestor_Storybook.story(~title="Components/Grid")
+let default = Ancestor_Storybook.story(~title="Components/Grid", ())
 
 let basicUsage = () => {
   let placeholder = Ancestor_Emotion.css(`
