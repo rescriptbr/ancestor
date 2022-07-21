@@ -1,7 +1,7 @@
 include Ancestor_Core
 
 module DefaultConfig = {
-  type breakpoints<'a> = [#xs('a) | #xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
+  type breakpoints<'a> = [#xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
   type spacing = int
   type radius = int
   type colors = Ancestor_Css.Color.t
