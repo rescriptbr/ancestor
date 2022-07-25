@@ -12,5 +12,5 @@ module Make = (Config: Ancestor_Config.T) => {
   })
   module ResponsiveValueHook = Ancestor_ResponsiveValueHook.Make(Config)
 
-  let {useResponsiveValue, useResponsiveValueExn} = module(ResponsiveValueHook)
+  let {useResponsiveValue} = module(ResponsiveValueHook)
 }
