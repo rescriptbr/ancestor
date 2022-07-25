@@ -2,8 +2,8 @@ type testable<'a>
 type jestFn
 
 // lifecycle
-@val external afterEach: (. unit => unit) => unit = "afterEach"
-@val external beforeEach: (. unit => unit) => unit = "beforeEach"
+@val external afterEach: ((. unit) => unit) => unit = "afterEach"
+@val external beforeEach: ((. unit) => unit) => unit = "beforeEach"
 
 // Methods
 @val external describe: (string, (. unit) => unit) => unit = "describe"
@@ -27,7 +27,7 @@ external toHaveBeenCalledTimes: (testable<'value>, int) => testable<'value> =
 type spy
 
 @val @scope("jest") external spyOnWithMethodName: ('a, string, string) => spy = "spyOn"
-@send external mockImplementation: (spy, unit) => {..} = "mockImplementation"
+@send external mockImplementation: (spy, (. unit) => 'a) => unit = "mockImplementation"
 @send external mockRestore: (spy, unit) => unit = "mockRestore"
 
 // .resolves
