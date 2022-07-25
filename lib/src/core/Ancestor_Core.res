@@ -10,4 +10,7 @@ module Make = (Config: Ancestor_Config.T) => {
     type spacing = Config.spacing
     let spacing = Config.spacing
   })
+  module ResponsiveValueHook = Ancestor_ResponsiveValueHook.Make(Config)
+
+  let {useResponsiveValue, useResponsiveValueExn} = module(ResponsiveValueHook)
 }

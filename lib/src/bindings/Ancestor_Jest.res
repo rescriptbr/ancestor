@@ -1,9 +1,9 @@
 type testable<'a>
 type jestFn
 
-@val @scope("jest") external fn0: (unit => 'a) => jestFn = "fn"
-@val @scope("jest") external fn1: ('a => 'b) => jestFn = "fn"
-@val @scope("jest") external fn2: (('a, 'b) => 'c, 'a, 'b) => 'c = "fn"
+// lifecycle
+@val external afterEach: (. unit => unit) => unit = "afterEach"
+@val external beforeEach: (. unit => unit) => unit = "beforeEach"
 
 // Methods
 @val external describe: (string, (. unit) => unit) => unit = "describe"
@@ -23,6 +23,12 @@ type jestFn
 external toHaveBeenCalledTimes: (testable<'value>, int) => testable<'value> =
   "toHaveBeenCalledTimes"
 @send external toMatchSnapshot: testable<'value> => unit = "toMatchSnapshot"
+
+type spy
+
+@val @scope("jest") external spyOnWithMethodName: ('a, string, string) => spy = "spyOn"
+@send external mockImplementation: (spy, unit) => {..} = "mockImplementation"
+@send external mockRestore: (spy, unit) => unit = "mockRestore"
 
 // .resolves
 // .rejects
