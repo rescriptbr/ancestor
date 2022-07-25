@@ -1,48 +1,39 @@
 module Make = (Config: Ancestor_Config.T) => {
   module Styles = Ancestor_Styles.Make(Config)
 
-  @val external window: Dom.window = "window"
-  @get external innerWidth: Dom.window => int = "innerWidth"
+  @val external window: option<Dom.window> = "window"
+  @get external innerWidth: Dom.window => float = "innerWidth"
   @send external addEventListener: (Dom.window, string, unit => unit) => unit = "addEventListener"
+  @send
+  external removeEventListener: (Dom.window, string, unit => unit) => unit = "removeEventListener"
 
-  let initialWidth = window->innerWidth
+  let initialWidth = window->Belt.Option.map(w => w->innerWidth)
 
   let getBreakpointValue = (innerWidth, values: Styles.responsiveProp<'a>) =>
     values->Js.Array2.reduce((acc, value) => {
       let breakpoint = value->Config.sizeByBreakpoints
-      if innerWidth >= breakpoint {
+      if innerWidth >= breakpoint->Js.Int.toFloat {
         Some(value)
       } else {
         acc
       }
     }, None)->Belt.Option.map(Config.unboxBreakpointValue)
 
-  let useResponsiveValueExn = values => {
-    let (width, setWidth) = React.useState(_ => initialWidth)
-
-    React.useEffect0(() => {
-      window->addEventListener("resize", () => {
-        setWidth(_ => window->innerWidth)
-      })
-
-      None
-    })
-
-    getBreakpointValue(width, values)->Belt.Option.getExn
-  }
-
   let useResponsiveValue = (default, values) => {
-    Js.log2("Width:", initialWidth)
     let (width, setWidth) = React.useState(_ => initialWidth)
 
     React.useEffect0(() => {
-      window->addEventListener("resize", () => {
-        setWidth(_ => window->innerWidth)
-      })
+      let updateWidth = () => setWidth(_ => window->Belt.Option.map(w => w->innerWidth))
 
-      None
+      window->Belt.Option.map(w => w->addEventListener("resize", updateWidth))->ignore
+
+      Some(
+        () => window->Belt.Option.map(w => w->removeEventListener("resize", updateWidth))->ignore,
+      )
     })
 
-    getBreakpointValue(width, values)->Belt.Option.getWithDefault(default)
+    width
+    ->Belt.Option.flatMap(width => getBreakpointValue(width, values))
+    ->Belt.Option.getWithDefault(default)
   }
 }
