@@ -1,0 +1,18 @@
+let default = Ancestor_Storybook.story(~title="Hooks/useResponsiveValue")
+
+open Ancestor
+
+module Card = {
+  @react.component
+  let make = (~color, ~label) =>
+    <Box p=[xs(3)] fontSize=[xs(24->#px)] color=[xs("#fafafa"->#hex)] bgColor=[xs(color)]>
+      {label->React.string}
+    </Box>
+}
+
+let basicUsage = () => {
+  let color = Ancestor.useResponsiveValueExn([#xs("#000"->#hex), #md("#716e6e"->#hex)])
+  let label = Ancestor.useResponsiveValue("Default", [#xs("Mobile"), #md("Tablet")])
+
+  <Box> <Card color label /> </Box>
+}
