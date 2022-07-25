@@ -32,7 +32,7 @@ module Make = (Config: Ancestor_Config.T) => {
   }
 
   let useResponsiveValue = (default, values) => {
-    Js.log(initialWidth)
+    Js.log2("Width:", initialWidth)
     let (width, setWidth) = React.useState(_ => initialWidth)
 
     React.useEffect0(() => {
