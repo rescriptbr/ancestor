@@ -16,7 +16,10 @@ module Card = {
 
 let basicUsage = () => {
   let color = Ancestor.useResponsiveValue("#000"->#hex, [#xs("#000"->#hex), #md("#716e6e"->#hex)])
-  let label = Ancestor.useResponsiveValue("Default", [#xs("Mobile"), #md("Tablet")])
+  let label = Ancestor.useResponsiveValue(
+    "Default",
+    [#xs("Mobile"), #sm("Small"), #md("Tablet"), #lg("Large"), #xl("Extra Large")],
+  )
 
   <Box> <Card color label /> </Box>
 }
