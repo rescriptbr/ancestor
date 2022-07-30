@@ -24,8 +24,8 @@ module Make = (Config: Ancestor_Config.T) => {
         ~defaultStyles=`flex-direction: row;`,
         direction =>
           switch direction {
-          | #vertical => "flex-direction: row;"
-          | #horizontal => "flex-direction: column"
+          | #vertical => "flex-direction: column;"
+          | #horizontal => "flex-direction: row"
           },
       ),
     ]
