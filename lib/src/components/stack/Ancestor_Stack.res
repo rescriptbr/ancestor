@@ -21,7 +21,7 @@ module Make = (Config: Ancestor_Config.T) => {
       ),
       Styles.createResponsiveProp(
         ~prop=direction,
-        ~defaultStyles=`flex-direction: row;`,
+        ~defaultStyles=`flex-direction: column;`,
         direction =>
           switch direction {
           | #vertical => "flex-direction: column;"
