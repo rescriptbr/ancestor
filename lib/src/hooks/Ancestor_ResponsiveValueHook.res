@@ -1,7 +1,7 @@
 module Make = (Config: Ancestor_Config.T) => {
   module Styles = Ancestor_Styles.Make(Config)
 
-  @val external window: option<Dom.window> = "window"
+  @val @scope("globalThis") external window: option<Dom.window> = "window"
   @get external innerWidth: Dom.window => float = "innerWidth"
   @send external addEventListener: (Dom.window, string, unit => unit) => unit = "addEventListener"
   @send
