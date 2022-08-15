@@ -3,6 +3,9 @@ open Ancestor_Jest
 include Ancestor_Css.Make({
   type spacing = int
   let spacing = v => #px(v * 8)
+
+  type colors = Ancestor_Css.Color.t
+  let colors = v => v
 })
 
 describe("Ancestor_Css", (. ()) => {
