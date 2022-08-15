@@ -9,7 +9,7 @@ module Divider = {
 let make = () => {
   <Box display=[xs(#flex)] justifyContent=[xs(#center)]>
     <Box maxW=[md(300->#px)] width=[xs(100.0->#pct)]>
-      <Stack spacing=[xs(3)] divider={<Divider />} direction=[xs(#horizontal)]>
+      <Stack spacing=[xs(3)] divider={<Divider />}>
         <Placeholder width=[xs(100.0->#pct)]> {"Item"->React.string} </Placeholder>
         <Placeholder width=[xs(100.0->#pct)]> {"Item"->React.string} </Placeholder>
         <Placeholder width=[xs(100.0->#pct)]> {"Item"->React.string} </Placeholder>

@@ -2,7 +2,7 @@ module.exports = {
   docs: [
     'intro',
     'getting-started',
-    'customization',
+    'customization/customization',
     {
       type: `category`,
       label: `API Reference`,

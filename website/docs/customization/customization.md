@@ -1,3 +1,13 @@
+import CodeBlock from '@theme/CodeBlock'
+import { Wrapper, cleanUpCode } from '../_helpers'
+import CustomizatBreakpoints1 from '!!raw-loader!./Customization_Breakpoints1.res'
+import CustomizationSpacing1 from '!!raw-loader!./Customization_Spacing1.res'
+import CustomizationSpacing2 from '!!raw-loader!./Customization_Spacing2.res'
+import CustomizationSpacing3 from '!!raw-loader!./Customization_Spacing3.res'
+import CustomizationSpacing4 from '!!raw-loader!./Customization_Spacing4.res'
+import CustomizationRadius1 from '!!raw-loader!./Customization_Radius1.res'
+import CustomizationColors1 from '!!raw-loader!./Customization_Colors1.res'
+import CustomizationZIndex1 from '!!raw-loader!./Customization_ZIndex1.res'
 
 # Customization
 
@@ -12,6 +22,9 @@ module type T = {
   type breakpoints<'value>
   type spacing
   type radius
+  type colors
+  type zIndex
+
   let spacing: spacing => Ancestor_Css.Length.t
   let radius: radius => Ancestor_Css.Length.t
   let unboxBreakpointValue: breakpoints<'value> => 'value
@@ -25,12 +38,6 @@ And the default setup has the following values and types:
 ```rescript
 module DefaultConfig = {
   type breakpoints<'a> = [#xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
-  type spacing = int
-  type radius = int
-
-  let spacing = spacing => #px(spacing * 8)
-  let radius = radius => #px(radius * 8)
-
   let sizeByBreakpoints = values =>
     switch values {
     | #xs(_) => 0
@@ -48,6 +55,18 @@ module DefaultConfig = {
     | #lg(v) => v
     | #xl(v) => v
     }
+
+  type colors = Ancestor_Css.Color.t
+  let colors = v => v
+
+  type spacing = int
+  let spacing = spacing => #px(spacing * 8)
+
+  type radius = int
+  let radius = radius => #px(radius * 8)
+
+  type zIndex = int
+  let zIndex = v => v
 
   let css = Ancestor_Emotion.css
 }
@@ -69,49 +88,7 @@ Ancestor's breakpoints are customizable. The default setup has the following val
 
 If you wish, you can customize **only** the breakpoints by overriding all types and values from the default setup:
 
-```rescript {2-6,8-13,15-20,36}
-module AncestorCustom = Ancestor.Make({
- type breakpoints<'value> = [
-    | #small('value)
-    | #medium('value)
-    | #large('value)
-  ]
-
-  let sizeByBreakpoints = values =>
-    switch values {
-    | #small(_) => 0 
-    | #medium(_) => 600
-    | #large(_) => 1280
-    }
-
-  let unboxBreakpointValue = values =>
-    switch values {
-    | #small(v) => v
-    | #medium(v) => v
-    | #large(v) => v
-    }
-  
-  type spacing = Ancestor.DefaultConfig.spacing
-  type radius = Ancestor.DefaultConfig.radius
-
-  let spacing = Ancestor.DefaultConfig.spacing
-  let radius = Ancestor.DefaultConfig.radius
-  let css = Ancestor.DefaultConfig.css
-})
-
-module App = {
-  open AncestorCustom
-
-  @react.component
-  let make = () => {
-    <Grid>
-      <Box columns=[#small(#12), #medium(#6)]>
-        ...
-      </Box>
-    </Grid>
-  }
-}
-```
+<CodeBlock className="language-rescript"> {CustomizatBreakpoints1}</CodeBlock>
 
 Beyond the type definition, you need to define two functions:
 
@@ -137,106 +114,35 @@ Instead of write `display=[#xs(#flex)]` you can write `display=[xs(#flex)]`. In 
 The `spacing` api is fully customizable. By default, Ancestor uses `int` and a scale factor of `8px` to keep the spacing consistent between the elements.
 You can customize the scale factor by providing a new value for the `spacing` function:
 
-```rescript {4}
-module AncestorCustom = Ancestor.Make({
-  include Ancestor.DefaultConfig
+<CodeBlock className="language-rescript"> {CustomizationSpacing1}</CodeBlock>
 
-  let spacing = v => #px(v * 4.0) 
-})
-```
 ### Customizing the type of `spacing` props
 You can also customize the type of the spacing properties. This feature is very useful when you need to use scale values like `1.25`, `2.5`, etc. Let's see how to use `float` instead of int:
-```rescript {9,10,15-17}
-module AncestorCustom = Ancestor.Make({
-  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
-  type radius = Ancestor.DefaultConfig.radius
-  let radius = Ancestor.DefaultConfig.radius
-  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
-  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
-  let css = Ancestor.DefaultConfig.css
+<CodeBlock className="language-rescript"> {CustomizationSpacing2}</CodeBlock>
 
-  type spacing = float
-  let spacing = v => #pxFloat(v *. 8.0)
-})
-
-@react.component
-let make = () => {
-  <AncestorCustom.Box m=[#md(2.25)]>
-    <AncestorCustom.Box p=[#xs(4.0), #md(3.0)] />
-  </AncestorCustom.Box>
-}
-```
 ### Using design tokens
 We can also define a set of spacing tokens using polymorphic variants. Sometimes the design team doesn't use scale values like `1` or `1.5`, but they define a set of design tokens that represents a value in `px`. Let's see how to do this with Ancestor:
-```rescript {9-15,20-22}
-module AncestorCustom = Ancestor.Make({
-  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
-  type radius = Ancestor.DefaultConfig.radius
-  let radius = Ancestor.DefaultConfig.radius
-  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
-  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
-  let css = Ancestor.DefaultConfig.css
+<CodeBlock className="language-rescript"> {CustomizationSpacing3}</CodeBlock>
 
-  type spacing = [#xs | #md | #lg]
-  let spacing = v =>
-    switch v {
-    | #xs => #px(8)
-    | #md => #px(16)
-    | #lg => #px(24)
-    }
-})
-
-@react.component
-let make = () => {
-  <AncestorCustom.Box m=[#md(#lg)]>
-    <AncestorCustom.Box p=[#xs(#md), #md(#lg)] />
-  </AncestorCustom.Box>
-}
-```
 ### Using CSS units
 Sometimes, you just want to use CSS units like `rem` or `px`:
-```rescript {9-10,15-17}
-module AncestorCustom = Ancestor.Make({
-  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
-  type radius = Ancestor.DefaultConfig.radius
-  let radius = Ancestor.DefaultConfig.radius
-  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
-  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
-  let css = Ancestor.DefaultConfig.css
+<CodeBlock className="language-rescript"> {CustomizationSpacing4}</CodeBlock>
 
-  type spacing = Ancestor_Css.Length.t
-  let spacing = v => v
-})
-
-@react.component
-let make = () => {
-  <AncestorCustom.Box m=[#xs(24->#px)]>
-    <AncestorCustom.Box p=[#xs(32->#px)] />
-  </AncestorCustom.Box>
-}
-```
 ## Border Radius
 All of those customizations above, also works for the radius. You need just to replace the `spacing` type and value by `radius`. Let's see:
-```rescript {9-10,15-17}
-module AncestorCustom = Ancestor.Make({
-  type breakpoints<'value> = Ancestor.DefaultConfig.breakpoints<'value>
-  type spacing = Ancestor.DefaultConfig.spacing
-  let spacing = Ancestor.DefaultConfig.spacing
-  let unboxBreakpointValue = Ancestor.DefaultConfig.unboxBreakpointValue
-  let sizeByBreakpoints = Ancestor.DefaultConfig.sizeByBreakpoints
-  let css = Ancestor.DefaultConfig.css
+<CodeBlock className="language-rescript"> {CustomizationRadius1}</CodeBlock>
 
-  type radius = Ancestor_Css.Length.t
-  let radius = v => v
-})
+## Colors
+By default Ancestor uses `Ancestor_Css.Color.t` as the type definition for the colors, which means that you're able to use
+css colors like `#hex(...)` or `rgb(...)`. But, sometimes you have a restrict set of colors that you're going to use in your components.
+Let's see how to combine Ancestor and polyvariants to create type safe custom design tokens:
+<CodeBlock className="language-rescript"> {CustomizationColors1}</CodeBlock>
 
-@react.component
-let make = () => {
-  <AncestorCustom.Box borderRadius=[#xs(24->#px)]>
-    <AncestorCustom.Box borderRadius=[#xs(32->#px)] />
-  </AncestorCustom.Box>
-}
-```
+## ZIndex
+By default Ancestor uses `int` as the type definition for the `z-index`.
+Managing `z-index` might become difficult sometimes. Here's an example of how combine Ancestor and polyvariants to create type safe tokens for zIndex:
+<CodeBlock className="language-rescript"> {CustomizationZIndex1}</CodeBlock>
+
 ## CSS in JS
 To generate styles Ancestor uses [@emotion/css](https://emotion.sh/docs/introduction).
 If you wish, you can use another CSS in JS library that provides an equivalent function, like [Goober](https://github.com/cristianbote/goober#csstaggedtemplate)

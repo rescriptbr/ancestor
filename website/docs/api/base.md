@@ -15,7 +15,7 @@ import FirstBaseExampleSource from '!!raw-loader!./examples/FirstBaseExample.res
 
 <Wrapper>
   <FirstBaseExample />
-  </Wrapper>
+</Wrapper>
 
 ## Props
 Base component accepts all props defined by the [system props](/docs/system-props).
