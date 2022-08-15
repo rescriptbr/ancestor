@@ -2,6 +2,9 @@ module Make = (Config: Ancestor_Config.T) => {
   module Css = Ancestor_Css.Make({
     type spacing = Config.spacing
     let spacing = Config.spacing
+
+    type colors = Config.colors
+    let colors = Config.colors
   })
 
   open Css

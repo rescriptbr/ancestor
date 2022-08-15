@@ -77,6 +77,8 @@ module Make = (
   Config: {
     type spacing
     let spacing: spacing => Length.t
+    type colors
+    let colors: colors => Color.t
   },
 ) => {
   module Length = Length
@@ -118,7 +120,7 @@ module Make = (
 
   module TextDecoration = {
     type t = [
-      | #short(TextDecorationLine.t, Color.t, TextDecorationStyle.t)
+      | #short(TextDecorationLine.t, Config.colors, TextDecorationStyle.t)
       | #initial
       | #inherit
       | #none
@@ -127,7 +129,9 @@ module Make = (
     let toString = (textDecoration: t) =>
       switch textDecoration {
       | #short(line, color, style) =>
-        `${line->TextDecorationLine.toString} ${color->Color.toString} ${style->TextDecorationStyle.toString}`
+        `${line->TextDecorationLine.toString} ${color
+          ->Config.colors
+          ->Color.toString} ${style->TextDecorationStyle.toString}`
       | #initial => "initial"
       | #inherit => "inherit"
       | #none => "none"
@@ -155,7 +159,7 @@ module Make = (
 
   module Outline = {
     type t = [
-      | #short(Length.t, OutlineStyle.t, Color.t)
+      | #short(Length.t, OutlineStyle.t, Config.colors)
       | #inherit
       | #initial
       | #unset
@@ -164,7 +168,9 @@ module Make = (
     let toString = (outline: t) =>
       switch outline {
       | #short(length, style, color) =>
-        `${length->Length.toString} ${style->OutlineStyle.toString} ${color->Color.toString}`
+        `${length->Length.toString} ${style->OutlineStyle.toString} ${color
+          ->Config.colors
+          ->Color.toString}`
       | #inherit => "inherit"
       | #initial => "initial"
       | #unset => "unset"
@@ -563,10 +569,12 @@ module Make = (
   }
 
   module Border = {
-    type t = (Length.t, BorderStyle.t, Color.t)
+    type t = (Length.t, BorderStyle.t, Config.colors)
 
     let toString = ((width, style, color): t) =>
-      `${Length.toString(width)} ${BorderStyle.toString(style)} ${Color.toString(color)}`
+      `${Length.toString(width)} ${BorderStyle.toString(style)} ${color
+        ->Config.colors
+        ->Color.toString}`
   }
 
   module Angle = {
