@@ -1,0 +1,23 @@
+9.1.4
+/Users/marcos/Projects/ancestor/website/node_modules/@rescriptbr/ancestor
+1 -bs-package-output es6:.:.bs.js
+bsconfig.json	0x1.8aa85ba96db3ap+30
+src	0x1.8beadbc54a7d1p+30
+src/bindings	0x1.8beadbbfbc9dcp+30
+src/_helpers_	0x1.8beadbc5e8c21p+30
+src/hooks	0x1.8beadbc5fc31bp+30
+src/components	0x1.88b58928671eep+30
+src/components/grid	0x1.8beadbc6ad119p+30
+src/components/grid/__snapshots__	0x1.8b6261549637bp+30
+src/components/base	0x1.8beadbc643bb8p+30
+src/components/stack	0x1.8beadbc6a31d8p+30
+src/components/stack/__snapshots__	0x1.8bead48f48973p+30
+src/components/hidden	0x1.8beadbc68814cp+30
+src/components/hidden/__snapshots__	0x1.8b62615497f1cp+30
+src/components/box	0x1.8beadbc642f9dp+30
+src/components/box/__snapshots__	0x1.8b62615495072p+30
+src/core	0x1.8beadbc7af847p+30
+src/core/__snapshots__	0x1.8b3fb2422e0bp+30
+src/core/css	0x1.8beadbc0c2945p+30
+===
+/Users/marcos/Projects/ancestor/node_modules/rescript/darwin/rescript.exe	0x1.8bea3293ecd25p+30

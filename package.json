@@ -5,18 +5,14 @@
   "main": "index.js",
   "license": "MIT",
   "workspaces": [
-    "lib",
-    "demo",
+    "packages/core",
+    "packages/ui",
     "website"
   ],
   "scripts": {
     "lib": "yarn workspace @rescriptbr/ancestor",
     "lib:compile": "yarn lib build",
     "lib:test": "yarn lib test",
-    "demo": "yarn workspace demo-workspace",
-    "demo:compile": "yarn demo rescript:watch",
-    "demo:dev": "yarn demo vite:dev",
-    "demo:build": "yarn demo vite:build",
     "docs:docusaurus": "yarn workspace website docusaurus",
     "docs:start": "yarn workspace website docusaurus start",
     "docs:build": "yarn workspace website build",
