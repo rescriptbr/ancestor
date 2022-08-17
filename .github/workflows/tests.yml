@@ -11,5 +11,5 @@ jobs:
         with:
           node-version: 16
       - run: yarn
-      - run: yarn lib:compile
-      - run: yarn lib:test
+      - run: yarn core:compile
+      - run: yarn core:test

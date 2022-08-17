@@ -1,18 +1,18 @@
 {
-  "name": "root-workspace",
+  "name": "ancestor",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
   "workspaces": [
-    "packages/core",
-    "packages/ui",
+    "core",
+    "ui",
     "website"
   ],
   "scripts": {
-    "lib": "yarn workspace @rescriptbr/ancestor",
-    "lib:compile": "yarn lib build",
-    "lib:test": "yarn lib test",
+    "core": "yarn workspace @rescriptbr/ancestor",
+    "core:compile": "yarn core build",
+    "core:test": "yarn core test",
     "docs:docusaurus": "yarn workspace website docusaurus",
     "docs:start": "yarn workspace website docusaurus start",
     "docs:build": "yarn workspace website build",

@@ -34,7 +34,7 @@ jobs:
           
       - name: Generate new version ${{ github.event.inputs.versionType }}
         run: |
-          cd lib
+          cd core
           yarn version --${{ github.event.inputs.versionType }}   
    
       - name: Push the tags
