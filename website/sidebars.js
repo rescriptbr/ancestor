@@ -14,6 +14,7 @@ module.exports = {
         'api/grid',
         'api/hidden',
         'api/stack',
+        'use-responsive-value/use-responsive-value'
       ],
     },
   ],

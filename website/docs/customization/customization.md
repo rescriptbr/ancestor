@@ -133,13 +133,13 @@ All of those customizations above, also works for the radius. You need just to r
 <CodeBlock className="language-rescript"> {CustomizationRadius1}</CodeBlock>
 
 ## Colors
-By default Ancestor uses `Ancestor_Css.Color.t` as the type definition for the colors, which means that you're able to use
-css colors like `#hex(...)` or `rgb(...)`. But, sometimes you have a restrict set of colors that you're going to use in your components.
+By default, Ancestor uses `Ancestor_Css.Color.t` as the type definition for the colors, which means that you're able to use
+css colors like `#hex(...)` or `rgb(...)`. However, sometimes you have a well defined set of colors that you're going to use in your components.
 Let's see how to combine Ancestor and polyvariants to create type safe custom design tokens:
 <CodeBlock className="language-rescript"> {CustomizationColors1}</CodeBlock>
 
 ## ZIndex
-By default Ancestor uses `int` as the type definition for the `z-index`.
+By default, Ancestor uses `int` as the type definition for the `z-index`.
 Managing `z-index` might become difficult sometimes. Here's an example of how combine Ancestor and polyvariants to create type safe tokens for zIndex:
 <CodeBlock className="language-rescript"> {CustomizationZIndex1}</CodeBlock>
 
