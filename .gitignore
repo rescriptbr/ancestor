@@ -27,10 +27,9 @@ lib/bs
 /node_modules/
 *.bs.js
 /demo/lib/
-/lib/lib/
+/core/lib/
 /website/lib/
-/demo/node_modules/
-/lib/node_modules/
+/core/node_modules/
 /website/node_modules/
 
 .DS_STORE
