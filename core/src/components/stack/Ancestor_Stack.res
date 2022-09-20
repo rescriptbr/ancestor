@@ -11,8 +11,8 @@ module Make = (Config: Ancestor_Config.T) => {
    * Specific styles for the API.
    */
   let baseStyles = `
-      display: flex;
-    `
+    display: flex;
+  `
 
   let createStack = (~direction=?, ~spacing=?, ()) => {
     let responsiveStyles = [
