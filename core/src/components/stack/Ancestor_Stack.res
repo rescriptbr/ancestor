@@ -10,11 +10,11 @@ module Make = (Config: Ancestor_Config.T) => {
   /**
    * Specific styles for the API.
    */
-  let createStack = (~direction=?, ~spacing=?, ()) => {
-    let baseStyles = `
+  let baseStyles = `
       display: flex;
     `
 
+  let createStack = (~direction=?, ~spacing=?, ()) => {
     let responsiveStyles = [
       Styles.createResponsiveProp(~prop=spacing, spacing =>
         `gap: ${spacing->Config.spacing->Styles.Css.Length.toString};`
