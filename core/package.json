@@ -33,10 +33,10 @@
     "rescript": "9.1.4"
   },
   "peerDependencies": {
-    "@rescript/react": "^0.10.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "rescript": "^9.1.4"
+    "@rescript/react": ">=0.10.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "rescript": ">=9.0."
   },
   "scripts": {
     "build": "rescript build -with-deps",
