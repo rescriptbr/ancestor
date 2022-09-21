@@ -13,11 +13,9 @@ module Make = (Config: Ancestor_Config.T) => {
   let spacing = v => v->Config.spacing->Length.toString
   let colors = v => v->Config.colors->Color.toString
 
-  type responsiveProp<'a> = array<Config.breakpoints<'a>>
-
   let createBreakpointSize = device => `${device->Config.sizeByBreakpoints->Belt.Int.toString}px`
 
-  let mediaQuery = (current, device: Config.breakpoints<'a>, styles) =>
+  let mediaQuery = (current, device: Config.fields, styles) =>
     `
     ${current}
     @media (min-width: ${device->createBreakpointSize}) {
@@ -25,15 +23,20 @@ module Make = (Config: Ancestor_Config.T) => {
     }
   `
 
-  let sortBySize = (first, second) =>
-    Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
+  let filterEmptyValues = values =>
+    values->Js.Array2.reduce((values, (breakpointName, breakpointValue)) => {
+      switch breakpointValue {
+      | None => values
+      | Some(breakpointValue) => values->Js.Array2.concat([(breakpointName, breakpointValue)])
+      }
+    }, [])
 
-  let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
-    mediaQuery(
-      styles,
-      breakpointValue,
-      `${cssKey}: ${breakpointValue->Config.unboxBreakpointValue->stringify};`,
-    )
+  let sortBySize = ((first, _), (second, _)) => {
+    Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
+  }
+
+  let mergeStyles = (cssKey, stringify, styles, (breakpointName, breakpointValue)) =>
+    mediaQuery(styles, breakpointName, `${cssKey}: ${breakpointValue->stringify};`)
 
   /**
    * Creates responsive styles for responsive props.
@@ -44,9 +47,12 @@ module Make = (Config: Ancestor_Config.T) => {
     switch prop {
     | None => defaultStyles
     | Some(values) =>
-      values->Js.Array2.sortInPlaceWith(sortBySize)->Js.Array2.reduce((currentStyles, value) => {
-        let parsed = value->Config.unboxBreakpointValue
-        mediaQuery(currentStyles, value, transform(parsed))
+      values
+      ->Config.encode
+      ->filterEmptyValues
+      ->Js.Array2.sortInPlaceWith(sortBySize)
+      ->Js.Array2.reduce((currentStyles, (breakpoint, value)) => {
+        mediaQuery(currentStyles, breakpoint, transform(value))
       }, "")
     }
   }
@@ -55,102 +61,104 @@ module Make = (Config: Ancestor_Config.T) => {
     maybeCssValues
     ->Belt.Option.map(values =>
       values
+      ->Config.encode
+      ->filterEmptyValues
       ->Js.Array2.sortInPlaceWith(sortBySize)
       ->Belt.Array.reduce("", mergeStyles(cssKey, stringify))
     )
     ->Belt.Option.getWithDefault("")
 
   let createResponsiveStyles = (
-    ~borderRadius: option<responsiveProp<Config.radius>>=?,
-    ~borderTLRadius: option<responsiveProp<Config.radius>>=?,
-    ~borderTRRadius: option<responsiveProp<Config.radius>>=?,
-    ~borderBLRadius: option<responsiveProp<Config.radius>>=?,
-    ~borderBRRadius: option<responsiveProp<Config.radius>>=?,
-    ~borderStyle: option<responsiveProp<BorderStyle.t>>=?,
-    ~borderColor: option<responsiveProp<Config.colors>>=?,
-    ~borderWidth: option<responsiveProp<Length.t>>=?,
-    ~border: option<responsiveProp<Border.t>>=?,
-    ~borderRight: option<responsiveProp<Border.t>>=?,
-    ~borderLeft: option<responsiveProp<Border.t>>=?,
-    ~borderTop: option<responsiveProp<Border.t>>=?,
-    ~borderBottom: option<responsiveProp<Border.t>>=?,
-    ~borderRightStyle: option<responsiveProp<BorderStyle.t>>=?,
-    ~borderLeftStyle: option<responsiveProp<BorderStyle.t>>=?,
-    ~borderTopStyle: option<responsiveProp<BorderStyle.t>>=?,
-    ~borderBottomStyle: option<responsiveProp<BorderStyle.t>>=?,
-    ~borderRightColor: option<responsiveProp<Config.colors>>=?,
-    ~borderLeftColor: option<responsiveProp<Config.colors>>=?,
-    ~borderTopColor: option<responsiveProp<Config.colors>>=?,
-    ~borderBottomColor: option<responsiveProp<Config.colors>>=?,
-    ~borderRightWidth: option<responsiveProp<Length.t>>=?,
-    ~borderLeftWidth: option<responsiveProp<Length.t>>=?,
-    ~borderTopWidth: option<responsiveProp<Length.t>>=?,
-    ~borderBottomWidth: option<responsiveProp<Length.t>>=?,
-    ~bgColor: option<responsiveProp<Config.colors>>=?,
-    ~bgSize: option<responsiveProp<BackgroundSize.t>>=?,
-    ~bgPosition: option<responsiveProp<BackgroundPosition.t>>=?,
-    ~bgImage: option<responsiveProp<BackgroundImage.t>>=?,
-    ~color: option<responsiveProp<Config.colors>>=?,
-    ~display: option<responsiveProp<Display.t>>=?,
-    ~justifyContent: option<responsiveProp<JustifyContent.t>>=?,
-    ~flexDirection: option<responsiveProp<FlexDirection.t>>=?,
-    ~alignItems: option<responsiveProp<AlignItems.t>>=?,
-    ~flexBasis: option<responsiveProp<FlexBasis.t>>=?,
-    ~flexWrap: option<responsiveProp<FlexWrap.t>>=?,
-    ~flexGrow: option<responsiveProp<FlexGrow.t>>=?,
-    ~alignContent: option<responsiveProp<AlignContent.t>>=?,
-    ~alignSelf: option<responsiveProp<AlignSelf.t>>=?,
-    ~justifySelf: option<responsiveProp<JustifySelf.t>>=?,
-    ~flexFlow: option<responsiveProp<FlexFlow.t>>=?,
-    ~gap: option<responsiveProp<Gap.t>>=?,
-    ~p: option<responsiveProp<Config.spacing>>=?,
-    ~px: option<responsiveProp<Config.spacing>>=?,
-    ~py: option<responsiveProp<Config.spacing>>=?,
-    ~pt: option<responsiveProp<Config.spacing>>=?,
-    ~pb: option<responsiveProp<Config.spacing>>=?,
-    ~pl: option<responsiveProp<Config.spacing>>=?,
-    ~pr: option<responsiveProp<Config.spacing>>=?,
-    ~m: option<responsiveProp<Config.spacing>>=?,
-    ~mx: option<responsiveProp<Config.spacing>>=?,
-    ~my: option<responsiveProp<Config.spacing>>=?,
-    ~mt: option<responsiveProp<Config.spacing>>=?,
-    ~mb: option<responsiveProp<Config.spacing>>=?,
-    ~ml: option<responsiveProp<Config.spacing>>=?,
-    ~mr: option<responsiveProp<Config.spacing>>=?,
-    ~textAlign: option<responsiveProp<TextAlign.t>>=?,
-    ~fontFamily: option<responsiveProp<FontFamily.t>>=?,
-    ~fontWeight: option<responsiveProp<FontWeight.t>>=?,
-    ~fontSize: option<responsiveProp<Length.t>>=?,
-    ~letterSpacing: option<responsiveProp<Length.t>>=?,
-    ~lineHeight: option<responsiveProp<Length.t>>=?,
-    ~width: option<responsiveProp<Length.t>>=?,
-    ~height: option<responsiveProp<Length.t>>=?,
-    ~minW: option<responsiveProp<Length.t>>=?,
-    ~minH: option<responsiveProp<Length.t>>=?,
-    ~maxW: option<responsiveProp<Length.t>>=?,
-    ~maxH: option<responsiveProp<Length.t>>=?,
-    ~position: option<responsiveProp<Position.t>>=?,
-    ~top: option<responsiveProp<Length.t>>=?,
-    ~bottom: option<responsiveProp<Length.t>>=?,
-    ~left: option<responsiveProp<Length.t>>=?,
-    ~right: option<responsiveProp<Length.t>>=?,
-    ~zIndex: option<responsiveProp<Config.zIndex>>=?,
-    ~boxSizing: option<responsiveProp<BoxSizing.t>>=?,
-    ~overflow: option<responsiveProp<Overflow.t>>=?,
-    ~overflowX: option<responsiveProp<Overflow.t>>=?,
-    ~overflowY: option<responsiveProp<Overflow.t>>=?,
-    ~cursor: option<responsiveProp<Cursor.t>>=?,
-    ~visibility: option<responsiveProp<Visibility.t>>=?,
-    ~listStyleType: option<responsiveProp<ListStyleType.t>>=?,
-    ~listStylePosition: option<responsiveProp<ListStylePosition.t>>=?,
-    ~listStyleImage: option<responsiveProp<ListStyleImage.t>>=?,
-    ~listStyle: option<responsiveProp<ListStyle.t>>=?,
-    ~outlineStyle: option<responsiveProp<OutlineStyle.t>>=?,
-    ~outline: option<responsiveProp<Outline.t>>=?,
-    ~textDecorationStyle: option<responsiveProp<TextDecorationStyle.t>>=?,
-    ~textDecorationLine: option<responsiveProp<TextDecorationLine.t>>=?,
-    ~textDecoration: option<responsiveProp<TextDecoration.t>>=?,
-    ~transform: option<responsiveProp<Transform.t>>=?,
+    ~borderRadius: option<Config.breakpoints<Config.radius>>=?,
+    ~borderTLRadius: option<Config.breakpoints<Config.radius>>=?,
+    ~borderTRRadius: option<Config.breakpoints<Config.radius>>=?,
+    ~borderBLRadius: option<Config.breakpoints<Config.radius>>=?,
+    ~borderBRRadius: option<Config.breakpoints<Config.radius>>=?,
+    ~borderStyle: option<Config.breakpoints<BorderStyle.t>>=?,
+    ~borderColor: option<Config.breakpoints<Config.colors>>=?,
+    ~borderWidth: option<Config.breakpoints<Length.t>>=?,
+    ~border: option<Config.breakpoints<Border.t>>=?,
+    ~borderRight: option<Config.breakpoints<Border.t>>=?,
+    ~borderLeft: option<Config.breakpoints<Border.t>>=?,
+    ~borderTop: option<Config.breakpoints<Border.t>>=?,
+    ~borderBottom: option<Config.breakpoints<Border.t>>=?,
+    ~borderRightStyle: option<Config.breakpoints<BorderStyle.t>>=?,
+    ~borderLeftStyle: option<Config.breakpoints<BorderStyle.t>>=?,
+    ~borderTopStyle: option<Config.breakpoints<BorderStyle.t>>=?,
+    ~borderBottomStyle: option<Config.breakpoints<BorderStyle.t>>=?,
+    ~borderRightColor: option<Config.breakpoints<Config.colors>>=?,
+    ~borderLeftColor: option<Config.breakpoints<Config.colors>>=?,
+    ~borderTopColor: option<Config.breakpoints<Config.colors>>=?,
+    ~borderBottomColor: option<Config.breakpoints<Config.colors>>=?,
+    ~borderRightWidth: option<Config.breakpoints<Length.t>>=?,
+    ~borderLeftWidth: option<Config.breakpoints<Length.t>>=?,
+    ~borderTopWidth: option<Config.breakpoints<Length.t>>=?,
+    ~borderBottomWidth: option<Config.breakpoints<Length.t>>=?,
+    ~bgColor: option<Config.breakpoints<Config.colors>>=?,
+    ~bgSize: option<Config.breakpoints<BackgroundSize.t>>=?,
+    ~bgPosition: option<Config.breakpoints<BackgroundPosition.t>>=?,
+    ~bgImage: option<Config.breakpoints<BackgroundImage.t>>=?,
+    ~color: option<Config.breakpoints<Config.colors>>=?,
+    ~display: option<Config.breakpoints<Display.t>>=?,
+    ~justifyContent: option<Config.breakpoints<JustifyContent.t>>=?,
+    ~flexDirection: option<Config.breakpoints<FlexDirection.t>>=?,
+    ~alignItems: option<Config.breakpoints<AlignItems.t>>=?,
+    ~flexBasis: option<Config.breakpoints<FlexBasis.t>>=?,
+    ~flexWrap: option<Config.breakpoints<FlexWrap.t>>=?,
+    ~flexGrow: option<Config.breakpoints<FlexGrow.t>>=?,
+    ~alignContent: option<Config.breakpoints<AlignContent.t>>=?,
+    ~alignSelf: option<Config.breakpoints<AlignSelf.t>>=?,
+    ~justifySelf: option<Config.breakpoints<JustifySelf.t>>=?,
+    ~flexFlow: option<Config.breakpoints<FlexFlow.t>>=?,
+    ~gap: option<Config.breakpoints<Gap.t>>=?,
+    ~p: option<Config.breakpoints<Config.spacing>>=?,
+    ~px: option<Config.breakpoints<Config.spacing>>=?,
+    ~py: option<Config.breakpoints<Config.spacing>>=?,
+    ~pt: option<Config.breakpoints<Config.spacing>>=?,
+    ~pb: option<Config.breakpoints<Config.spacing>>=?,
+    ~pl: option<Config.breakpoints<Config.spacing>>=?,
+    ~pr: option<Config.breakpoints<Config.spacing>>=?,
+    ~m: option<Config.breakpoints<Config.spacing>>=?,
+    ~mx: option<Config.breakpoints<Config.spacing>>=?,
+    ~my: option<Config.breakpoints<Config.spacing>>=?,
+    ~mt: option<Config.breakpoints<Config.spacing>>=?,
+    ~mb: option<Config.breakpoints<Config.spacing>>=?,
+    ~ml: option<Config.breakpoints<Config.spacing>>=?,
+    ~mr: option<Config.breakpoints<Config.spacing>>=?,
+    ~textAlign: option<Config.breakpoints<TextAlign.t>>=?,
+    ~fontFamily: option<Config.breakpoints<FontFamily.t>>=?,
+    ~fontWeight: option<Config.breakpoints<FontWeight.t>>=?,
+    ~fontSize: option<Config.breakpoints<Length.t>>=?,
+    ~letterSpacing: option<Config.breakpoints<Length.t>>=?,
+    ~lineHeight: option<Config.breakpoints<Length.t>>=?,
+    ~width: option<Config.breakpoints<Length.t>>=?,
+    ~height: option<Config.breakpoints<Length.t>>=?,
+    ~minW: option<Config.breakpoints<Length.t>>=?,
+    ~minH: option<Config.breakpoints<Length.t>>=?,
+    ~maxW: option<Config.breakpoints<Length.t>>=?,
+    ~maxH: option<Config.breakpoints<Length.t>>=?,
+    ~position: option<Config.breakpoints<Position.t>>=?,
+    ~top: option<Config.breakpoints<Length.t>>=?,
+    ~bottom: option<Config.breakpoints<Length.t>>=?,
+    ~left: option<Config.breakpoints<Length.t>>=?,
+    ~right: option<Config.breakpoints<Length.t>>=?,
+    ~zIndex: option<Config.breakpoints<Config.zIndex>>=?,
+    ~boxSizing: option<Config.breakpoints<BoxSizing.t>>=?,
+    ~overflow: option<Config.breakpoints<Overflow.t>>=?,
+    ~overflowX: option<Config.breakpoints<Overflow.t>>=?,
+    ~overflowY: option<Config.breakpoints<Overflow.t>>=?,
+    ~cursor: option<Config.breakpoints<Cursor.t>>=?,
+    ~visibility: option<Config.breakpoints<Visibility.t>>=?,
+    ~listStyleType: option<Config.breakpoints<ListStyleType.t>>=?,
+    ~listStylePosition: option<Config.breakpoints<ListStylePosition.t>>=?,
+    ~listStyleImage: option<Config.breakpoints<ListStyleImage.t>>=?,
+    ~listStyle: option<Config.breakpoints<ListStyle.t>>=?,
+    ~outlineStyle: option<Config.breakpoints<OutlineStyle.t>>=?,
+    ~outline: option<Config.breakpoints<Outline.t>>=?,
+    ~textDecorationStyle: option<Config.breakpoints<TextDecorationStyle.t>>=?,
+    ~textDecorationLine: option<Config.breakpoints<TextDecorationLine.t>>=?,
+    ~textDecoration: option<Config.breakpoints<TextDecoration.t>>=?,
+    ~transform: option<Config.breakpoints<Transform.t>>=?,
     (),
   ) =>
     [

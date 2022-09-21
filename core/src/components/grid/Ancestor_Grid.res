@@ -125,7 +125,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecoration=?,
     ~transform=?,
     // Grid props
-    ~spacing: option<Styles.responsiveProp<Config.spacing>>=?,
+    ~spacing: option<Config.breakpoints<Config.spacing>>=?,
     ~tag: Ancestor_React.tags=#div,
     // React props
     ~children=?,

@@ -44,7 +44,10 @@ module Make = (Config: Ancestor_Config.T) => {
       if index == total - 1 {
         element
       } else {
-        <> element divider </>
+        <>
+          element
+          divider
+        </>
       }
     })
   }
@@ -52,8 +55,8 @@ module Make = (Config: Ancestor_Config.T) => {
   @react.component
   let make = (
     // Stack props
-    ~direction: option<Styles.responsiveProp<direction>>=?,
-    ~spacing: option<Styles.responsiveProp<Config.spacing>>=?,
+    ~direction: option<Config.breakpoints<direction>>=?,
+    ~spacing: option<Config.breakpoints<Config.spacing>>=?,
     ~divider: option<React.element>=?,
     // System props
     ~borderRadius=?,

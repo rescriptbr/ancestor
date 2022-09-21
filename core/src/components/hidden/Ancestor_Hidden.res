@@ -39,7 +39,7 @@ module Make = (Config: Ancestor_Config.T) => {
 
   @react.component
   let make = (
-    ~on: option<array<Config.breakpoints<bool>>>=?,
+    ~on: option<Config.breakpoints<bool>>=?,
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,

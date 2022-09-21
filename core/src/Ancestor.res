@@ -1,90 +1,47 @@
 include Ancestor_Core
 
+module Defaults = {
+  type defaultBreakpoints<'a> = {
+    xs?: 'a,
+    sm?: 'a,
+    md?: 'a,
+    lg?: 'a,
+    xl?: 'a,
+  }
+
+  type defaultFields = XS | SM | MD | LG | XL
+}
 module DefaultConfig = {
-  type breakpoints<'a> = [#xs('a) | #sm('a) | #md('a) | #lg('a) | #xl('a)]
+  open Defaults
+  type breakpoints<'a> = Defaults.defaultBreakpoints<'a>
+  type fields = Defaults.defaultFields
   type spacing = int
   type radius = int
   type zIndex = int
   type colors = Ancestor_Css.Color.t
 
+  let encode = breakpoints => [
+    (XS, breakpoints.xs),
+    (SM, breakpoints.sm),
+    (MD, breakpoints.md),
+    (LG, breakpoints.lg),
+    (XL, breakpoints.xl),
+  ]
   let zIndex = v => v
   let colors = v => v
   let spacing = spacing => #px(spacing * 8)
   let radius = radius => #px(radius * 8)
 
-  let sizeByBreakpoints = values =>
-    switch values {
-    | #xs(_) => 0
-    | #sm(_) => 475
-    | #md(_) => 920
-    | #lg(_) => 1280
-    | #xl(_) => 1920
-    }
-
-  let unboxBreakpointValue = values =>
-    switch values {
-    | #xs(v) => v
-    | #sm(v) => v
-    | #md(v) => v
-    | #lg(v) => v
-    | #xl(v) => v
+  let sizeByBreakpoints = breakpoint =>
+    switch breakpoint {
+    | XS => 0
+    | SM => 475
+    | MD => 920
+    | LG => 1280
+    | XL => 1920
     }
 
   let css = Ancestor_Emotion.css
 }
 
-module Default = {
-  include Make(DefaultConfig)
-
-  @ocaml.doc("
-    * Alias function to the #xs('value) breakpoint
-  ")
-  let xs = v => #xs(v)
-  @ocaml.doc("
-    * Alias function to the #sm('value) breakpoint
-    * Size: 475px
-  ")
-  let sm = v => #sm(v)
-  @ocaml.doc("
-    * Alias function to the #md('value) breakpoint
-    * Size: 920px
-  ")
-  let md = v => #md(v)
-  @ocaml.doc("
-    * Alias function to the #lg('value) breakpoint
-    * Size: 1280px
-  ")
-  let lg = v => #lg(v)
-  @ocaml.doc("
-    * Alias function to the #xl('value) breakpoint. 
-    * Size: 1920px
-  ")
-  let xl = v => #xl(v)
-}
-
 include Make(DefaultConfig)
-
-@ocaml.doc("
-    * Alias function to the #xs('value) breakpoint
-  ")
-let xs = v => #xs(v)
-@ocaml.doc("
-    * Alias function to the #sm('value) breakpoint
-    * Size: 475px
-  ")
-let sm = v => #sm(v)
-@ocaml.doc("
-    * Alias function to the #md('value) breakpoint
-    * Size: 920px
-  ")
-let md = v => #md(v)
-@ocaml.doc("
-    * Alias function to the #lg('value) breakpoint
-    * Size: 1280px
-  ")
-let lg = v => #lg(v)
-@ocaml.doc("
-    * Alias function to the #xl('value) breakpoint. 
-    * Size: 1920px
-  ")
-let xl = v => #xl(v)

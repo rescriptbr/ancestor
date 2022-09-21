@@ -1,4 +1,4 @@
-open Ancestor.Default
+open Ancestor
 
 let default = Ancestor_Storybook.story(~title="Components/Grid", ())
 
@@ -14,22 +14,24 @@ let basicUsage = () => {
     font-size: 1.8rem;
     width: 100%;
   `)
-  <Box p=[xs(4)]>
-    <Grid justifyContent=[#xs(#"space-between")] spacing=[#xs(1), #md(3)]>
-      <Box columns=[#xs(#12), #md(#6)]>
+  <Box p={xs: 4}>
+    <Grid justifyContent={xs: #"space-between"} spacing={xs: 1, md: 3}>
+      <Box columns={xs: #12, md: #6}>
         <div className=placeholder> {"6"->React.string} </div>
       </Box>
-      <Box columns=[#xs(#12), #md(#6)]>
+      <Box columns={xs: #12, md: #6}>
         <div className=placeholder> {"6"->React.string} </div>
       </Box>
-      <Box columns=[#xs(#12)]> <div className=placeholder> {"12"->React.string} </div> </Box>
-      <Box columns=[#xs(#12), #md(#4)]>
+      <Box columns={xs: #12}>
+        <div className=placeholder> {"12"->React.string} </div>
+      </Box>
+      <Box columns={xs: #12, md: #4}>
         <div className=placeholder> {"4"->React.string} </div>
       </Box>
-      <Box columns=[#xs(#12), #md(#4)]>
+      <Box columns={xs: #12, md: #4}>
         <div className=placeholder> {"4"->React.string} </div>
       </Box>
-      <Box columns=[#xs(#12), #md(#4)]>
+      <Box columns={xs: #12, md: #4}>
         <div className=placeholder> {"4"->React.string} </div>
       </Box>
     </Grid>

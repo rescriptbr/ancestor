@@ -1,7 +1,7 @@
 let story = (~title, ~component=?, ~argTypes=?, ~excludeStories=[], ()) => {
   let ignoredStories = switch excludeStories {
-  | [] => "\$\$default"
-  | stories => "\$\$default|"->Js.String2.concat(stories->Js.Array2.joinWith("|"))
+  | [] => "default"
+  | stories => "default|"->Js.String2.concat(stories->Js.Array2.joinWith("|"))
   }
 
   {

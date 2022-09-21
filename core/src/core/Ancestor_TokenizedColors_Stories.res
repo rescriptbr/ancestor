@@ -5,7 +5,10 @@ let default = Ancestor_Storybook.story(
 )
 
 module TokenizedColors = Ancestor.Make({
-  type breakpoints<'a> = [#xs('a) | #md('a) | #lg('a)]
+  open Ancestor.DefaultConfig
+
+  type breakpoints<'a> = breakpoints<'a>
+  type fields = fields
   type spacing = int
   type radius = int
   type zIndex = int
@@ -20,31 +23,16 @@ module TokenizedColors = Ancestor.Make({
   let zIndex = v => v
   let spacing = spacing => #px(spacing * 8)
   let radius = radius => #px(radius * 8)
-
-  let sizeByBreakpoints = values =>
-    switch values {
-    | #xs(_) => 0
-    | #md(_) => 920
-    | #lg(_) => 1280
-    }
-
-  let unboxBreakpointValue = values =>
-    switch values {
-    | #xs(v) => v
-    | #md(v) => v
-    | #lg(v) => v
-    }
-
+  let sizeByBreakpoints = sizeByBreakpoints
+  let encode = encode
   let css = Ancestor_Emotion.css
 })
 
 let \"Overview" = () => {
   open TokenizedColors
 
-  <Stack spacing=[#xs(2)]>
-    <Box borderRadius=[#xs(2)] width=[#xs(56->#px)] height=[#xs(56->#px)] bgColor=[#xs(#primary)] />
-    <Box
-      borderRadius=[#xs(2)] width=[#xs(56->#px)] height=[#xs(56->#px)] bgColor=[#xs(#secondary)]
-    />
+  <Stack spacing={xs: 2}>
+    <Box borderRadius={xs: 2} width={xs: 56->#px} height={xs: 56->#px} bgColor={xs: #primary} />
+    <Box borderRadius={xs: 2} width={xs: 56->#px} height={xs: 56->#px} bgColor={xs: #secondary} />
   </Stack>
 }
