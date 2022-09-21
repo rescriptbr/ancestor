@@ -8,6 +8,7 @@ module TokenizedIndex = Ancestor.Make({
   open Ancestor.DefaultConfig
 
   type breakpoints<'value> = breakpoints<'value>
+  type fields = fields
   type radius = radius
   type spacing = spacing
   type colors = colors
@@ -18,7 +19,7 @@ module TokenizedIndex = Ancestor.Make({
     | #hidden
   ]
 
-  let unboxBreakpointValue = unboxBreakpointValue
+  let encode = encode
   let sizeByBreakpoints = sizeByBreakpoints
 
   let css = css
@@ -37,29 +38,28 @@ module TokenizedIndex = Ancestor.Make({
 let overview = () => {
   open TokenizedIndex
 
-  <Box
-    p=[#xs(2)] position=[#xs(#relative)] className={Ancestor_Emotion.css(`> * { opacity: 0.5; }`)}>
+  <Box p={xs: 2} position={xs: #relative} className={Ancestor_Emotion.css(`> * { opacity: 0.5; }`)}>
     <Box
-      width=[#xs(56->#px)]
-      height=[#xs(56->#px)]
-      bgColor=[#xs(#hex("#012000"))]
-      position=[#xs(#absolute)]
-      left=[#xs(#zero)]
+      width={xs: 56->#px}
+      height={xs: 56->#px}
+      bgColor={xs: #hex("#012000")}
+      position={xs: #absolute}
+      left={xs: #zero}
     />
     <Box
-      width=[#xs(56->#px)]
-      height=[#xs(56->#px)]
-      bgColor=[#xs(#hex("#ff0000"))]
-      position=[#xs(#absolute)]
-      zIndex=[#xs(#above)]
-      left=[#xs(32->#px)]
+      width={xs: 56->#px}
+      height={xs: 56->#px}
+      bgColor={xs: #hex("#ff0000")}
+      position={xs: #absolute}
+      zIndex={xs: #above}
+      left={xs: 32->#px}
     />
     <Box
-      width=[#xs(56->#px)]
-      height=[#xs(56->#px)]
-      bgColor=[#xs(#hex("#008000"))]
-      position=[#xs(#absolute)]
-      left=[#xs(64->#px)]
+      width={xs: 56->#px}
+      height={xs: 56->#px}
+      bgColor={xs: #hex("#008000")}
+      position={xs: #absolute}
+      left={xs: 64->#px}
     />
   </Box>
 }

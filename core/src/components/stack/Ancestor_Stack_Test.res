@@ -6,7 +6,9 @@ describe("Stack", (. ()) => {
   it("should render correctly", (. ()) => {
     expect(
       Renderer.create(
-        <Stack direction=[xs(#horizontal), md(#vertical)]> <div /> </Stack>,
+        <Stack direction={xs: #horizontal, md: #vertical}>
+          <div />
+        </Stack>,
       )->Renderer.toJSON,
     )->toMatchSnapshot
   })
@@ -16,7 +18,12 @@ describe("Stack", (. ()) => {
     let divider = <div> {`Divider`->React.string} </div>
 
     expect(
-      Renderer.create(<Stack divider={divider}> placeholder placeholder </Stack>)->Renderer.toJSON,
+      Renderer.create(
+        <Stack divider={divider}>
+          placeholder
+          placeholder
+        </Stack>,
+      )->Renderer.toJSON,
     )->toMatchSnapshot
   })
 })

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Box should visually hide elements correctly 1`] = `
+exports[`Hidden should visually hide elements correctly 1`] = `
 @media (min-width: 0px) {
   .emotion-0 {
     position: absolute;

@@ -9,15 +9,18 @@ module Make = (Config: Ancestor_Config.T) => {
 
   let initialWidth = window->Belt.Option.map(w => w->innerWidth)
 
-  let getBreakpointValue = (innerWidth, values: Styles.responsiveProp<'a>) =>
-    values->Js.Array2.reduce((acc, value) => {
-      let breakpoint = value->Config.sizeByBreakpoints
+  let getBreakpointValue = (innerWidth, values: Config.breakpoints<'a>) =>
+    values
+    ->Config.encode
+    ->Styles.filterEmptyValues
+    ->Js.Array2.reduce((acc, (breakpoint, value)) => {
+      let breakpoint = breakpoint->Config.sizeByBreakpoints
       if innerWidth >= breakpoint->Js.Int.toFloat {
         Some(value)
       } else {
         acc
       }
-    }, None)->Belt.Option.map(Config.unboxBreakpointValue)
+    }, None)
 
   let useResponsiveValue = (default, values) => {
     let (width, setWidth) = React.useState(_ => initialWidth)

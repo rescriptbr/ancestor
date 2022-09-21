@@ -18,22 +18,19 @@ open Ancestor_TestingLibrary
 
 describe("ResponsiveValueHook", (. ()) => {
   describe(".useResponsiveValue(...)", (. ()) => {
-    it("should returns the responsive value correctly", (. ()) => {
-      let {result} = renderHook(() =>
-        Ancestor.useResponsiveValue("Default", [#xs("Mobile"), #md("Tablet")])
-      )
+    it(
+      "should returns the responsive value correctly",
+      (. ()) => {
+        let {result} = renderHook(
+          () => Ancestor.useResponsiveValue("Default", {xs: "Mobile", md: "Tablet"}),
+        )
 
-      expect(result.current)->toBe("Tablet")
+        expect(result.current)->toBe("Tablet")
 
-      act((. ()) => window->resizeTo(320))
+        act((. ()) => window->resizeTo(320))
 
-      expect(result.current)->toBe("Mobile")
-    })
-
-    it("should returns default value when there are no matching breakpoints", (. ()) => {
-      let {result} = renderHook(() => Ancestor.useResponsiveValue("Default", []))
-
-      expect(result.current)->toBe("Default")
-    })
+        expect(result.current)->toBe("Mobile")
+      },
+    )
   })
 })

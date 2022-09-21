@@ -130,7 +130,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecoration=?,
     ~transform=?,
     // Box props
-    ~columns: option<Styles.responsiveProp<columns>>=?,
+    ~columns: option<Config.breakpoints<columns>>=?,
     // React props
     ~children=?,
     ~dangerouslySetInnerHTML=?,
