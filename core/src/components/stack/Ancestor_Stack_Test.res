@@ -1,5 +1,5 @@
 open Ancestor_Jest
-open Ancestor.Default
+open Ancestor
 module Renderer = Ancestor_ReactTestRenderer
 
 describe("Stack", (. ()) => {
