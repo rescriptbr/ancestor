@@ -4,36 +4,37 @@ let default = Ancestor_Storybook.story(
   (),
 )
 
-module TokenizedIndex = Ancestor.Make({
-  open Ancestor.DefaultConfig
+module TokenizedIndex = {
+  include Ancestor.DefaultConfig
+  include Ancestor.Make({
+    type breakpoints<'value> = breakpoints<'value>
+    type fields = fields
+    type radius = radius
+    type spacing = spacing
+    type colors = colors
+    type zIndex = [
+      | #base
+      | #above
+      | #aboveAll
+      | #hidden
+    ]
 
-  type breakpoints<'value> = breakpoints<'value>
-  type fields = fields
-  type radius = radius
-  type spacing = spacing
-  type colors = colors
-  type zIndex = [
-    | #base
-    | #above
-    | #aboveAll
-    | #hidden
-  ]
+    let encode = encode
+    let sizeByBreakpoints = sizeByBreakpoints
 
-  let encode = encode
-  let sizeByBreakpoints = sizeByBreakpoints
-
-  let css = css
-  let radius = radius
-  let spacing = spacing
-  let colors = colors
-  let zIndex = token =>
-    switch token {
-    | #base => 5
-    | #above => 10
-    | #aboveAll => 20
-    | #hidden => -1
-    }
-})
+    let css = css
+    let radius = radius
+    let spacing = spacing
+    let colors = colors
+    let zIndex = token =>
+      switch token {
+      | #base => 5
+      | #above => 10
+      | #aboveAll => 20
+      | #hidden => -1
+      }
+  })
+}
 
 let overview = () => {
   open TokenizedIndex

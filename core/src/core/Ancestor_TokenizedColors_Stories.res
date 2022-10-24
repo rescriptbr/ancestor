@@ -4,29 +4,30 @@ let default = Ancestor_Storybook.story(
   (),
 )
 
-module TokenizedColors = Ancestor.Make({
-  open Ancestor.DefaultConfig
+module TokenizedColors = {
+  include Ancestor.DefaultConfig
+  include Ancestor.Make({
+    type breakpoints<'a> = breakpoints<'a>
+    type fields = fields
+    type spacing = int
+    type radius = int
+    type zIndex = int
+    type colors = [#primary | #secondary]
 
-  type breakpoints<'a> = breakpoints<'a>
-  type fields = fields
-  type spacing = int
-  type radius = int
-  type zIndex = int
-  type colors = [#primary | #secondary]
+    let colors = v =>
+      switch v {
+      | #primary => #hex("#000")
+      | #secondary => #hex("#cecece")
+      }
 
-  let colors = v =>
-    switch v {
-    | #primary => #hex("#000")
-    | #secondary => #hex("#cecece")
-    }
-
-  let zIndex = v => v
-  let spacing = spacing => #px(spacing * 8)
-  let radius = radius => #px(radius * 8)
-  let sizeByBreakpoints = sizeByBreakpoints
-  let encode = encode
-  let css = Ancestor_Emotion.css
-})
+    let zIndex = v => v
+    let spacing = spacing => #px(spacing * 8)
+    let radius = radius => #px(radius * 8)
+    let sizeByBreakpoints = sizeByBreakpoints
+    let encode = encode
+    let css = Ancestor_Emotion.css
+  })
+}
 
 let \"Overview" = () => {
   open TokenizedColors

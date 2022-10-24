@@ -1,7 +1,7 @@
 rescript = 1
 g_finger := /Users/marcos/Projects/ancestor/node_modules/@rescript/react/lib/ocaml/install.stamp
 rule astj
-  command = /Users/marcos/Projects/ancestor/core/node_modules/rescript/darwinarm64/bsc.exe  -bs-v 10.0.1 -bs-jsx 3  -absname -bs-ast -o $out $i
+  command = /Users/marcos/Projects/ancestor/core/node_modules/rescript/darwinarm64/bsc.exe  -bs-v 10.0.1,1663931927. -ppx /Users/marcos/Projects/ancestor/node_modules/@greenlabs/ppx-ts/ppx -bs-jsx 3  -absname -bs-ast -o $out $i
 o src/Ancestor.ast : astj ../../src/Ancestor.res
 rule deps
   command = /Users/marcos/Projects/ancestor/core/node_modules/rescript/darwinarm64/bsb_helper.exe -hash 85b23415acbab933e8f181863cf6f562 $in

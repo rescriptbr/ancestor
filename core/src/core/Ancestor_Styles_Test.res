@@ -29,7 +29,7 @@ describe("Styles", (. ()) => {
     it(
       "should create a media query correctly",
       (. ()) => {
-        let mediaQuery = Styles.mediaQuery("display: block;", XS, "display: flex")
+        let mediaQuery = Styles.mediaQuery("display: block;", Xs, "display: flex")
 
         expect(mediaQuery)->toMatchSnapshot
       },

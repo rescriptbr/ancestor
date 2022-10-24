@@ -1,5 +1,4 @@
 module Make = (Config: Ancestor_Config.T) => {
-  type breakpoints<'a> = Config.breakpoints<'a>
   module Styles = Ancestor_Styles.Make(Config)
   module Base = Ancestor_Base.Make(Config)
   module Box = Ancestor_Box.Make(Config)
