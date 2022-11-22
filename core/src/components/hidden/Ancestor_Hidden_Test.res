@@ -1,10 +1,11 @@
-open Ancestor_Jest
+open Jest
+open Expect
 open Ancestor
 
 module Renderer = Ancestor_ReactTestRenderer
 
-describe("Hidden", (. ()) => {
-  it("should visually hide elements correctly", (. ()) => {
+describe("Hidden", () => {
+  test("should visually hide elements correctly", () => {
     expect(
       Renderer.create(
         <Hidden on={xs: true, md: false, lg: true}>

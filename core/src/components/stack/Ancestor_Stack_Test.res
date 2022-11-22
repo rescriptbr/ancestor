@@ -1,9 +1,10 @@
-open Ancestor_Jest
+open Jest
+open Expect
 open Ancestor
 module Renderer = Ancestor_ReactTestRenderer
 
-describe("Stack", (. ()) => {
-  it("should render correctly", (. ()) => {
+describe("Stack", () => {
+  test("should render correctly", () => {
     expect(
       Renderer.create(
         <Stack direction={xs: #horizontal, md: #vertical}>
@@ -13,7 +14,7 @@ describe("Stack", (. ()) => {
     )->toMatchSnapshot
   })
 
-  it("should render with dividers correctly", (. ()) => {
+  test("should render with dividers correctly", () => {
     let placeholder = <div> {`Placeholder`->React.string} </div>
     let divider = <div> {`Divider`->React.string} </div>
 

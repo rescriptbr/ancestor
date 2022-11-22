@@ -1,10 +1,11 @@
-open Ancestor_Jest
+open Jest
+open Expect
 open Ancestor
 
 module Renderer = Ancestor_ReactTestRenderer
 
-describe("Grid", (. ()) => {
-  it("should with spacing render correctly", (. ()) => {
+describe("Grid", () => {
+  test("should with spacing render correctly", () => {
     expect(
       Renderer.create(
         <Grid spacing={xs: 1, md: 0, lg: 3}>
@@ -17,7 +18,7 @@ describe("Grid", (. ()) => {
     )->toMatchSnapshot
   })
 
-  it("should without spacing render correctly", (. ()) => {
+  test("should without spacing render correctly", () => {
     expect(
       Renderer.create(
         <Grid>

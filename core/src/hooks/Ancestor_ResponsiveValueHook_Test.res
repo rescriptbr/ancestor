@@ -1,4 +1,5 @@
-open Ancestor_Jest
+open Jest
+open Expect
 open Ancestor_TestingLibrary
 
 /**
@@ -16,11 +17,11 @@ open Ancestor_TestingLibrary
 @val external window: Dom.window = "window"
 @send external resizeTo: (Dom.window, int) => unit = "resizeTo"
 
-describe("ResponsiveValueHook", (. ()) => {
-  describe(".useResponsiveValue(...)", (. ()) => {
-    it(
+describe("ResponsiveValueHook", () => {
+  describe(".useResponsiveValue(...)", () => {
+    test(
       "should returns the responsive value correctly",
-      (. ()) => {
+      () => {
         let {result} = renderHook(
           () => Ancestor.useResponsiveValue("Default", {xs: "Mobile", md: "Tablet"}),
         )
