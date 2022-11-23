@@ -709,3 +709,87 @@ module Make = (
       }
   }
 }
+
+module Opacity = {
+  type t = int
+
+  let toString = (opacity: t) => opacity->Js.Int.toString
+}
+
+module BgRepeat = {
+  type complete = [#repeat | #space | #round | #"no-repeat"]
+  type short = [#"repeat-x" | #"repeat-y" | #repeat | #space | #round | #"no-repeat"]
+
+  type t = [
+    | #one(short)
+    | #two(complete, complete)
+    | #inherit
+    | #initial
+    | #revert
+    | #"revert-layer"
+    | #unset
+  ]
+
+  let toString = (bgRepeat: t) =>
+    switch bgRepeat {
+    | #one(value) => (value :> string)
+    | #two(first, second) => `${(first :> string)} ${(second :> string)}`
+    | #inherit => "inherit"
+    | #initial => "initial"
+    | #revert => "revert"
+    | #"revert-layer" => "revert-layer"
+    | #unset => "unset"
+    }
+}
+
+module ColumnCount = {
+  type t = [
+    | #int(int)
+    | #inherit
+    | #auto
+    | #initial
+    | #revert
+    | #"revert-layer"
+    | #unset
+  ]
+
+  let toString = (columnCount: t) =>
+    switch columnCount {
+    | #int(value) => value->Js.Int.toString
+    | #auto => "auto"
+    | #inherit => "inherit"
+    | #initial => "initial"
+    | #revert => "revert"
+    | #"revert-layer" => "revert-layer"
+    | #unset => "unset"
+    }
+}
+
+module BgAttachment = {
+  type t = [
+    | #scroll
+    | #fixed
+    | #local
+    | #inherit
+    | #initial
+    | #revert
+    | #"revert-layer"
+    | #unset
+  ]
+
+  let toString = (v: t) => (v :> string)
+}
+
+module BoxSizing = {
+  type t = [
+    | #"border-box"
+    | #"content-box"
+    | #inherit
+    | #initial
+    | #revert
+    | #"revert-layer"
+    | #unset
+  ]
+
+  let toString = (v: t) => (v :> string)
+}
