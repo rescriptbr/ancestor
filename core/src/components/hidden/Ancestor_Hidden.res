@@ -40,6 +40,7 @@ module Make = (Config: Ancestor_Config.T) => {
   @react.component
   let make = (
     ~on: option<Config.breakpoints<bool>>=?,
+    // declaration:start
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,
@@ -130,6 +131,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecorationLine=?,
     ~textDecoration=?,
     ~transform=?,
+    // declaration-end
     // React props
     ~children=?,
     ~dangerouslySetInnerHTML=?,
@@ -371,6 +373,7 @@ module Make = (Config: Ancestor_Config.T) => {
         let hiddenClassName = createHidden(~on, ())
         `${hiddenClassName} ${className}`
       }
+      // forward:start
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius
@@ -461,6 +464,7 @@ module Make = (Config: Ancestor_Config.T) => {
       ?textDecorationLine
       ?textDecoration
       ?transform
+      // forward:end
       // DOM Props
       tag
       ?id
@@ -697,3 +701,4 @@ module Make = (Config: Ancestor_Config.T) => {
     />
   }
 }
+
