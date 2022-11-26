@@ -131,7 +131,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecorationLine=?,
     ~textDecoration=?,
     ~transform=?,
-    // declaration-end
+    // declaration:end
     // React props
     ~children=?,
     ~dangerouslySetInnerHTML=?,
@@ -701,4 +701,3 @@ module Make = (Config: Ancestor_Config.T) => {
     />
   }
 }
-
