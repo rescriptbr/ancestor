@@ -39,6 +39,7 @@ module Make = (Config: Ancestor_Config.T) => {
 
   @react.component
   let make = (
+    // declaration:start
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,
@@ -129,6 +130,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecorationLine=?,
     ~textDecoration=?,
     ~transform=?,
+    // declaration:end
     // Box props
     ~columns: option<Config.breakpoints<columns>>=?,
     // React props
@@ -372,6 +374,7 @@ module Make = (Config: Ancestor_Config.T) => {
         let boxClassName = createBox(~columns?, ())
         `${boxClassName} ${className}`
       }
+      // forward:start
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius
@@ -462,6 +465,7 @@ module Make = (Config: Ancestor_Config.T) => {
       ?textDecorationLine
       ?textDecoration
       ?transform
+      // forward:end
       // DOM Props
       tag
       ?id

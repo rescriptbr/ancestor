@@ -34,6 +34,7 @@ module Make = (Config: Ancestor_Config.T) => {
 
   @react.component
   let make = (
+    // declaration:start
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,
@@ -124,6 +125,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecorationLine=?,
     ~textDecoration=?,
     ~transform=?,
+    // declaration:end
     // Grid props
     ~spacing: option<Config.breakpoints<Config.spacing>>=?,
     ~tag: Ancestor_React.tags=#div,
@@ -364,6 +366,7 @@ module Make = (Config: Ancestor_Config.T) => {
   ) => {
     <Base
       className={`${grid(~spacing?, ())} ${className}`}
+      // forward:start
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius
@@ -454,6 +457,7 @@ module Make = (Config: Ancestor_Config.T) => {
       ?textDecorationLine
       ?textDecoration
       ?transform
+      // forward:end
       // DOM Props
       tag
       ?id

@@ -58,7 +58,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~direction: option<Config.breakpoints<direction>>=?,
     ~spacing: option<Config.breakpoints<Config.spacing>>=?,
     ~divider: option<React.element>=?,
-    // System props
+    // declaration:start
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,
@@ -149,6 +149,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecorationLine=?,
     ~textDecoration=?,
     ~transform=?,
+    // declaration:end
     // React props
     ~children=?,
     ~dangerouslySetInnerHTML=?,
@@ -387,6 +388,7 @@ module Make = (Config: Ancestor_Config.T) => {
   ) => {
     <Base
       className={`${createStack(~direction?, ~spacing?, ())} ${className}`}
+      // forward:start
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius
@@ -477,6 +479,7 @@ module Make = (Config: Ancestor_Config.T) => {
       ?textDecorationLine
       ?textDecoration
       ?transform
+      // forward:end
       // DOM Props
       tag
       ?id
