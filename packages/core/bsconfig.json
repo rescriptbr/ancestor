@@ -1,10 +1,17 @@
 {
   "name": "@rescriptbr/ancestor",
   "version": "0.0.8-beta",
-  "sources": {
-    "dir": "src",
-    "subdirs": true
-  },
+  "sources": [
+    {
+      "dir": "scripts",
+      "tyoe": "dev",
+      "subdirs": true
+    },
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
 
   "package-specs": [
     {
@@ -16,7 +23,11 @@
     "react-jsx": 3
   },
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react", "@greenlabs/rescript-jest"],
+  "bs-dependencies": [
+    "@rescript/react",
+    "@greenlabs/rescript-jest",
+    "rescript-nodejs"
+  ],
   "bs-dev-dependencies": ["@greenlabs/rescript-jest"],
   "ppx-flags": ["@greenlabs/ppx-ts/ppx"]
 }
