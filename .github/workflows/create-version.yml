@@ -3,20 +3,19 @@ name: Create version
 on:
   workflow_dispatch:
     inputs:
-        versionType:
-          description: Version type
-          required: true
-          default: 'patch'
-          type: choice
-          options:
-            - patch
-            - minor
-            - major
-            - premajor
-            - preminor
-            - prepatch
-            - prerelease
-
+      versionType:
+        description: Version type
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - premajor
+          - preminor
+          - prepatch
+          - prerelease
 
 jobs:
   create-version:
@@ -31,11 +30,11 @@ jobs:
       - run: |
           git config user.name rescriptbr-admin
           git config user.email rescriptbr@gmail.com
-          
+
       - name: Generate new version ${{ github.event.inputs.versionType }}
         run: |
-          cd core
-          yarn version --${{ github.event.inputs.versionType }}   
-   
+          cd packages/core
+          yarn version --${{ github.event.inputs.versionType }}
+
       - name: Push the tags
         run: git push origin main --tags

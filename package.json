@@ -5,18 +5,19 @@
   "main": "index.js",
   "license": "MIT",
   "workspaces": [
-    "core",
-    "ui",
+    "packages/*",
     "website"
   ],
   "scripts": {
     "core": "yarn workspace @rescriptbr/ancestor",
     "core:compile": "yarn core build",
     "core:test": "yarn core test",
-    "docs:docusaurus": "yarn workspace website docusaurus",
-    "docs:start": "yarn workspace website docusaurus start",
-    "docs:build": "yarn workspace website build",
-    "docs:clear": "yarn workspace website docusaurus clear"
+    "website": "yarn workspace website",
+    "docs:docusaurus": "yarn website docusaurus",
+    "docs:compile": "yarn website build -w",
+    "docs:start": "yarn website docusaurus start",
+    "docs:build": "yarn website build",
+    "docs:clear": "yarn website docusaurus clear"
   },
   "devDependencies": {},
   "peerDependencies": {},
