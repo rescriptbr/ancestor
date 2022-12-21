@@ -26,10 +26,9 @@ lib/bs
 .bsb.lock
 /node_modules/
 *.bs.js
-/demo/lib/
-/core/lib/
+packaages/**/lib/
+packages/**/node_modules/
 /website/lib/
-/core/node_modules/
 /website/node_modules/
 
 .DS_STORE
