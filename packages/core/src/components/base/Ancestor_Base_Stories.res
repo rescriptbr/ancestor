@@ -1,6 +1,5 @@
 open Ancestor
 
-
 let default = Ancestor_Storybook.story(~title="Components/Base", ())
 
 let basicUsage = () => {
@@ -8,6 +7,9 @@ let basicUsage = () => {
 
   <Base display={xs: #flex, md: #block} justifyContent={xs: #center} width={xs: 100.->#pct}>
     <Base
+      _hover={
+        bgColor: {xs: #hex("#363636"), md: #hex("#ccc")},
+      }
       display={xs: #flex}
       flexDirection={xs: #column}
       justifyContent={xs: #center}
