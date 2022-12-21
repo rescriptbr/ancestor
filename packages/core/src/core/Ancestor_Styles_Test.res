@@ -8,13 +8,9 @@ describe("Styles", () => {
     test(
       "should create responsive CSS for the attribute provided",
       () => {
-        let padding = Styles.createCssValueFromArray(
-          "padding",
-          Some({xs: 2, md: 4}),
-          Styles.spacing,
-        )
+        let padding = Styles.createResponsiveValue("padding", Some({xs: 2, md: 4}), Styles.spacing)
 
-        let width = Styles.createCssValueFromArray(
+        let width = Styles.createResponsiveValue(
           "width",
           Some({xs: 100.0->#pct, md: #px(32)}),
           Styles.Css.Length.toString,
