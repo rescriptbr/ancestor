@@ -344,7 +344,6 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onCanPlayThrough=?,
     ~onDurationChange=?,
     ~onEmptied=?,
-    ~onEncrypetd=?,
     ~onEnded=?,
     ~onError=?,
     ~onLoadedData=?,
@@ -675,7 +674,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?onCanPlayThrough
       ?onDurationChange
       ?onEmptied
-      ?onEncrypetd
       ?onEnded
       ?onError
       ?onLoadedData

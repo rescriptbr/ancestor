@@ -26,7 +26,7 @@ lib/bs
 .bsb.lock
 /node_modules/
 *.bs.js
-packaages/**/lib/
+packages/**/lib/
 packages/**/node_modules/
 /website/lib/
 /website/node_modules/
