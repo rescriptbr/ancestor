@@ -20,5 +20,5 @@
   "suffix": ".bs.js",
   "bs-dependencies": ["@rescript/react", "@rescriptbr/ancestor"],
   "bs-dev-dependencies": [],
-  "ppx-flags": ["@greenlabs/ppx-ts/ppx"]
+  "ppx-flags": []
 }
