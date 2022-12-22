@@ -25,7 +25,7 @@ exports[`Stack should render correctly 1`] = `
 }
 
 <div
-  className="emotion-0  emotion-1"
+  className="emotion-0  emotion-1 emotion-2"
 >
   <div />
 </div>
@@ -43,7 +43,7 @@ exports[`Stack should render with dividers correctly 1`] = `
 }
 
 <div
-  className="emotion-0  emotion-1"
+  className="emotion-0  emotion-1 emotion-2"
 >
   <div>
     Placeholder
