@@ -95,6 +95,19 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecoration=?,
     ~transform=?,
     ~_hover: option<Styles.t>=?,
+    ~_focus: option<Styles.t>=?,
+    ~_active: option<Styles.t>=?,
+    ~_focusWithin: option<Styles.t>=?,
+    ~_focusVisible: option<Styles.t>=?,
+    ~_disabled: option<Styles.t>=?,
+    ~_before: option<Styles.t>=?,
+    ~_after: option<Styles.t>=?,
+    ~_even: option<Styles.t>=?,
+    ~_odd: option<Styles.t>=?,
+    ~_first: option<Styles.t>=?,
+    ~_last: option<Styles.t>=?,
+    ~_notFirst: option<Styles.t>=?,
+    ~_notLast: option<Styles.t>=?,
     // declaration:end
     // Base props
     ~tag: Ancestor_React.tags=#div,
@@ -427,7 +440,24 @@ module Make = (Config: Ancestor_Config.T) => {
         ?transform,
         // forward-fn:end
       })->Config.css
-      let pseudoStyles = Styles.createPseudoStyles(~_hover?, ())->Config.css
+      let pseudoStyles =
+        Styles.createPseudoStyles(
+          ~_hover?,
+          ~_focus?,
+          ~_active?,
+          ~_focusWithin?,
+          ~_focusVisible?,
+          ~_disabled?,
+          ~_before?,
+          ~_after?,
+          ~_even?,
+          ~_odd?,
+          ~_first?,
+          ~_last?,
+          ~_notFirst?,
+          ~_notLast?,
+          (),
+        )->Config.css
       `${className} ${responsiveStyles} ${pseudoStyles}`
     }
 

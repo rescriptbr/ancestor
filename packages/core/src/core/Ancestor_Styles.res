@@ -270,9 +270,40 @@ module Make = (Config: Ancestor_Config.T) => {
     )
     ->Belt.Option.getWithDefault("")
 
-  let createPseudoStyles = (~_hover=?, ~_focus=?, ()) => {
+  let createPseudoStyles = (
+    ~_hover: option<t>=?,
+    ~_focus: option<t>=?,
+    ~_active: option<t>=?,
+    ~_focusWithin: option<t>=?,
+    ~_focusVisible: option<t>=?,
+    ~_disabled: option<t>=?,
+    ~_before: option<t>=?,
+    ~_after: option<t>=?,
+    ~_even: option<t>=?,
+    ~_odd: option<t>=?,
+    ~_first: option<t>=?,
+    ~_last: option<t>=?,
+    ~_notFirst: option<t>=?,
+    ~_notLast: option<t>=?,
+    (),
+  ) => {
     let s = createPseudoStyle
-    [s("&:hover", _hover), s("&:focus", _focus)]->Js.Array2.joinWith("\n")
+    [
+      s("&:hover", _hover),
+      s("&:focus", _focus),
+      s("&:active", _active),
+      s("&:focus-within", _focusWithin),
+      s("&:focus-visible", _focusVisible),
+      s("&[disabled]", _disabled),
+      s("&::before", _before),
+      s("&::after", _after),
+      s("&:nth-of-type(even)", _even),
+      s("&:nth-of-type(odd)", _odd),
+      s("&:first-of-type", _first),
+      s("&:last-of-type", _last),
+      s("&:not(:first-of-type)", _notFirst),
+      s("&:not(:last-of-type)", _notLast),
+    ]->Js.Array2.joinWith("\n")
   }
 
   let merge = styles => styles->Js.Array2.joinWith("")

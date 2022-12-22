@@ -155,7 +155,7 @@ module PropsUpdater = {
       switch kind {
       | Declaration => `~${propName}=?,`
       | Forward => `?${propName}`
-      | ForwardToFn => `~${propName}?,`
+      | ForwardToFn => `?${propName},`
       }
     )
 

@@ -1,6 +1,5 @@
 open Ancestor
 
-
 let default = Ancestor_Storybook.story(~title="Components/Box", ())
 
 let basicUsage = () => {
@@ -8,6 +7,9 @@ let basicUsage = () => {
 
   <Box p={xs: 4}>
     <Box
+      _after={
+        width: {xs: #px(200)},
+      }
       borderRadius={xs: 1}
       bgColor={xs: #hex("#000")}
       p={xs: 4}
