@@ -4,7 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@emotion/css": "11.10.0",
+    "@emotion/jest": "11.9.3",
+    "@babel/core": "^7.20.5",
+    "@greenlabs/ppx-ts": "^0.1.7",
     "@rescript/react": "0.11.0-rc.3",
+    "@rescriptbr/ancestor": "1.0.0-5",
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/builder-webpack4": "^6.5.15",
+    "@storybook/manager-webpack4": "^6.5.15",
+    "@storybook/react": "^6.5.15",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rescript": "10.1.0"
@@ -14,5 +28,10 @@
     "react": ">=18",
     "react-dom": ">=18",
     "rescript": ">=10"
+  },
+  "dependencies": {},
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
