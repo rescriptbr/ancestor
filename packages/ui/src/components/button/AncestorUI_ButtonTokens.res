@@ -9,7 +9,6 @@ type sizeStyles = {
   height: Ancestor_Css.Length.t,
 }
 
-@ppx_ts.partial
 type t = {sizes: size => sizeStyles}
 
 type custom = {sizes?: size => sizeStyles}

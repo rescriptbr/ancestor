@@ -2,7 +2,6 @@ type colors = [
   | #primary100
 ]
 
-@ppx_ts.partial
 type theme = {
   /*
    * Tokens
