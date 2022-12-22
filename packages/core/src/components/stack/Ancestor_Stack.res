@@ -149,6 +149,20 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecorationLine=?,
     ~textDecoration=?,
     ~transform=?,
+    ~_focus: option<Styles.t>=?,
+    ~_hover: option<Styles.t>=?,
+    ~_active: option<Styles.t>=?,
+    ~_focusWithin: option<Styles.t>=?,
+    ~_focusVisible: option<Styles.t>=?,
+    ~_disabled: option<Styles.t>=?,
+    ~_before: option<Styles.t>=?,
+    ~_after: option<Styles.t>=?,
+    ~_even: option<Styles.t>=?,
+    ~_odd: option<Styles.t>=?,
+    ~_first: option<Styles.t>=?,
+    ~_last: option<Styles.t>=?,
+    ~_notFirst: option<Styles.t>=?,
+    ~_notLast: option<Styles.t>=?,
     // declaration:end
     // React props
     ~children=?,
@@ -478,6 +492,20 @@ module Make = (Config: Ancestor_Config.T) => {
       ?textDecorationLine
       ?textDecoration
       ?transform
+      ?_focus
+      ?_hover
+      ?_active
+      ?_focusWithin
+      ?_focusVisible
+      ?_disabled
+      ?_before
+      ?_after
+      ?_even
+      ?_odd
+      ?_first
+      ?_last
+      ?_notFirst
+      ?_notLast
       // forward:end
       // DOM Props
       tag
