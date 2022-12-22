@@ -1,0 +1,18 @@
+{
+  "name": "@rescriptbr/ancestor-ui",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@rescript/react": "0.11.0-rc.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rescript": "10.1.0"
+  },
+  "peerDependencies": {
+    "@rescript/react": ">=0.11",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "rescript": ">=10"
+  }
+}
