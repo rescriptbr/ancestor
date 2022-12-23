@@ -1,17 +1,20 @@
-module Make = (Config: AncestorUI_Theme.T) => {
+module Make = (Config: Theme.CustomTheme) => {
+  module ThemeConstructor = {
+    let theme = Theme.mergeWithDefaults(Config.theme)
+  }
   /*
    *  Mappers
    */
   let colors = token =>
     switch Config.theme.colors {
-    | None => AncestorUI_Theme.default.colors(token)
+    | None => Theme.default.colors(token)
     | Some(colors) => colors(token)
     }
 
   /*
    * Components
    */
-  module Button = AncestorUI_Button.Make(Config)
+  module Button = Button.Make(ThemeConstructor)
 
   /*
    * Ancestor config
@@ -38,7 +41,7 @@ module Make = (Config: AncestorUI_Theme.T) => {
     /*
      * Colors
      */
-    type colors = AncestorUI_Theme.colors
+    type colors = Theme.colors
     let colors = colors
 
     let zIndex = v => v
@@ -57,3 +60,7 @@ module Make = (Config: AncestorUI_Theme.T) => {
     let css = Ancestor_Emotion.css
   }
 }
+
+include Make({
+  let theme: Theme.custom = {}
+})
