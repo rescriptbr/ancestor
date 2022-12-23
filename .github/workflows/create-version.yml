@@ -3,7 +3,7 @@ name: Create version
 on:
   workflow_dispatch:
     inputs:
-      package:
+      packageName:
         description: Package name
         required: true
         default: "core"
