@@ -1,5 +1,6 @@
 {
   "name": "@rescriptbr/ancestor-ui",
+  "namespace": "AncestorUI",
   "version": "0.0.1",
   "sources": [
     {
