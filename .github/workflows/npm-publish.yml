@@ -22,7 +22,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: cp README.md core/README.md
       - run: cd packages/${{ github.event.inputs.packageName }} && npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
