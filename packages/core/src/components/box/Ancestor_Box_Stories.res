@@ -1,6 +1,6 @@
 open Ancestor
 
-let default = Ancestor_Storybook.story(~title="Components/Box", ())
+let default = Storybook.story(~title="Components/Box", ())
 
 let basicUsage = () => {
   let s = React.string

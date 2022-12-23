@@ -2,7 +2,7 @@ open Ancestor
 open Ancestor_Helpers
 
 
-let default = Ancestor_Storybook.story(~title="Components/Stack", ())
+let default = Storybook.story(~title="Components/Stack", ())
 
 let \"BasicUsage" = () => {
   <Stack

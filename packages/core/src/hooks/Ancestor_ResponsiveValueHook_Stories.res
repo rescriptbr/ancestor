@@ -1,4 +1,4 @@
-let default = Ancestor_Storybook.story(
+let default = Storybook.story(
   ~title="Hooks/useResponsiveValue",
   ~excludeStories=["Card"],
   (),
