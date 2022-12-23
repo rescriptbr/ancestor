@@ -1,8 +1,17 @@
 name: Publish package on NPM
 
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      packageName:
+        description: Package name
+        required: true
+        default: "core"
+        type: choice
+        options:
+          - core
+          - ui
+          - bindings
 
 jobs:
   publish-npm:
@@ -14,6 +23,6 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: cp README.md core/README.md
-      - run: cd packages/core && npm publish --access=public
+      - run: cd packages/${{ github.event.inputs.packageName }} && npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
