@@ -73,24 +73,24 @@ module Color = {
     }
 }
 
-module Make = (
-  Config: {
-    type spacing
-    let spacing: spacing => Length.t
+module type Config = {
+  type spacing
+  let spacing: spacing => Length.t
 
-    type colors
-    let colors: colors => Color.t
+  type colors
+  let colors: colors => Color.t
 
-    type radius
-    let radius: radius => Length.t
+  type radius
+  let radius: radius => Length.t
 
-    type zIndex
-    let zIndex: zIndex => int
+  type zIndex
+  let zIndex: zIndex => int
 
-    type propsWrapper<'a>
-    let propsTransformer: (string, option<propsWrapper<'a>>, 'a => string) => string
-  },
-) => {
+  type propsWrapper<'a>
+  let propsTransformer: (string, option<propsWrapper<'a>>, 'a => string) => string
+}
+
+module Make = (Config: Config) => {
   module Length = Length
   module Color = Color
 

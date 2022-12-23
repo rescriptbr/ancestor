@@ -8,7 +8,6 @@
     "@emotion/css": "11.10.0",
     "@emotion/jest": "11.9.3",
     "@rescript/react": "0.11.0-rc.3",
-    "@rescriptbr/ancestor": "1.0.0-5",
     "@storybook/addon-actions": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addon-interactions": "6.5.15",
@@ -29,7 +28,9 @@
     "rescript": ">=10"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2"
+    "@ancestor-ui/core": "*",
+    "@ancestor-ui/bindings": "*",
+    "deepmerge": "4.2.2"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",

@@ -10,29 +10,32 @@ type colors = [
   | #primary900
 ]
 
-type theme = {
+type theme<'spacing> = {
   /*
    * Tokens
    */
   colors: colors => Ancestor_Css.Color.t,
+  spacing: 'spacing => Ancestor_Css.Length.t,
   /*
    * Components
    */
   button: ButtonTokens.t,
 }
 
-type custom = {
+type custom<'spacing> = {
   /*
    * Tokens
    */
   colors?: colors => Ancestor_Css.Color.t,
+  spacing?: 'spacing => Ancestor_Css.Length.t,
   /*
    * Components
    */
   button?: ButtonTokens.custom,
 }
 
-let default: theme = {
+let default: theme<float> = {
+  spacing: v => #pxFloat(v *. 8.0),
   colors: token =>
     switch token {
     | #primary100 => #hex("#E1F3FE")
@@ -48,15 +51,19 @@ let default: theme = {
   button: ButtonTokens.defaults,
 }
 
-let mergeWithDefaults = (customTheme: custom): theme => {
-  let mergeDeep: (theme, custom) => theme = (theme, custom) => DeepMerge.merge(theme, custom)
+let mergeWithDefaults = (customTheme: custom<'spacing>): theme<'spacing> => {
+  let mergeDeep = (theme, custom) => DeepMerge.merge(theme, custom)
   mergeDeep(default, customTheme)
 }
 
 module type Theme = {
-  let theme: theme
+  type spacing
+
+  let theme: theme<spacing>
 }
 
 module type CustomTheme = {
-  let theme: custom
+  type spacing
+
+  let theme: custom<spacing>
 }

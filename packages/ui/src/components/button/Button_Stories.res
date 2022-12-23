@@ -1,4 +1,4 @@
-let default = Ancestor_Storybook.story(~title="Button", ~excludeStories=["CustomUI"], ())
+let default = Storybook.story(~title="Button", ~excludeStories=["CustomUI"], ())
 
 let overview = () => {
   <div>
