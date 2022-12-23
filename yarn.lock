@@ -2328,6 +2328,11 @@
   resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-1.0.0-2.tgz#308e948f48bba5cab23420bcb972dd86368ba43f"
   integrity sha512-JfGv/ItPfkJczCYupUKHvb+/Bv91BfZoG7XhENUe8J4npca23aiRIgU1sbTks4n4V6dymFYJAZxV2gfFQ8I5MA==
 
+"@rescriptbr/ancestor@1.0.0-5":
+  version "1.0.0-5"
+  resolved "https://registry.yarnpkg.com/@rescriptbr/ancestor/-/ancestor-1.0.0-5.tgz#39c95dec7d840d449241d525fd678236c52ac938"
+  integrity sha512-XkLKNRlJUMSyLmvsfR+IJohcaJZ/O8b19yuBYkOI9+sMH+H3pLQSqzy2QxN9GaAjgr/AChVwpg2GndBu+3A9fw==
+
 "@sideway/address@^4.1.3":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.4.tgz#03dccebc6ea47fdc226f7d3d1ad512955d4783f0"
