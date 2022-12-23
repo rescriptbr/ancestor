@@ -1,6 +1,6 @@
 {
-  "name": "@rescriptbr/ancestor",
-  "version": "1.0.0-5",
+  "name": "@ancestor-ui/core",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
