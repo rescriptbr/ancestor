@@ -27,7 +27,7 @@
     "react-jsx": 3
   },
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react", "@rescriptbr/ancestor-bindings"],
+  "bs-dependencies": ["@rescript/react", "@ancestor-ui/bindings"],
   "bs-dev-dependencies": ["rescript-nodejs", "@greenlabs/rescript-jest"],
   "ppx-flags": ["@greenlabs/ppx-ts/ppx"]
 }
