@@ -1,4 +1,3 @@
-[![npm version](https://badge.fury.io/js/@rescriptbr%2Fancestor.svg)](https://badge.fury.io/js/@rescriptbr%2Fancestor)
 ![tests](https://github.com/rescriptbr/ancestor/actions/workflows/tests.yml/badge.svg)
 
 <p align="center">  
@@ -53,10 +52,13 @@ Breakpoints, spacing, radius, grid columns, etc which makes it easy to customize
 
 ## Installation
 
+
+> ⚠️ **DISCLAIMER**: We're working on a new version of Ancestor bringing a complete set of UI tools for ReScript. The most stable version is @rescriptbr/ancestor@0.0.8 and you can install by following the instructions below. Don't forget to install the most stable version, there are unstable pre-release versions that might not work as expected since they're pre-releases.
+
 First off, install **Ancestor** using npm/yarn:
 
 ```sh title="Terminal"
-yarn add @rescriptbr/ancestor
+yarn add @rescriptbr/ancestor@0.0.8
 ```
 
 If you want to use the default setup, you need to install [Emotion](https://emotion.sh).
