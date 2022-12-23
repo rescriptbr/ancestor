@@ -9,7 +9,7 @@
     "website"
   ],
   "scripts": {
-    "core": "yarn workspace @rescriptbr/ancestor",
+    "core": "yarn workspace @ancestor-ui/core",
     "core:compile": "yarn core build",
     "core:test": "yarn core test",
     "website": "yarn workspace website",
