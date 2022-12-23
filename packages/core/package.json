@@ -35,6 +35,9 @@
     "rescript": "10.1.0",
     "rescript-nodejs": "14.3.1"
   },
+  "dependencies": {
+    "@rescriptbr/ancestor-bindings": "0.0.1"
+  },
   "peerDependencies": {
     "@greenlabs/ppx-ts": ">=0.1.6",
     "@rescript/react": ">=0.11",
@@ -52,6 +55,5 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "add-prop": "node scripts/AddProps.bs.js"
-  },
-  "dependencies": {}
+  }
 }

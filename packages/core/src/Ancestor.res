@@ -36,7 +36,7 @@ module DefaultConfig = {
     | Xl => 1920
     }
 
-  let css = Ancestor_Emotion.css
+  let css = Emotion.rawCss
 }
 
 include Make(DefaultConfig)

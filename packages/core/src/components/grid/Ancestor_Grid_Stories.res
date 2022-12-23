@@ -1,10 +1,9 @@
 open Ancestor
 
-
 let default = Ancestor_Storybook.story(~title="Components/Grid", ())
 
 let basicUsage = () => {
-  let placeholder = Ancestor_Emotion.css(`
+  let placeholder = Emotion.rawCss(`
     padding: 32px;
     border: solid 2px #f36;
     background: #ff336629;

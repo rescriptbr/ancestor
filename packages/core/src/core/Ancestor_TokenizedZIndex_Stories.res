@@ -39,7 +39,7 @@ module TokenizedIndex = {
 let overview = () => {
   open TokenizedIndex
 
-  <Box p={xs: 2} position={xs: #relative} className={Ancestor_Emotion.css(`> * { opacity: 0.5; }`)}>
+  <Box p={xs: 2} position={xs: #relative} className={Emotion.rawCss(`> * { opacity: 0.5; }`)}>
     <Box
       width={xs: 56->#px}
       height={xs: 56->#px}

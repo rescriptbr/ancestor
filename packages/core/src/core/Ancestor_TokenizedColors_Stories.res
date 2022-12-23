@@ -25,7 +25,7 @@ module TokenizedColors = {
     let radius = radius => #px(radius * 8)
     let sizeByBreakpoints = sizeByBreakpoints
     let encode = encode
-    let css = Ancestor_Emotion.css
+    let css = Emotion.rawCss
   })
 }
 
