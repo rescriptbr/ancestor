@@ -7,6 +7,20 @@ include Ancestor_Css.Make({
 
   type colors = Ancestor_Css.Color.t
   let colors = v => v
+
+  type radius = int
+  let radius = v => #px(v * 8)
+
+  type zIndex = int
+  let zIndex = v => v
+
+  type propsWrapper<'value> = 'value
+  let propsTransformer = (key, maybeValue, parser) => {
+    switch maybeValue {
+    | None => ""
+    | Some(value) => `${key}: ${value->parser};`
+    }
+  }
 })
 
 describe("Ancestor_Css", () => {
