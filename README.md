@@ -9,9 +9,8 @@
   <a target="_blank" href="https://github.com/rescriptbr"> ReScript Brazil Community </a>
  </p>
 
-> ⚠️ **DISCLAIMER**: This library is still beta, you can check our roadmap [here](https://github.com/rescriptbr/ancestor/projects/1).
-We're trying to keep the breaking changes to a minimum whereever possible, but some breaking changes might happen until we release the v1.0.0.
-
+> ⚠️ **DISCLAIMER**: We're working on a new version of Ancestor bringing a complete set of UI tools for ReScript. The most stable version is @rescriptbr/ancestor@0.0.8 and you can install by following the instructions below. Don't forget to install the most stable version, there are unstable pre-release versions that might not work as expected since they're pre-releases.
+> 
 # Introduction
 
 **Ancestor** is a suite of components that works as layout primitives to develop high-quality 
