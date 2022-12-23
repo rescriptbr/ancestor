@@ -3,6 +3,15 @@ name: Create version
 on:
   workflow_dispatch:
     inputs:
+      package:
+        description: Package name
+        required: true
+        default: "core"
+        type: choice
+        options:
+          - core
+          - ui
+          - bindings
       versionType:
         description: Version type
         required: true
@@ -33,7 +42,8 @@ jobs:
 
       - name: Generate new version ${{ github.event.inputs.versionType }}
         run: |
-          cd packages/core
+          yarn config set version-tag-prefix "@${{ github.event.inputs.packageName }}@"
+          cd packages/${{ github.event.inputs.packageName }}
           yarn version --${{ github.event.inputs.versionType }}
 
       - name: Push the tags
