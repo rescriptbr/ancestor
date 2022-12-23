@@ -42,7 +42,7 @@ jobs:
 
       - name: Generate new version ${{ github.event.inputs.versionType }}
         run: |
-          yarn config set version-tag-prefix "@${{ github.event.inputs.packageName }}@"
+          yarn config set version-tag-prefix "@ancestor-ui/${{ github.event.inputs.packageName }}@"
           cd packages/${{ github.event.inputs.packageName }}
           yarn version --${{ github.event.inputs.versionType }}
 
