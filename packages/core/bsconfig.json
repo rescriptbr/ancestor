@@ -4,8 +4,12 @@
   "sources": [
     {
       "dir": "scripts",
-      "tyoe": "dev",
+      "type": "dev",
       "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
     },
     {
       "dir": "src",
@@ -23,11 +27,7 @@
     "react-jsx": 3
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-    "@rescript/react",
-    "@greenlabs/rescript-jest",
-    "rescript-nodejs"
-  ],
-  "bs-dev-dependencies": ["@greenlabs/rescript-jest"],
+  "bs-dependencies": ["@rescript/react"],
+  "bs-dev-dependencies": ["rescript-nodejs", "@greenlabs/rescript-jest"],
   "ppx-flags": ["@greenlabs/ppx-ts/ppx"]
 }
