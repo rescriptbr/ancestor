@@ -94,20 +94,20 @@ module Make = (Config: Ancestor_Config.T) => {
     ~textDecorationLine=?,
     ~textDecoration=?,
     ~transform=?,
-    ~_hover: option<Styles.t>=?,
-    ~_focus: option<Styles.t>=?,
-    ~_active: option<Styles.t>=?,
-    ~_focusWithin: option<Styles.t>=?,
-    ~_focusVisible: option<Styles.t>=?,
-    ~_disabled: option<Styles.t>=?,
-    ~_before: option<Styles.t>=?,
-    ~_after: option<Styles.t>=?,
-    ~_even: option<Styles.t>=?,
-    ~_odd: option<Styles.t>=?,
-    ~_first: option<Styles.t>=?,
-    ~_last: option<Styles.t>=?,
-    ~_notFirst: option<Styles.t>=?,
-    ~_notLast: option<Styles.t>=?,
+    ~_hover: option<Styles.Css.properties>=?,
+    ~_focus: option<Styles.Css.properties>=?,
+    ~_active: option<Styles.Css.properties>=?,
+    ~_focusWithin: option<Styles.Css.properties>=?,
+    ~_focusVisible: option<Styles.Css.properties>=?,
+    ~_disabled: option<Styles.Css.properties>=?,
+    ~_before: option<Styles.Css.properties>=?,
+    ~_after: option<Styles.Css.properties>=?,
+    ~_even: option<Styles.Css.properties>=?,
+    ~_odd: option<Styles.Css.properties>=?,
+    ~_first: option<Styles.Css.properties>=?,
+    ~_last: option<Styles.Css.properties>=?,
+    ~_notFirst: option<Styles.Css.properties>=?,
+    ~_notLast: option<Styles.Css.properties>=?,
     // declaration:end
     // Base props
     ~tag: Ancestor_React.tags=#div,
@@ -346,7 +346,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onTransitionEnd=?,
   ) => {
     let componentClassName = {
-      let responsiveStyles = Styles.createResponsiveStyles({
+      let responsiveStyles = Styles.Css.propertiesToString({
         ?// forward-fn:start
         borderRadius,
         ?borderTLRadius,

@@ -8,7 +8,8 @@ describe("Styles", () => {
     test(
       "should create responsive CSS for the attribute provided",
       () => {
-        let padding = Styles.createResponsiveValue("padding", Some({xs: 2, md: 4}), Styles.spacing)
+        let spacing = v => v->Ancestor.DefaultConfig.spacing->Styles.Css.Length.toString
+        let padding = Styles.createResponsiveValue("padding", Some({xs: 2, md: 4}), spacing)
 
         let width = Styles.createResponsiveValue(
           "width",

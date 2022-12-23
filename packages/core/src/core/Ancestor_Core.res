@@ -6,13 +6,7 @@ module Make = (Config: Ancestor_Config.T) => {
   module Hidden = Ancestor_Hidden.Make(Config)
   module Stack = Ancestor_Stack.Make(Config)
   module Typography = Base
-  module Css = Ancestor_Css.Make({
-    type spacing = Config.spacing
-    let spacing = Config.spacing
-
-    type colors = Config.colors
-    let colors = Config.colors
-  })
+  module Css = Styles.Css
   module ResponsiveValueHook = Ancestor_ResponsiveValueHook.Make(Config)
 
   let {useResponsiveValue} = module(ResponsiveValueHook)
