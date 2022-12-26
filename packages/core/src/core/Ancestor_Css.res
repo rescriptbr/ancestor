@@ -725,7 +725,7 @@ module Make = (Config: Config) => {
       }
   }
 
-  type properties = {
+  type rec properties = {
     borderRadius?: Config.propsWrapper<Config.radius>,
     borderTLRadius?: Config.propsWrapper<Config.radius>,
     borderTRRadius?: Config.propsWrapper<Config.radius>,
@@ -816,6 +816,23 @@ module Make = (Config: Config) => {
     textDecorationLine?: Config.propsWrapper<TextDecorationLine.t>,
     textDecoration?: Config.propsWrapper<TextDecoration.t>,
     transform?: Config.propsWrapper<Transform.t>,
+    /*
+     * Pseudo
+     */
+    _hover?: Config.propsWrapper<properties>,
+    _focus?: Config.propsWrapper<properties>,
+    _active?: Config.propsWrapper<properties>,
+    _focusWithin?: Config.propsWrapper<properties>,
+    _focusVisible?: Config.propsWrapper<properties>,
+    _disabled?: Config.propsWrapper<properties>,
+    _before?: Config.propsWrapper<properties>,
+    _after?: Config.propsWrapper<properties>,
+    _even?: Config.propsWrapper<properties>,
+    _odd?: Config.propsWrapper<properties>,
+    _first?: Config.propsWrapper<properties>,
+    _last?: Config.propsWrapper<properties>,
+    _notFirst?: Config.propsWrapper<properties>,
+    _notLast?: Config.propsWrapper<properties>,
   }
 
   let propertiesToString = (styles: properties) => {

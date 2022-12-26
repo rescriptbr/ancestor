@@ -4,7 +4,7 @@ open Expect
 module Styles = Ancestor_Styles.Make(Ancestor.DefaultConfig)
 
 describe("Styles", () => {
-  describe(".createCssValueFromArray", () => {
+  describe(".createResponsiveValue", () => {
     test(
       "should create responsive CSS for the attribute provided",
       () => {
