@@ -92,25 +92,25 @@ exports[`Grid should with spacing render correctly 1`] = `
 }
 
 <div
-  className="emotion-0  emotion-1"
+  className="emotion-0  emotion-1 "
 >
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 1
   </div>
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 2
   </div>
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 3
   </div>
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 4
   </div>
@@ -155,25 +155,25 @@ exports[`Grid should without spacing render correctly 1`] = `
 }
 
 <div
-  className="emotion-0  emotion-1"
+  className="emotion-0  emotion-1 "
 >
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 1
   </div>
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 2
   </div>
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 3
   </div>
   <div
-    className="emotion-2  emotion-1"
+    className="emotion-2  emotion-1 "
   >
     Column 4
   </div>

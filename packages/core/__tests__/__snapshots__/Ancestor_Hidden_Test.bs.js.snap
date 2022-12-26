@@ -41,7 +41,7 @@ exports[`Hidden should visually hide elements correctly 1`] = `
 }
 
 <div
-  className="emotion-0  emotion-1"
+  className="emotion-0  emotion-1 "
 >
   <div />
 </div>
