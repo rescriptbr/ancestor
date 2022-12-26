@@ -34,7 +34,7 @@ module Make = (Config: Ancestor_Config.T) => {
       }
     )
 
-    Config.css(onStyles)
+    Emotion.rawCss(onStyles)
   }
 
   @react.component

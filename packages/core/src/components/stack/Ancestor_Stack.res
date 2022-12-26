@@ -30,7 +30,7 @@ module Make = (Config: Ancestor_Config.T) => {
       ),
     ]
 
-    Config.css(
+    Emotion.rawCss(
       `
       ${baseStyles}
       ${responsiveStyles->Styles.merge}

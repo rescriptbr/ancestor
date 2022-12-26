@@ -34,7 +34,7 @@ module Make = (Config: Ancestor_Config.T) => {
       `flex-basis: ${basisFromFloat(column)};`
     )
 
-    Config.css(responsiveStyles)
+    Emotion.rawCss(responsiveStyles)
   }
 
   @react.component

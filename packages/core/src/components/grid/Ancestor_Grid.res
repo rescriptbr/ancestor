@@ -28,7 +28,7 @@ module Make = (Config: Ancestor_Config.T) => {
           `
       })
 
-      Config.css(spacingStyles)
+      Emotion.rawCss(spacingStyles)
     }
   )
 
