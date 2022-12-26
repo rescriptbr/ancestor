@@ -87,7 +87,7 @@ module type Config = {
   let zIndex: zIndex => int
 
   type propsWrapper<'a>
-  let propsTransformer: (string, option<propsWrapper<'a>>, 'a => string) => string
+  let propsTransformer: (string, option<propsWrapper<'a>>, 'a => string) => option<string>
 }
 
 module Make = (Config: Config) => {
@@ -819,24 +819,28 @@ module Make = (Config: Config) => {
     /*
      * Pseudo
      */
-    _hover?: Config.propsWrapper<properties>,
-    _focus?: Config.propsWrapper<properties>,
-    _active?: Config.propsWrapper<properties>,
-    _focusWithin?: Config.propsWrapper<properties>,
-    _focusVisible?: Config.propsWrapper<properties>,
-    _disabled?: Config.propsWrapper<properties>,
-    _before?: Config.propsWrapper<properties>,
-    _after?: Config.propsWrapper<properties>,
-    _even?: Config.propsWrapper<properties>,
-    _odd?: Config.propsWrapper<properties>,
-    _first?: Config.propsWrapper<properties>,
-    _last?: Config.propsWrapper<properties>,
-    _notFirst?: Config.propsWrapper<properties>,
-    _notLast?: Config.propsWrapper<properties>,
+    _hover?: properties,
+    _focus?: properties,
+    _active?: properties,
+    _focusWithin?: properties,
+    _focusVisible?: properties,
+    _disabled?: properties,
+    _before?: properties,
+    _after?: properties,
+    _even?: properties,
+    _odd?: properties,
+    _first?: properties,
+    _last?: properties,
+    _notFirst?: properties,
+    _notLast?: properties,
   }
 
-  let propertiesToString = (styles: properties) => {
+  let createPseudoStyle = (transformer, selector, maybeStyles) =>
+    maybeStyles->Belt.Option.map(styles => `${selector} { ${styles->transformer} }`)
+
+  let rec toCss = (styles: properties) => {
     let s = Config.propsTransformer
+    let p = createPseudoStyle(toCss)
 
     let spacing = v => v->Config.spacing->Length.toString
     let colors = v => v->Config.colors->Color.toString
@@ -936,6 +940,23 @@ module Make = (Config: Config) => {
       s("text-decoration-line", styles.textDecorationLine, TextDecorationLine.toString),
       s("text-decoration", styles.textDecoration, TextDecoration.toString),
       s("transform", styles.transform, Transform.toString),
-    ]->Js.Array2.joinWith("\n")
+      p("&:hover", styles._hover),
+      p("&:focus", styles._focus),
+      p("&:active", styles._active),
+      p("&:focus-within", styles._focusWithin),
+      p("&:focus-visible", styles._focusVisible),
+      p("&[disabled]", styles._disabled),
+      p("&::before", styles._before),
+      p("&::after", styles._after),
+      p("&:nth-of-type(even)", styles._even),
+      p("&:nth-of-type(odd)", styles._odd),
+      p("&:first-of-type", styles._first),
+      p("&:last-of-type", styles._last),
+      p("&:not(:first-of-type)", styles._notFirst),
+      p("&:not(:last-of-type)", styles._notLast),
+    ]
+    ->Js.Array2.filter(Belt.Option.isSome)
+    ->Js.Array2.map(Belt.Option.getWithDefault(_, ""))
+    ->Js.Array2.joinWith("")
   }
 }

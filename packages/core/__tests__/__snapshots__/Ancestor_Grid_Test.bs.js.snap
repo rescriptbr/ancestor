@@ -68,7 +68,7 @@ exports[`Grid should with spacing render correctly 1`] = `
 }
 
 @media (min-width: 0px) {
-  .emotion-3 {
+  .emotion-2 {
     -webkit-flex-basis: 50.0%;
     -ms-flex-preferred-size: 50.0%;
     flex-basis: 50.0%;
@@ -76,7 +76,7 @@ exports[`Grid should with spacing render correctly 1`] = `
 }
 
 @media (min-width: 920px) {
-  .emotion-3 {
+  .emotion-2 {
     -webkit-flex-basis: 33.3%;
     -ms-flex-preferred-size: 33.3%;
     flex-basis: 33.3%;
@@ -84,7 +84,7 @@ exports[`Grid should with spacing render correctly 1`] = `
 }
 
 @media (min-width: 1280px) {
-  .emotion-3 {
+  .emotion-2 {
     -webkit-flex-basis: 25.0%;
     -ms-flex-preferred-size: 25.0%;
     flex-basis: 25.0%;
@@ -92,25 +92,25 @@ exports[`Grid should with spacing render correctly 1`] = `
 }
 
 <div
-  className="emotion-0  emotion-1 emotion-2"
+  className="emotion-0  emotion-1"
 >
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 1
   </div>
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 2
   </div>
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 3
   </div>
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 4
   </div>
@@ -131,7 +131,7 @@ exports[`Grid should without spacing render correctly 1`] = `
 }
 
 @media (min-width: 0px) {
-  .emotion-3 {
+  .emotion-2 {
     -webkit-flex-basis: 50.0%;
     -ms-flex-preferred-size: 50.0%;
     flex-basis: 50.0%;
@@ -139,7 +139,7 @@ exports[`Grid should without spacing render correctly 1`] = `
 }
 
 @media (min-width: 920px) {
-  .emotion-3 {
+  .emotion-2 {
     -webkit-flex-basis: 33.3%;
     -ms-flex-preferred-size: 33.3%;
     flex-basis: 33.3%;
@@ -147,7 +147,7 @@ exports[`Grid should without spacing render correctly 1`] = `
 }
 
 @media (min-width: 1280px) {
-  .emotion-3 {
+  .emotion-2 {
     -webkit-flex-basis: 25.0%;
     -ms-flex-preferred-size: 25.0%;
     flex-basis: 25.0%;
@@ -155,25 +155,25 @@ exports[`Grid should without spacing render correctly 1`] = `
 }
 
 <div
-  className="emotion-0  emotion-1 emotion-2"
+  className="emotion-0  emotion-1"
 >
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 1
   </div>
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 2
   </div>
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 3
   </div>
   <div
-    className="emotion-3  emotion-1 emotion-2"
+    className="emotion-2  emotion-1"
   >
     Column 4
   </div>
