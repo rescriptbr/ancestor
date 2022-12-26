@@ -44,15 +44,13 @@ module Make = (Config: Ancestor_Config.T) => {
   }
 
   let createResponsiveValue = (cssKey, maybeCssValues, stringify) =>
-    maybeCssValues
-    ->Belt.Option.map(values =>
+    maybeCssValues->Belt.Option.map(values =>
       values
       ->Config.encode
       ->filterEmptyValues
       ->Js.Array2.sortInPlaceWith(sortBySize)
       ->Belt.Array.reduce("", mergeStyles(cssKey, stringify))
     )
-    ->Belt.Option.getWithDefault("")
 
   module Css = Ancestor_Css.Make({
     type spacing = Config.spacing
@@ -70,51 +68,6 @@ module Make = (Config: Ancestor_Config.T) => {
     type propsWrapper<'value> = Config.breakpoints<'value>
     let propsTransformer = createResponsiveValue
   })
-
-  let createPseudoStyle = (pseudoKey, maybeStyles) =>
-    maybeStyles
-    ->Belt.Option.map(styles =>
-      `${pseudoKey} {
-      ${styles->Css.propertiesToString}
-    }`
-    )
-    ->Belt.Option.getWithDefault("")
-
-  let createPseudoStyles = (
-    ~_hover: option<Css.properties>=?,
-    ~_focus: option<Css.properties>=?,
-    ~_active: option<Css.properties>=?,
-    ~_focusWithin: option<Css.properties>=?,
-    ~_focusVisible: option<Css.properties>=?,
-    ~_disabled: option<Css.properties>=?,
-    ~_before: option<Css.properties>=?,
-    ~_after: option<Css.properties>=?,
-    ~_even: option<Css.properties>=?,
-    ~_odd: option<Css.properties>=?,
-    ~_first: option<Css.properties>=?,
-    ~_last: option<Css.properties>=?,
-    ~_notFirst: option<Css.properties>=?,
-    ~_notLast: option<Css.properties>=?,
-    (),
-  ) => {
-    let s = createPseudoStyle
-    [
-      s("&:hover", _hover),
-      s("&:focus", _focus),
-      s("&:active", _active),
-      s("&:focus-within", _focusWithin),
-      s("&:focus-visible", _focusVisible),
-      s("&[disabled]", _disabled),
-      s("&::before", _before),
-      s("&::after", _after),
-      s("&:nth-of-type(even)", _even),
-      s("&:nth-of-type(odd)", _odd),
-      s("&:first-of-type", _first),
-      s("&:last-of-type", _last),
-      s("&:not(:first-of-type)", _notFirst),
-      s("&:not(:last-of-type)", _notLast),
-    ]->Js.Array2.joinWith("\n")
-  }
 
   let merge = styles => styles->Js.Array2.joinWith("")
 }

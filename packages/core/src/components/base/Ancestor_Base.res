@@ -346,7 +346,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onTransitionEnd=?,
   ) => {
     let componentClassName = {
-      let responsiveStyles = Styles.Css.propertiesToString({
+      let responsiveStyles = Styles.Css.toCss({
         ?// forward-fn:start
         borderRadius,
         ?borderTLRadius,
@@ -438,27 +438,24 @@ module Make = (Config: Ancestor_Config.T) => {
         ?textDecorationLine,
         ?textDecoration,
         ?transform,
+        ?_hover,
+        ?_focus,
+        ?_active,
+        ?_focusWithin,
+        ?_focusVisible,
+        ?_disabled,
+        ?_before,
+        ?_after,
+        ?_even,
+        ?_odd,
+        ?_first,
+        ?_last,
+        ?_notFirst,
+        ?_notLast,
         // forward-fn:end
       })->Emotion.rawCss
-      let pseudoStyles =
-        Styles.createPseudoStyles(
-          ~_hover?,
-          ~_focus?,
-          ~_active?,
-          ~_focusWithin?,
-          ~_focusVisible?,
-          ~_disabled?,
-          ~_before?,
-          ~_after?,
-          ~_even?,
-          ~_odd?,
-          ~_first?,
-          ~_last?,
-          ~_notFirst?,
-          ~_notLast?,
-          (),
-        )->Emotion.rawCss
-      `${className} ${responsiveStyles} ${pseudoStyles}`
+
+      `${className} ${responsiveStyles}`
     }
 
     Ancestor_React.createElement(

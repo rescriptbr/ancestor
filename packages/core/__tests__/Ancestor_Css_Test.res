@@ -1,33 +1,29 @@
 open Jest
 open Expect
 
-include Ancestor_Css.Make({
-  type spacing = int
-  let spacing = v => #px(v * 8)
-
-  type colors = Ancestor_Css.Color.t
-  let colors = v => v
-
-  type radius = int
-  let radius = v => #px(v * 8)
-
-  type zIndex = int
-  let zIndex = v => v
-
-  type propsWrapper<'value> = 'value
-  let propsTransformer = (key, maybeValue, parser) => {
-    switch maybeValue {
-    | None => ""
-    | Some(value) => `${key}: ${value->parser};`
-    }
-  }
-})
-
 describe("Ancestor_Css", () => {
+  describe("propertiesToString", () => {
+    test(
+      "should convert into string correctly",
+      () => {
+        let styles = Ancestor.Css.toCss({
+          display: {xs: #block},
+          bgColor: {xs: #hex("000")},
+          _hover: {
+            display: {xs: #flex},
+            bgColor: {xs: #hex("#ccc")},
+          },
+        })
+
+        expect(styles)->toMatchSnapshot
+      },
+    )
+  })
   describe("Length.toString", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(Length)
         expect(toString(#rem(10.2)))->toBe(`10.2rem`)
         expect(toString(#em(7.5)))->toBe(`7.5em`)
@@ -46,6 +42,7 @@ describe("Ancestor_Css", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(Transform)
         expect(toString(#translate(10.0->#rem, 20.0->#rem)))->toBe(`translate(10rem, 20rem)`)
 
@@ -84,6 +81,7 @@ describe("Ancestor_Css", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(Gap)
 
         expect(#one(1)->toString)->toBe(`8px`)
@@ -101,6 +99,7 @@ describe("Ancestor_Css", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(ListStyle)
 
         expect(#short(#square, #inside, #none)->toString)->toBe(`square inside none`)
@@ -117,6 +116,7 @@ describe("Ancestor_Css", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(BackgroundSize)
 
         expect(#cover->toString)->toBe(`cover`)
@@ -134,6 +134,7 @@ describe("Ancestor_Css", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(BackgroundPosition)
 
         expect(#top->toString)->toBe(`top`)
@@ -153,6 +154,7 @@ describe("Ancestor_Css", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(BackgroundImage)
 
         expect(#url("path/to/image.png")->toString)->toBe(`url("path/to/image.png")`)
@@ -165,6 +167,7 @@ describe("Ancestor_Css", () => {
     test(
       "should convert into string correctly",
       () => {
+        open Ancestor.Css
         let {toString} = module(FontFamily)
 
         expect(#custom(["DM Sans", "sans-serif"])->toString)->toBe(`DM Sans, sans-serif`)
