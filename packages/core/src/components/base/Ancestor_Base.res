@@ -4,6 +4,7 @@ module Make = (Config: Ancestor_Config.T) => {
   @react.component
   let make = (
     // declaration:start
+    ~css: option<Styles.Css.properties>=?,
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,
@@ -346,6 +347,12 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onTransitionEnd=?,
   ) => {
     let componentClassName = {
+      let cssClass =
+        css
+        ->Belt.Option.map(Styles.Css.toCss)
+        ->Belt.Option.map(Emotion.rawCss)
+        ->Belt.Option.getWithDefault("")
+
       let responsiveStyles = Styles.Css.toCss({
         ?// forward-fn:start
         borderRadius,
@@ -455,7 +462,7 @@ module Make = (Config: Ancestor_Config.T) => {
         // forward-fn:end
       })->Emotion.rawCss
 
-      `${className} ${responsiveStyles}`
+      `${className} ${responsiveStyles} ${cssClass}`
     }
 
     Ancestor_React.createElement(

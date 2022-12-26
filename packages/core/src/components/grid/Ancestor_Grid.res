@@ -35,6 +35,7 @@ module Make = (Config: Ancestor_Config.T) => {
   @react.component
   let make = (
     // declaration:start
+    ~css: option<Styles.Css.properties>=?,
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,
@@ -380,6 +381,7 @@ module Make = (Config: Ancestor_Config.T) => {
     <Base
       className={`${grid(~spacing?, ())} ${className}`}
       // forward:start
+      ?css
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius

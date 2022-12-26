@@ -58,6 +58,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~direction: option<Config.breakpoints<direction>>=?,
     ~spacing: option<Config.breakpoints<Config.spacing>>=?,
     ~divider: option<React.element>=?,
+    ~css: option<Styles.Css.properties>=?,
     // declaration:start
     ~borderRadius=?,
     ~borderTLRadius=?,
@@ -402,6 +403,7 @@ module Make = (Config: Ancestor_Config.T) => {
     <Base
       className={`${createStack(~direction?, ~spacing?, ())} ${className}`}
       // forward:start
+      ?css
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius

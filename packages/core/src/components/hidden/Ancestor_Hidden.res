@@ -41,6 +41,7 @@ module Make = (Config: Ancestor_Config.T) => {
   let make = (
     ~on: option<Config.breakpoints<bool>>=?,
     // declaration:start
+    ~css: option<Styles.Css.properties>=?,
     ~borderRadius=?,
     ~borderTLRadius=?,
     ~borderTRRadius=?,
@@ -387,6 +388,7 @@ module Make = (Config: Ancestor_Config.T) => {
         `${hiddenClassName} ${className}`
       }
       // forward:start
+      ?css
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius

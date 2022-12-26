@@ -39,6 +39,7 @@ module Make = (Config: Ancestor_Config.T) => {
 
   @react.component
   let make = (
+    ~css: option<Styles.Css.properties>=?,
     // declaration:start
     ~borderRadius=?,
     ~borderTLRadius=?,
@@ -388,6 +389,7 @@ module Make = (Config: Ancestor_Config.T) => {
         `${boxClassName} ${className}`
       }
       // forward:start
+      ?css
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius

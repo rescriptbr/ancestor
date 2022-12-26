@@ -7,6 +7,7 @@ let basicUsage = () => {
 
   <Base display={xs: #flex, md: #block} justifyContent={xs: #center} width={xs: 100.->#pct}>
     <Base
+      css={bgColor: {xs: #hex("#000")}}
       _hover={
         bgColor: {xs: #hex("#363636"), md: #hex("#ccc")},
       }
@@ -17,7 +18,6 @@ let basicUsage = () => {
       maxW={xs: 356->#px}
       borderRadius={xs: 1}
       p={xs: 3}
-      bgColor={xs: #hex("#000")}
       tag=#section>
       <Base
         border={xs: (2->#px, #solid, #hex("#f36"))}
