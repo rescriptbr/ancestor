@@ -439,7 +439,7 @@ module Make = (Config: Ancestor_Config.T) => {
         ?textDecoration,
         ?transform,
         // forward-fn:end
-      })->Config.css
+      })->Emotion.rawCss
       let pseudoStyles =
         Styles.createPseudoStyles(
           ~_hover?,
@@ -457,7 +457,7 @@ module Make = (Config: Ancestor_Config.T) => {
           ~_notFirst?,
           ~_notLast?,
           (),
-        )->Config.css
+        )->Emotion.rawCss
       `${className} ${responsiveStyles} ${pseudoStyles}`
     }
 

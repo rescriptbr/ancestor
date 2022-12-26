@@ -1,14 +1,14 @@
 open Jest
 open Expect
 
-module Styles = Ancestor_Styles.Make(Ancestor.DefaultConfig)
+module Styles = Ancestor.Styles
 
 describe("Styles", () => {
   describe(".createResponsiveValue", () => {
     test(
       "should create responsive CSS for the attribute provided",
       () => {
-        let spacing = v => v->Ancestor.DefaultConfig.spacing->Styles.Css.Length.toString
+        let spacing = v => v->Ancestor.Defaults.Spacing.spacing->Styles.Css.Length.toString
         let padding = Styles.createResponsiveValue("padding", Some({xs: 2, md: 4}), spacing)
 
         let width = Styles.createResponsiveValue(
