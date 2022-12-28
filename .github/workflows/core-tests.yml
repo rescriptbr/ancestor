@@ -1,6 +1,11 @@
-name: Tests
-
-on: [pull_request]
+name: Core tests
+on: 
+  push:
+    paths:
+      - packages/core/**
+  pull_request:
+    paths:
+      - packages/core/**
 
 jobs:
   test:
@@ -21,15 +26,15 @@ jobs:
             ${{ runner.os }}-
             
       - name: Setup Node.js    
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 17
           
       - name: Install dependencies
         run: yarn
         
       - name: Run the compiler
-        run: yarn core:compile
+        run: yarn --cwd packages/core rescript build
         
       - name: Run the tests
-        run: yarn core:test
+        run: yarn --cwd packages/core test
