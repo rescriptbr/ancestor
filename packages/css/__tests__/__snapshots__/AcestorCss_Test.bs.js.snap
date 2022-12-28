@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AncestorCss .parseToCss should generate a simple className correctly 1`] = `
+.emotion-0 {
+  border-radius: 8px;
+  background-color: #fafafa;
+  color: #000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 32px;
+  margin-top: 64px;
+  font-weight: 700;
+  font-size: 2.4rem;
+  width: 200px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`AncestorCss .parseToCss should generate the styles correctly using the customization passed to the provider 1`] = `
+.emotion-0 {
+  border-radius: 8px;
+  background-color: #cecece;
+  color: #363636;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2.4rem;
+  margin-top: 3.2rem;
+  font-weight: 700;
+  font-size: 2.4rem;
+  width: 200px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`AncestorCss .parseToCss should generate the styles correctly using the customization tokens 1`] = `
+.emotion-0 {
+  border-radius: 16px;
+  background-color: #000;
+  color: #ccc;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 64px;
+  margin-top: 32px;
+  font-weight: 700;
+  font-size: 2.4rem;
+  width: 200px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;

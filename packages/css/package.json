@@ -7,6 +7,8 @@
     "@babel/core": "7.20.5",
     "@emotion/css": "11.10.0",
     "@emotion/jest": "11.9.3",
+    "@greenlabs/rescript-jest": "1.0.1",
+    "@greenlabs/rescript-testing-library": "^2.0.1",
     "@rescript/react": "0.11.0-rc.3",
     "@storybook/addon-actions": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
@@ -17,9 +19,14 @@
     "@storybook/react": "6.5.15",
     "@storybook/testing-library": "0.0.13",
     "babel-loader": "8.3.0",
+    "jest": "29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "jsdom": "^20.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rescript": "10.1.0"
+    "react-test-renderer": "18.2.0",
+    "rescript": "10.1.0",
+    "rescript-webapi": "^0.7.0"
   },
   "peerDependencies": {
     "@rescript/react": ">=0.11",
@@ -32,6 +39,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   }
 }
