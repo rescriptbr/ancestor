@@ -1,0 +1,37 @@
+name: Run @ancestor-ui/css tests
+on: 
+  pull_request:
+    paths:
+      - 'packages/css'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+            
+      - name: Setup Node.js    
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          
+      - name: Install dependencies
+        run: yarn
+        
+      - name: Run the compiler
+        run: yarn --cwd packages/css rescript build
+        
+      - name: Run the tests
+        run: yarn --cwd packages/css test
