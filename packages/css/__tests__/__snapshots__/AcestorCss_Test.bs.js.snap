@@ -32,6 +32,7 @@ exports[`AncestorCss .parseToCss should generate the styles correctly using the 
   display: flex;
   padding: 2.4rem;
   margin-top: 3.2rem;
+  margin-bottom: 3.2rem;
   font-weight: 700;
   font-size: 2.4rem;
   width: 200px;
@@ -53,6 +54,7 @@ exports[`AncestorCss .parseToCss should generate the styles correctly using the 
   display: flex;
   padding: 64px;
   margin-top: 32px;
+  margin-bottom: 32px;
   font-weight: 700;
   font-size: 2.4rem;
   width: 200px;

@@ -58,6 +58,7 @@ module CustomCssComponent = {
       width: #pxFloat(200.),
       p: #sm,
       mt: #md,
+      mb: #sm,
       borderRadius: 2.0,
     })
 
