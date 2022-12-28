@@ -59,6 +59,7 @@ module CustomCssComponent = {
       p: #sm,
       mt: #md,
       borderRadius: 2.0,
+      mb: #md,
     })
 
     <div className />
