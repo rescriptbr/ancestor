@@ -5,26 +5,26 @@ module Make = (
   ZIndex: AncestorCss_Config.ZIndex,
   Parser: AncestorCss_Parsers.Config,
 ) => {
-  module Tokens = {
+  module TokensConfig = {
     include Spacing
     include Radius
     include Colors
     include ZIndex
   }
-  module Types = AncestorCss_Types.Make(Tokens)
-  module Context = AncestorCss_Context.Make(Parser, Tokens)
+  module Types = AncestorCss_Types.Make(TokensConfig)
+  module Context = AncestorCss_Context.Make(Parser, TokensConfig)
   module Provider = Context.Provider
 
   open! Types
 
   type rec t = {
-    borderRadius?: Parser.t<Tokens.radius>,
-    borderTLRadius?: Parser.t<Tokens.radius>,
-    borderTRRadius?: Parser.t<Tokens.radius>,
-    borderBLRadius?: Parser.t<Tokens.radius>,
-    borderBRRadius?: Parser.t<Tokens.radius>,
+    borderRadius?: Parser.t<TokensConfig.radius>,
+    borderTLRadius?: Parser.t<TokensConfig.radius>,
+    borderTRRadius?: Parser.t<TokensConfig.radius>,
+    borderBLRadius?: Parser.t<TokensConfig.radius>,
+    borderBRRadius?: Parser.t<TokensConfig.radius>,
     borderStyle?: Parser.t<BorderStyle.t>,
-    borderColor?: Parser.t<Tokens.colors>,
+    borderColor?: Parser.t<TokensConfig.colors>,
     borderWidth?: Parser.t<Length.t>,
     border?: Parser.t<Border.t>,
     borderRight?: Parser.t<Border.t>,
@@ -35,19 +35,19 @@ module Make = (
     borderLeftStyle?: Parser.t<BorderStyle.t>,
     borderTopStyle?: Parser.t<BorderStyle.t>,
     borderBottomStyle?: Parser.t<BorderStyle.t>,
-    borderRightColor?: Parser.t<Tokens.colors>,
-    borderLeftColor?: Parser.t<Tokens.colors>,
-    borderTopColor?: Parser.t<Tokens.colors>,
-    borderBottomColor?: Parser.t<Tokens.colors>,
+    borderRightColor?: Parser.t<TokensConfig.colors>,
+    borderLeftColor?: Parser.t<TokensConfig.colors>,
+    borderTopColor?: Parser.t<TokensConfig.colors>,
+    borderBottomColor?: Parser.t<TokensConfig.colors>,
     borderRightWidth?: Parser.t<Length.t>,
     borderLeftWidth?: Parser.t<Length.t>,
     borderTopWidth?: Parser.t<Length.t>,
     borderBottomWidth?: Parser.t<Length.t>,
-    bgColor?: Parser.t<Tokens.colors>,
+    bgColor?: Parser.t<TokensConfig.colors>,
     bgSize?: Parser.t<BackgroundSize.t>,
     bgPosition?: Parser.t<BackgroundPosition.t>,
     bgImage?: Parser.t<BackgroundImage.t>,
-    color?: Parser.t<Tokens.colors>,
+    color?: Parser.t<TokensConfig.colors>,
     display?: Parser.t<Display.t>,
     justifyContent?: Parser.t<JustifyContent.t>,
     flexDirection?: Parser.t<FlexDirection.t>,
@@ -60,20 +60,20 @@ module Make = (
     justifySelf?: Parser.t<JustifySelf.t>,
     flexFlow?: Parser.t<FlexFlow.t>,
     gap?: Parser.t<Gap.t>,
-    p?: Parser.t<Tokens.spacing>,
-    px?: Parser.t<Tokens.spacing>,
-    py?: Parser.t<Tokens.spacing>,
-    pt?: Parser.t<Tokens.spacing>,
-    pb?: Parser.t<Tokens.spacing>,
-    pl?: Parser.t<Tokens.spacing>,
-    pr?: Parser.t<Tokens.spacing>,
-    m?: Parser.t<Tokens.spacing>,
-    mx?: Parser.t<Tokens.spacing>,
-    my?: Parser.t<Tokens.spacing>,
-    mt?: Parser.t<Tokens.spacing>,
-    mb?: Parser.t<Tokens.spacing>,
-    ml?: Parser.t<Tokens.spacing>,
-    mr?: Parser.t<Tokens.spacing>,
+    p?: Parser.t<TokensConfig.spacing>,
+    px?: Parser.t<TokensConfig.spacing>,
+    py?: Parser.t<TokensConfig.spacing>,
+    pt?: Parser.t<TokensConfig.spacing>,
+    pb?: Parser.t<TokensConfig.spacing>,
+    pl?: Parser.t<TokensConfig.spacing>,
+    pr?: Parser.t<TokensConfig.spacing>,
+    m?: Parser.t<TokensConfig.spacing>,
+    mx?: Parser.t<TokensConfig.spacing>,
+    my?: Parser.t<TokensConfig.spacing>,
+    mt?: Parser.t<TokensConfig.spacing>,
+    mb?: Parser.t<TokensConfig.spacing>,
+    ml?: Parser.t<TokensConfig.spacing>,
+    mr?: Parser.t<TokensConfig.spacing>,
     textAlign?: Parser.t<TextAlign.t>,
     fontFamily?: Parser.t<FontFamily.t>,
     fontWeight?: Parser.t<FontWeight.t>,
@@ -134,13 +134,13 @@ module Make = (
     let s = Parser.parse
     let p = createPseudoStyle(parseToCss(api))
 
+    /*
+     * Local parsers
+     */
     let spacing = v => v->api.spacing->Length.toString
     let colors = v => v->api.colors->Color.toString
     let radius = v => v->api.radius->Length.toString
     let zIndex = v => v->api.zIndex->Js.Int.toString
-    /*
-     * Local parsers
-     */
     let borderToString = Border.toString(~colors)
 
     [
@@ -258,30 +258,32 @@ module Make = (
     ->Js.Array2.joinWith("")
   }
 
-  let toCss = (styles: t) =>
+  let createClass = (styles: t) =>
     parseToCss(
       {
-        colors: Tokens.colors,
-        spacing: Tokens.spacing,
-        radius: Tokens.radius,
-        zIndex: Tokens.zIndex,
+        colors: TokensConfig.colors,
+        spacing: TokensConfig.spacing,
+        radius: TokensConfig.radius,
+        zIndex: TokensConfig.zIndex,
       },
       styles,
-    )
+    )->Emotion.rawCss
 
-  type useCssApi = {toCss: t => string}
+  type useCssApi = {createClass: t => string}
 
   let useCss = (): useCssApi => {
     let context = Context.useContext()
-    let toCss = parseToCss(context)
+    let createClass = (styles: t) => parseToCss(context, styles)->Emotion.rawCss
 
-    {toCss: toCss}
+    {createClass: createClass}
   }
 }
 
 module Defaults = {
   open AncestorCss_Types
+
   let identity = v => v
+
   module Spacing = {
     type spacing = Length.t
     let spacing = identity

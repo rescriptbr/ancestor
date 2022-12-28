@@ -5,7 +5,7 @@ let default = Storybook.story(
 )
 
 let main = () => {
-  let styles = AncestorCss.toCss({
+  let styles = AncestorCss.createClass({
     display: #flex,
     bgColor: #hex("#000"),
     p: #px(32),
@@ -13,7 +13,7 @@ let main = () => {
     fontSize: #px(24),
   })
 
-  <div className={styles->Emotion.rawCss}> {"Hey :)"->React.string} </div>
+  <div className={styles}> {"Hey :)"->React.string} </div>
 }
 
 module CustomCss = {
@@ -66,8 +66,9 @@ let light = {
 module ProviderTest = {
   @react.component
   let make = () => {
-    let theme = CustomCss.useCss()
-    let styles = theme.toCss({
+    let css = CustomCss.useCss()
+
+    let styles = css.createClass({
       display: #flex,
       bgColor: #primary,
       p: #px(32),
@@ -76,7 +77,7 @@ module ProviderTest = {
       mt: #px(32),
     })
 
-    <div className={styles->Emotion.rawCss}> {"Hey :)"->React.string} </div>
+    <div className={styles}> {"Hey :)"->React.string} </div>
   }
 }
 
