@@ -1,1 +1,0 @@
-{ "dirs" : [ "src" ] , "pkgs" : [ [ "@ancestor-ui/bindings" , "/Users/marcos/Projects/ancestor/node_modules/@ancestor-ui/bindings" ] , [ "@rescript/react" , "/Users/marcos/Projects/ancestor/node_modules/@rescript/react" ] ] , "generated" : [] }

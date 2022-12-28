@@ -29,6 +29,7 @@ lib/bs
 packages/core/lib/
 packages/ui/lib/
 packages/bindings/lib/
+packages/css/lib/
 packages/**/node_modules/
 /website/lib/
 /website/node_modules/
