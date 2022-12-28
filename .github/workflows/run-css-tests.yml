@@ -1,5 +1,8 @@
-name: Run @ancestor-ui/css tests
+name: CSS tests
 on: 
+  push:
+    paths:
+      - packages/css/**
   pull_request:
     paths:
       - packages/css/**
