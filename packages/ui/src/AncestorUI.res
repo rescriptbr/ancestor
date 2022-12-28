@@ -1,23 +1,16 @@
-module Make = (Config: Theme.CustomTheme) => {
-  module ThemeConstructor = {
-    type spacing = Config.spacing
-    let theme = Theme.mergeWithDefaults(Config.theme)
+module Make = (Spacing: Theme.Spacing) => {
+  module CssConfig = {
+    type spacing = Spacing.spacing
+    let spacing = Spacing.spacing
   }
-  /*
-   *  Mappers
-   */
-  let colors = token =>
-    switch Config.theme.colors {
-    | None => Theme.default.colors(token)
-    | Some(colors) => colors(token)
-    }
 
-  /*
-   * Components
-   */
-  module Button = Button.Make(ThemeConstructor)
+  module Theme = Theme.Make(CssConfig)
+  module ThemeProvider = Theme.Provider
+
+  module ThemeConfig = {
+    let useTheme = Theme.useTheme
+  }
+
+  module InternalButton = Button.Create(CssConfig)
+  module Button = InternalButton.Make(ThemeConfig)
 }
-
-include Make({
-  let theme: Theme.custom = {}
-})

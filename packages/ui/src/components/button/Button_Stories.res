@@ -1,32 +1,22 @@
-let default = Storybook.story(~title="Button", ~excludeStories=["CustomUI"], ())
+let default = Storybook.story(~title="Button", ~excludeStories=["CustomUI", "theme"], ())
 
-let overview = () => {
-  <div>
-    <AncestorUI.Button size=#lg> {"Click here"->React.string} </AncestorUI.Button>
-    <hr />
-    <AncestorUI.Button size=#md> {"Click here"->React.string} </AncestorUI.Button>
-    <hr />
-    <AncestorUI.Button size=#sm> {"Click here"->React.string} </AncestorUI.Button>
-  </div>
+module CustomUI = {
+  include AncestorUI.Make({
+    type spacing = float
+    let spacing = v => #pxFloat(v *. 8.0)
+  })
 }
 
-module CustomUI = AncestorUI.Make({
-  let theme: Theme.custom = {
-    button: {
-      lg: {
-        height: #px(32),
-        fontSize: #rem(2.4),
-      },
+let theme: CustomUI.Theme.theme = {
+  button: {
+    baseStyles: {
+      bgColor: #primary400,
     },
-  }
-})
+  },
+}
 
-let custom = () => {
-  <div>
-    <CustomUI.Button size=#lg> {"Click here"->React.string} </CustomUI.Button>
-    <hr />
-    <CustomUI.Button size=#md> {"Click here"->React.string} </CustomUI.Button>
-    <hr />
-    <CustomUI.Button size=#sm> {"Click here"->React.string} </CustomUI.Button>
-  </div>
+let overview = () => {
+  <CustomUI.ThemeProvider value=theme>
+    <CustomUI.Button> {"Click here"->React.string} </CustomUI.Button>
+  </CustomUI.ThemeProvider>
 }

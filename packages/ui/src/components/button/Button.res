@@ -1,40 +1,40 @@
-module Make = (Config: Theme.Theme) => {
-  module Styles = {
-    open Ancestor_Css
-    let theme = Config.theme
-    let buttonTheme = Config.theme.button
+module Create = (CssConfig: Css.T) => {
+  module Theme = Theme.Make(CssConfig)
 
-    let button = (~size, ~color) => {
-      let {height, fontSize} = switch size {
-      | #lg => buttonTheme.lg
-      | #md => buttonTheme.md
-      | #sm => buttonTheme.sm
+  module Make = (ThemeContext: Theme.T) => {
+    module Styles = {
+      let button = (~theme: option<Theme.ButtonTokens.t>) => {
+        let customBaseStyles =
+          theme
+          ->Belt.Option.flatMap(t => t.baseStyles)
+          ->Belt.Option.mapWithDefault("", Theme.Css.toCss)
+          ->Emotion.rawCss
+
+        let baseStyles = Emotion.css({
+          /*
+           * Button defaults
+           */
+          "border": "transparent",
+          /*
+           * Based on size tokens
+           */
+          "fontSize": "16px",
+        })
+
+        Emotion.cx([baseStyles, customBaseStyles])
       }
-
-      Emotion.css({
-        /*
-         * Button defaults
-         */
-        "border": "transparent",
-        /*
-         * Based on color tokens
-         */
-        "backgroundColor": switch color {
-        | #primary => theme.colors(#primary600)->Color.toString
-        },
-        /*
-         * Based on size tokens
-         */
-        "height": height->Length.toString,
-        "fontSize": fontSize->Length.toString,
-      })
     }
-  }
 
-  @react.component
-  let make = (~color: ButtonTokens.color=#primary, ~size: ButtonTokens.size=#md, ~children) => {
-    let className = Styles.button(~size, ~color)
+    @react.component
+    let make = (
+      ~color: Theme.ButtonTokens.color=#primary,
+      ~size: Theme.ButtonTokens.size=#md,
+      ~children,
+    ) => {
+      let theme = ThemeContext.useTheme()
+      let className = Styles.button(~theme=theme.button)
 
-    <button className> {children} </button>
+      <button className> {children} </button>
+    }
   }
 }

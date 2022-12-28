@@ -15,9 +15,7 @@
       "in-source": true
     }
   ],
-  "reason": {
-    "react-jsx": 3
-  },
+  "jsx": { "version": 4, "mode": "classic" },
   "suffix": ".bs.js",
   "bs-dependencies": [
     "@rescript/react",
