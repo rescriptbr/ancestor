@@ -2,7 +2,7 @@ name: Run @ancestor-ui/css tests
 on: 
   pull_request:
     paths:
-      - 'packages/css'
+      - packages/css/**
 
 jobs:
   test:
