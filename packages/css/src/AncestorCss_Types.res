@@ -1,6 +1,3 @@
-/*
- *  CSS units (width, height, font-size, etc)
- */
 module Length = {
   type operator = [#sub | #add | #mult | #div]
 
@@ -85,9 +82,6 @@ module type Config = {
 
   type zIndex
   let zIndex: zIndex => int
-
-  type propsWrapper<'a>
-  let propsTransformer: (string, option<propsWrapper<'a>>, 'a => string) => option<string>
 }
 
 module Make = (Config: Config) => {
@@ -136,12 +130,10 @@ module Make = (Config: Config) => {
       | #none
     ]
 
-    let toString = (textDecoration: t) =>
+    let toString = (~colors, textDecoration: t) =>
       switch textDecoration {
       | #short(line, color, style) =>
-        `${line->TextDecorationLine.toString} ${color
-          ->Config.colors
-          ->Color.toString} ${style->TextDecorationStyle.toString}`
+        `${line->TextDecorationLine.toString} ${color->colors} ${style->TextDecorationStyle.toString}`
       | #initial => "initial"
       | #inherit => "inherit"
       | #none => "none"
@@ -175,12 +167,10 @@ module Make = (Config: Config) => {
       | #unset
     ]
 
-    let toString = (outline: t) =>
+    let toString = (~colors, outline: t) =>
       switch outline {
       | #short(length, style, color) =>
-        `${length->Length.toString} ${style->OutlineStyle.toString} ${color
-          ->Config.colors
-          ->Color.toString}`
+        `${length->Length.toString} ${style->OutlineStyle.toString} ${color->colors}`
       | #inherit => "inherit"
       | #initial => "initial"
       | #unset => "unset"
@@ -481,11 +471,10 @@ module Make = (Config: Config) => {
       | #unset
     ]
 
-    let toString = (gap: t) => {
-      let spacingToString = v => v->Config.spacing->Length.toString
+    let toString = (~spacing, gap: t) => {
       switch gap {
-      | #one(v) => v->spacingToString
-      | #two(v1, v2) => `${v1->spacingToString} ${v2->spacingToString}`
+      | #one(v) => v->spacing
+      | #two(v1, v2) => `${v1->spacing} ${v2->spacing}`
       | #inherit => "inherit"
       | #initial => "initial"
       | #revert => "revert"
@@ -557,14 +546,10 @@ module Make = (Config: Config) => {
 
   module ZIndex = {
     type t = Config.zIndex
-
-    let toString = v => v->Config.zIndex->Js.Int.toString
   }
 
   module Radius = {
     type t = Config.radius
-
-    let toString = v => v->Config.radius->Length.toString
   }
 
   module BorderStyle = {
@@ -587,10 +572,8 @@ module Make = (Config: Config) => {
   module Border = {
     type t = (Length.t, BorderStyle.t, Config.colors)
 
-    let toString = ((width, style, color): t) =>
-      `${Length.toString(width)} ${BorderStyle.toString(style)} ${color
-        ->Config.colors
-        ->Color.toString}`
+    let toString = (~colors, (width, style, color): t) =>
+      `${Length.toString(width)} ${BorderStyle.toString(style)} ${color->colors}`
   }
 
   module Angle = {
@@ -723,240 +706,5 @@ module Make = (Config: Config) => {
       | #url(url) => `url("${url}")`
       | #none => "none"
       }
-  }
-
-  type rec t = {
-    borderRadius?: Config.propsWrapper<Config.radius>,
-    borderTLRadius?: Config.propsWrapper<Config.radius>,
-    borderTRRadius?: Config.propsWrapper<Config.radius>,
-    borderBLRadius?: Config.propsWrapper<Config.radius>,
-    borderBRRadius?: Config.propsWrapper<Config.radius>,
-    borderStyle?: Config.propsWrapper<BorderStyle.t>,
-    borderColor?: Config.propsWrapper<Config.colors>,
-    borderWidth?: Config.propsWrapper<Length.t>,
-    border?: Config.propsWrapper<Border.t>,
-    borderRight?: Config.propsWrapper<Border.t>,
-    borderLeft?: Config.propsWrapper<Border.t>,
-    borderTop?: Config.propsWrapper<Border.t>,
-    borderBottom?: Config.propsWrapper<Border.t>,
-    borderRightStyle?: Config.propsWrapper<BorderStyle.t>,
-    borderLeftStyle?: Config.propsWrapper<BorderStyle.t>,
-    borderTopStyle?: Config.propsWrapper<BorderStyle.t>,
-    borderBottomStyle?: Config.propsWrapper<BorderStyle.t>,
-    borderRightColor?: Config.propsWrapper<Config.colors>,
-    borderLeftColor?: Config.propsWrapper<Config.colors>,
-    borderTopColor?: Config.propsWrapper<Config.colors>,
-    borderBottomColor?: Config.propsWrapper<Config.colors>,
-    borderRightWidth?: Config.propsWrapper<Length.t>,
-    borderLeftWidth?: Config.propsWrapper<Length.t>,
-    borderTopWidth?: Config.propsWrapper<Length.t>,
-    borderBottomWidth?: Config.propsWrapper<Length.t>,
-    bgColor?: Config.propsWrapper<Config.colors>,
-    bgSize?: Config.propsWrapper<BackgroundSize.t>,
-    bgPosition?: Config.propsWrapper<BackgroundPosition.t>,
-    bgImage?: Config.propsWrapper<BackgroundImage.t>,
-    color?: Config.propsWrapper<Config.colors>,
-    display?: Config.propsWrapper<Display.t>,
-    justifyContent?: Config.propsWrapper<JustifyContent.t>,
-    flexDirection?: Config.propsWrapper<FlexDirection.t>,
-    alignItems?: Config.propsWrapper<AlignItems.t>,
-    flexBasis?: Config.propsWrapper<FlexBasis.t>,
-    flexWrap?: Config.propsWrapper<FlexWrap.t>,
-    flexGrow?: Config.propsWrapper<FlexGrow.t>,
-    alignContent?: Config.propsWrapper<AlignContent.t>,
-    alignSelf?: Config.propsWrapper<AlignSelf.t>,
-    justifySelf?: Config.propsWrapper<JustifySelf.t>,
-    flexFlow?: Config.propsWrapper<FlexFlow.t>,
-    gap?: Config.propsWrapper<Gap.t>,
-    p?: Config.propsWrapper<Config.spacing>,
-    px?: Config.propsWrapper<Config.spacing>,
-    py?: Config.propsWrapper<Config.spacing>,
-    pt?: Config.propsWrapper<Config.spacing>,
-    pb?: Config.propsWrapper<Config.spacing>,
-    pl?: Config.propsWrapper<Config.spacing>,
-    pr?: Config.propsWrapper<Config.spacing>,
-    m?: Config.propsWrapper<Config.spacing>,
-    mx?: Config.propsWrapper<Config.spacing>,
-    my?: Config.propsWrapper<Config.spacing>,
-    mt?: Config.propsWrapper<Config.spacing>,
-    mb?: Config.propsWrapper<Config.spacing>,
-    ml?: Config.propsWrapper<Config.spacing>,
-    mr?: Config.propsWrapper<Config.spacing>,
-    textAlign?: Config.propsWrapper<TextAlign.t>,
-    fontFamily?: Config.propsWrapper<FontFamily.t>,
-    fontWeight?: Config.propsWrapper<FontWeight.t>,
-    fontSize?: Config.propsWrapper<Length.t>,
-    letterSpacing?: Config.propsWrapper<Length.t>,
-    lineHeight?: Config.propsWrapper<Length.t>,
-    width?: Config.propsWrapper<Length.t>,
-    height?: Config.propsWrapper<Length.t>,
-    minW?: Config.propsWrapper<Length.t>,
-    minH?: Config.propsWrapper<Length.t>,
-    maxW?: Config.propsWrapper<Length.t>,
-    maxH?: Config.propsWrapper<Length.t>,
-    position?: Config.propsWrapper<Position.t>,
-    top?: Config.propsWrapper<Length.t>,
-    bottom?: Config.propsWrapper<Length.t>,
-    left?: Config.propsWrapper<Length.t>,
-    right?: Config.propsWrapper<Length.t>,
-    zIndex?: Config.propsWrapper<ZIndex.t>,
-    boxSizing?: Config.propsWrapper<BoxSizing.t>,
-    overflow?: Config.propsWrapper<Overflow.t>,
-    overflowX?: Config.propsWrapper<Overflow.t>,
-    overflowY?: Config.propsWrapper<Overflow.t>,
-    cursor?: Config.propsWrapper<Cursor.t>,
-    visibility?: Config.propsWrapper<Visibility.t>,
-    listStyleType?: Config.propsWrapper<ListStyleType.t>,
-    listStylePosition?: Config.propsWrapper<ListStylePosition.t>,
-    listStyleImage?: Config.propsWrapper<ListStyleImage.t>,
-    listStyle?: Config.propsWrapper<ListStyle.t>,
-    outlineStyle?: Config.propsWrapper<OutlineStyle.t>,
-    outline?: Config.propsWrapper<Outline.t>,
-    textDecorationStyle?: Config.propsWrapper<TextDecorationStyle.t>,
-    textDecorationLine?: Config.propsWrapper<TextDecorationLine.t>,
-    textDecoration?: Config.propsWrapper<TextDecoration.t>,
-    transform?: Config.propsWrapper<Transform.t>,
-    /*
-     * Pseudo
-     */
-    _hover?: t,
-    _focus?: t,
-    _active?: t,
-    _focusWithin?: t,
-    _focusVisible?: t,
-    _disabled?: t,
-    _before?: t,
-    _after?: t,
-    _even?: t,
-    _odd?: t,
-    _first?: t,
-    _last?: t,
-    _notFirst?: t,
-    _notLast?: t,
-  }
-
-  let createPseudoStyle = (transformer, selector, maybeStyles) =>
-    maybeStyles->Belt.Option.map(styles => `${selector} { ${styles->transformer} }`)
-
-  let rec toCss = (styles: t) => {
-    let s = Config.propsTransformer
-    let p = createPseudoStyle(toCss)
-
-    let spacing = v => v->Config.spacing->Length.toString
-    let colors = v => v->Config.colors->Color.toString
-
-    [
-      s("border-radius", styles.borderRadius, Radius.toString),
-      s("border-top-left-radius", styles.borderTLRadius, Radius.toString),
-      s("border-top-right-radius", styles.borderTRRadius, Radius.toString),
-      s("border-bottom-left-radius", styles.borderBLRadius, Radius.toString),
-      s("border-bottom-right-radius", styles.borderBRRadius, Radius.toString),
-      s("border-style", styles.borderStyle, BorderStyle.toString),
-      s("border-color", styles.borderColor, colors),
-      s("border-width", styles.borderWidth, Length.toString),
-      s("border", styles.border, Border.toString),
-      s("border-right", styles.borderRight, Border.toString),
-      s("border-left", styles.borderLeft, Border.toString),
-      s("border-top", styles.borderTop, Border.toString),
-      s("border-bottom", styles.borderBottom, Border.toString),
-      s("border-right-style", styles.borderRightStyle, BorderStyle.toString),
-      s("border-left-style", styles.borderLeftStyle, BorderStyle.toString),
-      s("border-top-style", styles.borderTopStyle, BorderStyle.toString),
-      s("border-bottom-style", styles.borderBottomStyle, BorderStyle.toString),
-      s("border-right-color", styles.borderRightColor, colors),
-      s("border-left-color", styles.borderLeftColor, colors),
-      s("border-top-color", styles.borderTopColor, colors),
-      s("border-bottom-color", styles.borderBottomColor, colors),
-      s("border-right-width", styles.borderRightWidth, Length.toString),
-      s("border-left-width", styles.borderLeftWidth, Length.toString),
-      s("border-top-width", styles.borderTopWidth, Length.toString),
-      s("border-bottom-width", styles.borderBottomWidth, Length.toString),
-      s("background-color", styles.bgColor, colors),
-      s("background-size", styles.bgSize, BackgroundSize.toString),
-      s("background-position", styles.bgPosition, BackgroundPosition.toString),
-      s("background-image", styles.bgImage, BackgroundImage.toString),
-      s("color", styles.color, colors),
-      s("display", styles.display, Display.toString),
-      s("justify-content", styles.justifyContent, JustifyContent.toString),
-      s("align-items", styles.alignItems, AlignItems.toString),
-      s("flex-direction", styles.flexDirection, FlexDirection.toString),
-      s("flex-basis", styles.flexBasis, FlexBasis.toString),
-      s("flex-wrap", styles.flexWrap, FlexWrap.toString),
-      s("flex-grow", styles.flexGrow, FlexGrow.toString),
-      s("align-content", styles.alignContent, AlignContent.toString),
-      s("align-self", styles.alignSelf, AlignSelf.toString),
-      s("justify-self", styles.justifySelf, JustifySelf.toString),
-      s("flex-flow", styles.flexFlow, FlexFlow.toString),
-      s("gap", styles.gap, Gap.toString),
-      s("padding", styles.p, spacing),
-      s("padding-left", styles.px, spacing),
-      s("padding-right", styles.px, spacing),
-      s("padding-top", styles.py, spacing),
-      s("padding-bottom", styles.py, spacing),
-      s("padding-top", styles.pt, spacing),
-      s("padding-bottom", styles.pb, spacing),
-      s("padding-left", styles.pl, spacing),
-      s("padding-right", styles.pr, spacing),
-      s("margin", styles.m, spacing),
-      s("margin-left", styles.mx, spacing),
-      s("margin-right", styles.mx, spacing),
-      s("margin-top", styles.my, spacing),
-      s("margin-bottom", styles.my, spacing),
-      s("margin-top", styles.mt, spacing),
-      s("margin-bottom", styles.mb, spacing),
-      s("margin-left", styles.ml, spacing),
-      s("margin-right", styles.mr, spacing),
-      s("text-align", styles.textAlign, TextAlign.toString),
-      s("font-family", styles.fontFamily, FontFamily.toString),
-      s("font-weight", styles.fontWeight, FontWeight.toString),
-      s("font-size", styles.fontSize, Length.toString),
-      s("letter-spacing", styles.letterSpacing, Length.toString),
-      s("line-height", styles.lineHeight, Length.toString),
-      s("width", styles.width, Length.toString),
-      s("height", styles.height, Length.toString),
-      s("min-width", styles.minW, Length.toString),
-      s("min-height", styles.minH, Length.toString),
-      s("max-width", styles.maxW, Length.toString),
-      s("max-height", styles.maxH, Length.toString),
-      s("position", styles.position, Position.toString),
-      s("top", styles.top, Length.toString),
-      s("bottom", styles.bottom, Length.toString),
-      s("left", styles.left, Length.toString),
-      s("right", styles.right, Length.toString),
-      s("z-index", styles.zIndex, ZIndex.toString),
-      s("box-sizing", styles.boxSizing, BoxSizing.toString),
-      s("overflow", styles.overflow, Overflow.toString),
-      s("overflow-x", styles.overflowX, Overflow.toString),
-      s("overflow-y", styles.overflowY, Overflow.toString),
-      s("cursor", styles.cursor, Cursor.toString),
-      s("visibility", styles.visibility, Visibility.toString),
-      s("list-style-type", styles.listStyleType, ListStyleType.toString),
-      s("list-style-position", styles.listStylePosition, ListStylePosition.toString),
-      s("list-style-image", styles.listStyleImage, ListStyleImage.toString),
-      s("list-style", styles.listStyle, ListStyle.toString),
-      s("outline-style", styles.outlineStyle, OutlineStyle.toString),
-      s("outline", styles.outline, Outline.toString),
-      s("text-decoration-style", styles.textDecorationStyle, TextDecorationStyle.toString),
-      s("text-decoration-line", styles.textDecorationLine, TextDecorationLine.toString),
-      s("text-decoration", styles.textDecoration, TextDecoration.toString),
-      s("transform", styles.transform, Transform.toString),
-      p("&:hover", styles._hover),
-      p("&:focus", styles._focus),
-      p("&:active", styles._active),
-      p("&:focus-within", styles._focusWithin),
-      p("&:focus-visible", styles._focusVisible),
-      p("&[disabled]", styles._disabled),
-      p("&::before", styles._before),
-      p("&::after", styles._after),
-      p("&:nth-of-type(even)", styles._even),
-      p("&:nth-of-type(odd)", styles._odd),
-      p("&:first-of-type", styles._first),
-      p("&:last-of-type", styles._last),
-      p("&:not(:first-of-type)", styles._notFirst),
-      p("&:not(:last-of-type)", styles._notLast),
-    ]
-    ->Js.Array2.filter(Belt.Option.isSome)
-    ->Js.Array2.map(Belt.Option.getWithDefault(_, ""))
-    ->Js.Array2.joinWith("")
   }
 }
