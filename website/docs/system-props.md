@@ -80,7 +80,7 @@ Check out the [`Config.spacing`](/docs/system-props#configspacing) type signatur
 
 #### `m`
 
-- CSS Key: `padding`
+- CSS Key: `margin`
 - Type: `responsiveProp<Config.spacing>`
 
 #### `mx`
