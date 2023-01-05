@@ -57,7 +57,7 @@ Breakpoints, spacing, radius, grid columns, etc which makes it easy to customize
 First off, install **Ancestor** using npm/yarn:
 
 ```sh title="Terminal"
-yarn add @rescriptbr/ancestor@0.0.8
+yarn add @rescriptbr/ancestor@0.8.0
 ```
 
 If you want to use the default setup, you need to install [Emotion](https://emotion.sh).
