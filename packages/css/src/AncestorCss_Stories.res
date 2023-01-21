@@ -11,9 +11,19 @@ let main = () => {
     p: #px(32),
     color: #hex("#fafafa"),
     fontSize: #px(24),
+    selectors: [
+      (
+        "> div",
+        {
+          border: (1->#px, #solid, #hex("#fc0")),
+        },
+      ),
+    ],
   })
 
-  <div className={styles}> {"Hey :)"->React.string} </div>
+  <div className={styles}>
+    <div> {"Hey :)"->React.string} </div>
+  </div>
 }
 
 module CustomCss = {

@@ -125,14 +125,25 @@ module Make = (
     _last?: t,
     _notFirst?: t,
     _notLast?: t,
+    selectors?: array<(string, t)>,
   }
 
   let createPseudoStyle = (transformer, selector, maybeStyles) =>
     maybeStyles->Belt.Option.map(styles => `${selector} { ${styles->transformer} }`)
 
+  let createSelectorStyle = (transformer, selectors) => {
+    selectors->Belt.Option.map(s => s->Js.Array2.reduce((acc, (selector, styles)) => {
+        `
+        ${acc}
+        ${selector} { ${styles->transformer} }
+      `
+      }, ""))
+  }
+
   let rec parseToCss = (api: Context.api, styles: t) => {
+    let cssTransformer = parseToCss(api)
     let s = Parser.parse
-    let p = createPseudoStyle(parseToCss(api))
+    let p = createPseudoStyle(cssTransformer)
 
     /*
      * Local parsers
@@ -252,6 +263,7 @@ module Make = (
       p("&:last-of-type", styles._last),
       p("&:not(:first-of-type)", styles._notFirst),
       p("&:not(:last-of-type)", styles._notLast),
+      createSelectorStyle(cssTransformer, styles.selectors),
     ]
     ->Js.Array2.filter(Belt.Option.isSome)
     ->Js.Array2.map(Belt.Option.getWithDefault(_, ""))
