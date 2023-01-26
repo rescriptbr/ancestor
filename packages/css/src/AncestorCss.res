@@ -109,7 +109,7 @@ module Make = (
     textDecoration?: Parser.t<TextDecoration.t>,
     transform?: Parser.t<Transform.t>,
     /*
-     * Pseudo
+     * Pseudo selectors
      */
     _hover?: t,
     _focus?: t,
