@@ -23,11 +23,13 @@
       "in-source": true
     }
   ],
-  "reason": {
-    "react-jsx": 3
-  },
+  "jsx": { "version": 4, "mode": "classic" },
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react", "@ancestor-ui/bindings"],
+  "bs-dependencies": [
+    "@rescript/react",
+    "@ancestor-ui/bindings",
+    "@ancestor-ui/css"
+  ],
   "bs-dev-dependencies": ["rescript-nodejs", "@greenlabs/rescript-jest"],
   "ppx-flags": ["@greenlabs/ppx-ts/ppx"]
 }

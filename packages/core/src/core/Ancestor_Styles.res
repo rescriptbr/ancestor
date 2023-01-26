@@ -52,22 +52,32 @@ module Make = (Config: Ancestor_Config.T) => {
       ->Belt.Array.reduce("", mergeStyles(cssKey, stringify))
     )
 
-  module Css = Ancestor_Css.Make({
-    type spacing = Config.spacing
-    let spacing = Config.spacing
+  module Css = AncestorCss.Make(
+    {
+      type spacing = Config.spacing
+      let spacing = Config.spacing
+    },
+    {
+      type radius = Config.radius
+      let radius = Config.radius
+    },
+    {
+      type colors = Config.colors
+      let colors = Config.colors
+    },
+    {
+      type zIndex = Config.zIndex
+      let zIndex = Config.zIndex
+    },
+    {
+      type t<'value> = Config.breakpoints<'value>
+      let parse = createResponsiveValue
+    },
+  )
 
-    type colors = Config.colors
-    let colors = Config.colors
-
-    type radius = Config.radius
-    let radius = Config.radius
-
-    type zIndex = Config.zIndex
-    let zIndex = Config.zIndex
-
-    type propsWrapper<'value> = Config.breakpoints<'value>
-    let propsTransformer = createResponsiveValue
-  })
+  module type T = {
+    let useCss: unit => Css.useCssApi
+  }
 
   let merge = styles => styles->Js.Array2.joinWith("")
 }

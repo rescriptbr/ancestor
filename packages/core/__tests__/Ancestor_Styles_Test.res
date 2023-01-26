@@ -8,13 +8,13 @@ describe("Styles", () => {
     test(
       "should create responsive CSS for the attribute provided",
       () => {
-        let spacing = v => v->Ancestor.Defaults.Spacing.spacing->Styles.Css.Length.toString
+        let spacing = v => v->Ancestor.Defaults.Spacing.spacing->Styles.Css.Types.Length.toString
         let padding = Styles.createResponsiveValue("padding", Some({xs: 2, md: 4}), spacing)
 
         let width = Styles.createResponsiveValue(
           "width",
           Some({xs: 100.0->#pct, md: #px(32)}),
-          Styles.Css.Length.toString,
+          Styles.Css.Types.Length.toString,
         )
 
         expect(padding)->toMatchSnapshot

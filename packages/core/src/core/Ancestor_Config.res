@@ -5,26 +5,6 @@ module type Breakpoints = {
   let sizeByBreakpoints: breakpoints_keyOf => int
 }
 
-module type Spacing = {
-  type spacing
-  let spacing: spacing => Ancestor_Css.Length.t
-}
-
-module type Radius = {
-  type radius
-  let radius: radius => Ancestor_Css.Length.t
-}
-
-module type ZIndex = {
-  type zIndex
-  let zIndex: zIndex => int
-}
-
-module type Colors = {
-  type colors
-  let colors: colors => Ancestor_Css.Color.t
-}
-
 module type T = {
   type breakpoints<'value>
   type breakpoints_keyOf
@@ -34,8 +14,8 @@ module type T = {
   type zIndex
   let encode: breakpoints<'value> => array<(breakpoints_keyOf, option<'value>)>
   let zIndex: zIndex => int
-  let colors: colors => Ancestor_Css.Color.t
-  let spacing: spacing => Ancestor_Css.Length.t
-  let radius: radius => Ancestor_Css.Length.t
+  let colors: colors => AncestorCss_Types.Color.t
+  let spacing: spacing => AncestorCss_Types.Length.t
+  let radius: radius => AncestorCss_Types.Length.t
   let sizeByBreakpoints: breakpoints_keyOf => int
 }

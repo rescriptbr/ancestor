@@ -36,7 +36,8 @@
     "rescript-nodejs": "14.3.1"
   },
   "dependencies": {
-    "@ancestor-ui/bindings": "0.1.0"
+    "@ancestor-ui/bindings": "0.1.0",
+    "@ancestor-ui/css": "0.0.1"
   },
   "peerDependencies": {
     "@greenlabs/ppx-ts": ">=0.1.6",
