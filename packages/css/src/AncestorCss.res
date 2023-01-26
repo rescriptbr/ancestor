@@ -270,7 +270,7 @@ module Make = (
     ->Js.Array2.joinWith("")
   }
 
-  let createClass = (styles: t) =>
+  let css = (styles: t) =>
     parseToCss(
       {
         colors: TokensConfig.colors,

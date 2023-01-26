@@ -5,7 +5,7 @@ let default = Storybook.story(
 )
 
 let main = () => {
-  let styles = AncestorCss.createClass({
+  let styles = AncestorCss.css({
     display: #flex,
     bgColor: #hex("#000"),
     p: #px(32),

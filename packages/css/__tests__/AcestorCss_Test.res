@@ -71,7 +71,7 @@ describe("AncestorCss", () => {
     test(
       "should generate a simple className correctly",
       () => {
-        let className = AncestorCss.createClass({
+        let className = AncestorCss.css({
           display: #flex,
           bgColor: #hex("#fafafa"),
           color: #hex("#000"),
