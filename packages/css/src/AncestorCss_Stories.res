@@ -76,9 +76,9 @@ let light = {
 module ProviderTest = {
   @react.component
   let make = () => {
-    let css = CustomCss.useCss()
+    let {css} = CustomCss.useCss()
 
-    let styles = css.createClass({
+    let styles = css({
       display: #flex,
       bgColor: #primary,
       p: #px(32),

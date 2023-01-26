@@ -48,8 +48,8 @@ module CustomCss = {
 module CustomCssComponent = {
   @react.component
   let make = () => {
-    let css = CustomCss.useCss()
-    let className = css.createClass({
+    let {css} = CustomCss.useCss()
+    let className = css({
       display: #flex,
       bgColor: #primary,
       color: #secondary,

@@ -281,13 +281,13 @@ module Make = (
       styles,
     )->Emotion.rawCss
 
-  type useCssApi = {createClass: t => string}
+  type useCssApi = {css: t => string}
 
   let useCss = (): useCssApi => {
     let context = Context.useContext()
-    let createClass = (styles: t) => parseToCss(context, styles)->Emotion.rawCss
+    let css = (styles: t) => parseToCss(context, styles)->Emotion.rawCss
 
-    {createClass: createClass}
+    {css: css}
   }
 }
 
