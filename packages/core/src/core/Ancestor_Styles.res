@@ -1,7 +1,7 @@
 module Make = (Config: Ancestor_Config.T) => {
   let createBreakpointSize = device => `${device->Config.sizeByBreakpoints->Belt.Int.toString}px`
 
-  let mediaQuery = (current, device: Config.breakpoints_keyOf, styles) =>
+  let mediaQuery = (current, device: Config.keyOfBreakpoints, styles) =>
     `
     ${current}
     @media (min-width: ${device->createBreakpointSize}) {

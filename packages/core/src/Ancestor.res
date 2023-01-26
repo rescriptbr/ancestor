@@ -2,7 +2,6 @@ include Ancestor_Core
 
 module Defaults = {
   module Breakpoints = {
-    @ppx_ts.keyOf
     type breakpoints<'a> = {
       xs?: 'a,
       sm?: 'a,
@@ -10,6 +9,7 @@ module Defaults = {
       lg?: 'a,
       xl?: 'a,
     }
+    type keyOfBreakpoints = Xs | Sm | Md | Lg | Xl
     let encode = breakpoints => [
       (Xs, breakpoints.xs),
       (Sm, breakpoints.sm),

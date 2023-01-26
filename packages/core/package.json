@@ -16,7 +16,6 @@
     "@babel/core": "7.17.5",
     "@emotion/css": "11.10.0",
     "@emotion/jest": "11.9.3",
-    "@greenlabs/ppx-ts": "0.1.6",
     "@greenlabs/rescript-jest": "1.0.1",
     "@rescript/react": "0.11.0-rc.3",
     "@storybook/addon-actions": "6.5.15",
@@ -40,7 +39,6 @@
     "@ancestor-ui/css": "0.1.2"
   },
   "peerDependencies": {
-    "@greenlabs/ppx-ts": ">=0.1.6",
     "@rescript/react": ">=0.11",
     "react": ">=18",
     "react-dom": ">=18",

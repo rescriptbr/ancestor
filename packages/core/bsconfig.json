@@ -31,5 +31,5 @@
     "@ancestor-ui/css"
   ],
   "bs-dev-dependencies": ["rescript-nodejs", "@greenlabs/rescript-jest"],
-  "ppx-flags": ["@greenlabs/ppx-ts/ppx"]
+  "ppx-flags": []
 }

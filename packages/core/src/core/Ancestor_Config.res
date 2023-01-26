@@ -1,21 +1,21 @@
 module type Breakpoints = {
   type breakpoints<'value>
-  type breakpoints_keyOf
-  let encode: breakpoints<'value> => array<(breakpoints_keyOf, option<'value>)>
-  let sizeByBreakpoints: breakpoints_keyOf => int
+  type keyOfBreakpoints
+  let encode: breakpoints<'value> => array<(keyOfBreakpoints, option<'value>)>
+  let sizeByBreakpoints: keyOfBreakpoints => int
 }
 
 module type T = {
   type breakpoints<'value>
-  type breakpoints_keyOf
+  type keyOfBreakpoints
   type spacing
   type radius
   type colors
   type zIndex
-  let encode: breakpoints<'value> => array<(breakpoints_keyOf, option<'value>)>
+  let encode: breakpoints<'value> => array<(keyOfBreakpoints, option<'value>)>
   let zIndex: zIndex => int
   let colors: colors => AncestorCss_Types.Color.t
   let spacing: spacing => AncestorCss_Types.Length.t
   let radius: radius => AncestorCss_Types.Length.t
-  let sizeByBreakpoints: breakpoints_keyOf => int
+  let sizeByBreakpoints: keyOfBreakpoints => int
 }
