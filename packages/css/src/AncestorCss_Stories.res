@@ -41,36 +41,20 @@ module CustomCss = {
   include AncestorCss.Make(Spacing, Radius, CustomColors, ZIndex, AncestorCss_Parsers.Simple)
 }
 
-let dark = {
-  open CustomCss.Context
-  open AncestorCss.Defaults
-
-  {
-    colors: token =>
-      switch token {
-      | #primary => #hex("#000")
-      | #secondary => #hex("#ccc")
-      },
-    spacing: Spacing.spacing,
-    radius: Radius.radius,
-    zIndex: ZIndex.zIndex,
-  }
+let dark: CustomCss.Context.partialApi = {
+  colors: token =>
+    switch token {
+    | #primary => #hex("#000")
+    | #secondary => #hex("#ccc")
+    },
 }
 
-let light = {
-  open CustomCss.Context
-  open AncestorCss.Defaults
-
-  {
-    colors: token =>
-      switch token {
-      | #primary => #hex("#fafafa")
-      | #secondary => #hex("#000")
-      },
-    spacing: Spacing.spacing,
-    radius: Radius.radius,
-    zIndex: ZIndex.zIndex,
-  }
+let light: CustomCss.Context.partialApi = {
+  colors: token =>
+    switch token {
+    | #primary => #hex("#fafafa")
+    | #secondary => #hex("#000")
+    },
 }
 
 module ProviderTest = {
