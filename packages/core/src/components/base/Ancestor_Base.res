@@ -349,8 +349,9 @@ module Make = (Config: Ancestor_Config.T) => {
       ~onAnimationIteration=?,
       ~onTransitionEnd=?,
     ) => {
+      let {css} = Css.useCss()
       let componentClassName = {
-        let responsiveStyles = Styles.Css.createClass({
+        let responsiveStyles = css({
           ?// forward-fn:start
           borderRadius,
           ?borderTLRadius,

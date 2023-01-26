@@ -16,7 +16,7 @@ module Make = (Config: Ancestor_Config.T) => {
     /**
    * Specific styles for the API.
    */
-    let baseStyles = AncestorCss.createClass({
+    let baseStyles = AncestorCss.css({
       display: #flex,
     })
 

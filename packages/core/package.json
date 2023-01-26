@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@ancestor-ui/bindings": "0.1.0",
-    "@ancestor-ui/css": "0.1.0"
+    "@ancestor-ui/css": "0.1.2"
   },
   "peerDependencies": {
     "@greenlabs/ppx-ts": ">=0.1.6",

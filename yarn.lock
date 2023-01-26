@@ -138,10 +138,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@ancestor-ui/css@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ancestor-ui/css/-/css-0.1.0.tgz#28152f90e2df587f995412d4f9f07dd534ef370c"
-  integrity sha512-Ynb/Nz070mKnxrANs1eVIqZZ4dNK6IkTEr1LJjeb/qSjdFPZX9ctVetUj7oN+WfKNVZuQOkIOFbSnBeFdrD9BQ==
+"@ancestor-ui/css@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@ancestor-ui/css/-/css-0.1.2.tgz#76239291273a4968ad29f921b07cff355e42c429"
+  integrity sha512-m7eZvyQZWqHoIy5V7Q/BRbJkHLDie1Cwk9M485eMAy5SEGT8VEwITy6mnoQPAjXCAwjMkwj5Mdo/ki2NByDCEg==
   dependencies:
     "@ancestor-ui/bindings" "*"
 
