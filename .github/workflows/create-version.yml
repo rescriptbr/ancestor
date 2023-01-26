@@ -11,6 +11,7 @@ on:
         options:
           - core
           - ui
+          - css
           - bindings
       versionType:
         description: Version type
