@@ -20,7 +20,8 @@
   "bs-dependencies": [
     "@rescript/react",
     "@ancestor-ui/core",
-    "@ancestor-ui/bindings"
+    "@ancestor-ui/bindings",
+    "@ancestor-ui/css"
   ],
   "bs-dev-dependencies": [],
   "ppx-flags": []
