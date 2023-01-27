@@ -1,3 +1,6 @@
+/*
+ * NOTE: The breakpoint module used to create the custom breakpoints API.
+ */
 module type Breakpoints = {
   type breakpoints<'value>
   type keyOfBreakpoints
