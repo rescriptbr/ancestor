@@ -707,4 +707,58 @@ module Make = (Config: Config) => {
       | #none => "none"
       }
   }
+
+  module Width = {
+    type t = [
+      | #ch(float)
+      | #em(float)
+      | #ex(float)
+      | #rem(float)
+      | #vh(float)
+      | #vw(float)
+      | #vmin(float)
+      | #vmax(float)
+      | #px(int)
+      | #pxFloat(float)
+      | #cm(float)
+      | #mm(float)
+      | #inch(float)
+      | #pc(float)
+      | #pt(int)
+      | #zero
+      | #pct(float)
+      | #add(Length.t, Length.t)
+      | #sub(Length.t, Length.t)
+      | #div(Length.t, Length.t)
+      | #mult(Length.t, Length.t)
+      | #auto
+      | #"max-content"
+      | #"min-content"
+      | #"fit-content"
+      | #fitContent(Length.t)
+      | #auto
+      | #inherit
+      | #initial
+      | #revert
+      | #"revert-layer"
+      | #unset
+    ]
+
+    let toString = (v: t) =>
+      switch v {
+      | #auto => "auto"
+      | #"max-content" => "max-content"
+      | #"min-content" => "min-content"
+      | #"fit-content" => "fit-content"
+      | #inherit => "inherit"
+      | #initial => "initial"
+      | #revert => "revert"
+      | #"revert-layer" => "revert-layer"
+      | #unset => "unset"
+      | #fitContent(length) => `fit-content(${length->Length.toString})`
+      | #...Length.t as v => Length.toString(v)
+      }
+  }
+
+  module Height = Width
 }
