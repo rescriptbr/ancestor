@@ -2,7 +2,7 @@ module Make = (Config: Ancestor_Config.T) => {
   module Styles = Ancestor_Styles.Make(Config)
   module Make = (
     Css: {
-      let useCss: unit => Styles.Css.useCssApi
+      let useCss: unit => Styles.Css.useCssApi<'unsafe>
     },
   ) => {
     module Internal__Base = Ancestor_Base.Make(Config)
@@ -145,6 +145,12 @@ module Make = (Config: Ancestor_Config.T) => {
       ~_last=?,
       ~_notFirst=?,
       ~_notLast=?,
+      ~transition=?,
+      ~transitionProperty=?,
+      ~transitionDelay=?,
+      ~transitionDuration=?,
+      ~transitionTimingFunction=?,
+      ~transitions=?,
       // declaration:end
       // Grid props
       ~spacing: option<Config.breakpoints<Config.spacing>>=?,
@@ -490,6 +496,12 @@ module Make = (Config: Ancestor_Config.T) => {
         ?_last
         ?_notFirst
         ?_notLast
+        ?transition
+        ?transitionProperty
+        ?transitionDelay
+        ?transitionDuration
+        ?transitionTimingFunction
+        ?transitions
         // forward:end
         // DOM Props
         tag

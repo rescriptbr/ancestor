@@ -8,8 +8,9 @@ let basicUsage = () => {
   <Base display={xs: #flex, md: #block} justifyContent={xs: #center} width={xs: 100.->#pct}>
     <Base
       _hover={
-        bgColor: {xs: #hex("#363636"), md: #hex("#ccc")},
+        bgColor: {xs: #hex("#363636")},
       }
+      transitions={xs: [{prop: "background-color", duration: 200.0->#ms}]}
       display={xs: #flex}
       flexDirection={xs: #column}
       justifyContent={xs: #center}
