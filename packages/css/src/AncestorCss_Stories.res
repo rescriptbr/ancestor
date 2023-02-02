@@ -19,6 +19,9 @@ let main = () => {
         },
       ),
     ],
+    __unsafe: {
+      "border": "solid 1px red",
+    },
   })
 
   <div className={styles}>
