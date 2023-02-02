@@ -761,4 +761,100 @@ module Make = (Config: Config) => {
   }
 
   module Height = Width
+  module Duration = {
+    type t = [
+      | #s(float)
+      | #ms(float)
+    ]
+
+    let toString = (v: t) =>
+      switch v {
+      | #s(value) => `${value->Js.Float.toString}s`
+      | #ms(value) => `${value->Js.Float.toString}ms`
+      }
+  }
+
+  module TimingFunction = {
+    type t = [
+      | #linear
+      | #"cubic-bezier"(float, float, float, float)
+      | #ease
+      | #"ease-in"
+      | #"ease-out"
+      | #"ease-in-out"
+      | #steps(int, [#start | #end])
+      | #"step-start"
+      | #"step-end"
+      | #"jump-start"
+      | #"jump-end"
+      | #"jump-none"
+      | #"jump-both"
+    ]
+
+    let floatOfString = Js.Float.toString
+
+    let toString = (v: t) =>
+      switch v {
+      | #linear => "linear"
+      | #ease => "ease"
+      | #"ease-in" => "ease-in"
+      | #"ease-out" => "ease-out"
+      | #"ease-in-out" => "ease-in-out"
+      | #"step-start" => "step-start"
+      | #"step-end" => "step-end"
+      | #"jump-start" => "jump-start"
+      | #"jump-end" => "jump-end"
+      | #"jump-none" => "jump-none"
+      | #"jump-both" => "jump-both"
+      | #steps(value, position) => `steps(${Js.Int.toString(value)}, ${(position :> string)})`
+      | #"cubic-bezier"(v1, v2, v3, v4) => {
+          let values = [v1, v2, v3, v4]->Js.Array2.map(Js.Float.toString)->Js.Array2.joinWith(", ")
+          `cubic-bezier(${values})`
+        }
+      }
+  }
+
+  module Transition = {
+    type transition = {
+      prop: string,
+      duration: Duration.t,
+      easing?: TimingFunction.t,
+      delay?: Duration.t,
+    }
+
+    type t = [
+      | #inherit
+      | #initial
+      | #revert
+      | #"revert-layer"
+      | #unset
+      | #v(transition)
+    ]
+
+    let toString = (v: t) =>
+      switch v {
+      | #inherit => "inherit"
+      | #initial => "initial"
+      | #revert => "revert"
+      | #"revert-layer" => "revert-layer"
+      | #unset => "unset"
+      | #v({prop, duration, ?easing, ?delay}) =>
+        [
+          prop,
+          duration->Duration.toString,
+          easing->Belt.Option.mapWithDefault("", TimingFunction.toString),
+          delay->Belt.Option.mapWithDefault("", Duration.toString),
+        ]->Js.Array2.joinWith(" ")
+      }
+  }
+
+  module TransitionList = {
+    type t = array<Transition.transition>
+
+    let toString = (v: t) =>
+      v
+      ->Js.Array2.map(value => #v(value))
+      ->Js.Array2.map(Transition.toString)
+      ->Js.Array2.joinWith(", ")
+  }
 }

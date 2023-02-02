@@ -86,3 +86,17 @@ let customSetup = () => {
     <ProviderTest />
   </CustomCss.Provider>
 }
+
+let transition = () => {
+  let className = AncestorCss.css({
+    bgColor: #hex("#000"),
+    color: #hex("#fafafa"),
+    transitionProperty: "background-color",
+    transitionDuration: 600.0->#ms,
+    _hover: {
+      bgColor: #hex("#363636"),
+    },
+  })
+
+  <button className> {"Click here"->React.string} </button>
+}
