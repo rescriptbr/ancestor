@@ -76,7 +76,7 @@ module Make = (Config: Ancestor_Config.T) => {
   )
 
   module type T = {
-    let useCss: unit => Css.useCssApi
+    let useCss: unit => Css.useCssApi<'unsafe>
   }
 
   let merge = styles => styles->Js.Array2.joinWith("")

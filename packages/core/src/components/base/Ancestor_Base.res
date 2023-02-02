@@ -2,7 +2,7 @@ module Make = (Config: Ancestor_Config.T) => {
   module Styles = Ancestor_Styles.Make(Config)
   module Make = (
     Css: {
-      let useCss: unit => Styles.Css.useCssApi
+      let useCss: unit => Styles.Css.useCssApi<'unsafe>
     },
   ) => {
     @react.component
@@ -112,6 +112,12 @@ module Make = (Config: Ancestor_Config.T) => {
       ~_last=?,
       ~_notFirst=?,
       ~_notLast=?,
+      ~transition=?,
+      ~transitionProperty=?,
+      ~transitionDelay=?,
+      ~transitionDuration=?,
+      ~transitionTimingFunction=?,
+      ~transitions=?,
       // declaration:end
       // Base props
       ~tag: Ancestor_React.tags=#div,
@@ -457,6 +463,12 @@ module Make = (Config: Ancestor_Config.T) => {
           ?_last,
           ?_notFirst,
           ?_notLast,
+          ?transition,
+          ?transitionProperty,
+          ?transitionDelay,
+          ?transitionDuration,
+          ?transitionTimingFunction,
+          ?transitions,
           // forward-fn:end
         })->Emotion.rawCss
 
