@@ -113,6 +113,12 @@ module Make = (
     textDecorationLine?: Parser.t<TextDecorationLine.t>,
     textDecoration?: Parser.t<TextDecoration.t>,
     transform?: Parser.t<Transform.t>,
+    transition?: Parser.t<Transition.t>,
+    transitionProperty?: Parser.t<string>,
+    transitionDelay?: Parser.t<Duration.t>,
+    transitionDuration?: Parser.t<Duration.t>,
+    transitionTimingFunction?: Parser.t<TimingFunction.t>,
+    transitions?: Parser.t<TransitionList.t>,
     /*
      * Pseudo selectors
      */
@@ -255,6 +261,12 @@ module Make = (
       s("text-decoration-line", styles.textDecorationLine, TextDecorationLine.toString),
       s("text-decoration", styles.textDecoration, TextDecoration.toString(~colors)),
       s("transform", styles.transform, Transform.toString),
+      s("transition", styles.transition, Transition.toString),
+      s("transition-property", styles.transitionProperty, v => v),
+      s("transition-delay", styles.transitionDelay, Duration.toString),
+      s("transition-duration", styles.transitionDuration, Duration.toString),
+      s("transition-timing-function", styles.transitionTimingFunction, TimingFunction.toString),
+      s("transition", styles.transitions, TransitionList.toString),
       p("&:hover", styles._hover),
       p("&:focus", styles._focus),
       p("&:active", styles._active),
