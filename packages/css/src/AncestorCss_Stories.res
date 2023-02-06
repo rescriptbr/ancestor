@@ -19,9 +19,9 @@ let main = () => {
         },
       ),
     ],
-    __unsafe: {
+    __unsafe: AncestorCss.unsafe({
       "border": "solid 1px red",
-    },
+    }),
   })
 
   <div className={styles}>

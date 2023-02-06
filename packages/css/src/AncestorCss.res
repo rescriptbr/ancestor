@@ -17,7 +17,14 @@ module Make = (
 
   open! Types
 
-  type rec t<'unsafe> = {
+  module Unsafe = {
+    type t
+    external make: {..} => t = "%identity"
+  }
+
+  let unsafe = Unsafe.make
+
+  type rec t = {
     borderRadius?: Parser.t<TokensConfig.radius>,
     borderTLRadius?: Parser.t<TokensConfig.radius>,
     borderTRRadius?: Parser.t<TokensConfig.radius>,
@@ -117,22 +124,22 @@ module Make = (
     /*
      * Pseudo selectors
      */
-    _hover?: t<'unsafe>,
-    _focus?: t<'unsafe>,
-    _active?: t<'unsafe>,
-    _focusWithin?: t<'unsafe>,
-    _focusVisible?: t<'unsafe>,
-    _disabled?: t<'unsafe>,
-    _before?: t<'unsafe>,
-    _after?: t<'unsafe>,
-    _even?: t<'unsafe>,
-    _odd?: t<'unsafe>,
-    _first?: t<'unsafe>,
-    _last?: t<'unsafe>,
-    _notFirst?: t<'unsafe>,
-    _notLast?: t<'unsafe>,
-    selectors?: array<(string, t<'unsafe>)>,
-    __unsafe?: {..} as 'unsafe,
+    _hover?: t,
+    _focus?: t,
+    _active?: t,
+    _focusWithin?: t,
+    _focusVisible?: t,
+    _disabled?: t,
+    _before?: t,
+    _after?: t,
+    _even?: t,
+    _odd?: t,
+    _first?: t,
+    _last?: t,
+    _notFirst?: t,
+    _notLast?: t,
+    selectors?: array<(string, t)>,
+    __unsafe?: Unsafe.t,
   }
 
   let createPseudoStyle = (transformer, selector, maybeStyles) =>
@@ -147,7 +154,7 @@ module Make = (
       }, ""))
   }
 
-  let rec parseToCss = (api: Context.api, styles: t<'unsafe>) => {
+  let rec parseToCss = (api: Context.api, styles: t) => {
     let cssTransformer = parseToCss(api)
     let s = Parser.parse
     let p = createPseudoStyle(cssTransformer)
@@ -283,7 +290,7 @@ module Make = (
     ->Js.Array2.joinWith("")
   }
 
-  let css = (styles: t<'unsafe>) => {
+  let css = (styles: t) => {
     let unsafeStyles = styles.__unsafe->Obj.magic->Emotion.rawCss
 
     let responsiveStyles = parseToCss(
@@ -299,11 +306,11 @@ module Make = (
     `${responsiveStyles} ${unsafeStyles}`
   }
 
-  type useCssApi<'unsafe> = {css: t<'unsafe> => string}
+  type useCssApi = {css: t => string}
 
-  let useCss = (): useCssApi<'unsafe> => {
+  let useCss = (): useCssApi => {
     let context = Context.useContext()
-    let css = (styles: t<'unsafe>) => parseToCss(context, styles)->Emotion.rawCss
+    let css = (styles: t) => parseToCss(context, styles)->Emotion.rawCss
 
     {css: css}
   }
