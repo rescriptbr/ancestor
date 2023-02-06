@@ -8,12 +8,8 @@ module Colors = {
     }
 }
 
-module Css = AncestorCss.Make(
-  Ancestor.Defaults.Spacing,
-  Ancestor.Defaults.Radius,
-  Colors,
-  Ancestor.Defaults.ZIndex,
-  AncestorCss_Parsers.Simple,
-)
+type theme = {colors: Colors.colors => AncestorCss_Types.Color.t}
 
-let useCss = Css.useCss
+module type T = {
+  let useTheme: unit => theme
+}
