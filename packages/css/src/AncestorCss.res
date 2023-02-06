@@ -17,11 +17,6 @@ module Make = (
 
   open! Types
 
-  module Unsafe = {
-    type t
-    external make: {..} => t = "%identity"
-  }
-
   type rec t<'unsafe> = {
     borderRadius?: Parser.t<TokensConfig.radius>,
     borderTLRadius?: Parser.t<TokensConfig.radius>,
