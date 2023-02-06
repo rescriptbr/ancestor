@@ -28,9 +28,8 @@
     "rescript": ">=10"
   },
   "dependencies": {
-    "@ancestor-ui/core": "0.1.1",
-    "@ancestor-ui/bindings": "0.1.0",
-    "deepmerge": "4.2.2"
+    "@ancestor-ui/core": "0.3.0",
+    "@ancestor-ui/bindings": "0.1.0"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",

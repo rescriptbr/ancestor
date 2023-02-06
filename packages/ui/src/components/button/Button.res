@@ -1,8 +1,17 @@
-let baseStyles = AncestorCss.css({
-  display: #flex,
-})
+let useClasses = () => {
+  let {css} = Theme.useCss()
+
+  let baseStyles = css({
+    color: #primary,
+    borderStyle: #none,
+  })
+
+  `${baseStyles}`
+}
 
 @react.component
-let make = (~children) => {
-  <button className={`${baseStyles}`}> {children} </button>
+let make = () => {
+  let className = useClasses()
+
+  <button className />
 }
