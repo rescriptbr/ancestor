@@ -2,7 +2,7 @@ module Make = (Config: Ancestor_Config.T) => {
   module Styles = Ancestor_Styles.Make(Config)
   module Make = (
     Css: {
-      let useCss: unit => Styles.Css.useCssApi<'unsafe>
+      let useCss: unit => Styles.Css.useCssApi
     },
   ) => {
     @react.component
