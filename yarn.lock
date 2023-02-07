@@ -138,14 +138,6 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@ancestor-ui/core@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@ancestor-ui/core/-/core-0.4.0.tgz#0e7b51e41cd241d29b1b2e3b630996de6bfd7319"
-  integrity sha512-pcuW9RArV46huElrdufEEvtBDic5M0BTh7OUgO+x1Wm4Kx/n4a5asD0BizsvpG/3IHpB/DDLbAnaIUwh+RqVTQ==
-  dependencies:
-    "@ancestor-ui/bindings" "0.1.0"
-    "@ancestor-ui/css" "0.4.0"
-
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.5.5", "@babel/code-frame@^7.8.3":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
@@ -1825,7 +1817,7 @@
     url-loader "^4.1.1"
     webpack "^5.73.0"
 
-"@emotion/babel-plugin@^11.10.0":
+"@emotion/babel-plugin@^11.10.0", "@emotion/babel-plugin@^11.10.5":
   version "11.10.5"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.10.5.tgz#65fa6e1790ddc9e23cc22658a4c5dea423c55c3c"
   integrity sha512-xE7/hyLHJac7D2Ve9dKroBBZqBT7WuPQmWcq7HSGb84sUuP4mlOWoB8dvVfD9yk5DHkU1m6RW7xSoDtnQHNQeA==
@@ -1843,7 +1835,7 @@
     source-map "^0.5.7"
     stylis "4.1.3"
 
-"@emotion/cache@^11.10.0":
+"@emotion/cache@^11.0.0", "@emotion/cache@^11.10.0", "@emotion/cache@^11.10.5":
   version "11.10.5"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.10.5.tgz#c142da9351f94e47527ed458f7bbbbe40bb13c12"
   integrity sha512-dGYHWyzTdmK+f2+EnIGBpkz1lKc4Zbj2KHd4cX3Wi8/OWr5pKslNjc3yABKH4adRGCvSX4VDC0i04mrrq0aiRA==
@@ -1871,6 +1863,17 @@
     "@emotion/cache" "^11.10.0"
     "@emotion/serialize" "^1.1.0"
     "@emotion/sheet" "^1.2.0"
+    "@emotion/utils" "^1.2.0"
+
+"@emotion/css@^11.0.0":
+  version "11.10.5"
+  resolved "https://registry.yarnpkg.com/@emotion/css/-/css-11.10.5.tgz#ca01bb83ce60517bc3a5c01d27ccf552fed84d9d"
+  integrity sha512-maJy0wG82hWsiwfJpc3WrYsyVwUbdu+sdIseKUB+/OLjB8zgc3tqkT6eO0Yt0AhIkJwGGnmMY/xmQwEAgQ4JHA==
+  dependencies:
+    "@emotion/babel-plugin" "^11.10.5"
+    "@emotion/cache" "^11.10.5"
+    "@emotion/serialize" "^1.1.1"
+    "@emotion/sheet" "^1.2.1"
     "@emotion/utils" "^1.2.0"
 
 "@emotion/hash@^0.9.0":
@@ -5308,6 +5311,20 @@ browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4
     electron-to-chromium "^1.4.251"
     node-releases "^2.0.6"
     update-browserslist-db "^1.0.9"
+
+bs-css-emotion@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/bs-css-emotion/-/bs-css-emotion-5.0.0.tgz#d598078fadc61539b11f5af07cee1e96172df485"
+  integrity sha512-vNC/RBQmiukfVzKYFt1OdEUUjTWhXqRZ4+hb/te1RSHbEcBTLOJ9PP758jUCaQUfQcbRclvzi5zT9n9LQ25xkA==
+  dependencies:
+    "@emotion/cache" "^11.0.0"
+    "@emotion/css" "^11.0.0"
+    bs-css "16.0.0"
+
+bs-css@16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/bs-css/-/bs-css-16.0.0.tgz#3221b53606023567885df75a535ef23f88bef32d"
+  integrity sha512-QU6oMKTbG3kRX86x8uhhK3+IG0dHoumlCgEDswmu4ZP8Y90c33MgDwItdADdpX24fPddnsy9W4DEw214/JTziA==
 
 bser@2.1.1:
   version "2.1.1"
