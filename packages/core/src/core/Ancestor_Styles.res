@@ -291,6 +291,12 @@ module Make = (Config: Ancestor_Config.T) => {
       ->addRule(Css.textDecorationLine, textDecorationLine)
       ->addRule(Css.textDecoration, textDecoration)
       ->addRule(Css.transform, transform)
+      ->addRule(Css.transitionValue, transition)
+      ->addRule(Css.transitionProperty, transitionProperty)
+      ->addRule(Css.transitionDelay, transitionDelay)
+      ->addRule(Css.transitionDuration, transitionDuration)
+      ->addRule(Css.transitionTimingFunction, transitionTimingFunction)
+      ->addRule(Css.transitions, transitions)
 
     let parsedRules =
       rules
@@ -299,6 +305,4 @@ module Make = (Config: Ancestor_Config.T) => {
 
     Css.style(. parsedRules)
   }
-
-  let merge = styles => styles->Js.Array2.joinWith("")
 }
