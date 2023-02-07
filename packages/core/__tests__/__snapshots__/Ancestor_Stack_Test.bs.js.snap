@@ -8,7 +8,7 @@ exports[`Stack should render correctly 1`] = `
   display: flex;
 }
 
-@media (min-width: 0px) {
+@media (min-width:0px) {
   .emotion-0 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -16,7 +16,7 @@ exports[`Stack should render correctly 1`] = `
   }
 }
 
-@media (min-width: 920px) {
+@media (min-width:920px) {
   .emotion-0 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;

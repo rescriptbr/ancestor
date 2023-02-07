@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Box should render with columns correctly 1`] = `
+@media (min-width:0px) {
+  .emotion-0 {
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+  }
+}
+
+@media (min-width:920px) {
+  .emotion-0 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width:1280px) {
+  .emotion-0 {
+    -webkit-flex-basis: 25%;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+  }
+}
+
+<div
+  className="emotion-0  emotion-1"
+>
+  <div />
+</div>
+`;
+
+exports[`Box should render without columns correctly 1`] = `
+<div
+  className="emotion-0  emotion-0"
+>
+  <div />
+</div>
+`;

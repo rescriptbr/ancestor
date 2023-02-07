@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Grid should with spacing render correctly 1`] = `
-@media (min-width: 0px) {
+@media (min-width:0px) {
   .emotion-0 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -18,12 +18,12 @@ exports[`Grid should with spacing render correctly 1`] = `
 
   .emotion-0>* {
     box-sizing: border-box;
-    padding-left: 8px;
     padding-top: 8px;
+    padding-left: 8px;
   }
 }
 
-@media (min-width: 920px) {
+@media (min-width:920px) {
   .emotion-0 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -40,12 +40,12 @@ exports[`Grid should with spacing render correctly 1`] = `
 
   .emotion-0>* {
     box-sizing: border-box;
-    padding-left: 0px;
     padding-top: 0px;
+    padding-left: 0px;
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width:1280px) {
   .emotion-0 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -62,32 +62,32 @@ exports[`Grid should with spacing render correctly 1`] = `
 
   .emotion-0>* {
     box-sizing: border-box;
-    padding-left: 24px;
     padding-top: 24px;
+    padding-left: 24px;
   }
 }
 
-@media (min-width: 0px) {
+@media (min-width:0px) {
   .emotion-2 {
-    -webkit-flex-basis: 50.0%;
-    -ms-flex-preferred-size: 50.0%;
-    flex-basis: 50.0%;
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
   }
 }
 
-@media (min-width: 920px) {
+@media (min-width:920px) {
   .emotion-2 {
-    -webkit-flex-basis: 33.3%;
-    -ms-flex-preferred-size: 33.3%;
-    flex-basis: 33.3%;
+    -webkit-flex-basis: 33.333333333333336%;
+    -ms-flex-preferred-size: 33.333333333333336%;
+    flex-basis: 33.333333333333336%;
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width:1280px) {
   .emotion-2 {
-    -webkit-flex-basis: 25.0%;
-    -ms-flex-preferred-size: 25.0%;
-    flex-basis: 25.0%;
+    -webkit-flex-basis: 25%;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
   }
 }
 
@@ -130,27 +130,27 @@ exports[`Grid should without spacing render correctly 1`] = `
   display: flex;
 }
 
-@media (min-width: 0px) {
+@media (min-width:0px) {
   .emotion-2 {
-    -webkit-flex-basis: 50.0%;
-    -ms-flex-preferred-size: 50.0%;
-    flex-basis: 50.0%;
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
   }
 }
 
-@media (min-width: 920px) {
+@media (min-width:920px) {
   .emotion-2 {
-    -webkit-flex-basis: 33.3%;
-    -ms-flex-preferred-size: 33.3%;
-    flex-basis: 33.3%;
+    -webkit-flex-basis: 33.333333333333336%;
+    -ms-flex-preferred-size: 33.333333333333336%;
+    flex-basis: 33.333333333333336%;
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width:1280px) {
   .emotion-2 {
-    -webkit-flex-basis: 25.0%;
-    -ms-flex-preferred-size: 25.0%;
-    flex-basis: 25.0%;
+    -webkit-flex-basis: 25%;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
   }
 }
 
