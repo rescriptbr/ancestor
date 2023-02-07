@@ -1,15 +1,15 @@
-module Colors = {
-  type colors = [#primary | #secondary]
+module type CustomColors = {
+  type t
+  let make: t => AncestorCss_Types.Color.t
+}
+
+module Colors = (Custom: CustomColors) => {
+  type colors = [#primary | #secondary | #custom(Custom.t)]
 
   let colors = token =>
     switch token {
     | #primary => #hex("#fc0")
     | #secondary => #hex("#ccc")
+    | #custom(color) => Custom.make(color)
     }
-}
-
-type theme = {colors: Colors.colors => AncestorCss_Types.Color.t}
-
-module type T = {
-  let useTheme: unit => theme
 }

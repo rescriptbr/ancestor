@@ -6,7 +6,10 @@ module Make = (Config: Ancestor_Config.T) => {
       let encode = Config.encode
       let sizeByBreakpoints = Config.sizeByBreakpoints
     },
-    Theme.Colors,
+    Theme.Colors({
+      type t = Config.colors
+      let make = Config.colors
+    }),
     {
       type spacing = Config.spacing
       let spacing = Config.spacing
