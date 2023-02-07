@@ -8,6 +8,11 @@
       "subdirs": true
     },
     {
+      "dir": "__tests__",
+      "type": "dev",
+      "subdirs": true
+    },
+    {
       "dir": "src",
       "subdirs": true
     }

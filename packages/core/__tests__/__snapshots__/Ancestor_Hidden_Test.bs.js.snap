@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Hidden should visually hide elements correctly 1`] = `
-@media (min-width: 0px) {
+@media (min-width:0px) {
   .emotion-0 {
     position: absolute;
     width: 1px;
@@ -10,11 +10,11 @@ exports[`Hidden should visually hide elements correctly 1`] = `
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
-    border: 0;
+    border-style: none;
   }
 }
 
-@media (min-width: 920px) {
+@media (min-width:920px) {
   .emotion-0 {
     position: static;
     width: auto;
@@ -22,12 +22,12 @@ exports[`Hidden should visually hide elements correctly 1`] = `
     padding: 0;
     overflow: visible;
     white-space: normal;
-    border: initial;
+    border-style: initial;
     clip: initial;
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width:1280px) {
   .emotion-0 {
     position: absolute;
     width: 1px;
@@ -36,7 +36,7 @@ exports[`Hidden should visually hide elements correctly 1`] = `
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
-    border: 0;
+    border-style: none;
   }
 }
 
