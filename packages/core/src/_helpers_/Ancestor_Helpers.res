@@ -1,8 +1,8 @@
 open Ancestor
 
 module Colors = {
-  let gray1 = #hex("#616161")
-  let gray2 = #hex("#d4d4d4")
+  let gray1 = #hex("616161")
+  let gray2 = #hex("d4d4d4")
 }
 
 module Placeholder = {
@@ -12,7 +12,7 @@ module Placeholder = {
       width
       height
       fontSize={xs: 12->#px}
-      fontWeight={xs: #700}
+      fontWeight={xs: #num(700)}
       display={xs: #flex}
       justifyContent={xs: #center}
       alignItems={xs: #center}

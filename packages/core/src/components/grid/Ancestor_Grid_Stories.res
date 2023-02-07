@@ -15,7 +15,7 @@ let basicUsage = () => {
     width: 100%;
   `)
   <Box p={xs: 4}>
-    <Grid justifyContent={xs: #"space-between"} spacing={xs: 1, md: 3}>
+    <Grid justifyContent={xs: #spaceBetween} spacing={xs: 1, md: 3}>
       <Box columns={xs: #12, md: #6}>
         <div className=placeholder> {"6"->React.string} </div>
       </Box>

@@ -20,21 +20,18 @@ module Make = (Config: Ancestor_Config.T) => {
   /**
    * Calculate the columns size based on the value provided.
    */
-  let basisFromFloat = (value: columns) =>
-    (value :> int)
-    ->Js.Int.toFloat
-    ->(v => v *. 100.0 /. 12.0)
-    ->Js.Float.toFixedWithPrecision(~digits=1) ++ "%"
+  let basisFromFloat = (value: columns) => (value :> int)->Js.Int.toFloat->(v => v *. 100.0 /. 12.0)
 
   /**
    * Specific styles for the API.
    */
   let createBox = (~columns=?, ()) => {
-    let responsiveStyles = Styles.createResponsiveProp(~prop=columns, column =>
-      `flex-basis: ${basisFromFloat(column)};`
-    )
+    open Styles.Css
+    let responsiveStyles = Styles.createResponsiveProp(~prop=columns, column => [
+      flexBasis(column->basisFromFloat->#percent),
+    ])
 
-    Emotion.rawCss(responsiveStyles)
+    style(. responsiveStyles)
   }
 
   @react.component

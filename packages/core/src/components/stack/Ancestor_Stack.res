@@ -10,30 +10,26 @@ module Make = (Config: Ancestor_Config.T) => {
   /**
    * Specific styles for the API.
    */
-  let baseStyles = Emotion.rawCss(`
-    display: flex;
-  `)
+  module LocalStyles = {
+    open Styles.Css
 
-  let createStack = (~direction=?, ~spacing=?, ()) => {
-    let responsiveStyles =
-      [
-        Styles.createResponsiveProp(~prop=spacing, spacing =>
-          `gap: ${spacing->Config.spacing->Styles.Css.Types.Length.toString};`
-        ),
-        Styles.createResponsiveProp(
-          ~prop=direction,
-          ~defaultStyles=`flex-direction: column;`,
-          direction =>
-            switch direction {
-            | #vertical => "flex-direction: column;"
-            | #horizontal => "flex-direction: row"
-            },
-        ),
-      ]
-      ->Styles.merge
-      ->Emotion.rawCss
+    let baseStyles = [display(#flex)]
 
-    Emotion.cx([baseStyles, responsiveStyles])
+    let createStack = (~direction=?, ()) => {
+      let directionStyles = Styles.createResponsiveProp(
+        ~prop=direction,
+        ~defaultStyles=[flexDirection(#column)],
+        direction =>
+          switch direction {
+          | #vertical => [flexDirection(#column)]
+          | #horizontal => [flexDirection(#row)]
+          },
+      )
+
+      let styles = Belt.Array.concatMany([baseStyles, directionStyles])
+
+      style(. styles)
+    }
   }
 
   let renderWithDivider = (children, divider) => {
@@ -54,7 +50,6 @@ module Make = (Config: Ancestor_Config.T) => {
   let make = (
     // Stack props
     ~direction: option<Config.breakpoints<direction>>=?,
-    ~spacing: option<Config.breakpoints<Config.spacing>>=?,
     ~divider: option<React.element>=?,
     // declaration:start
     ~borderRadius=?,
@@ -404,7 +399,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onTransitionEnd=?,
   ) => {
     <Base
-      className={`${createStack(~direction?, ~spacing?, ())} ${className}`}
+      className={`${LocalStyles.createStack(~direction?, ())} ${className}`}
       // forward:start
       ?borderRadius
       ?borderTLRadius
