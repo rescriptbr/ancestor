@@ -3,29 +3,32 @@ module Make = (Config: Ancestor_Config.T) => {
   module Base = Ancestor_Base.Make(Config)
 
   let createHidden = (~on, ()) => {
+    open Styles.Css
+
     /**
      * Reference: https://github.com/twbs/bootstrap/blob/main/scss/mixins/_visually-hidden.scss#L8
      */
-    let hiddenStyles = `
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    `
-    let visibleStyles = `
-      position: static;
-      width: auto;
-      height: auto;
-      padding: 0;
-      overflow: visible;
-      white-space: normal;
-      border: initial;
-      clip: initial;
-    `
+    let hiddenStyles = [
+      position(absolute),
+      width(1->#px),
+      height(1->#px),
+      CssJs.padding(#zero),
+      overflow(#hidden),
+      unsafe("clip", "rect(0, 0, 0, 0)"),
+      whiteSpace(#nowrap),
+      borderStyle(#none),
+    ]
+
+    let visibleStyles = [
+      position(#static),
+      width(#auto),
+      height(#auto),
+      CssJs.padding(#zero),
+      overflow(#visible),
+      whiteSpace(#normal),
+      borderStyle(#initial),
+      unsafe("clip", "initial"),
+    ]
 
     let onStyles = Styles.createResponsiveProp(~prop=on, on =>
       switch on {
@@ -34,7 +37,7 @@ module Make = (Config: Ancestor_Config.T) => {
       }
     )
 
-    Emotion.rawCss(onStyles)
+    style(. onStyles)
   }
 
   @react.component

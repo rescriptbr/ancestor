@@ -2,35 +2,29 @@ module Make = (Config: Ancestor_Config.T) => {
   module Styles = Ancestor_Styles.Make(Config)
   module Base = Ancestor_Base.Make(Config)
 
-  %%private(
-    let defaultStyles = `
-      width: 100%;
-      flex-wrap: wrap;
-      display: flex;
-    `
+  module LocalStyles = {
+    open Styles.Css
+
+    let defaultStyles = [width(100.->#percent), flexWrap(wrap), display(#flex)]
 
     let grid = (~spacing=?, ()) => {
       let spacingStyles = Styles.createResponsiveProp(~prop=spacing, ~defaultStyles, spacing => {
         let spacingInPx = spacing->Config.spacing->Css_AtomicTypes.Length.toString
-
-        `
-          display: flex;
-          flex-wrap: wrap;
-          width: calc(100% + ${spacingInPx});
-          margin-left: -${spacingInPx};
-          margin-top: -${spacingInPx};
-
-          > * {
-            box-sizing: border-box;
-            padding-left: ${spacingInPx};
-            padding-top: ${spacingInPx};
-          }
-          `
+        [
+          display(#flex),
+          flexWrap(wrap),
+          width(#calc(#add, 100.0->#percent, spacing->Config.spacing)),
+          marginLeft(spacing),
+          marginTop(spacing),
+          selector(. "> *", [boxSizing(borderBox), paddingTop(spacing), paddingLeft(spacing)]),
+          unsafe("marginLeft", `-${spacingInPx}`),
+          unsafe("marginTop", `-${spacingInPx}`),
+        ]
       })
 
-      Emotion.rawCss(spacingStyles)
+      style(. spacingStyles)
     }
-  )
+  }
 
   @react.component
   let make = (
@@ -384,7 +378,7 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onTransitionEnd=?,
   ) => {
     <Base
-      className={`${grid(~spacing?, ())} ${className}`}
+      className={`${LocalStyles.grid(~spacing?, ())} ${className}`}
       // forward:start
       ?borderRadius
       ?borderTLRadius
