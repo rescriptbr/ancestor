@@ -35,7 +35,9 @@
     "rescript": ">=10"
   },
   "dependencies": {
-    "@ancestor-ui/bindings": "*"
+    "@ancestor-ui/bindings": "*",
+    "bs-css": "16.0.0",
+    "bs-css-emotion": "5.0.0"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",

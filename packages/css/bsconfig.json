@@ -20,7 +20,12 @@
   ],
   "jsx": { "version": 4, "mode": "classic" },
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react", "@ancestor-ui/bindings"],
+  "bs-dependencies": [
+    "@rescript/react",
+    "@ancestor-ui/bindings",
+    "bs-css",
+    "bs-css-emotion"
+  ],
   "bs-dev-dependencies": [
     "@greenlabs/rescript-jest",
     "@greenlabs/rescript-testing-library"
