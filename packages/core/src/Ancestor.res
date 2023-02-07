@@ -43,7 +43,7 @@ module Defaults = {
   }
 
   module Colors = {
-    type colors = AncestorCss_Types.Color.t
+    type colors = Css_AtomicTypes.Color.t
 
     let colors = v => v
   }

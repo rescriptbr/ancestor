@@ -5,12 +5,8 @@ let default = Storybook.story(~title="Components/Base", ())
 let basicUsage = () => {
   let s = React.string
 
-  <Base display={xs: #flex, md: #block} justifyContent={xs: #center} width={xs: 100.->#pct}>
+  <Base display={xs: #flex, md: #block} justifyContent={xs: #center} width={xs: 100.->#percent}>
     <Base
-      _hover={
-        bgColor: {xs: #hex("#363636")},
-      }
-      transitions={xs: [{prop: "background-color", duration: 200.0->#ms}]}
       display={xs: #flex}
       flexDirection={xs: #column}
       justifyContent={xs: #center}
@@ -18,10 +14,10 @@ let basicUsage = () => {
       maxW={xs: 356->#px}
       borderRadius={xs: 1}
       p={xs: 3}
-      bgColor={xs: #hex("#000")}
+      bgColor={xs: #hex("000")}
       tag=#section>
       <Base
-        border={xs: (2->#px, #solid, #hex("#f36"))}
+        border={xs: (2->#px, #solid, #hex("f36"))}
         borderRadius={xs: 6}
         height={xs: 96->#px}
         width={xs: 96->#px}
@@ -30,16 +26,16 @@ let basicUsage = () => {
         mb={xs: 2}
       />
       <Typography
-        color={xs: #hex("#fff")} m={xs: 0} textAlign={xs: #center} fontSize={xs: 24->#px} tag=#h1>
+        color={xs: #hex("fff")} m={xs: 0} textAlign={xs: #center} fontSize={xs: 24->#px} tag=#h1>
         {"Walter White"->s}
       </Typography>
-      <Typography textAlign={xs: #center} color={xs: #hex("#545454")} fontSize={xs: 20->#px} tag=#p>
+      <Typography textAlign={xs: #center} color={xs: #hex("545454")} fontSize={xs: 20->#px} tag=#p>
         {"Teacher"->s}
       </Typography>
       <Typography
         mt={xs: 2}
         textAlign={xs: #center}
-        color={xs: #hex("#a1a1a1")}
+        color={xs: #hex("a1a1a1")}
         fontSize={xs: 16->#px}
         lineHeight={xs: 2.4->#rem}
         tag=#p>
