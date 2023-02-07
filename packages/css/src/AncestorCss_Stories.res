@@ -1,102 +1,43 @@
-let default = Storybook.story(
-  ~title="Main",
-  ~excludeStories=["CustomCss", "dark", "light", "ProviderTest"],
-  (),
+let default = Storybook.story(~title="Basic usage", ~excludeStories=["CustomCss"], ())
+module CustomCss = AncestorCss.Make(
+  {
+    type breakpoints = [#xs | #sm]
+    let sizeByBreakpoints = v =>
+      switch v {
+      | #xs => 0
+      | #sm => 470
+      }
+  },
+  {
+    type colors = [#primary]
+    let colors = (x: colors) =>
+      switch x {
+      | #primary => #hex("fc0")
+      }
+  },
+  {
+    type spacing = int
+    let spacing = v => #px(v * 8)
+  },
+  {
+    type radius = int
+    let radius = v => #px(v * 8)
+  },
+  {
+    type zIndex = int
+    let zIndex = v => v
+  },
 )
 
-let main = () => {
-  let styles = AncestorCss.css({
-    display: #flex,
-    bgColor: #hex("#000"),
-    p: #px(32),
-    color: #hex("#fafafa"),
-    fontSize: #px(24),
-    selectors: [
-      (
-        "> div",
-        {
-          border: (1->#px, #solid, #hex("#fc0")),
-        },
-      ),
-    ],
-    __unsafe: AncestorCss.unsafe({
-      "border": "solid 1px red",
-    }),
-  })
+let overview = () => {
+  open CustomCss
 
-  <div className={styles}>
-    <div> {"Hey :)"->React.string} </div>
-  </div>
-}
+  let className = style(. [
+    width(124->#px),
+    height(124->#px),
+    breakpoint(#xs, [backgroundColor(#primary)]),
+    breakpoint(#xs, [padding(1)]),
+  ])
 
-module CustomCss = {
-  open AncestorCss.Defaults
-  module CustomColors = {
-    type colors = [#primary | #secondary]
-
-    let colors = token =>
-      switch token {
-      | #primary => #hex("#000")
-      | #secondary => #hex("#ccc")
-      }
-  }
-
-  include AncestorCss.Make(Spacing, Radius, CustomColors, ZIndex, AncestorCss_Parsers.Simple)
-}
-
-let dark: CustomCss.Context.partialApi = {
-  colors: token =>
-    switch token {
-    | #primary => #hex("#000")
-    | #secondary => #hex("#ccc")
-    },
-}
-
-let light: CustomCss.Context.partialApi = {
-  colors: token =>
-    switch token {
-    | #primary => #hex("#fafafa")
-    | #secondary => #hex("#000")
-    },
-}
-
-module ProviderTest = {
-  @react.component
-  let make = () => {
-    let {css} = CustomCss.useCss()
-
-    let styles = css({
-      display: #flex,
-      bgColor: #primary,
-      p: #px(32),
-      color: #secondary,
-      fontSize: #px(24),
-      mt: #px(32),
-    })
-
-    <div className={styles}> {"Hey :)"->React.string} </div>
-  }
-}
-
-let customSetup = () => {
-  let (theme, setTheme) = React.useState(_ => dark)
-
-  <CustomCss.Provider value=theme>
-    <button onClick={_ => setTheme(_ => light)}> {"Toggle theme"->React.string} </button>
-    <ProviderTest />
-  </CustomCss.Provider>
-}
-
-let transition = () => {
-  let className = AncestorCss.css({
-    bgColor: #hex("#000"),
-    color: #hex("#fafafa"),
-    transitionProperty: "background-color",
-    transitionDuration: 600.0->#ms,
-    _hover: {
-      bgColor: #hex("#363636"),
-    },
-  })
-
-  <button className> {"Click here"->React.string} </button>
+  <div className />
 }

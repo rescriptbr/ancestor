@@ -1,13 +1,11 @@
-open AncestorCss_Types
-
 module type Spacing = {
   type spacing
-  let spacing: spacing => Length.t
+  let spacing: spacing => Css_AtomicTypes.Length.t
 }
 
 module type Radius = {
   type radius
-  let radius: radius => Length.t
+  let radius: radius => Css_AtomicTypes.Length.t
 }
 
 module type ZIndex = {
@@ -17,5 +15,10 @@ module type ZIndex = {
 
 module type Colors = {
   type colors
-  let colors: colors => Color.t
+  let colors: colors => Css_AtomicTypes.Color.t
+}
+
+module type Breakpoints = {
+  type breakpoints
+  let sizeByBreakpoints: breakpoints => int
 }
