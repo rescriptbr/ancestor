@@ -3,10 +3,6 @@
   "version": "0.0.1",
   "sources": [
     {
-      "dir": "__tests__",
-      "type": "dev"
-    },
-    {
       "dir": "src",
       "subdirs": true
     }
