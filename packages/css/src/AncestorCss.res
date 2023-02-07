@@ -35,6 +35,12 @@ module Make = (
   /*
    * Spacing
    */
+  let gap = x => x->CustomSpacing.spacing->Css_Js_Core.gap
+  let gap2 = (~rowGap, ~columnGap) =>
+    Css_Js_Core.gap2(
+      ~rowGap=rowGap->CustomSpacing.spacing,
+      ~columnGap=columnGap->CustomSpacing.spacing,
+    )
   let padding = x => x->CustomSpacing.spacing->Css_Js_Core.padding
   let padding2 = (~v, ~h) =>
     Css_Js_Core.padding2(~v=v->CustomSpacing.spacing, ~h=h->CustomSpacing.spacing)
