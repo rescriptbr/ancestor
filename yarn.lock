@@ -12627,6 +12627,11 @@ rescript-nodejs@14.3.1:
   resolved "https://registry.yarnpkg.com/rescript-nodejs/-/rescript-nodejs-14.3.1.tgz#a22c907f5fcf881bab37c8921b670029ed76b2a5"
   integrity sha512-oiQo2Rd6lb8TAkB6NT3IVFJcKanSoIC9+SrBTT6OKQtGvAIi6Dd9CNoGA4pbOUXcg8+lza6vhy/YWYzYBYKt3g==
 
+rescript-webapi@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/rescript-webapi/-/rescript-webapi-0.7.0.tgz#f8c61bf7383c82b6fe180ad045e16cb43b6299c0"
+  integrity sha512-fA1LPXSmQY3HtcIStQ2sHu9Xye1XLxd4JvkGQMupux9Q6Tp/jbcdh7bnCaGwHW6aI1QFmTmA/xWxUMb6oPphsQ==
+
 rescript@10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/rescript/-/rescript-10.1.0.tgz#dfb7b862b25d74da9a8a3f90e1c7869cffd42b6e"
