@@ -2,7 +2,7 @@ open Jest
 open Expect
 open Ancestor
 
-module Renderer = Ancestor_ReactTestRenderer
+module Renderer = ReactTestRenderer
 
 describe("Grid", () => {
   test("should with spacing render correctly", () => {

@@ -1,7 +1,7 @@
 open Jest
 open Expect
 open Ancestor
-module Renderer = Ancestor_ReactTestRenderer
+module Renderer = ReactTestRenderer
 
 describe("Stack", () => {
   test("should render correctly", () => {
