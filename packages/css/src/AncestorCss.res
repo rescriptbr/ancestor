@@ -23,6 +23,11 @@ module Make = (
   let borderLeftColor = x => Css_Js_Core.borderLeftColor(x->CustomColors.colors)
   let borderRightColor = x => Css_Js_Core.borderRightColor(x->CustomColors.colors)
 
+  let textDecorationColor = x => Css_Js_Core.textDecorationColor(x->CustomColors.colors)
+
+  let outline = (size, style, color) => Css_Js_Core.outline(size, style, color->CustomColors.colors)
+  let outlineColor = x => Css_Js_Core.outlineColor(x->CustomColors.colors)
+
   /*
    * Radius
    */
