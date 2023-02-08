@@ -95,4 +95,13 @@ module Make = (
       `(min-width:${token->Breakpoints.sizeByBreakpoints->Js.Int.toString}px)`,
       styles,
     )
+
+  /*
+   * Aliases to make the DX compatible with @ancestor-ui/core
+   */
+  let bgColor = backgroundColor
+  let minW = minWidth
+  let maxW = maxWidth
+  let minH = minHeight
+  let maxH = maxHeight
 }
