@@ -42,6 +42,6 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "echo \"No tests for now\""
+    "test": "jest"
   }
 }

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tokens should transform color tokens correctly 1`] = `
+.emotion-0 {
+  color: #fc0;
+  background-color: #363636;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`Tokens should transform spacing tokens correctly 1`] = `
+.emotion-0 {
+  padding: 16px;
+  margin: 32px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;

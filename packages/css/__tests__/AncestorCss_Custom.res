@@ -1,5 +1,4 @@
-let default = Storybook.story(~title="Basic usage", ~excludeStories=["CustomCss"], ())
-module CustomCss = AncestorCss.Make(
+include AncestorCss.Make(
   {
     type breakpoints = [#xs | #sm]
     let sizeByBreakpoints = v =>
@@ -29,25 +28,3 @@ module CustomCss = AncestorCss.Make(
     let zIndex = v => v
   },
 )
-
-let overview = () => {
-  open CustomCss
-
-  let className = style(. [
-    width(124->#px),
-    height(124->#px),
-    breakpoint(
-      #sm,
-      [
-        bgColor(#primary),
-        padding(4),
-        borderRadius(2),
-        border(1->#px, #solid, #primary),
-        width(300->#px),
-        height(300->#px),
-      ],
-    ),
-  ])
-
-  <div className />
-}
