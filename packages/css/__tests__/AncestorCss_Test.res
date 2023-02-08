@@ -1,6 +1,6 @@
 open Jest
 open Expect
-module Renderer = AncestorCss_ReactTestRenderer
+module Renderer = ReactTestRenderer
 
 describe("Tokens", () => {
   test("should transform spacing tokens correctly", () => {
