@@ -55,25 +55,28 @@ module Make = (Config: Ancestor_Config.T) => {
     let cmp = (a, b) => Pervasives.compare(a, b)
   })
 
-  let addRule = (mapper, prop, maybeValues) =>
-    switch maybeValues {
-    | None => mapper
-    | Some(values) => values->Config.encode->Js.Array2.reduce((mapper, (breakpoint, maybeValue)) =>
-        maybeValue
-        ->Belt.Option.map(prop)
-        ->Belt.Option.map(v => [v])
-        ->Belt.Option.map(rules =>
-          switch mapper->Belt.Map.get(breakpoint) {
-          | None => mapper->Belt.Map.set(breakpoint, rules)
-          | Some(existingRules) => {
-              let updatedRules = existingRules->Js.Array2.concat(rules)
-              mapper->Belt.Map.set(breakpoint, updatedRules)
-            }
-          }
-        )
-        ->Belt.Option.getWithDefault(mapper)
-      , mapper)
-    }
+  let groupValuesByBreakpoint = (transformValue, mapper, (breakpoint, maybeValue)) =>
+    maybeValue
+    ->Belt.Option.map(transformValue)
+    ->Belt.Option.map(v => [v])
+    ->Belt.Option.map(rules =>
+      switch mapper->Belt.Map.get(breakpoint) {
+      | None => mapper->Belt.Map.set(breakpoint, rules)
+      | Some(existingRules) => {
+          let updatedRules = existingRules->Js.Array2.concat(rules)
+          mapper->Belt.Map.set(breakpoint, updatedRules)
+        }
+      }
+    )
+    ->Belt.Option.getWithDefault(mapper)
+
+  let addRule = (mapper, transformValue, maybeValues) =>
+    maybeValues
+    ->Belt.Option.map(Config.encode)
+    ->Belt.Option.map(values =>
+      values->Js.Array2.reduce(groupValuesByBreakpoint(transformValue), mapper)
+    )
+    ->Belt.Option.getWithDefault(mapper)
 
   let createResponsiveStyles = (
     ~borderRadius=?,
