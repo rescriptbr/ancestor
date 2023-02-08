@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@ancestor-ui/bindings": "0.1.0",
-    "@ancestor-ui/css": "*"
+    "@ancestor-ui/css": "0.5.0"
   },
   "peerDependencies": {
     "@rescript/react": ">=0.11",
