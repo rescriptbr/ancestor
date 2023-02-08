@@ -77,7 +77,6 @@ module Make = (Config: Ancestor_Config.T) => {
     ~alignContent=?,
     ~alignSelf=?,
     ~justifySelf=?,
-    ~flexFlow=?,
     ~gap=?,
     ~p=?,
     ~px=?,
@@ -431,7 +430,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?alignContent
       ?alignSelf
       ?justifySelf
-      ?flexFlow
       ?gap
       ?p
       ?px
