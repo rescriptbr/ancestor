@@ -55,7 +55,7 @@ module Make = (Config: Ancestor_Config.T) => {
     let cmp = (a, b) => Pervasives.compare(a, b)
   })
 
-  let groupValuesByBreakpoint = (transformValue, mapper, (breakpoint, maybeValue)) =>
+  let groupRulesByBreakpoint = (transformValue, mapper, (breakpoint, maybeValue)) =>
     maybeValue
     ->Belt.Option.map(transformValue)
     ->Belt.Option.map(v => [v])
@@ -74,9 +74,38 @@ module Make = (Config: Ancestor_Config.T) => {
     maybeValues
     ->Belt.Option.map(Config.encode)
     ->Belt.Option.map(values =>
-      values->Js.Array2.reduce(groupValuesByBreakpoint(transformValue), mapper)
+      values->Js.Array2.reduce(groupRulesByBreakpoint(transformValue), mapper)
     )
     ->Belt.Option.getWithDefault(mapper)
+
+  let mergeRulesByBreakpoint = values => values->Js.Array2.reduce((styles, (breakpoint, rules)) =>
+      switch rules {
+      | None => styles
+      | Some(rules) => {
+          let breakpointStyles = Css.breakpoint(breakpoint, rules)
+          styles->Js.Array2.concat([breakpointStyles])
+        }
+      }
+    , [])
+
+  let createSelector = (selectorValue, maybeValues) =>
+    maybeValues
+    ->Belt.Option.map(Config.encode)
+    ->Belt.Option.map(mergeRulesByBreakpoint)
+    ->Belt.Option.map(values => Css.selector(. selectorValue, values))
+
+  let createPseudoSelector = (selector, maybeValues) =>
+    maybeValues
+    ->Belt.Option.map(Config.encode)
+    ->Belt.Option.map(mergeRulesByBreakpoint)
+    ->Belt.Option.map(selector)
+
+  let removeOptionals = items => items->Js.Array2.reduce((acc, current) =>
+      switch current {
+      | None => acc
+      | Some(item) => acc->Js.Array2.concat([item])
+      }
+    , [])
 
   let createResponsiveStyles = (
     ~borderRadius=?,
@@ -119,7 +148,6 @@ module Make = (Config: Ancestor_Config.T) => {
     ~alignContent=?,
     ~alignSelf=?,
     ~justifySelf=?,
-    ~flexFlow as _=?,
     ~gap=?,
     ~p=?,
     ~py=?,
@@ -193,6 +221,9 @@ module Make = (Config: Ancestor_Config.T) => {
     ~_notLast=?,
     (),
   ) => {
+    let ps = createPseudoSelector
+    let cs = createSelector
+
     let rules =
       Belt.Map.make(~id=module(RulesCmp))
       ->addRule(Css.color, color)
@@ -301,10 +332,30 @@ module Make = (Config: Ancestor_Config.T) => {
       ->addRule(Css.transitionTimingFunction, transitionTimingFunction)
       ->addRule(Css.transitions, transitions)
 
+    let pseudoSelectorsRules =
+      [
+        ps(Css.hover, _hover),
+        ps(Css.hover, _hover),
+        ps(Css.focus, _focus),
+        ps(Css.active, _active),
+        ps(Css.focusWithin, _focusWithin),
+        ps(Css.focusVisible, _focusVisible),
+        ps(Css.disabled, _disabled),
+        ps(Css.before, _before),
+        ps(Css.after, _after),
+        ps(Css.first, _first),
+        cs("&:nth-of-type(even)", _even),
+        cs("&:nth-of-type(odd)", _odd),
+        cs("&:last-of-type", _last),
+        cs("&:not(:first-of-type)", _notFirst),
+        cs("&:not(:last-of-type)", _notLast),
+      ]->removeOptionals
+
     let parsedRules =
       rules
       ->Belt.Map.toArray
       ->Js.Array2.map(((breakpoint, rules)) => Css.breakpoint(breakpoint, rules))
+      ->Js.Array2.concat(pseudoSelectorsRules)
 
     Css.style(. parsedRules)
   }

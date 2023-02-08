@@ -4,9 +4,10 @@ let default = Storybook.story(~title="Components/Base", ())
 
 let basicUsage = () => {
   let s = React.string
-
+  open Css
   <Base display={xs: #flex, md: #block} justifyContent={xs: #center} width={xs: 100.->#percent}>
     <Base
+      _hover={xs: [backgroundColor(#hex("363636"))], md: [backgroundColor(#hex("fc0"))]}
       display={xs: #flex}
       flexDirection={xs: #column}
       justifyContent={xs: #center}
