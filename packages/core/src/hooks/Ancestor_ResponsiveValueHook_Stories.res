@@ -1,11 +1,6 @@
-let default = Storybook.story(
-  ~title="Hooks/useResponsiveValue",
-  ~excludeStories=["Card"],
-  (),
-)
+let default = Storybook.story(~title="Hooks/useResponsiveValue", ~excludeStories=["Card"], ())
 
 open Ancestor
-
 
 module Card = {
   @react.component
@@ -16,7 +11,7 @@ module Card = {
 }
 
 let basicUsage = () => {
-  let color = Ancestor.useResponsiveValue("#000"->#hex, {xs: "#000"->#hex, md: "#716e6e"->#hex})
+  let color = Ancestor.useResponsiveValue("000"->#hex, {xs: "000"->#hex, md: "716e6e"->#hex})
   let label = Ancestor.useResponsiveValue(
     "Default",
     {xs: "Mobile", sm: "Small", md: "Tablet", lg: "Large", xl: "Extra Large"},
