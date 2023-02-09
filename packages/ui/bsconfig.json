@@ -21,7 +21,9 @@
     "@rescript/react",
     "@ancestor-ui/core",
     "@ancestor-ui/bindings",
-    "@ancestor-ui/css"
+    "@ancestor-ui/css",
+    "bs-css",
+    "bs-css-emotion"
   ],
   "bs-dev-dependencies": [],
   "ppx-flags": []

@@ -1,14 +1,19 @@
 module Make = (
-  ColorsConfig: Theme.CustomColors,
+  // Config
   BreakpointsConfig: Ancestor_Config.Breakpoints,
+  ColorsConfig: Theme.CustomColorsConfig,
+  SpacingConfig: AncestorCss_Config.Spacing,
+  RadiusConfig: AncestorCss_Config.Radius,
+  ZIndexConfig: AncestorCss_Config.ZIndex,
+  Theme: Theme.T,
 ) => {
   module Config = {
     include BreakpointsConfig
-    include Theme.Colors(ColorsConfig)
-    include Ancestor.Defaults.Spacing
-    include Ancestor.Defaults.Radius
-    include Ancestor.Defaults.ZIndex
+    include ColorsConfig
+    include SpacingConfig
+    include RadiusConfig
+    include ZIndexConfig
+    include Theme
   }
-
-  module Core = AncestorCore.Make(Config)
+  module Button = Button.Make(Config)
 }

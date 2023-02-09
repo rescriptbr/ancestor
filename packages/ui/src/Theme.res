@@ -1,15 +1,30 @@
-module type CustomColors = {
-  type t
-  let make: t => AncestorCss_Types.Color.t
+module Colors = {
+  type colors<'custom> = [#primary | #secondary | #custom('custom)]
 }
 
-module Colors = (Custom: CustomColors) => {
-  type colors = [#primary | #secondary | #custom(Custom.t)]
+module type CustomColorsConfig = {
+  type colors
+  let colors: Colors.colors<colors> => Css_AtomicTypes.Color.t
+}
 
-  let colors = token =>
-    switch token {
-    | #primary => #hex("#fc0")
-    | #secondary => #hex("#ccc")
-    | #custom(color) => Custom.make(color)
-    }
+type theme = {button?: ButtonTokens.api}
+
+module type T = {
+  let theme: theme
+}
+
+module type Config = {
+  type breakpoints<'value>
+  type keyOfBreakpoints
+  type spacing
+  type radius
+  type colors
+  type zIndex
+  let encode: breakpoints<'value> => array<(keyOfBreakpoints, option<'value>)>
+  let zIndex: zIndex => int
+  let colors: Colors.colors<colors> => Css_AtomicTypes.Color.t
+  let spacing: spacing => Css_AtomicTypes.Length.t
+  let radius: radius => Css_AtomicTypes.Length.t
+  let sizeByBreakpoints: keyOfBreakpoints => int
+  let theme: theme
 }

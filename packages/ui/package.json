@@ -28,7 +28,7 @@
     "rescript": ">=10"
   },
   "dependencies": {
-    "@ancestor-ui/core": "0.4.0",
+    "@ancestor-ui/core": "0.5.0",
     "@ancestor-ui/bindings": "0.1.0"
   },
   "scripts": {

@@ -1,4 +1,4 @@
-module Make = (Config: Ancestor_Config.T) => {
+module Make = (Config: Theme.Config) => {
   include Ancestor.Make(
     {
       type breakpoints<'value> = Config.breakpoints<'value>
@@ -6,10 +6,10 @@ module Make = (Config: Ancestor_Config.T) => {
       let encode = Config.encode
       let sizeByBreakpoints = Config.sizeByBreakpoints
     },
-    Theme.Colors({
-      type t = Config.colors
-      let make = Config.colors
-    }),
+    {
+      type colors = Theme.Colors.colors<Config.colors>
+      let colors = Config.colors
+    },
     {
       type spacing = Config.spacing
       let spacing = Config.spacing
