@@ -7,7 +7,7 @@
   <a target="_blank" href="https://github.com/rescriptbr"> ReScript Brazil Community </a>
  </p>
 
-> ⚠️ **DISCLAIMER**: We're working on a new version of Ancestor bringing a complete set of UI tools for ReScript. The most stable version is @rescriptbr/ancestor@0.0.8 and you can install by following the instructions below. Don't forget to install the most stable version, there are unstable pre-release versions that might not work as expected since they're pre-releases.
+> ⚠️ **DISCLAIMER**: We're working on a new version of Ancestor bringing a complete set of UI tools for ReScript. The most stable version is @rescriptbr/ancestor@0.8.0 and you can install by following the instructions below. Don't forget to install the most stable version, there are unstable pre-release versions that might not work as expected since they're pre-releases.
 > 
 # Introduction
 
