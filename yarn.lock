@@ -138,6 +138,14 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@ancestor-ui/core@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@ancestor-ui/core/-/core-0.5.0.tgz#2f14381f585a5963481df668fb27d4a01359261f"
+  integrity sha512-hbIeMd2sPymkTqVsy/+wrZjGIpt7a5K8W/VAq9D13ex8AeNXwfc2sCNTtFSYJ9wlnLalQ+0rc641V351TIYZeA==
+  dependencies:
+    "@ancestor-ui/bindings" "0.1.0"
+    "@ancestor-ui/css" "0.5.0"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.5.5", "@babel/code-frame@^7.8.3":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
