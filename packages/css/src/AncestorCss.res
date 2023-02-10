@@ -1,9 +1,79 @@
+module Defaults = {
+  let identity = v => v
+
+  module Breakpoints = {
+    type breakpoints = [#xs | #sm | #md | #lg | #xl]
+    let sizeByBreakpoints = breakpoint =>
+      switch breakpoint {
+      | #xs => 0
+      | #sm => 475
+      | #md => 920
+      | #lg => 1280
+      | #xl => 1920
+      }
+  }
+
+  module Colors = {
+    type colors = AncestorCss_WrappedTypes.Color.t
+    let colors = identity
+  }
+
+  module Spacing = {
+    type spacing = int
+    let spacing = v => #px(v * 8)
+  }
+
+  module Radius = {
+    type radius = int
+    let radius = v => #px(v * 8)
+  }
+
+  module ZIndex = {
+    type zIndex = int
+    let zIndex = identity
+  }
+
+  module FontSize = {
+    type fontSize = Css_AtomicTypes.Length.t
+    let fontSize = identity
+  }
+
+  module FontFamily = {
+    type fontFamily = AncestorCss_WrappedTypes.FontFamily.t
+    let fontFamily = identity
+  }
+
+  module FontWeight = {
+    type fontWeight = Css_AtomicTypes.FontWeight.t
+    let fontWeight = identity
+  }
+
+  module LineHeight = {
+    type lineHeight = AncestorCss_WrappedTypes.LineHeight.t
+    let lineHeight = identity
+  }
+
+  module LetterSpacing = {
+    type letterSpacing = Css_AtomicTypes.Length.t
+    let letterSpacing = identity
+  }
+
+  module Typography: AncestorCss_Config.Typography = {
+    include FontSize
+    include FontFamily
+    include FontWeight
+    include LineHeight
+    include LetterSpacing
+  }
+}
+
 module Make = (
   Breakpoints: AncestorCss_Config.Breakpoints,
   CustomColors: AncestorCss_Config.Colors,
   CustomSpacing: AncestorCss_Config.Spacing,
   CustomRadius: AncestorCss_Config.Radius,
   CustomZIndex: AncestorCss_Config.ZIndex,
+  CustomTypography: AncestorCss_Config.Typography,
 ) => {
   include CssJs
 
@@ -110,6 +180,15 @@ module Make = (
       `(min-width:${token->Breakpoints.sizeByBreakpoints->Js.Int.toString}px)`,
       styles,
     )
+
+  /*
+   * Typography
+   */
+  let fontFamily = x => x->CustomTypography.fontFamily->Css_Js_Core.fontFamily
+  let fontSize = x => x->CustomTypography.fontSize->Css_Js_Core.fontSize
+  let fontWeight = x => x->CustomTypography.fontWeight->Css_Js_Core.fontWeight
+  let lineHeight = x => x->CustomTypography.lineHeight->Css_Js_Core.lineHeight
+  let letterSpacing = x => x->CustomTypography.letterSpacing->Css_Js_Core.letterSpacing
 
   /*
    * Aliases to make the DX compatible with @ancestor-ui/core
