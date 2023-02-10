@@ -7,8 +7,14 @@ module Make = (
 ) => {
   include CssJs
 
-  let zIndex = x => Css_Js_Core.zIndex(x->CustomZIndex.zIndex)
+  module TokenizedShadow = {
+    let box = (~x=?, ~y=?, ~blur=?, ~spread=?, ~inset=?, color) =>
+      CssJs.Shadow.box(~x?, ~y?, ~blur?, ~spread?, ~inset?, color)
 
+    let text = (~x=?, ~y=?, ~blur=?, color) => CssJs.Shadow.text(~x?, ~y?, ~blur?, color)
+  }
+
+  let zIndex = x => Css_Js_Core.zIndex(x->CustomZIndex.zIndex)
   /*
    * Colors
    */
@@ -17,6 +23,15 @@ module Make = (
 
   let border = (length, style, color) =>
     Css_Js_Core.border(length, style, color->CustomColors.colors)
+  let borderBottom = (length, style, color) =>
+    Css_Js_Core.borderBottom(length, style, color->CustomColors.colors)
+  let borderTop = (length, style, color) =>
+    Css_Js_Core.borderTop(length, style, color->CustomColors.colors)
+  let borderLeft = (length, style, color) =>
+    Css_Js_Core.borderLeft(length, style, color->CustomColors.colors)
+  let borderRight = (length, style, color) =>
+    Css_Js_Core.borderRight(length, style, color->CustomColors.colors)
+
   let borderColor = x => Css_Js_Core.borderColor(x->CustomColors.colors)
   let borderTopColor = x => Css_Js_Core.borderTopColor(x->CustomColors.colors)
   let borderBottomColor = x => Css_Js_Core.borderBottomColor(x->CustomColors.colors)
