@@ -68,3 +68,25 @@ module Color = {
 
   let toRule: t => CssJs.rule = CssJs.color
 }
+
+module BoxShadow = {
+  type t = [
+    | #none
+    | #shadow(CssJs.Shadow.value<CssJs.Shadow.box>)
+    | #var(string)
+    | #varDefault(string, string)
+  ]
+
+  let toRule: t => CssJs.rule = CssJs.boxShadow
+}
+
+module TextShadow = {
+  type t = [
+    | #none
+    | #shadow(CssJs.Shadow.value<CssJs.Shadow.text>)
+    | #var(string)
+    | #varDefault(string, string)
+  ]
+
+  let toRule: t => CssJs.rule = CssJs.textShadow
+}

@@ -15,29 +15,9 @@ include AncestorCss.Make(
       | #secondary => #hex("363636")
       }
   },
-  {
-    type spacing = int
-    let spacing = v => #px(v * 8)
-  },
-  {
-    type radius = int
-    let radius = v => #px(v * 8)
-  },
-  {
-    type zIndex = int
-    let zIndex = v => v
-  },
-  {
-    type fontFamily = AncestorCss_WrappedTypes.FontFamily.t
-    type fontSize = Css_AtomicTypes.Length.t
-    type fontWeight = Css_AtomicTypes.FontWeight.t
-    type lineHeight = AncestorCss_WrappedTypes.LineHeight.t
-    type letterSpacing = Css_AtomicTypes.Length.t
-
-    let fontFamily = v => v
-    let fontSize = v => v
-    let fontWeight = v => v
-    let lineHeight = v => v
-    let letterSpacing = v => v
-  },
+  AncestorCss.Defaults.Spacing,
+  AncestorCss.Defaults.Radius,
+  AncestorCss.Defaults.ZIndex,
+  AncestorCss.Defaults.Typography,
+  AncestorCss.Defaults.Shadows,
 )
