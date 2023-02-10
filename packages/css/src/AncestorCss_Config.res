@@ -15,10 +15,24 @@ module type ZIndex = {
 
 module type Colors = {
   type colors
-  let colors: colors => Css_AtomicTypes.Color.t
+  let colors: colors => AncestorCss_WrappedTypes.Color.t
 }
 
 module type Breakpoints = {
   type breakpoints
   let sizeByBreakpoints: breakpoints => int
+}
+
+module type Typography = {
+  type fontFamily
+  type fontSize
+  type fontWeight
+  type lineHeight
+  type letterSpacing
+
+  let fontFamily: fontFamily => AncestorCss_WrappedTypes.FontFamily.t
+  let fontSize: fontSize => Css_AtomicTypes.Length.t
+  let fontWeight: fontWeight => Css_AtomicTypes.FontWeight.t
+  let lineHeight: lineHeight => AncestorCss_WrappedTypes.LineHeight.t
+  let letterSpacing: letterSpacing => Css_AtomicTypes.Length.t
 }
