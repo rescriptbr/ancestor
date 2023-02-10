@@ -36,3 +36,11 @@ module type Typography = {
   let lineHeight: lineHeight => AncestorCss_WrappedTypes.LineHeight.t
   let letterSpacing: letterSpacing => Css_AtomicTypes.Length.t
 }
+
+module type Shadows = {
+  type textShadow
+  type boxShadow
+
+  let textShadow: textShadow => AncestorCss_WrappedTypes.TextShadow.t
+  let boxShadow: boxShadow => AncestorCss_WrappedTypes.BoxShadow.t
+}

@@ -1,3 +1,6 @@
+/*
+ *  NOTE: AncestorCss defaults.
+ */
 module Defaults = {
   let identity = v => v
 
@@ -65,6 +68,21 @@ module Defaults = {
     include LineHeight
     include LetterSpacing
   }
+
+  module BoxShadows = {
+    type boxShadow = AncestorCss_WrappedTypes.BoxShadow.t
+    let boxShadow = identity
+  }
+
+  module TextShadows = {
+    type textShadow = AncestorCss_WrappedTypes.TextShadow.t
+    let textShadow = identity
+  }
+
+  module Shadows = {
+    include BoxShadows
+    include TextShadows
+  }
 }
 
 module Make = (
@@ -74,15 +92,9 @@ module Make = (
   CustomRadius: AncestorCss_Config.Radius,
   CustomZIndex: AncestorCss_Config.ZIndex,
   CustomTypography: AncestorCss_Config.Typography,
+  CustomShadows: AncestorCss_Config.Shadows,
 ) => {
   include CssJs
-
-  module TokenizedShadow = {
-    let box = (~x=?, ~y=?, ~blur=?, ~spread=?, ~inset=?, color) =>
-      CssJs.Shadow.box(~x?, ~y?, ~blur?, ~spread?, ~inset?, color)
-
-    let text = (~x=?, ~y=?, ~blur=?, color) => CssJs.Shadow.text(~x?, ~y?, ~blur?, color)
-  }
 
   let zIndex = x => Css_Js_Core.zIndex(x->CustomZIndex.zIndex)
   /*
@@ -189,6 +201,51 @@ module Make = (
   let fontWeight = x => x->CustomTypography.fontWeight->Css_Js_Core.fontWeight
   let lineHeight = x => x->CustomTypography.lineHeight->Css_Js_Core.lineHeight
   let letterSpacing = x => x->CustomTypography.letterSpacing->Css_Js_Core.letterSpacing
+
+  /*
+   * Shadows
+   */
+  module TokenizedShadow = {
+    let box = (~x=?, ~y=?, ~blur=?, ~spread=?, ~inset=?, color) =>
+      CssJs.Shadow.box(~x?, ~y?, ~blur?, ~spread?, ~inset?, color)
+
+    let text = (~x=?, ~y=?, ~blur=?, color) => CssJs.Shadow.text(~x?, ~y?, ~blur?, color)
+  }
+  let boxShadow = x => x->CustomShadows.boxShadow->CssJs.boxShadow
+  let textShadow = x => x->CustomShadows.textShadow->CssJs.textShadow
+  /*
+   *  HACK: Unfortunately we need to override these two fucntions
+   *  because we can't convert an array of tokens into an array of box-shadows.
+   */
+  let boxShadows = x => {
+    let value =
+      x
+      ->Js.Array2.map(CustomShadows.boxShadow)
+      ->Js.Array2.map(x =>
+        switch x {
+        | #...Css_Js_Core.Shadow.t as value => Css_Js_Core.Shadow.toString(value)
+        | #...Css_AtomicTypes.Var.t as value => Css_AtomicTypes.Var.toString(value)
+        }
+      )
+      ->Js.Array2.joinWith(", ")
+
+    CssJs.unsafe("boxShadow", value)
+  }
+
+  let textShadows = x => {
+    let value =
+      x
+      ->Js.Array2.map(CustomShadows.textShadow)
+      ->Js.Array2.map(x =>
+        switch x {
+        | #...Css_Js_Core.Shadow.t as value => Css_Js_Core.Shadow.toString(value)
+        | #...Css_AtomicTypes.Var.t as value => Css_AtomicTypes.Var.toString(value)
+        }
+      )
+      ->Js.Array2.joinWith(", ")
+
+    CssJs.unsafe("textShadow", value)
+  }
 
   /*
    * Aliases to make the DX compatible with @ancestor-ui/core
