@@ -1,0 +1,1 @@
+{ "dirs" : [ "src" ] , "pkgs" : [ [ "rescript-ink" , "/Users/marcos/Projects/ancestor/packages/cli/node_modules/rescript-ink" ] , [ "rescript-nodejs" , "/Users/marcos/Projects/ancestor/node_modules/rescript-nodejs" ] , [ "@rescript/react" , "/Users/marcos/Projects/ancestor/node_modules/@rescript/react" ] ] , "generated" : [] }

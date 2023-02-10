@@ -1,0 +1,23 @@
+{
+  "name": "@ancestor-ui/cli",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "reason": {
+    "react-jsx": 3
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": ["rescript-nodejs", "@rescript/react", "rescript-ink"],
+  "bs-dev-dependencies": [],
+  "ppx-flags": []
+}

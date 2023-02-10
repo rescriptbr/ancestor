@@ -1,0 +1,14 @@
+rescript = 1
+rule cp
+  command = cp $i $out
+rule touch
+ command = touch $out
+o Main.cmi : cp ../bs/src/Main.cmi
+o Main.cmj : cp ../bs/src/Main.cmj
+o Main.cmt : cp ../bs/src/Main.cmt
+o Main.res : cp ../../src/Main.res
+o ConfigParser.cmi : cp ../bs/src/ConfigParser.cmi
+o ConfigParser.cmj : cp ../bs/src/ConfigParser.cmj
+o ConfigParser.cmt : cp ../bs/src/ConfigParser.cmt
+o ConfigParser.res : cp ../../src/ConfigParser.res
+build install.stamp : touch Main.cmi Main.cmj ConfigParser.cmi ConfigParser.cmj 
