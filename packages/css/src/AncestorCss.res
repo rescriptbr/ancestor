@@ -61,7 +61,7 @@ module Defaults = {
     let letterSpacing = identity
   }
 
-  module Typography: AncestorCss_Config.Typography = {
+  module Typography = {
     include FontSize
     include FontFamily
     include FontWeight
