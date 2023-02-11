@@ -4,6 +4,8 @@ module Make = (
   SpacingConfig: AncestorCss_Config.Spacing,
   RadiusConfig: AncestorCss_Config.Radius,
   ZIndexConfig: AncestorCss_Config.ZIndex,
+  TypographyConfig: AncestorCss_Config.Typography,
+  ShadowsConfig: AncestorCss_Config.Shadows,
 ) => {
   module Config__Internal = {
     include BreakpointsConfig
@@ -11,6 +13,8 @@ module Make = (
     include SpacingConfig
     include RadiusConfig
     include ZIndexConfig
+    include TypographyConfig
+    include ShadowsConfig
   }
 
   module Styles = Ancestor_Styles.Make(Config__Internal)

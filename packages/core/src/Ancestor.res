@@ -9,44 +9,27 @@ module Defaults = {
       lg?: 'a,
       xl?: 'a,
     }
-    type keyOfBreakpoints = Xs | Sm | Md | Lg | Xl
+    type keyOfBreakpoints = AncestorCss.Defaults.Breakpoints.breakpoints
     let encode = breakpoints => [
-      (Xs, breakpoints.xs),
-      (Sm, breakpoints.sm),
-      (Md, breakpoints.md),
-      (Lg, breakpoints.lg),
-      (Xl, breakpoints.xl),
+      (#xs, breakpoints.xs),
+      (#sm, breakpoints.sm),
+      (#md, breakpoints.md),
+      (#lg, breakpoints.lg),
+      (#xl, breakpoints.xl),
     ]
-    let sizeByBreakpoints = breakpoint =>
-      switch breakpoint {
-      | Xs => 0
-      | Sm => 475
-      | Md => 920
-      | Lg => 1280
-      | Xl => 1920
-      }
+    let sizeByBreakpoints = AncestorCss.Defaults.Breakpoints.sizeByBreakpoints
   }
-  module Spacing = {
-    type spacing = int
-    let spacing = spacing => #px(spacing * 8)
-  }
-
-  module Radius = {
-    type radius = int
-    let radius = radius => #px(radius * 8)
-  }
-
-  module ZIndex = {
-    type zIndex = int
-
-    let zIndex = v => v
-  }
-
-  module Colors = {
-    type colors = Css_AtomicTypes.Color.t
-
-    let colors = v => v
-  }
+  module Spacing = AncestorCss.Defaults.Spacing
+  module Radius = AncestorCss.Defaults.Radius
+  module ZIndex = AncestorCss.Defaults.ZIndex
+  module Colors = AncestorCss.Defaults.Colors
+  module FontSize = AncestorCss.Defaults.FontSize
+  module FontWeight = AncestorCss.Defaults.FontWeight
+  module FontFamily = AncestorCss.Defaults.FontFamily
+  module LineHeight = AncestorCss.Defaults.LineHeight
+  module LetterSpacing = AncestorCss.Defaults.LetterSpacing
+  module Typography = AncestorCss.Defaults.Typography
+  module Shadows = AncestorCss.Defaults.Shadows
 }
 
 include Make(
@@ -55,6 +38,8 @@ include Make(
   Defaults.Spacing,
   Defaults.Radius,
   Defaults.ZIndex,
+  Defaults.Typography,
+  Defaults.Shadows,
 )
 
 /*

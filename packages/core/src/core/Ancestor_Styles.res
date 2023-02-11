@@ -20,6 +20,24 @@ module Make = (Config: Ancestor_Config.T) => {
       type zIndex = Config.zIndex
       let zIndex = Config.zIndex
     },
+    {
+      type fontFamily = Config.fontFamily
+      type fontSize = Config.fontSize
+      type fontWeight = Config.fontWeight
+      type lineHeight = Config.lineHeight
+      type letterSpacing = Config.letterSpacing
+      let fontFamily = Config.fontFamily
+      let fontSize = Config.fontSize
+      let fontWeight = Config.fontWeight
+      let lineHeight = Config.lineHeight
+      let letterSpacing = Config.letterSpacing
+    },
+    {
+      type boxShadow = Config.boxShadow
+      type textShadow = Config.textShadow
+      let boxShadow = Config.boxShadow
+      let textShadow = Config.textShadow
+    },
   )
 
   let filterEmptyValues = values =>

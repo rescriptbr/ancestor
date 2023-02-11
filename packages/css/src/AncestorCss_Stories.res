@@ -36,6 +36,7 @@ let overview = () => {
     height(124->#px),
     boxShadow(#cool),
     bgColor(#secondary),
+    fontSize(24->#px),
     breakpoint(
       #sm,
       [

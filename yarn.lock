@@ -138,6 +138,34 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@ancestor-ui/core@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@ancestor-ui/core/-/core-0.5.0.tgz#2f14381f585a5963481df668fb27d4a01359261f"
+  integrity sha512-hbIeMd2sPymkTqVsy/+wrZjGIpt7a5K8W/VAq9D13ex8AeNXwfc2sCNTtFSYJ9wlnLalQ+0rc641V351TIYZeA==
+  dependencies:
+    "@ancestor-ui/bindings" "0.1.0"
+    "@ancestor-ui/css" "0.5.0"
+
+"@ancestor-ui/css@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@ancestor-ui/css/-/css-0.5.0.tgz#17e4ead5bba56de49e5951f02d9ebf562ea5ace3"
+  integrity sha512-QYoL2BEyKCWo5kB9sRyNEybXsa3y5umDHvtC8Wn6l3o/Aj8wghqs94unty5+ijIWRuabVY1r/h8pxDBiTJMfpg==
+  dependencies:
+    "@ancestor-ui/bindings" "0.1.0"
+    bs-css "16.0.0"
+    bs-css-emotion "5.0.0"
+    rescript-webapi "0.7.0"
+
+"@ancestor-ui/css@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@ancestor-ui/css/-/css-0.6.1.tgz#641c6f7e55d564c3d9dd515c22b4a9283d017ec6"
+  integrity sha512-11oLmKAj5M+z0nciH/+aBR70KkRgKeLdjYF8KW1V8igXZyik0FJYgR31lv/T+vimbkjQ+hhhxUZS6llYhg3Zzg==
+  dependencies:
+    "@ancestor-ui/bindings" "0.1.0"
+    bs-css "16.0.0"
+    bs-css-emotion "5.0.0"
+    rescript-webapi "0.7.0"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.5.5", "@babel/code-frame@^7.8.3":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
