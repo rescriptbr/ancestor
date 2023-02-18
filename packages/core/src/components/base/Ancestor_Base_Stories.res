@@ -15,7 +15,7 @@ let basicUsage = () => {
       maxW={xs: 356->#px}
       borderRadius={xs: 1}
       p={xs: 3}
-      bgColor={xs: #hex("000")}
+      bgColor={xs: #hex("000"), md: #hex("fc0"), lg: #hex("f36")}
       tag=#section>
       <Base
         border={xs: (2->#px, #solid, #hex("f36"))}
