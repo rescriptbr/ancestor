@@ -372,6 +372,7 @@ module Make = (Config: Ancestor_Config.T) => {
     let parsedRules =
       rules
       ->Belt.Map.toArray
+      ->Js.Array2.sortInPlaceWith(sortBySize)
       ->Js.Array2.map(((breakpoint, rules)) => Css.breakpoint(breakpoint, rules))
       ->Js.Array2.concat(pseudoSelectorsRules)
 
