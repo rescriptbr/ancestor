@@ -9,7 +9,7 @@
     "@emotion/jest": "11.9.3",
     "@greenlabs/rescript-jest": "1.0.1",
     "@greenlabs/rescript-testing-library": "2.0.1",
-    "@rescript/react": "0.11.0-rc.3",
+    "@rescript/react": "0.11.0",
     "@storybook/addon-actions": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addon-interactions": "6.5.15",
