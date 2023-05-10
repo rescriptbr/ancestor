@@ -2,8 +2,8 @@
   <img src="https://raw.githubusercontent.com/rescriptbr/ancestor/master/assets/ancestor-logo.svg" /> 
   <br />
   <br />
-  <a target="_blank" href="https://ancestor.rescriptbrasil.org"> Docs </a> //
-    <a target="_blank" href="https://ancestor.rescriptbrasil.org/docs/getting-started"> Getting Started </a> //
+  <a target="_blank" href="https://ancestor.netlify.app"> Docs </a> //
+    <a target="_blank" href="https://ancestor.netlify.app/docs/getting-started"> Getting Started </a> //
   <a target="_blank" href="https://github.com/rescriptbr"> ReScript Brazil Community </a>
  </p>
 
