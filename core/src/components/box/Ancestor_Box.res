@@ -134,10 +134,9 @@ module Make = (Config: Ancestor_Config.T) => {
     // React props
     ~children=?,
     ~dangerouslySetInnerHTML=?,
-    ~innerRef=?,
     // DOM Props
     ~className="",
-    ~tag: Ancestor_React.tags=#div,
+    ~tag: Ancestor_React.tag=#div,
     ~id=?,
     ~onClick=?,
     ~onSubmit=?,
@@ -343,7 +342,6 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onCanPlayThrough=?,
     ~onDurationChange=?,
     ~onEmptied=?,
-    ~onEncrypetd=?,
     ~onEnded=?,
     ~onError=?,
     ~onLoadedData=?,
@@ -472,7 +470,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?src
       ?alt
       ?children
-      ?innerRef
       ?ariaDetails
       ?ariaDisabled
       ?ariaHidden
@@ -672,7 +669,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?onCanPlayThrough
       ?onDurationChange
       ?onEmptied
-      ?onEncrypetd
       ?onEnded
       ?onError
       ?onLoadedData

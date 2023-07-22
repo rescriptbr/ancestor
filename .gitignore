@@ -24,12 +24,12 @@ lib/bs
 .vscode
 .merlin
 .bsb.lock
-/node_modules/
+node_modules/
 *.bs.js
-/demo/lib/
-/core/lib/
-/website/lib/
-/core/node_modules/
-/website/node_modules/
+demo/lib/
+core/lib/
+website/lib/
+core/node_modules/
+website/node_modules/
 
 .DS_STORE

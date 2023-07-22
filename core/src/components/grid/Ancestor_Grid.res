@@ -126,11 +126,10 @@ module Make = (Config: Ancestor_Config.T) => {
     ~transform=?,
     // Grid props
     ~spacing: option<Styles.responsiveProp<Config.spacing>>=?,
-    ~tag: Ancestor_React.tags=#div,
+    ~tag: Ancestor_React.tag=#div,
     // React props
     ~children=?,
     ~dangerouslySetInnerHTML=?,
-    ~innerRef=?,
     // DOM Props
     ~className="",
     ~id=?,
@@ -338,7 +337,6 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onCanPlayThrough=?,
     ~onDurationChange=?,
     ~onEmptied=?,
-    ~onEncrypetd=?,
     ~onEnded=?,
     ~onError=?,
     ~onLoadedData=?,
@@ -464,7 +462,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?src
       ?alt
       ?children
-      ?innerRef
       ?ariaDetails
       ?ariaDisabled
       ?ariaHidden
@@ -664,7 +661,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?onCanPlayThrough
       ?onDurationChange
       ?onEmptied
-      ?onEncrypetd
       ?onEnded
       ?onError
       ?onLoadedData

@@ -1,6 +1,6 @@
 {
   "name": "@rescriptbr/ancestor",
-  "version": "1.0.0-4",
+  "version": "1.0.0-4-rescript-11-compat.0-alpha",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
@@ -16,7 +16,7 @@
     "@babel/core": "7.17.5",
     "@emotion/css": "11.10.0",
     "@emotion/jest": "11.9.3",
-    "@rescript/react": "0.10.3",
+    "@rescript/react": "0.11.0",
     "@storybook/addon-actions": "6.5.9",
     "@storybook/addon-essentials": "6.5.9",
     "@storybook/addon-interactions": "6.5.9",
@@ -27,16 +27,16 @@
     "babel-loader": "8.2.3",
     "jest": "27.2.5",
     "jsdom": "20.0.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
     "react-test-renderer": "17.0.2",
-    "rescript": "9.1.4"
+    "rescript": "10.1.4"
   },
   "peerDependencies": {
-    "@rescript/react": ">=0.10.0",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "rescript": ">=9.0."
+    "@rescript/react": "0.11.0",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "rescript": "10.1.4"
   },
   "scripts": {
     "build": "rescript build -with-deps",

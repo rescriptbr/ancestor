@@ -44,7 +44,10 @@ module Make = (Config: Ancestor_Config.T) => {
       if index == total - 1 {
         element
       } else {
-        <> element divider </>
+        <>
+          element
+          divider
+        </>
       }
     })
   }
@@ -149,10 +152,9 @@ module Make = (Config: Ancestor_Config.T) => {
     // React props
     ~children=?,
     ~dangerouslySetInnerHTML=?,
-    ~innerRef=?,
     // DOM Props
     ~className="",
-    ~tag: Ancestor_React.tags=#div,
+    ~tag: Ancestor_React.tag=#div,
     ~id=?,
     ~onClick=?,
     ~onSubmit=?,
@@ -358,7 +360,6 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onCanPlayThrough=?,
     ~onDurationChange=?,
     ~onEmptied=?,
-    ~onEncrypetd=?,
     ~onEnded=?,
     ~onError=?,
     ~onLoadedData=?,
@@ -483,7 +484,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?dangerouslySetInnerHTML
       ?src
       ?alt
-      ?innerRef
       ?ariaDetails
       ?ariaDisabled
       ?ariaHidden
@@ -683,7 +683,6 @@ module Make = (Config: Ancestor_Config.T) => {
       ?onCanPlayThrough
       ?onDurationChange
       ?onEmptied
-      ?onEncrypetd
       ?onEnded
       ?onError
       ?onLoadedData

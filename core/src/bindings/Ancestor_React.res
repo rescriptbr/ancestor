@@ -1,4 +1,4 @@
-type tags = [
+type tag = [
   | #a
   | #abbr
   | #acronym
@@ -108,7 +108,4 @@ type tags = [
   | #wbr
 ]
 
-@module("react")
-external createElement: (tags, ReactDOM.domProps, option<React.element>) => React.element =
-  "createElement"
-
+let createElement = (tag: tag, props) => ReactDOM.jsx((tag :> string), props)
