@@ -321,7 +321,7 @@ module Make = (
       | #inherit
     ]
 
-    let toString = Obj.magic
+    let toString = (display: t) => (display :> string)
   }
 
   module JustifyContent = {
@@ -340,7 +340,7 @@ module Make = (
       | #revert
       | #unset
     ]
-    let toString = Obj.magic
+    let toString = (justifyContent: t) => (justifyContent :> string)
   }
 
   module AlignItems = {
@@ -355,7 +355,7 @@ module Make = (
       | #"self-end"
     ]
 
-    let toString = Obj.magic
+    let toString = (t: t) => (t :> string)
   }
 
   module FlexDirection = {
@@ -369,7 +369,7 @@ module Make = (
       | #unset
     ]
 
-    let toString = Obj.magic
+    let toString = (t: t) => (t :> string)
   }
 
   module FlexWrap = {
@@ -382,7 +382,7 @@ module Make = (
       | #unset
     ]
 
-    let toString = Obj.magic
+    let toString = (t: t) => (t :> string)
   }
 
   module FlexBasis = {
@@ -492,13 +492,13 @@ module Make = (
       | #fixed
       | #sticky
     ]
-    let toString = Obj.magic
+    let toString: t => string = t => Obj.magic(t)
   }
 
   module TextAlign = {
     type t = [#center | #left | #right]
 
-    let toString = Obj.magic
+    let toString = (t: t) => (t :> string)
   }
 
   module FontFamily = {
@@ -531,7 +531,7 @@ module Make = (
       | #inherit
     ]
 
-    let toString = Obj.magic
+    let toString = t => Obj.magic(t)
   }
 
   module BoxSizing = {
@@ -542,7 +542,7 @@ module Make = (
       | #inherit
     ]
 
-    let toString = Obj.magic
+    let toString: t => string = t => Obj.magic(t)
   }
 
   module ZIndex = {

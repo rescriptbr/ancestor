@@ -28,7 +28,7 @@ module Make = (Config: Ancestor_Config.T) => {
   let sortBySize = (first, second) =>
     Config.sizeByBreakpoints(first) - Config.sizeByBreakpoints(second)
 
-  let mergeStyles = (cssKey, stringify, styles, breakpointValue) =>
+  let mergeStyles = (cssKey, stringify) => (styles, breakpointValue) =>
     mediaQuery(
       styles,
       breakpointValue,
