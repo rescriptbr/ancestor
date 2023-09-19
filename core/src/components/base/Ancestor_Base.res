@@ -327,10 +327,12 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onAnimationEnd=?,
     ~onAnimationIteration=?,
     ~onTransitionEnd=?,
+    ~innerRef=?,
   ) =>
     Ancestor_React.createElement(
       tag,
       {
+        ref: ?innerRef,
         ?dangerouslySetInnerHTML,
         ?children,
         ?id,

@@ -364,12 +364,14 @@ module Make = (Config: Ancestor_Config.T) => {
     ~onAnimationEnd=?,
     ~onAnimationIteration=?,
     ~onTransitionEnd=?,
+    ~innerRef=?,
   ) => {
     <Base
       className={
         let boxClassName = createBox(~columns?, ())
         `${boxClassName} ${className}`
       }
+      ?innerRef
       ?borderRadius
       ?borderTLRadius
       ?borderTRRadius

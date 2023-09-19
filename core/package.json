@@ -1,6 +1,6 @@
 {
   "name": "@rescriptbr/ancestor",
-  "version": "1.0.0-4-rescript-11-compat.3-alpha",
+  "version": "1.0.0-4-rescript-10-compat.1-alpha",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
@@ -30,13 +30,13 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-test-renderer": "17.0.2",
-    "rescript": "11.0.0-beta.2"
+    "rescript": "^10.0.0"
   },
   "peerDependencies": {
     "@rescript/react": "0.11.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "rescript": "11.0.0-beta.2"
+    "rescript": "^10.0.0"
   },
   "scripts": {
     "build": "rescript build -with-deps",

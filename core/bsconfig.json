@@ -5,7 +5,6 @@
     "dir": "src",
     "subdirs": true
   },
-  "uncurried": true,
   "package-specs": [
     {
       "module": "commonjs",
