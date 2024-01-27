@@ -1,3 +1,5 @@
+> ⚠️ **DISCLAIMER**: Considering the recent changes in the use of CSS in JS with runtime and also the maintenance and adaptation effort of this project to align with the direction the ecosystem is taking in the use of CSS in JS, especially with the advent of RSC and frameworks like Remix and Next, this repository is no longer maintained. Furthermore, there are excellent solid options in the JS ecosystem such as Chakra UI, Panda CSS, and Tailwind that satisfactorily meet requirements and work well with ReScript through bindings.
+
 <p align="center">  
   <img src="https://raw.githubusercontent.com/rescriptbr/ancestor/master/assets/ancestor-logo.svg" /> 
   <br />
@@ -7,8 +9,6 @@
   <a target="_blank" href="https://github.com/rescriptbr"> ReScript Brazil Community </a>
  </p>
 
-> ⚠️ **DISCLAIMER**: We're working on a new version of Ancestor bringing a complete set of UI tools for ReScript. The most stable version is @rescriptbr/ancestor@0.8.0 and you can install by following the instructions below. Don't forget to install the most stable version, there are unstable pre-release versions that might not work as expected since they're pre-releases.
-> 
 # Introduction
 
 **Ancestor** is a suite of components that works as layout primitives to develop high-quality 
